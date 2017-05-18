@@ -15,3 +15,6 @@ install:
   
 script:
   - ./gradlew test
+  - ./gradlew codeCoverageReport
+after_success:
+  - bash <(curl -s https://codecov.io/bash)

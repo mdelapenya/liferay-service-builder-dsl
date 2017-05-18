@@ -15,6 +15,6 @@ install:
   
 script:
   - ./gradlew test
-  - ./gradlew codeCoverageReport
+  - ./gradlew jacocoTestReport
 after_success:
   - bash <(curl -s https://codecov.io/bash)

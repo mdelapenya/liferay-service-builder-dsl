@@ -16,6 +16,7 @@ public class ServiceBuilder {
 			builder._autoImportDefaultReferences;
 		_autoNamespaceTables = builder._autoNamespaceTables;
 		_entities = builder._entities;
+		_exceptions = builder._exceptions;
 	}
 
 	public boolean isAutoImportDefaultReferences() {
@@ -28,6 +29,10 @@ public class ServiceBuilder {
 
 	public List<Entity> getEntities() {
 		return _entities;
+	}
+
+	public List<String> getExceptions() {
+		return _exceptions;
 	}
 
 	public String getNamespace() {
@@ -63,6 +68,12 @@ public class ServiceBuilder {
 			return this;
 		}
 
+		public Builder withException(String exception) {
+			_exceptions.add(exception);
+
+			return this;
+		}
+
 		public ServiceBuilder build() {
 			return new ServiceBuilder(this);
 		}
@@ -70,6 +81,7 @@ public class ServiceBuilder {
 		private boolean _autoImportDefaultReferences;
 		private boolean _autoNamespaceTables;
 		private List<Entity> _entities = new ArrayList<>();
+		private List<String> _exceptions = new ArrayList<>();
 		private final String _namespace;
 		private final String _packagePath;
 
@@ -78,6 +90,7 @@ public class ServiceBuilder {
 	private boolean _autoImportDefaultReferences;
 	private boolean _autoNamespaceTables;
 	private List<Entity> _entities;
+	private List<String> _exceptions;
 	private String _namespace;
 	private String _packagePath;
 

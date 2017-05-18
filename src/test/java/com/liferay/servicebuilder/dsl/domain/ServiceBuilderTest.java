@@ -68,6 +68,29 @@ public class ServiceBuilderTest {
 		Assert.assertEquals(2, entities.size());
 	}
 
+	@Test
+	public void testBuildWithException() {
+		ServiceBuilder serviceBuilder = builder
+			.withException("ArticleContent")
+			.build();
+
+		List<String> exceptions = serviceBuilder.getExceptions();
+
+		Assert.assertEquals(1, exceptions.size());
+	}
+
+	@Test
+	public void testBuildWithExceptions() {
+		ServiceBuilder serviceBuilder = builder
+			.withException("ArticleContent")
+			.withException("ArticleDisplayDate")
+			.build();
+
+		List<String> exceptions = serviceBuilder.getExceptions();
+
+		Assert.assertEquals(2, exceptions.size());
+	}
+
 	private ServiceBuilder.Builder builder = new ServiceBuilder.Builder(
 		"com.liferay.foo", "Journal");
 

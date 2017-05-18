@@ -1,5 +1,8 @@
 package com.liferay.servicebuilder.dsl.domain;
 
+import java.util.ArrayList;
+import java.util.List;
+
 /**
  * @author Manuel de la Peña
  */
@@ -12,6 +15,7 @@ public class ServiceBuilder {
 		_autoImportDefaultReferences =
 			builder._autoImportDefaultReferences;
 		_autoNamespaceTables = builder._autoNamespaceTables;
+		_entities = builder._entities;
 	}
 
 	public boolean isAutoImportDefaultReferences() {
@@ -20,6 +24,10 @@ public class ServiceBuilder {
 
 	public boolean isAutoNamespaceTables() {
 		return _autoNamespaceTables;
+	}
+
+	public List<Entity> getEntities() {
+		return _entities;
 	}
 
 	public String getNamespace() {
@@ -49,12 +57,19 @@ public class ServiceBuilder {
 			return this;
 		}
 
+		public Builder withEntity(Entity entity) {
+			_entities.add(entity);
+
+			return this;
+		}
+
 		public ServiceBuilder build() {
 			return new ServiceBuilder(this);
 		}
 
 		private boolean _autoImportDefaultReferences;
 		private boolean _autoNamespaceTables;
+		private List<Entity> _entities = new ArrayList<>();
 		private final String _namespace;
 		private final String _packagePath;
 
@@ -62,6 +77,7 @@ public class ServiceBuilder {
 
 	private boolean _autoImportDefaultReferences;
 	private boolean _autoNamespaceTables;
+	private List<Entity> _entities;
 	private String _namespace;
 	private String _packagePath;
 

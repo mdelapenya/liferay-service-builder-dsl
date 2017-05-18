@@ -7,6 +7,7 @@ public class ServiceBuilder {
 
 	public ServiceBuilder(Builder builder) {
 		_packagePath = builder._packagePath;
+		_namespace = builder._namespace;
 
 		_autoImportDefaultReferences =
 			builder._autoImportDefaultReferences;
@@ -21,14 +22,19 @@ public class ServiceBuilder {
 		return _autoNamespaceTables;
 	}
 
+	public String getNamespace() {
+		return _namespace;
+	}
+
 	public String getPackagePath() {
 		return _packagePath;
 	}
 
 	public static class Builder {
 
-		public Builder(String packagePath) {
+		public Builder(String packagePath, String namespace) {
 			_packagePath = packagePath;
+			_namespace = namespace;
 		}
 
 		public Builder autoImportDefaultReferences() {
@@ -49,12 +55,14 @@ public class ServiceBuilder {
 
 		private boolean _autoImportDefaultReferences;
 		private boolean _autoNamespaceTables;
+		private final String _namespace;
 		private final String _packagePath;
 
 	}
 
 	private boolean _autoImportDefaultReferences;
 	private boolean _autoNamespaceTables;
+	private String _namespace;
 	private String _packagePath;
 
 }

@@ -13,6 +13,7 @@ public class ServiceBuilderTest {
 		ServiceBuilder serviceBuilder = builder.build();
 
 		Assert.assertEquals("com.liferay.foo", serviceBuilder.getPackagePath());
+		Assert.assertEquals("Journal", serviceBuilder.getNamespace());
 		Assert.assertFalse(serviceBuilder.isAutoImportDefaultReferences());
 		Assert.assertFalse(serviceBuilder.isAutoNamespaceTables());
 	}
@@ -34,6 +35,6 @@ public class ServiceBuilderTest {
 	}
 
 	private ServiceBuilder.Builder builder = new ServiceBuilder.Builder(
-		"com.liferay.foo");
+		"com.liferay.foo", "Journal");
 
 }

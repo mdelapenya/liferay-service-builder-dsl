@@ -17,6 +17,7 @@ public class ServiceBuilder {
 		_autoNamespaceTables = builder._autoNamespaceTables;
 		_entities = builder._entities;
 		_exceptions = builder._exceptions;
+		_mvccEnabled = builder._mvccEnabled;
 	}
 
 	public List<Entity> getEntities() {
@@ -43,6 +44,10 @@ public class ServiceBuilder {
 		return _autoNamespaceTables;
 	}
 
+	public boolean isMvccEnabled() {
+		return _mvccEnabled;
+	}
+
 	public static class Builder {
 
 		public Builder(String packagePath, String namespace) {
@@ -58,6 +63,12 @@ public class ServiceBuilder {
 
 		public Builder autoNamespaceTables() {
 			_autoNamespaceTables = true;
+
+			return this;
+		}
+
+		public Builder enableMvcc() {
+			_mvccEnabled = true;
 
 			return this;
 		}
@@ -82,6 +93,7 @@ public class ServiceBuilder {
 		private boolean _autoNamespaceTables;
 		private List<Entity> _entities = new ArrayList<>();
 		private List<String> _exceptions = new ArrayList<>();
+		private boolean _mvccEnabled;
 		private final String _namespace;
 		private final String _packagePath;
 
@@ -91,6 +103,7 @@ public class ServiceBuilder {
 	private boolean _autoNamespaceTables;
 	private List<Entity> _entities;
 	private List<String> _exceptions;
+	private boolean _mvccEnabled;
 	private String _namespace;
 	private String _packagePath;
 

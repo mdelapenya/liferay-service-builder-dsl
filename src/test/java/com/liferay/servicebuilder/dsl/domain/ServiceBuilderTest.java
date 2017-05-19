@@ -18,6 +18,7 @@ public class ServiceBuilderTest {
 		Assert.assertEquals("Journal", serviceBuilder.getNamespace());
 		Assert.assertFalse(serviceBuilder.hasAutoImportDefaultReferences());
 		Assert.assertFalse(serviceBuilder.hasAutoNamespaceTables());
+		Assert.assertFalse(serviceBuilder.isMvccEnabled());
 	}
 
 	@Test
@@ -89,6 +90,13 @@ public class ServiceBuilderTest {
 		List<String> exceptions = serviceBuilder.getExceptions();
 
 		Assert.assertEquals(2, exceptions.size());
+	}
+
+	@Test
+	public void testBuildWithMvccEnabled() {
+		ServiceBuilder serviceBuilder = builder.enableMvcc().build();
+
+		Assert.assertTrue(serviceBuilder.isMvccEnabled());
 	}
 
 	private ServiceBuilder.Builder builder = new ServiceBuilder.Builder(

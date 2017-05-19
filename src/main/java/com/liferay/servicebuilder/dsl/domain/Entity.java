@@ -48,6 +48,22 @@ public class Entity {
 	public String getHumanName() {
 		return _humanName;
 	}
+	
+	public String getName() {
+		return _name;
+	}
+
+	public String getPersistenceClass() {
+		return _persistenceClass;
+	}
+
+	public String getTable() {
+		return _table;
+	}
+
+	public String getTxManager() {
+		return _txManager;
+	}
 
 	public String getSessionFactory() {
 		return _sessionFactory;
@@ -71,22 +87,6 @@ public class Entity {
 
 	public boolean hasUuidAccessor() {
 		return _uuidAccesor;
-	}
-
-	public String getName() {
-		return _name;
-	}
-
-	public String getPersistenceClass() {
-		return _persistenceClass;
-	}
-
-	public String getTable() {
-		return _table;
-	}
-
-	public String getTxManager() {
-		return _txManager;
 	}
 
 	public static class Builder {

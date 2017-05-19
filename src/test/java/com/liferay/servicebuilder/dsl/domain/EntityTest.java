@@ -23,6 +23,7 @@ public class EntityTest {
 		Assert.assertFalse(entity.hasLocalService());
 		Assert.assertTrue(entity.getHumanName() == null);
 		Assert.assertFalse(entity.hasRemoteService());
+		Assert.assertTrue(entity.getTable() == null);
 		Assert.assertFalse(entity.hasTrashEnabled());
 	}
 
@@ -73,6 +74,14 @@ public class EntityTest {
 		Entity entity = builder.withRemoteServices().build();
 
 		Assert.assertTrue(entity.hasRemoteService());
+	}
+
+	@Test
+	public void testBuildWithTable() {
+		Entity entity = builder.withTable("table").build();
+
+		Assert.assertNotEquals(entity.getName(), entity.getTable());
+		Assert.assertEquals("table", entity.getTable());
 	}
 
 	@Test

@@ -27,6 +27,7 @@ public class Entity {
 		_humanName = builder._humanName;
 		_localService = builder._localService;
 		_remoteService = builder._remoteService;
+		_table = builder._table;
 		_trashEnabled = builder._trashEnabled;
 	}
 
@@ -54,6 +55,9 @@ public class Entity {
 		return _name;
 	}
 
+	public String getTable() {
+		return _table;
+	}
 	public static class Builder {
 
 		public Builder(String name) {
@@ -88,6 +92,12 @@ public class Entity {
 			return this;
 		}
 
+		public Builder withTable(String table) {
+			_table = table;
+
+			return this;
+		}
+
 		public Builder withTrashEnabled() {
 			_trashEnabled = true;
 
@@ -99,6 +109,7 @@ public class Entity {
 		private boolean _localService;
 		private final String _name;
 		private boolean _remoteService;
+		private String _table;
 		private boolean _trashEnabled;
 	}
 
@@ -123,6 +134,12 @@ public class Entity {
 	 * remote interfaces for the service. The default value is true.
 	 */
 	private boolean _remoteService;
+	/**
+	 * The table value specifies the name of the table that this entity maps to
+	 * in the database. If this value is not set, then the name of the table is
+	 * the same as the name of the entity.
+	 */
+	private String _table;
 	/**
 	 * The trash-enabled value specifies whether trash related methods should be
 	 * generated or not.

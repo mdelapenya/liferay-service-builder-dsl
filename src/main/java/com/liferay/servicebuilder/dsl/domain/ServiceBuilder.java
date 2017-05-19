@@ -62,6 +62,10 @@ public class ServiceBuilder {
 			return this;
 		}
 
+		public ServiceBuilder build() {
+			return new ServiceBuilder(this);
+		}
+
 		public Builder withEntity(Entity entity) {
 			_entities.add(entity);
 
@@ -72,10 +76,6 @@ public class ServiceBuilder {
 			_exceptions.add(exception);
 
 			return this;
-		}
-
-		public ServiceBuilder build() {
-			return new ServiceBuilder(this);
 		}
 
 		private boolean _autoImportDefaultReferences;

@@ -35,6 +35,10 @@ public class Entity {
 			_name = name;
 		}
 
+		public Entity build() {
+			return new Entity(this);
+		}
+
 		public Builder withLocalServices() {
 			_localService = true;
 
@@ -51,10 +55,6 @@ public class Entity {
 			_trashEnabled = true;
 
 			return this;
-		}
-
-		public Entity build() {
-			return new Entity(this);
 		}
 
 		private boolean _localService;

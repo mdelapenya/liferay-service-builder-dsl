@@ -20,13 +20,6 @@ public class ColumnTest {
 	}
 
 	@Test
-	public void testBuildWithAccessor() {
-		Column column = builder.withAccesor().build();
-
-		Assert.assertTrue(column.isAccesor());
-	}
-
-	@Test
 	public void testBuildFilterPrimary() {
 		Column column = builder.filterPrimary().build();
 
@@ -38,6 +31,13 @@ public class ColumnTest {
 		Column column = builder.primary().build();
 
 		Assert.assertTrue(column.isPrimary());
+	}
+
+	@Test
+	public void testBuildWithAccessor() {
+		Column column = builder.withAccesor().build();
+
+		Assert.assertTrue(column.isAccesor());
 	}
 
 	private Column.Builder builder = new Column.Builder("groupId", "long");

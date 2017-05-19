@@ -22,12 +22,12 @@ public class Column {
 		return _filterPrimary;
 	}
 
-	public String getName() {
-		return _name;
-	}
-
 	public boolean isPrimary() {
 		return _primary;
+	}
+
+	public String getName() {
+		return _name;
 	}
 
 	public String getType() {
@@ -41,10 +41,8 @@ public class Column {
 			_type = type;
 		}
 
-		public Builder withAccesor() {
-			_accesor = true;
-
-			return this;
+		public Column build() {
+			return new Column(this);
 		}
 
 		public Builder filterPrimary() {
@@ -59,8 +57,10 @@ public class Column {
 			return this;
 		}
 
-		public Column build() {
-			return new Column(this);
+		public Builder withAccesor() {
+			_accesor = true;
+
+			return this;
 		}
 
 		private boolean _accesor;

@@ -27,6 +27,7 @@ public class EntityTest {
 		Assert.assertFalse(entity.hasRemoteService());
 		Assert.assertTrue(entity.getSessionFactory() == null);
 		Assert.assertTrue(entity.getTable() == null);
+		Assert.assertTrue(entity.getTxManager() == null);
 		Assert.assertFalse(entity.hasTrashEnabled());
 		Assert.assertFalse(entity.hasUuid());
 		Assert.assertFalse(entity.hasUuidAccessor());
@@ -111,6 +112,13 @@ public class EntityTest {
 
 		Assert.assertNotEquals(entity.getName(), entity.getTable());
 		Assert.assertEquals("table", entity.getTable());
+	}
+
+	@Test
+	public void testBuildWithTxManager() {
+		Entity entity = builder.withTxManager("txManager").build();
+
+		Assert.assertEquals("txManager", entity.getTxManager());
 	}
 
 	@Test

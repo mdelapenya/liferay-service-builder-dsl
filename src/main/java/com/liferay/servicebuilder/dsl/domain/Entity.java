@@ -32,6 +32,7 @@ public class Entity {
 		_sessionFactory = builder._sessionFactory;
 		_table = builder._table;
 		_trashEnabled = builder._trashEnabled;
+		_txManager = builder._txManager;
 		_uuid = builder._uuid;
 		_uuidAccesor = builder._uuidAccesor;
 	}
@@ -82,6 +83,10 @@ public class Entity {
 
 	public String getTable() {
 		return _table;
+	}
+
+	public String getTxManager() {
+		return _txManager;
 	}
 
 	public static class Builder {
@@ -148,6 +153,12 @@ public class Entity {
 			return this;
 		}
 
+		public Builder withTxManager(String txManager) {
+			_txManager = txManager;
+
+			return this;
+		}
+
 		public Builder withUuid() {
 			_uuid = true;
 
@@ -170,6 +181,7 @@ public class Entity {
 		private String _sessionFactory;
 		private String _table;
 		private boolean _trashEnabled;
+		private String _txManager;
 		private boolean _uuid;
 		private boolean _uuidAccesor;
 	}
@@ -231,6 +243,13 @@ public class Entity {
 	 * generated or not.
 	 */
 	private boolean _trashEnabled;
+	/**
+	 * The tx-manager value specifies the transaction manager that Spring uses.
+	 * The default value is the Spring Hibernate transaction manager that wraps
+	 * the Liferay data source and session factory. See data-source-spring.xml.
+	 * Set this attribute to "none" to disable transaction management.
+	 */
+	private String _txManager;
 	/**
 	 * If the uuid value is true, then the service will generate a UUID column
 	 * for the service. This column will automatically be populated with a UUID.

@@ -24,6 +24,7 @@ public class EntityTest {
 		Assert.assertTrue(entity.getDatasource() == null);
 		Assert.assertTrue(entity.getHumanName() == null);
 		Assert.assertTrue(entity.getPersistenceClass() == null);
+		Assert.assertTrue(entity.hasCacheEnabled());
 		Assert.assertFalse(entity.hasRemoteService());
 		Assert.assertTrue(entity.getSessionFactory() == null);
 		Assert.assertTrue(entity.getTable() == null);
@@ -31,6 +32,13 @@ public class EntityTest {
 		Assert.assertFalse(entity.hasTrashEnabled());
 		Assert.assertFalse(entity.hasUuid());
 		Assert.assertFalse(entity.hasUuidAccessor());
+	}
+
+	@Test
+	public void testBuildWithCacheDisabled() {
+		Entity entity = builder.disableCache().build();
+
+		Assert.assertFalse(entity.hasCacheEnabled());
 	}
 
 	@Test

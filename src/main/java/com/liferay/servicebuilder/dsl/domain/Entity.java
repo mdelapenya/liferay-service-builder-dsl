@@ -23,6 +23,7 @@ public class Entity {
 	public Entity(Builder builder) {
 		_name = builder._name;
 
+		_cacheEnabled = builder._cacheEnabled;
 		_columns = builder._columns;
 		_datasource = builder._datasource;
 		_humanName = builder._humanName;
@@ -69,6 +70,10 @@ public class Entity {
 		return _sessionFactory;
 	}
 
+	public boolean hasCacheEnabled() {
+		return _cacheEnabled;
+	}
+
 	public boolean hasLocalService() {
 		return _localService;
 	}
@@ -97,6 +102,12 @@ public class Entity {
 
 		public Entity build() {
 			return new Entity(this);
+		}
+
+		public Builder disableCache() {
+			_cacheEnabled = false;
+
+			return this;
 		}
 
 		public Builder withColumn(Column column) {
@@ -171,6 +182,7 @@ public class Entity {
 			return this;
 		}
 
+		private boolean _cacheEnabled = true;
 		private List<Column> _columns = new ArrayList<>();
 		private String _datasource;
 		private String _humanName;
@@ -186,6 +198,12 @@ public class Entity {
 		private boolean _uuidAccesor;
 	}
 
+	/**
+	 * The cache-enabled value specifies whether or not to cache this queries
+	 * for this entity. Set this to false if data in the table will be updated
+	 * by other programs. The default value is true.
+	 */
+	private boolean _cacheEnabled = true;
 	private List<Column> _columns;
 	/**
 	 * You can generate classes to use a custom data source and session factory.

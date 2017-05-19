@@ -21,6 +21,7 @@ public class EntityTest {
 		Assert.assertTrue(columns.isEmpty());
 
 		Assert.assertFalse(entity.hasLocalService());
+		Assert.assertTrue(entity.getHumanName() == null);
 		Assert.assertFalse(entity.hasRemoteService());
 		Assert.assertFalse(entity.hasTrashEnabled());
 	}
@@ -51,6 +52,13 @@ public class EntityTest {
 		List<Column> columns = entity.getColumns();
 
 		Assert.assertEquals(2, columns.size());
+	}
+
+	@Test
+	public void testBuildWithHumanName() {
+		Entity entity = builder.withHumanName("human-name").build();
+
+		Assert.assertEquals("human-name", entity.getHumanName());
 	}
 
 	@Test

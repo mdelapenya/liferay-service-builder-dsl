@@ -24,6 +24,7 @@ public class Entity {
 		_name = builder._name;
 
 		_columns = builder._columns;
+		_humanName = builder._humanName;
 		_localService = builder._localService;
 		_remoteService = builder._remoteService;
 		_trashEnabled = builder._trashEnabled;
@@ -31,6 +32,10 @@ public class Entity {
 
 	public List<Column> getColumns() {
 		return _columns;
+	}
+
+	public String getHumanName() {
+		return _humanName;
 	}
 
 	public boolean hasLocalService() {
@@ -65,6 +70,12 @@ public class Entity {
 			return this;
 		}
 
+		public Builder withHumanName(String humanName) {
+			_humanName = humanName;
+
+			return this;
+		}
+
 		public Builder withLocalServices() {
 			_localService = true;
 
@@ -84,6 +95,7 @@ public class Entity {
 		}
 
 		private List<Column> _columns = new ArrayList<>();
+		private String _humanName;
 		private boolean _localService;
 		private final String _name;
 		private boolean _remoteService;
@@ -91,6 +103,12 @@ public class Entity {
 	}
 
 	private List<Column> _columns;
+	/**
+	 * The human-name value specifies the readable name to use when generating
+	 * documentation for this entity. If none is specified, one will be
+	 * generated from the name.
+	 */
+	private String _humanName;
 	/**
 	 * If the local-service value is true, then the service will generate the
 	 * local interfaces for the service. The default value is false.

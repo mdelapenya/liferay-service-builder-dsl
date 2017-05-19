@@ -1,6 +1,8 @@
 package com.liferay.servicebuilder.dsl.domain;
 
 /**
+ * The column element represents a column in the database.
+ *
  * @author Manuel de la Peña
  */
 public class Column {
@@ -72,9 +74,29 @@ public class Column {
 	}
 
 	private boolean _accessor;
+	/**
+	 * The filter-primary value specifies the column to use as the primary key
+	 * column when using filter finders. Only one column should ever have this
+	 * value set to true. If no column has this set to true, then the default
+	 * primary column be used.
+	 */
 	private boolean _filterPrimary;
+	/**
+	 * The name value specifies the getter and setter name in the entity.
+	 */
 	private String _name;
 	private boolean _primary;
+	/**
+	 * The type value specifies whether the column is a String, Boolean, or int,
+	 * etc.
+	 *
+	 * For example:
+	 *
+	 * <column name="companyId" db-name="companyId" type="String" />
+	 *
+	 * The above column specifies that there will be a getter called
+	 * pojo.getCompanyId() that will return a String.
+	 */
 	private String _type;
 
 }

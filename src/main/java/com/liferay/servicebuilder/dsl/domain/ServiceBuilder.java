@@ -4,6 +4,12 @@ import java.util.ArrayList;
 import java.util.List;
 
 /**
+ * The service-builder element is the root of the deployment descriptor for
+ * a Service Builder descriptor that is used to generate services available to
+ * portlets. The Service Builder saves the developer time by generating Spring
+ * utilities, SOAP utilities, and Hibernate persistence classes to ease the
+ * development of services.
+ *
  * @author Manuel de la Peña
  */
 public class ServiceBuilder {
@@ -99,12 +105,34 @@ public class ServiceBuilder {
 
 	}
 
+	/**
+	 * The auto-import-default-references value specifies whether or not to
+	 * automatically default references. The default value is true.
+	 */
 	private boolean _autoImportDefaultReferences;
+	/**
+	 * The auto-namespace-tables value specifies whether or not to automatically
+	 * namespace tables. The default value is false for core services and true
+	 * for plugin services.
+	 */
 	private boolean _autoNamespaceTables;
 	private List<Entity> _entities;
 	private List<String> _exceptions;
+	/**
+	 * The mvcc-enabled value specifies whether or not to enable MVCC by default
+	 * for entities to prevent lost updates. The default value is false.
+	 */
 	private boolean _mvccEnabled;
+	/**
+	 * The namespace element must be a unique namespace for this component.
+	 * Table names will be prepended with this namespace. Generated JSON
+	 * JavaScript will be scoped to this namespace as well 
+	 * (i.e., Liferay.Service.Test.* if the namespace is Test).
+	 */
 	private String _namespace;
+	/**
+	 * The package-path value specifies the package of the generated code.
+	 */
 	private String _packagePath;
 
 }

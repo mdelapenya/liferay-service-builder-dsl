@@ -18,12 +18,17 @@ public class ServiceBuilder {
 		_packagePath = builder._packagePath;
 		_namespace = builder._namespace;
 
+		_author = builder._author;
 		_autoImportDefaultReferences =
 			builder._autoImportDefaultReferences;
 		_autoNamespaceTables = builder._autoNamespaceTables;
 		_entities = builder._entities;
 		_exceptions = builder._exceptions;
 		_mvccEnabled = builder._mvccEnabled;
+	}
+
+	public String getAuthor() {
+		return _author;
 	}
 
 	public List<Entity> getEntities() {
@@ -83,6 +88,12 @@ public class ServiceBuilder {
 			return new ServiceBuilder(this);
 		}
 
+		public Builder withAuthor(String author) {
+			_author = author;
+
+			return this;
+		}
+
 		public Builder withEntity(Entity entity) {
 			_entities.add(entity);
 
@@ -95,6 +106,7 @@ public class ServiceBuilder {
 			return this;
 		}
 
+		private String _author;
 		private boolean _autoImportDefaultReferences;
 		private boolean _autoNamespaceTables;
 		private List<Entity> _entities = new ArrayList<>();
@@ -105,6 +117,11 @@ public class ServiceBuilder {
 
 	}
 
+	/**
+	 * The author element is the name of the user associated with the generated
+	 * code.
+	 */
+	private String _author;
 	/**
 	 * The auto-import-default-references value specifies whether or not to
 	 * automatically default references. The default value is true.

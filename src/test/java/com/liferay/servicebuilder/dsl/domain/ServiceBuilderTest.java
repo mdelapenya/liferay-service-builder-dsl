@@ -16,9 +16,19 @@ public class ServiceBuilderTest {
 
 		Assert.assertEquals("com.liferay.foo", serviceBuilder.getPackagePath());
 		Assert.assertEquals("Journal", serviceBuilder.getNamespace());
+		Assert.assertTrue(serviceBuilder.getAuthor() == null);
 		Assert.assertFalse(serviceBuilder.hasAutoImportDefaultReferences());
 		Assert.assertFalse(serviceBuilder.hasAutoNamespaceTables());
 		Assert.assertFalse(serviceBuilder.isMvccEnabled());
+	}
+
+	@Test
+	public void testBuildAutoWithAuthor() {
+		ServiceBuilder serviceBuilder = builder
+			.withAuthor("Manuel de la Peña")
+			.build();
+
+		Assert.assertEquals("Manuel de la Peña", serviceBuilder.getAuthor());
 	}
 
 	@Test

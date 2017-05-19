@@ -29,6 +29,7 @@ public class Entity {
 		_localService = builder._localService;
 		_persistenceClass = builder._persistenceClass;
 		_remoteService = builder._remoteService;
+		_sessionFactory = builder._sessionFactory;
 		_table = builder._table;
 		_trashEnabled = builder._trashEnabled;
 		_uuid = builder._uuid;
@@ -45,6 +46,10 @@ public class Entity {
 
 	public String getHumanName() {
 		return _humanName;
+	}
+
+	public String getSessionFactory() {
+		return _sessionFactory;
 	}
 
 	public boolean hasLocalService() {
@@ -125,6 +130,12 @@ public class Entity {
 			return this;
 		}
 
+		public Builder withSessionFactory(String sessionFactory) {
+			_sessionFactory = sessionFactory;
+
+			return this;
+		}
+
 		public Builder withTable(String table) {
 			_table = table;
 
@@ -156,6 +167,7 @@ public class Entity {
 		private final String _name;
 		private String _persistenceClass;
 		private boolean _remoteService;
+		private String _sessionFactory;
 		private String _table;
 		private boolean _trashEnabled;
 		private boolean _uuid;
@@ -202,6 +214,12 @@ public class Entity {
 	 * remote interfaces for the service. The default value is true.
 	 */
 	private boolean _remoteService;
+	/**
+	 * The session-factory value specifies the session factory that is set to
+	 * the persistence class. The default value is the Liferay session factory.
+	 * This is used in conjunction with data-source. See data-source-spring.xml.
+	 */
+	private String _sessionFactory;
 	/**
 	 * The table value specifies the name of the table that this entity maps to
 	 * in the database. If this value is not set, then the name of the table is

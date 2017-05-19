@@ -25,6 +25,7 @@ public class EntityTest {
 		Assert.assertTrue(entity.getHumanName() == null);
 		Assert.assertTrue(entity.getPersistenceClass() == null);
 		Assert.assertFalse(entity.hasRemoteService());
+		Assert.assertTrue(entity.getSessionFactory() == null);
 		Assert.assertTrue(entity.getTable() == null);
 		Assert.assertFalse(entity.hasTrashEnabled());
 		Assert.assertFalse(entity.hasUuid());
@@ -95,6 +96,13 @@ public class EntityTest {
 		Entity entity = builder.withRemoteServices().build();
 
 		Assert.assertTrue(entity.hasRemoteService());
+	}
+
+	@Test
+	public void testBuildWithSessionFactory() {
+		Entity entity = builder.withSessionFactory("sessionFactory").build();
+
+		Assert.assertEquals("sessionFactory", entity.getSessionFactory());
 	}
 
 	@Test

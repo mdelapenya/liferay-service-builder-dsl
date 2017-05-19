@@ -9,13 +9,13 @@ public class Column {
 		_name = builder._name;
 		_type = builder._type;
 
-		_accesor = builder._accesor;
+		_accessor = builder._accessor;
 		_filterPrimary = builder._filterPrimary;
 		_primary = builder._primary;
 	}
 
-	public boolean hasAccesor() {
-		return _accesor;
+	public boolean hasAccessor() {
+		return _accessor;
 	}
 
 	public boolean isFilterPrimary() {
@@ -57,13 +57,13 @@ public class Column {
 			return this;
 		}
 
-		public Builder withAccesor() {
-			_accesor = true;
+		public Builder withAccessor() {
+			_accessor = true;
 
 			return this;
 		}
 
-		private boolean _accesor;
+		private boolean _accessor;
 		private boolean _filterPrimary;
 		private String _name;
 		private boolean _primary;
@@ -71,7 +71,7 @@ public class Column {
 
 	}
 
-	private boolean _accesor;
+	private boolean _accessor;
 	private boolean _filterPrimary;
 	private String _name;
 	private boolean _primary;

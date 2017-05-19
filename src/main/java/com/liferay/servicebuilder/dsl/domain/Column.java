@@ -14,7 +14,7 @@ public class Column {
 		_primary = builder._primary;
 	}
 
-	public boolean isAccesor() {
+	public boolean hasAccesor() {
 		return _accesor;
 	}
 

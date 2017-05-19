@@ -14,7 +14,7 @@ public class ColumnTest {
 
 		Assert.assertEquals("groupId", column.getName());
 		Assert.assertEquals("long", column.getType());
-		Assert.assertFalse(column.isAccesor());
+		Assert.assertFalse(column.hasAccesor());
 		Assert.assertFalse(column.isFilterPrimary());
 		Assert.assertFalse(column.isPrimary());
 	}
@@ -37,7 +37,7 @@ public class ColumnTest {
 	public void testBuildWithAccessor() {
 		Column column = builder.withAccesor().build();
 
-		Assert.assertTrue(column.isAccesor());
+		Assert.assertTrue(column.hasAccesor());
 	}
 
 	private Column.Builder builder = new Column.Builder("groupId", "long");

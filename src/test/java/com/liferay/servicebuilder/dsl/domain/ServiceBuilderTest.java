@@ -16,8 +16,8 @@ public class ServiceBuilderTest {
 
 		Assert.assertEquals("com.liferay.foo", serviceBuilder.getPackagePath());
 		Assert.assertEquals("Journal", serviceBuilder.getNamespace());
-		Assert.assertFalse(serviceBuilder.isAutoImportDefaultReferences());
-		Assert.assertFalse(serviceBuilder.isAutoNamespaceTables());
+		Assert.assertFalse(serviceBuilder.hasAutoImportDefaultReferences());
+		Assert.assertFalse(serviceBuilder.hasAutoNamespaceTables());
 	}
 
 	@Test
@@ -26,14 +26,14 @@ public class ServiceBuilderTest {
 			.autoImportDefaultReferences()
 			.build();
 
-		Assert.assertTrue(serviceBuilder.isAutoImportDefaultReferences());
+		Assert.assertTrue(serviceBuilder.hasAutoImportDefaultReferences());
 	}
 
 	@Test
 	public void testBuildAutoNamespaceTables() {
 		ServiceBuilder serviceBuilder = builder.autoNamespaceTables().build();
 
-		Assert.assertTrue(serviceBuilder.isAutoNamespaceTables());
+		Assert.assertTrue(serviceBuilder.hasAutoNamespaceTables());
 	}
 
 	@Test

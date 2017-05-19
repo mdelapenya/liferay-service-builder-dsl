@@ -13,20 +13,20 @@ public class Entity {
 		_trashEnabled = builder._trashEnabled;
 	}
 
-	public boolean isLocalService() {
+	public boolean hasLocalService() {
 		return _localService;
+	}
+
+	public boolean hasRemoteService() {
+		return _remoteService;
+	}
+
+	public boolean hasTrashEnabled() {
+		return _trashEnabled;
 	}
 
 	public String getName() {
 		return _name;
-	}
-
-	public boolean isRemoteService() {
-		return _remoteService;
-	}
-
-	public boolean isTrashEnabled() {
-		return _trashEnabled;
 	}
 
 	public static class Builder {

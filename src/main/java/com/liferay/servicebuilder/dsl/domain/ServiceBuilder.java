@@ -19,14 +19,6 @@ public class ServiceBuilder {
 		_exceptions = builder._exceptions;
 	}
 
-	public boolean isAutoImportDefaultReferences() {
-		return _autoImportDefaultReferences;
-	}
-
-	public boolean isAutoNamespaceTables() {
-		return _autoNamespaceTables;
-	}
-
 	public List<Entity> getEntities() {
 		return _entities;
 	}
@@ -41,6 +33,14 @@ public class ServiceBuilder {
 
 	public String getPackagePath() {
 		return _packagePath;
+	}
+
+	public boolean hasAutoImportDefaultReferences() {
+		return _autoImportDefaultReferences;
+	}
+
+	public boolean hasAutoNamespaceTables() {
+		return _autoNamespaceTables;
 	}
 
 	public static class Builder {

@@ -26,6 +26,7 @@ public class Entity {
 		_columns = builder._columns;
 		_humanName = builder._humanName;
 		_localService = builder._localService;
+		_persistenceClass = builder._persistenceClass;
 		_remoteService = builder._remoteService;
 		_table = builder._table;
 		_trashEnabled = builder._trashEnabled;
@@ -65,9 +66,14 @@ public class Entity {
 		return _name;
 	}
 
+	public String getPersistenceClass() {
+		return _persistenceClass;
+	}
+
 	public String getTable() {
 		return _table;
 	}
+
 	public static class Builder {
 
 		public Builder(String name) {
@@ -92,6 +98,12 @@ public class Entity {
 
 		public Builder withLocalServices() {
 			_localService = true;
+
+			return this;
+		}
+
+		public Builder withPersistenceClass(String persistenceClass) {
+			_persistenceClass = persistenceClass;
 
 			return this;
 		}
@@ -130,6 +142,7 @@ public class Entity {
 		private String _humanName;
 		private boolean _localService;
 		private final String _name;
+		private String _persistenceClass;
 		private boolean _remoteService;
 		private String _table;
 		private boolean _trashEnabled;
@@ -153,6 +166,13 @@ public class Entity {
 	 * The name value specifies the name of the entity.
 	 */
 	private String _name;
+	/**
+	 * The persistence-class value specifies the name of your custom persistence
+	 * class. This class must implement the generated persistence interface or
+	 * extend the generated persistence class. This allows you to override
+	 * default behavior without modifying the generated persistence class.
+	 */
+	private String _persistenceClass;
 	/**
 	 * If the remote-service value is true, then the service will generate
 	 * remote interfaces for the service. The default value is true.

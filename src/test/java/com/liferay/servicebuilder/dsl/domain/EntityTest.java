@@ -22,6 +22,7 @@ public class EntityTest {
 
 		Assert.assertFalse(entity.hasLocalService());
 		Assert.assertTrue(entity.getHumanName() == null);
+		Assert.assertTrue(entity.getPersistenceClass() == null);
 		Assert.assertFalse(entity.hasRemoteService());
 		Assert.assertTrue(entity.getTable() == null);
 		Assert.assertFalse(entity.hasTrashEnabled());
@@ -69,6 +70,16 @@ public class EntityTest {
 		Entity entity = builder.withLocalServices().build();
 
 		Assert.assertTrue(entity.hasLocalService());
+	}
+
+	@Test
+	public void testBuildWithPersistenceClass() {
+		Entity entity = builder
+			.withPersistenceClass("com.liferay.foo.Foo")
+			.build();
+
+		Assert.assertEquals(
+			"com.liferay.foo.Foo", entity.getPersistenceClass());
 	}
 
 	@Test

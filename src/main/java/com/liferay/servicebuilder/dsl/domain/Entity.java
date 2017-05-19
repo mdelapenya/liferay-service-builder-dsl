@@ -29,6 +29,8 @@ public class Entity {
 		_remoteService = builder._remoteService;
 		_table = builder._table;
 		_trashEnabled = builder._trashEnabled;
+		_uuid = builder._uuid;
+		_uuidAccesor = builder._uuidAccesor;
 	}
 
 	public List<Column> getColumns() {
@@ -49,6 +51,14 @@ public class Entity {
 
 	public boolean hasTrashEnabled() {
 		return _trashEnabled;
+	}
+
+	public boolean hasUuid() {
+		return _uuid;
+	}
+
+	public boolean hasUuidAccessor() {
+		return _uuidAccesor;
 	}
 
 	public String getName() {
@@ -104,6 +114,18 @@ public class Entity {
 			return this;
 		}
 
+		public Builder withUuid() {
+			_uuid = true;
+
+			return this;
+		}
+
+		public Builder withUuidAccessor() {
+			_uuidAccesor = true;
+
+			return this;
+		}
+
 		private List<Column> _columns = new ArrayList<>();
 		private String _humanName;
 		private boolean _localService;
@@ -111,6 +133,8 @@ public class Entity {
 		private boolean _remoteService;
 		private String _table;
 		private boolean _trashEnabled;
+		private boolean _uuid;
+		private boolean _uuidAccesor;
 	}
 
 	private List<Column> _columns;
@@ -145,5 +169,18 @@ public class Entity {
 	 * generated or not.
 	 */
 	private boolean _trashEnabled;
+	/**
+	 * If the uuid value is true, then the service will generate a UUID column
+	 * for the service. This column will automatically be populated with a UUID.
+	 * Developers will also be able to find and remove based on that UUID. The
+	 * default value is false.
+	 */
+	private boolean _uuid;
+	/**
+	 * If the uuid-accessor value is true, then the service will generate a
+	 * UUID column accessor for the service. This accessor will provide a fast
+	 * and type-safe way to access entity's UUID.
+	 */
+	private boolean _uuidAccesor;
 
 }

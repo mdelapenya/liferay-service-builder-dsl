@@ -25,6 +25,8 @@ public class EntityTest {
 		Assert.assertFalse(entity.hasRemoteService());
 		Assert.assertTrue(entity.getTable() == null);
 		Assert.assertFalse(entity.hasTrashEnabled());
+		Assert.assertFalse(entity.hasUuid());
+		Assert.assertFalse(entity.hasUuidAccessor());
 	}
 
 	@Test
@@ -89,6 +91,20 @@ public class EntityTest {
 		Entity entity = builder.withTrashEnabled().build();
 
 		Assert.assertTrue(entity.hasTrashEnabled());
+	}
+
+	@Test
+	public void testBuildWithUuid() {
+		Entity entity = builder.withUuid().build();
+
+		Assert.assertTrue(entity.hasUuid());
+	}
+
+	@Test
+	public void testBuildWithUuidAccessor() {
+		Entity entity = builder.withUuidAccessor().build();
+
+		Assert.assertTrue(entity.hasUuidAccessor());
 	}
 
 	private Entity.Builder builder = new Entity.Builder("JournalArticle");

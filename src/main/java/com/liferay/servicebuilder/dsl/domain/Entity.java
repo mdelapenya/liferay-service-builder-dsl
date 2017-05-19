@@ -24,6 +24,7 @@ public class Entity {
 		_name = builder._name;
 
 		_columns = builder._columns;
+		_datasource = builder._datasource;
 		_humanName = builder._humanName;
 		_localService = builder._localService;
 		_persistenceClass = builder._persistenceClass;
@@ -36,6 +37,10 @@ public class Entity {
 
 	public List<Column> getColumns() {
 		return _columns;
+	}
+
+	public String getDatasource() {
+		return _datasource;
 	}
 
 	public String getHumanName() {
@@ -90,6 +95,12 @@ public class Entity {
 			return this;
 		}
 
+		public Builder withDatasource(String datasource) {
+			_datasource = datasource;
+
+			return this;
+		}
+
 		public Builder withHumanName(String humanName) {
 			_humanName = humanName;
 
@@ -139,6 +150,7 @@ public class Entity {
 		}
 
 		private List<Column> _columns = new ArrayList<>();
+		private String _datasource;
 		private String _humanName;
 		private boolean _localService;
 		private final String _name;
@@ -151,6 +163,18 @@ public class Entity {
 	}
 
 	private List<Column> _columns;
+	/**
+	 * You can generate classes to use a custom data source and session factory.
+	 * Point "spring.configs" in portal.properties to load your custom Spring
+	 * XML with the definitions of your custom data source and session factory.
+	 * Then set the data-source and session-factory values to your custom
+	 * values.
+	 *
+	 * The data-source value specifies the data source target that is set to the
+	 * persistence class. The default value is the Liferay data source. This is
+	 * used in conjunction with session-factory. See data-source-spring.xml.
+	 */
+	private String _datasource;
 	/**
 	 * The human-name value specifies the readable name to use when generating
 	 * documentation for this entity. If none is specified, one will be

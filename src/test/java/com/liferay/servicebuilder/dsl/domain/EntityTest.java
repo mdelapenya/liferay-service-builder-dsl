@@ -22,18 +22,18 @@ public class EntityTest {
 		Assert.assertTrue(columns.isEmpty());
 
 		Assert.assertFalse(entity.hasLocalService());
-		Assert.assertTrue(entity.getDatasource() == null);
-		Assert.assertTrue(entity.getHumanName() == null);
-		Assert.assertTrue(entity.getPersistenceClass() == null);
+		Assert.assertNull(entity.getDatasource());
+		Assert.assertNull(entity.getHumanName());
+		Assert.assertNull(entity.getPersistenceClass());
 		Assert.assertTrue(entity.hasCacheEnabled());
 		Assert.assertFalse(entity.hasDynamicUpdate());
 		Assert.assertFalse(entity.hasJsonSerialization());
 		Assert.assertFalse(entity.hasMvccEnabled());
 		Assert.assertFalse(entity.hasRemoteService());
 		Assert.assertFalse(entity.isDeprecated());
-		Assert.assertTrue(entity.getSessionFactory() == null);
-		Assert.assertTrue(entity.getTable() == null);
-		Assert.assertTrue(entity.getTxManager() == null);
+		Assert.assertNull(entity.getSessionFactory());
+		Assert.assertNull(entity.getTable());
+		Assert.assertNull(entity.getTxManager());
 		Assert.assertFalse(entity.hasTrashEnabled());
 		Assert.assertFalse(entity.hasUuid());
 		Assert.assertFalse(entity.hasUuidAccessor());

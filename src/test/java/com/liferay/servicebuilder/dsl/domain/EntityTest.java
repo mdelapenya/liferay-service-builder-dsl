@@ -30,6 +30,7 @@ public class EntityTest {
 		Assert.assertFalse(entity.hasJsonSerialization());
 		Assert.assertFalse(entity.hasMvccEnabled());
 		Assert.assertFalse(entity.hasRemoteService());
+		Assert.assertFalse(entity.isDeprecated());
 		Assert.assertTrue(entity.getSessionFactory() == null);
 		Assert.assertTrue(entity.getTable() == null);
 		Assert.assertTrue(entity.getTxManager() == null);
@@ -78,6 +79,13 @@ public class EntityTest {
 		Entity entity = builder.withDatasource("datasource").build();
 
 		Assert.assertEquals("datasource", entity.getDatasource());
+	}
+
+	@Test
+	public void testBuildWithDeprecation() {
+		Entity entity = builder.deprecate().build();
+
+		Assert.assertTrue(entity.isDeprecated());
 	}
 
 	@Test

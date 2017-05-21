@@ -26,6 +26,7 @@ public class Entity {
 		_cacheEnabled = builder._cacheEnabled;
 		_columns = builder._columns;
 		_datasource = builder._datasource;
+		_deprecated = builder._deprecated;
 		_dynamicUpdateEnabled = builder._dynamicUpdateEnabled;
 		_humanName = builder._humanName;
 		_jsonEnabled = builder._jsonEnabled;
@@ -109,6 +110,10 @@ public class Entity {
 		return _uuidAccesor;
 	}
 
+	public boolean isDeprecated() {
+		return _deprecated;
+	}
+
 	public static class Builder {
 
 		public Builder(String name) {
@@ -121,6 +126,12 @@ public class Entity {
 
 		public Builder disableCache() {
 			_cacheEnabled = false;
+
+			return this;
+		}
+
+		public Builder deprecate() {
+			_deprecated = true;
 
 			return this;
 		}
@@ -222,6 +233,7 @@ public class Entity {
 		private boolean _cacheEnabled = true;
 		private List<Column> _columns = new ArrayList<>();
 		private String _datasource;
+		private boolean _deprecated;
 		private boolean _dynamicUpdateEnabled;
 		private String _humanName;
 		private boolean _jsonEnabled;
@@ -257,6 +269,11 @@ public class Entity {
 	 * used in conjunction with session-factory. See data-source-spring.xml.
 	 */
 	private String _datasource;
+	/**
+	 * The deprecated value specifies whether the entity's services are
+	 * deprecated.
+	 */
+	private boolean _deprecated;
 	/**
 	 * The dynamic-update-enabled value specifies whether or not unmodified
 	 * properties are excluded in the SQL update statement. The default value is

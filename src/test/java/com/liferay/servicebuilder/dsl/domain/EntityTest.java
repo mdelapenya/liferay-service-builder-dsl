@@ -1,6 +1,7 @@
 package com.liferay.servicebuilder.dsl.domain;
 
 import org.junit.Assert;
+import org.junit.Ignore;
 import org.junit.Test;
 
 import java.util.List;
@@ -91,6 +92,17 @@ public class EntityTest {
 		Entity entity = builder.withMvcc(true).build();
 
 		Assert.assertEquals(entity.hasMvccEnabled(), entity.hasDynamicUpdate());
+	}
+
+	@Ignore
+	@Test
+	public void testBuildWithDynamicUpdateFromMvccAfter() {
+		Entity entity = builder
+			.withDynamicUpdate(true)
+			.withMvcc(false)
+			.build();
+
+		Assert.assertTrue(entity.hasDynamicUpdate());
 	}
 
 	@Test

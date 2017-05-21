@@ -164,6 +164,8 @@ public class Entity {
 		public Builder withMvcc(boolean mvccEnabled) {
 			_mvccEnabled = mvccEnabled;
 
+			withDynamicUpdate(mvccEnabled);
+
 			return this;
 		}
 

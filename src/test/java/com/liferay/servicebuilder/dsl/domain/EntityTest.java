@@ -87,6 +87,13 @@ public class EntityTest {
 	}
 
 	@Test
+	public void testBuildWithDynamicUpdateFromMvcc() {
+		Entity entity = builder.withMvcc(true).build();
+
+		Assert.assertEquals(entity.hasMvccEnabled(), entity.hasDynamicUpdate());
+	}
+
+	@Test
 	public void testBuildWithHumanName() {
 		Entity entity = builder.withHumanName("human-name").build();
 

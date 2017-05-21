@@ -21,17 +21,17 @@ public class ColumnTest {
 	}
 
 	@Test
+	public void testBuildAsPrimaryKey() {
+		Column column = builder.asPrimaryKey().build();
+
+		Assert.assertTrue(column.isPrimary());
+	}
+
+	@Test
 	public void testBuildFilterPrimary() {
 		Column column = builder.filterPrimary().build();
 
 		Assert.assertTrue(column.isFilterPrimary());
-	}
-
-	@Test
-	public void testBuildPrimary() {
-		Column column = builder.primary().build();
-
-		Assert.assertTrue(column.isPrimary());
 	}
 
 	@Test

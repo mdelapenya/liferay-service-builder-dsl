@@ -48,18 +48,18 @@ public class Column {
 			_type = type;
 		}
 
+		public Builder asPrimaryKey() {
+			_primary = true;
+
+			return this;
+		}
+
 		public Column build() {
 			return new Column(this);
 		}
 
 		public Builder filterPrimary() {
 			_filterPrimary = true;
-
-			return this;
-		}
-
-		public Builder primary() {
-			_primary = true;
 
 			return this;
 		}

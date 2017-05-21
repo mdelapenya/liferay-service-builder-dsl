@@ -27,6 +27,7 @@ public class EntityTest {
 		Assert.assertTrue(entity.hasCacheEnabled());
 		Assert.assertFalse(entity.hasDynamicUpdate());
 		Assert.assertFalse(entity.hasJsonSerialization());
+		Assert.assertFalse(entity.hasMvccEnabled());
 		Assert.assertFalse(entity.hasRemoteService());
 		Assert.assertTrue(entity.getSessionFactory() == null);
 		Assert.assertTrue(entity.getTable() == null);
@@ -111,6 +112,20 @@ public class EntityTest {
 		Entity entity = builder.withLocalServices().build();
 
 		Assert.assertTrue(entity.hasLocalService());
+	}
+
+	@Test
+	public void testBuildWithMvccDisabled() {
+		Entity entity = builder.withMvcc(false).build();
+
+		Assert.assertFalse(entity.hasMvccEnabled());
+	}
+
+	@Test
+	public void testBuildWithMvccEnabled() {
+		Entity entity = builder.withMvcc(true).build();
+
+		Assert.assertTrue(entity.hasMvccEnabled());
 	}
 
 	@Test

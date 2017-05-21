@@ -30,6 +30,7 @@ public class Entity {
 		_humanName = builder._humanName;
 		_jsonEnabled = builder._jsonEnabled;
 		_localService = builder._localService;
+		_mvccEnabled = builder._mvccEnabled;
 		_persistenceClass = builder._persistenceClass;
 		_remoteService = builder._remoteService;
 		_sessionFactory = builder._sessionFactory;
@@ -86,6 +87,10 @@ public class Entity {
 
 	public boolean hasLocalService() {
 		return _localService;
+	}
+
+	public boolean hasMvccEnabled() {
+		return _mvccEnabled;
 	}
 
 	public boolean hasRemoteService() {
@@ -156,6 +161,12 @@ public class Entity {
 			return this;
 		}
 
+		public Builder withMvcc(boolean mvccEnabled) {
+			_mvccEnabled = mvccEnabled;
+
+			return this;
+		}
+
 		public Builder withPersistenceClass(String persistenceClass) {
 			_persistenceClass = persistenceClass;
 
@@ -213,6 +224,7 @@ public class Entity {
 		private String _humanName;
 		private boolean _jsonEnabled;
 		private boolean _localService;
+		private boolean _mvccEnabled;
 		private final String _name;
 		private String _persistenceClass;
 		private boolean _remoteService;
@@ -266,6 +278,12 @@ public class Entity {
 	 * local interfaces for the service. The default value is false.
 	 */
 	private boolean _localService;
+	/**
+	 * The mvcc-enabled value specifies whether or not to enable MVCC for this
+	 * entity to prevent lost updates. The default value is based on the
+	 * mvcc-enabled attribute in the service-builder element.
+	 */
+	private boolean _mvccEnabled;
 	/**
 	 * The name value specifies the name of the entity.
 	 */

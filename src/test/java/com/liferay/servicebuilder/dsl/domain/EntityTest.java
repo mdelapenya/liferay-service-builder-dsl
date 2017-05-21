@@ -100,6 +100,13 @@ public class EntityTest {
 	}
 
 	@Test
+	public void testBuildWithJsonSerializationFromRemoteService() {
+		Entity entity = builder.withRemoteServices().build();
+
+		Assert.assertTrue(entity.hasJsonSerialization());
+	}
+
+	@Test
 	public void testBuildWithLocalServices() {
 		Entity entity = builder.withLocalServices().build();
 

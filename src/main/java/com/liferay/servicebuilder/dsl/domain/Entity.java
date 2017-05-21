@@ -165,6 +165,8 @@ public class Entity {
 		public Builder withRemoteServices() {
 			_remoteService = true;
 
+			withJsonSerialization();
+
 			return this;
 		}
 

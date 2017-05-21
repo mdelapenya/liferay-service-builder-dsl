@@ -73,6 +73,11 @@ public class Column {
 
 	}
 
+	/**
+	 * This accessor value specifies whether or not to generate an accessor for
+	 * this column. This accessor will provide a fast and type-safe way to
+	 * access column value.
+	 */
 	private boolean _accessor;
 	/**
 	 * The filter-primary value specifies the column to use as the primary key
@@ -85,6 +90,11 @@ public class Column {
 	 * The name value specifies the getter and setter name in the entity.
 	 */
 	private String _name;
+	/**
+	 * If the primary value is set to true, then this column is part of the
+	 * primary key of the entity. If multiple columns have the primary value set
+	 * to true, then a compound key will be created.
+	 */
 	private boolean _primary;
 	/**
 	 * The type value specifies whether the column is a String, Boolean, or int,

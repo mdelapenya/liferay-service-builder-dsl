@@ -14,6 +14,7 @@ public class ColumnTest {
 
 		Assert.assertEquals("groupId", column.getName());
 		Assert.assertEquals("long", column.getType());
+		Assert.assertNull(column.getDbName());
 		Assert.assertFalse(column.hasAccessor());
 		Assert.assertFalse(column.isFilterPrimary());
 		Assert.assertFalse(column.isPrimary());
@@ -38,6 +39,13 @@ public class ColumnTest {
 		Column column = builder.withAccessor().build();
 
 		Assert.assertTrue(column.hasAccessor());
+	}
+
+	@Test
+	public void testBuildWithDbName() {
+		Column column = builder.withDbName("dbName").build();
+
+		Assert.assertEquals("dbName", column.getDbName());
 	}
 
 	private Column.Builder builder = new Column.Builder("groupId", "long");

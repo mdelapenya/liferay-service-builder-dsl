@@ -12,6 +12,7 @@ public class Column {
 		_type = builder._type;
 
 		_accessor = builder._accessor;
+		_dbName = builder._dbName;
 		_filterPrimary = builder._filterPrimary;
 		_primary = builder._primary;
 	}
@@ -26,6 +27,10 @@ public class Column {
 
 	public boolean isPrimary() {
 		return _primary;
+	}
+
+	public String getDbName() {
+		return _dbName;
 	}
 
 	public String getName() {
@@ -65,7 +70,14 @@ public class Column {
 			return this;
 		}
 
+		public Builder withDbName(String dbName) {
+			_dbName = dbName;
+
+			return this;
+		}
+
 		private boolean _accessor;
+		private String _dbName;
 		private boolean _filterPrimary;
 		private String _name;
 		private boolean _primary;
@@ -79,6 +91,11 @@ public class Column {
 	 * access column value.
 	 */
 	private boolean _accessor;
+	/**
+	 * Set db-name to map the field to a physical database column that is
+	 * different from the column name.
+	 */
+	private String _dbName;
 	/**
 	 * The filter-primary value specifies the column to use as the primary key
 	 * column when using filter finders. Only one column should ever have this

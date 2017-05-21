@@ -12,8 +12,10 @@ public class Column {
 		_type = builder._type;
 
 		_accessor = builder._accessor;
+		_entity = builder._entity;
 		_dbName = builder._dbName;
 		_filterPrimary = builder._filterPrimary;
+		_mappingTable = builder._mappingTable;
 		_primary = builder._primary;
 	}
 
@@ -31,6 +33,14 @@ public class Column {
 
 	public String getDbName() {
 		return _dbName;
+	}
+
+	public String getEntity() {
+		return _entity;
+	}
+
+	public String getMappingTable() {
+		return _mappingTable;
 	}
 
 	public String getName() {
@@ -76,9 +86,20 @@ public class Column {
 			return this;
 		}
 
+		public Builder withManyToManyRelationship(
+			String entity, String mappingTable) {
+
+			_entity = entity;
+			_mappingTable = mappingTable;
+
+			return this;
+		}
+
 		private boolean _accessor;
 		private String _dbName;
+		private String _entity;
 		private boolean _filterPrimary;
+		private String _mappingTable;
 		private String _name;
 		private boolean _primary;
 		private String _type;
@@ -97,12 +118,48 @@ public class Column {
 	 */
 	private String _dbName;
 	/**
+	 * @see _mappingTable
+	 */
+	private String _entity;
+	/**
 	 * The filter-primary value specifies the column to use as the primary key
 	 * column when using filter finders. Only one column should ever have this
 	 * value set to true. If no column has this set to true, then the default
 	 * primary column be used.
 	 */
 	private boolean _filterPrimary;
+	/**
+	 * If the entity and mapping-table attributes are specified, then the
+	 * Service Builder will assume you are specifying a many to many
+	 * relationship.
+	 * 
+	 * For example:
+	 * 
+	 * <column
+	 *    name="roles"
+	 *    type="Collection"
+	 *    entity="Role"
+	 *    mapping-table="Groups_Roles"
+	 * />
+	 *
+	 * The above column specifies that there will be a getter called
+	 * pojo.getRoles() that will return a collection. It will use a mapping
+	 * table called Groups_Roles to give a many to many relationship between
+	 * groups and roles.
+	 *
+	 * If you are creating a mapping table for an entity defined in another
+	 * service.xml, you need to specify the full package path.
+	 *
+	 * For example:
+	 *
+	 * <column
+	 *     name="organizations"
+	 *     type="Collection"
+	 *     entity="com.liferay.portal.Organization"
+	 *     mapping-table="Foo_Organizations"
+	 * />
+	 */
+	private String _mappingTable;
 	/**
 	 * The name value specifies the getter and setter name in the entity.
 	 */

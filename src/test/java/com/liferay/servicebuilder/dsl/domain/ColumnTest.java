@@ -15,6 +15,8 @@ public class ColumnTest {
 		Assert.assertEquals("groupId", column.getName());
 		Assert.assertEquals("long", column.getType());
 		Assert.assertNull(column.getDbName());
+		Assert.assertNull(column.getEntity());
+		Assert.assertNull(column.getMappingTable());
 		Assert.assertFalse(column.hasAccessor());
 		Assert.assertFalse(column.isFilterPrimary());
 		Assert.assertFalse(column.isPrimary());
@@ -46,6 +48,28 @@ public class ColumnTest {
 		Column column = builder.withDbName("dbName").build();
 
 		Assert.assertEquals("dbName", column.getDbName());
+	}
+
+	@Test
+	public void testBuildWithManyToManyRelationship() {
+		Column column = builder
+			.withManyToManyRelationship("Role", "Groups_Roles")
+			.build();
+
+		Assert.assertEquals("Role", column.getEntity());
+		Assert.assertEquals("Groups_Roles", column.getMappingTable());
+	}
+
+	@Test
+	public void testBuildWithManyToManyRelationshipOtherServiceXML() {
+		Column column = builder
+			.withManyToManyRelationship(
+				"com.liferay.portal.Organization", "Foo_Organizations")
+			.build();
+
+		Assert.assertEquals(
+			"com.liferay.portal.Organization", column.getEntity());
+		Assert.assertEquals("Foo_Organizations", column.getMappingTable());
 	}
 
 	private Column.Builder builder = new Column.Builder("groupId", "long");

@@ -26,6 +26,7 @@ public class EntityTest {
 		Assert.assertTrue(entity.getPersistenceClass() == null);
 		Assert.assertTrue(entity.hasCacheEnabled());
 		Assert.assertFalse(entity.hasDynamicUpdate());
+		Assert.assertFalse(entity.hasJsonSerialization());
 		Assert.assertFalse(entity.hasRemoteService());
 		Assert.assertTrue(entity.getSessionFactory() == null);
 		Assert.assertTrue(entity.getTable() == null);
@@ -89,6 +90,13 @@ public class EntityTest {
 		Entity entity = builder.withHumanName("human-name").build();
 
 		Assert.assertEquals("human-name", entity.getHumanName());
+	}
+
+	@Test
+	public void testBuildWithJsonSerialization() {
+		Entity entity = builder.withJsonSerialization().build();
+
+		Assert.assertTrue(entity.hasJsonSerialization());
 	}
 
 	@Test

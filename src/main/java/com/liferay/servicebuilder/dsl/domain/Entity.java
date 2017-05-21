@@ -28,6 +28,7 @@ public class Entity {
 		_datasource = builder._datasource;
 		_dynamicUpdateEnabled = builder._dynamicUpdateEnabled;
 		_humanName = builder._humanName;
+		_jsonEnabled = builder._jsonEnabled;
 		_localService = builder._localService;
 		_persistenceClass = builder._persistenceClass;
 		_remoteService = builder._remoteService;
@@ -77,6 +78,10 @@ public class Entity {
 
 	public boolean hasDynamicUpdate() {
 		return _dynamicUpdateEnabled;
+	}
+
+	public boolean hasJsonSerialization() {
+		return _jsonEnabled;
 	}
 
 	public boolean hasLocalService() {
@@ -135,6 +140,12 @@ public class Entity {
 
 		public Builder withHumanName(String humanName) {
 			_humanName = humanName;
+
+			return this;
+		}
+
+		public Builder withJsonSerialization() {
+			_jsonEnabled = true;
 
 			return this;
 		}
@@ -198,6 +209,7 @@ public class Entity {
 		private String _datasource;
 		private boolean _dynamicUpdateEnabled;
 		private String _humanName;
+		private boolean _jsonEnabled;
 		private boolean _localService;
 		private final String _name;
 		private String _persistenceClass;
@@ -241,6 +253,12 @@ public class Entity {
 	 * generated from the name.
 	 */
 	private String _humanName;
+	/**
+	 * The json-enabled value specifies whether or not the entity should be
+	 * annotated for JSON serialization. By default, if the remote-service value
+	 * is true, then the json-enabled value is true.
+	 */
+	private boolean _jsonEnabled;
 	/**
 	 * If the local-service value is true, then the service will generate the
 	 * local interfaces for the service. The default value is false.

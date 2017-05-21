@@ -26,6 +26,7 @@ public class Entity {
 		_cacheEnabled = builder._cacheEnabled;
 		_columns = builder._columns;
 		_datasource = builder._datasource;
+		_dynamicUpdateEnabled = builder._dynamicUpdateEnabled;
 		_humanName = builder._humanName;
 		_localService = builder._localService;
 		_persistenceClass = builder._persistenceClass;
@@ -74,6 +75,10 @@ public class Entity {
 		return _cacheEnabled;
 	}
 
+	public boolean hasDynamicUpdate() {
+		return _dynamicUpdateEnabled;
+	}
+
 	public boolean hasLocalService() {
 		return _localService;
 	}
@@ -118,6 +123,12 @@ public class Entity {
 
 		public Builder withDatasource(String datasource) {
 			_datasource = datasource;
+
+			return this;
+		}
+
+		public Builder withDynamicUpdate(boolean dynamicUpdate) {
+			_dynamicUpdateEnabled = dynamicUpdate;
 
 			return this;
 		}
@@ -185,6 +196,7 @@ public class Entity {
 		private boolean _cacheEnabled = true;
 		private List<Column> _columns = new ArrayList<>();
 		private String _datasource;
+		private boolean _dynamicUpdateEnabled;
 		private String _humanName;
 		private boolean _localService;
 		private final String _name;
@@ -217,6 +229,12 @@ public class Entity {
 	 * used in conjunction with session-factory. See data-source-spring.xml.
 	 */
 	private String _datasource;
+	/**
+	 * The dynamic-update-enabled value specifies whether or not unmodified
+	 * properties are excluded in the SQL update statement. The default value is
+	 * the value of the attribute mvcc-enabled.
+	 */
+	private boolean _dynamicUpdateEnabled;
 	/**
 	 * The human-name value specifies the readable name to use when generating
 	 * documentation for this entity. If none is specified, one will be

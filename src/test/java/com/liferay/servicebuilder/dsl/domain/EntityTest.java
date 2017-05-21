@@ -25,6 +25,7 @@ public class EntityTest {
 		Assert.assertTrue(entity.getHumanName() == null);
 		Assert.assertTrue(entity.getPersistenceClass() == null);
 		Assert.assertTrue(entity.hasCacheEnabled());
+		Assert.assertFalse(entity.hasDynamicUpdate());
 		Assert.assertFalse(entity.hasRemoteService());
 		Assert.assertTrue(entity.getSessionFactory() == null);
 		Assert.assertTrue(entity.getTable() == null);
@@ -74,6 +75,13 @@ public class EntityTest {
 		Entity entity = builder.withDatasource("datasource").build();
 
 		Assert.assertEquals("datasource", entity.getDatasource());
+	}
+
+	@Test
+	public void testBuildWithDynamicUpdate() {
+		Entity entity = builder.withDynamicUpdate(true).build();
+
+		Assert.assertTrue(entity.hasDynamicUpdate());
 	}
 
 	@Test

@@ -18,6 +18,7 @@ public class Column {
 		_filterPrimary = builder._filterPrimary;
 		_idParam = builder._idParam;
 		_idType = builder._idType;
+		_lazy = builder._lazy;
 		_mappingTable = builder._mappingTable;
 		_primary = builder._primary;
 	}
@@ -32,6 +33,10 @@ public class Column {
 
 	public boolean isFilterPrimary() {
 		return _filterPrimary;
+	}
+
+	public boolean isLazy() {
+		return _lazy;
 	}
 
 	public boolean isPrimary() {
@@ -228,6 +233,16 @@ public class Column {
 			return this;
 		}
 
+		public Builder withoutLazyFetch() {
+			if ((_type == null) || (_type.isEmpty()) || !_type.equals("Blob")) {
+				return this;
+			}
+
+			_lazy = false;
+
+			return this;
+		}
+
 		private boolean _accessor;
 		private boolean _convertNull;
 		private String _dbName;
@@ -235,6 +250,7 @@ public class Column {
 		private boolean _filterPrimary;
 		private String _idParam;
 		private String _idType;
+		private boolean _lazy = true;
 		private String _mappingTable;
 		private String _name;
 		private boolean _primary;
@@ -353,6 +369,11 @@ public class Column {
 	 * DB.
 	 */
 	private String _idType;
+	/**
+	 * The lazy value is only valid when type is Blob. It specifies whether or
+	 * not to do a lazy fetch for Blob. The default value is true.
+	 */
+	private boolean _lazy = true;
 	/**
 	 * If the entity and mapping-table attributes are specified, then the
 	 * Service Builder will assume you are specifying a many to many

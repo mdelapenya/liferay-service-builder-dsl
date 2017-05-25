@@ -20,6 +20,7 @@ public class ColumnTest {
 		Assert.assertNull(column.getMappingTable());
 		Assert.assertFalse(column.hasAccessor());
 		Assert.assertFalse(column.isFilterPrimary());
+		Assert.assertTrue(column.isLazy());
 		Assert.assertFalse(column.isPrimary());
 	}
 
@@ -100,6 +101,22 @@ public class ColumnTest {
 		Column column = builder.withDbName("dbName").build();
 
 		Assert.assertEquals("dbName", column.getDbName());
+	}
+
+	@Test
+	public void testBuildWithoutLazyFetchFromBlob() {
+		Column column = builder.withoutLazyFetch().build();
+
+		Assert.assertTrue(column.isLazy());
+	}
+
+	@Test
+	public void testBuildWithoutLazyFetchFromNonBlobField() {
+		Column.Builder builder = new Column.Builder("blobField", "Blob");
+
+		Column column = builder.withoutLazyFetch().build();
+
+		Assert.assertFalse(column.isLazy());
 	}
 
 	@Test

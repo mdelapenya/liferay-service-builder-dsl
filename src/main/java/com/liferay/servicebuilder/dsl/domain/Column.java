@@ -12,6 +12,7 @@ public class Column {
 		_type = builder._type;
 
 		_accessor = builder._accessor;
+		_containerModel = builder._containerModel;
 		_convertNull = builder._convertNull;
 		_entity = builder._entity;
 		_dbName = builder._dbName;
@@ -31,6 +32,10 @@ public class Column {
 
 	public boolean hasJsonSerialization() {
 		return _jsonEnabled;
+	}
+
+	public boolean isContainerModel() {
+		return _containerModel;
 	}
 
 	public boolean isConvertNull() {
@@ -96,6 +101,12 @@ public class Column {
 
 		public Column build() {
 			return new Column(this);
+		}
+
+		public Builder containerModel() {
+			_containerModel = true;
+
+			return this;
 		}
 
 		public Builder convertsNull() {
@@ -266,6 +277,7 @@ public class Column {
 		}
 
 		private boolean _accessor;
+		private boolean _containerModel;
 		private boolean _convertNull;
 		private String _dbName;
 		private String _entity;
@@ -288,6 +300,11 @@ public class Column {
 	 * access column value.
 	 */
 	private boolean _accessor;
+	/**
+	 * The container-model value specifies whether the column represents the
+	 * primary key of a container model.
+	 */
+	private boolean _containerModel;
 	/**
 	 * The convert-null value specifies whether or not the column value is
 	 * automatically converted to a non null value if it is null. This only

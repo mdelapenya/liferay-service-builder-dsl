@@ -19,6 +19,7 @@ public class Column {
 		_idParam = builder._idParam;
 		_idType = builder._idType;
 		_lazy = builder._lazy;
+		_localized = builder._localized;
 		_mappingTable = builder._mappingTable;
 		_primary = builder._primary;
 	}
@@ -37,6 +38,10 @@ public class Column {
 
 	public boolean isLazy() {
 		return _lazy;
+	}
+
+	public boolean isLocalized() {
+		return _localized;
 	}
 
 	public boolean isPrimary() {
@@ -218,6 +223,12 @@ public class Column {
 			return this;
 		}
 
+		public Builder localized() {
+			_localized = true;
+
+			return this;
+		}
+
 		public Builder withDbName(String dbName) {
 			_dbName = dbName;
 
@@ -251,6 +262,7 @@ public class Column {
 		private String _idParam;
 		private String _idType;
 		private boolean _lazy = true;
+		private boolean _localized;
 		private String _mappingTable;
 		private String _name;
 		private boolean _primary;
@@ -374,6 +386,11 @@ public class Column {
 	 * not to do a lazy fetch for Blob. The default value is true.
 	 */
 	private boolean _lazy = true;
+	/**
+	 * The localized value specifies whether or not the value of the column can
+	 * have different values for different locales. The default value is false.
+	 */
+	private boolean _localized;
 	/**
 	 * If the entity and mapping-table attributes are specified, then the
 	 * Service Builder will assume you are specifying a many to many

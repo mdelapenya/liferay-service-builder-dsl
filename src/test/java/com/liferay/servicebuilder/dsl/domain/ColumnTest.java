@@ -21,6 +21,7 @@ public class ColumnTest {
 		Assert.assertFalse(column.hasAccessor());
 		Assert.assertFalse(column.isFilterPrimary());
 		Assert.assertTrue(column.isLazy());
+		Assert.assertFalse(column.isLocalized());
 		Assert.assertFalse(column.isPrimary());
 	}
 
@@ -87,6 +88,13 @@ public class ColumnTest {
 		Column column = builder.filterPrimary().build();
 
 		Assert.assertTrue(column.isFilterPrimary());
+	}
+
+	@Test
+	public void testBuildLocalized() {
+		Column column = builder.localized().build();
+
+		Assert.assertTrue(column.isLocalized());
 	}
 
 	@Test

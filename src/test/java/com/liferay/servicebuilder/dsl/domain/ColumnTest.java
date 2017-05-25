@@ -24,6 +24,7 @@ public class ColumnTest {
 		Assert.assertFalse(column.isFilterPrimary());
 		Assert.assertTrue(column.isLazy());
 		Assert.assertFalse(column.isLocalized());
+		Assert.assertFalse(column.isParentContainerModel());
 		Assert.assertFalse(column.isPrimary());
 	}
 
@@ -104,6 +105,13 @@ public class ColumnTest {
 		Column column = builder.localized().build();
 
 		Assert.assertTrue(column.isLocalized());
+	}
+
+	@Test
+	public void testBuildParentContainerModel() {
+		Column column = builder.parentContainerModel().build();
+
+		Assert.assertTrue(column.isParentContainerModel());
 	}
 
 	@Test

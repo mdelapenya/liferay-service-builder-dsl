@@ -23,6 +23,7 @@ public class Column {
 		_lazy = builder._lazy;
 		_localized = builder._localized;
 		_mappingTable = builder._mappingTable;
+		_parentContainerModel = builder._parentContainerModel;
 		_primary = builder._primary;
 	}
 
@@ -52,6 +53,10 @@ public class Column {
 
 	public boolean isLocalized() {
 		return _localized;
+	}
+
+	public boolean isParentContainerModel() {
+		return _parentContainerModel;
 	}
 
 	public boolean isPrimary() {
@@ -245,6 +250,12 @@ public class Column {
 			return this;
 		}
 
+		public Builder parentContainerModel() {
+			_parentContainerModel = true;
+
+			return this;
+		}
+
 		public Builder withDbName(String dbName) {
 			_dbName = dbName;
 
@@ -289,6 +300,7 @@ public class Column {
 		private boolean _localized;
 		private String _mappingTable;
 		private String _name;
+		private boolean _parentContainerModel;
 		private boolean _primary;
 		private String _type;
 
@@ -463,6 +475,11 @@ public class Column {
 	 * The name value specifies the getter and setter name in the entity.
 	 */
 	private String _name;
+	/**
+	 * The parent-container-model value specifies whether the column represents
+	 * the primary key of a parent container model.
+	 */
+	private boolean _parentContainerModel;
 	/**
 	 * If the primary value is set to true, then this column is part of the
 	 * primary key of the entity. If multiple columns have the primary value set

@@ -19,6 +19,7 @@ public class ColumnTest {
 		Assert.assertNull(column.getEntity());
 		Assert.assertNull(column.getMappingTable());
 		Assert.assertFalse(column.hasAccessor());
+		Assert.assertFalse(column.hasJsonSerialization());
 		Assert.assertFalse(column.isFilterPrimary());
 		Assert.assertTrue(column.isLazy());
 		Assert.assertFalse(column.isLocalized());
@@ -109,6 +110,13 @@ public class ColumnTest {
 		Column column = builder.withDbName("dbName").build();
 
 		Assert.assertEquals("dbName", column.getDbName());
+	}
+
+	@Test
+	public void testBuildWithJsonSerialization() {
+		Column column = builder.withJsonSerialization().build();
+
+		Assert.assertTrue(column.hasJsonSerialization());
 	}
 
 	@Test

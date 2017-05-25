@@ -18,6 +18,7 @@ public class Column {
 		_filterPrimary = builder._filterPrimary;
 		_idParam = builder._idParam;
 		_idType = builder._idType;
+		_jsonEnabled = builder._jsonEnabled;
 		_lazy = builder._lazy;
 		_localized = builder._localized;
 		_mappingTable = builder._mappingTable;
@@ -26,6 +27,10 @@ public class Column {
 
 	public boolean hasAccessor() {
 		return _accessor;
+	}
+
+	public boolean hasJsonSerialization() {
+		return _jsonEnabled;
 	}
 
 	public boolean isConvertNull() {
@@ -235,6 +240,12 @@ public class Column {
 			return this;
 		}
 
+		public Builder withJsonSerialization() {
+			_jsonEnabled = true;
+
+			return this;
+		}
+
 		public Builder withManyToManyRelationship(
 			String entity, String mappingTable) {
 
@@ -261,6 +272,7 @@ public class Column {
 		private boolean _filterPrimary;
 		private String _idParam;
 		private String _idType;
+		private boolean _jsonEnabled;
 		private boolean _lazy = true;
 		private boolean _localized;
 		private String _mappingTable;
@@ -381,6 +393,13 @@ public class Column {
 	 * DB.
 	 */
 	private String _idType;
+	/**
+	 * The json-enabled value specifies whether or not the column should be
+	 * annotated for JSON serialization. By default, if the json-enabled value
+	 * in the entity element is true, then the json-enabled value in the column
+	 * element is true.
+	 */
+	private boolean _jsonEnabled;
 	/**
 	 * The lazy value is only valid when type is Blob. It specifies whether or
 	 * not to do a lazy fetch for Blob. The default value is true.

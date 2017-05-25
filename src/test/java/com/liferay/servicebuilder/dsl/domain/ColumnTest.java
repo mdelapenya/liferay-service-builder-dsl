@@ -14,6 +14,7 @@ public class ColumnTest {
 
 		Assert.assertEquals("groupId", column.getName());
 		Assert.assertEquals("long", column.getType());
+		Assert.assertFalse(column.isConvertNull());
 		Assert.assertNull(column.getDbName());
 		Assert.assertNull(column.getEntity());
 		Assert.assertNull(column.getMappingTable());
@@ -71,6 +72,13 @@ public class ColumnTest {
 		Assert.assertEquals("Integer", column.getType());
 		Assert.assertEquals("id_sequence", column.getIdParam());
 		Assert.assertEquals("sequence", column.getIdType());
+	}
+
+	@Test
+	public void testBuildConvertNull() {
+		Column column = builder.convertsNull().build();
+
+		Assert.assertTrue(column.isConvertNull());
 	}
 
 	@Test

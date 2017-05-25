@@ -12,6 +12,7 @@ public class Column {
 		_type = builder._type;
 
 		_accessor = builder._accessor;
+		_convertNull = builder._convertNull;
 		_entity = builder._entity;
 		_dbName = builder._dbName;
 		_filterPrimary = builder._filterPrimary;
@@ -23,6 +24,10 @@ public class Column {
 
 	public boolean hasAccessor() {
 		return _accessor;
+	}
+
+	public boolean isConvertNull() {
+		return _convertNull;
 	}
 
 	public boolean isFilterPrimary() {
@@ -76,6 +81,12 @@ public class Column {
 
 		public Column build() {
 			return new Column(this);
+		}
+
+		public Builder convertsNull() {
+			_convertNull = true;
+
+			return this;
 		}
 
 		public Builder filterPrimary() {
@@ -218,6 +229,7 @@ public class Column {
 		}
 
 		private boolean _accessor;
+		private boolean _convertNull;
 		private String _dbName;
 		private String _entity;
 		private boolean _filterPrimary;
@@ -236,6 +248,15 @@ public class Column {
 	 * access column value.
 	 */
 	private boolean _accessor;
+	/**
+	 * The convert-null value specifies whether or not the column value is
+	 * automatically converted to a non null value if it is null. This only
+	 * applies if the type value is String. This is particularly useful if your
+	 * entity is referencing a read only table or a database view so that
+	 * Hibernate does not try to issue unnecessary updates. The default value is
+	 * true.
+	 */
+	private boolean _convertNull;
 	/**
 	 * Set db-name to map the field to a physical database column that is
 	 * different from the column name.

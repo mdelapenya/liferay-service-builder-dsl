@@ -30,6 +30,50 @@ public class ColumnTest {
 	}
 
 	@Test
+	public void testBuildAutogeneratePrimaryKeyFromClass() {
+		Column column = builder
+			.autogeneratePrimaryKeyFromClass("Integer", "com.liferay.Foo")
+			.build();
+
+		Assert.assertEquals("Integer", column.getType());
+		Assert.assertEquals("com.liferay.Foo", column.getIdParam());
+		Assert.assertEquals("class", column.getIdType());
+	}
+
+	@Test
+	public void testBuildAutogeneratePrimaryKeyFromIdentity() {
+		Column column = builder
+			.autogeneratePrimaryKeyFromIdentity("Integer")
+			.build();
+
+		Assert.assertEquals("Integer", column.getType());
+		Assert.assertNull(column.getIdParam());
+		Assert.assertEquals("identity", column.getIdType());
+	}
+
+	@Test
+	public void testBuildAutogeneratePrimaryKeyFromIncrement() {
+		Column column = builder
+			.autogeneratePrimaryKeyFromIncrement("Integer")
+			.build();
+
+		Assert.assertEquals("Integer", column.getType());
+		Assert.assertNull(column.getIdParam());
+		Assert.assertEquals("increment", column.getIdType());
+	}
+
+	@Test
+	public void testBuildAutogeneratePrimaryKeyFromSequence() {
+		Column column = builder
+			.autogeneratePrimaryKeyFromSequence("Integer", "id_sequence")
+			.build();
+
+		Assert.assertEquals("Integer", column.getType());
+		Assert.assertEquals("id_sequence", column.getIdParam());
+		Assert.assertEquals("sequence", column.getIdType());
+	}
+
+	@Test
 	public void testBuildFilterPrimary() {
 		Column column = builder.filterPrimary().build();
 

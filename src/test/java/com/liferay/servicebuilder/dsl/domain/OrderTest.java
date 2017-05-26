@@ -13,6 +13,7 @@ public class OrderTest {
 		Order order = builder.build();
 
 		Assert.assertNull(order.getBy());
+		Assert.assertTrue(order.getOrderColumns().isEmpty());
 	}
 
 	@Test
@@ -27,6 +28,28 @@ public class OrderTest {
 		Order order = builder.by(OrderBy.DESC).build();
 
 		Assert.assertEquals(OrderBy.DESC, order.getBy());
+	}
+
+	@Test
+	public void testBuildWithOrderColumn() {
+		OrderColumn orderColumn = new OrderColumn.Builder("name").build();
+
+		Order order = builder.withOrderColumn(orderColumn).build();
+
+		Assert.assertEquals(1, order.getOrderColumns().size());
+	}
+
+	@Test
+	public void testBuildWithOrderColumns() {
+		OrderColumn orderColumn1 = new OrderColumn.Builder("name1").build();
+		OrderColumn orderColumn2 = new OrderColumn.Builder("name2").build();
+
+		Order order = builder
+			.withOrderColumn(orderColumn1)
+			.withOrderColumn(orderColumn2)
+			.build();
+
+		Assert.assertEquals(2, order.getOrderColumns().size());
 	}
 
 	private Order.Builder builder = new Order.Builder();

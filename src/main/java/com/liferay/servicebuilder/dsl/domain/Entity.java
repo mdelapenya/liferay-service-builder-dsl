@@ -32,6 +32,7 @@ public class Entity {
 		_jsonEnabled = builder._jsonEnabled;
 		_localService = builder._localService;
 		_mvccEnabled = builder._mvccEnabled;
+		_orders = builder._orders;
 		_persistenceClass = builder._persistenceClass;
 		_remoteService = builder._remoteService;
 		_sessionFactory = builder._sessionFactory;
@@ -56,6 +57,10 @@ public class Entity {
 	
 	public String getName() {
 		return _name;
+	}
+
+	public List<Order> getOrders() {
+		return _orders;
 	}
 
 	public String getPersistenceClass() {
@@ -180,6 +185,12 @@ public class Entity {
 			return this;
 		}
 
+		public Builder withOrder(Order order) {
+			_orders.add(order);
+
+			return this;
+		}
+
 		public Builder withPersistenceClass(String persistenceClass) {
 			_persistenceClass = persistenceClass;
 
@@ -240,6 +251,7 @@ public class Entity {
 		private boolean _localService;
 		private boolean _mvccEnabled;
 		private final String _name;
+		private List<Order> _orders = new ArrayList<>();
 		private String _persistenceClass;
 		private boolean _remoteService;
 		private String _sessionFactory;
@@ -307,6 +319,7 @@ public class Entity {
 	 * The name value specifies the name of the entity.
 	 */
 	private String _name;
+	private List<Order> _orders;
 	/**
 	 * The persistence-class value specifies the name of your custom persistence
 	 * class. This class must implement the generated persistence interface or

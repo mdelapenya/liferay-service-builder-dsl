@@ -21,6 +21,10 @@ public class EntityTest {
 
 		Assert.assertTrue(columns.isEmpty());
 
+		List<Order> orders = entity.getOrders();
+
+		Assert.assertTrue(orders.isEmpty());
+
 		Assert.assertFalse(entity.hasLocalService());
 		Assert.assertNull(entity.getDatasource());
 		Assert.assertNull(entity.getHumanName());
@@ -153,6 +157,32 @@ public class EntityTest {
 		Entity entity = builder.withMvcc(true).build();
 
 		Assert.assertTrue(entity.hasMvccEnabled());
+	}
+
+	@Test
+	public void testBuildWithOrder() {
+		Order order = new Order.Builder().build();
+
+		Entity entity = builder.withOrder(order).build();
+
+		List<Order> orders = entity.getOrders();
+
+		Assert.assertEquals(1, orders.size());
+	}
+
+	@Test
+	public void testBuildWithOrders() {
+		Order order1 = new Order.Builder().build();
+		Order order2 = new Order.Builder().build();
+
+		Entity entity = builder
+			.withOrder(order1)
+			.withOrder(order2)
+			.build();
+
+		List<Order> orders = entity.getOrders();
+
+		Assert.assertEquals(2, orders.size());
 	}
 
 	@Test

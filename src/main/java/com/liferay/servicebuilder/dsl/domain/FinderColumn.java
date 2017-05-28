@@ -7,13 +7,6 @@ package com.liferay.servicebuilder.dsl.domain;
  */
 public class FinderColumn {
 
-	public FinderColumn(Builder builder) {
-		_arrayableOperator = builder._arrayableOperator;
-		_caseSensitive = builder._caseSensitive;
-		_comparator = builder._comparator;
-		_name = builder._name;
-	}
-
 	public ArrayableOperator getArrayableOperator() {
 		return _arrayableOperator;
 	}
@@ -32,38 +25,43 @@ public class FinderColumn {
 
 	public static class Builder {
 
-		public Builder(String name) {
-			_name = name;
+		Builder(String name) {
+			_finderColumn = new FinderColumn();
+
+			_finderColumn._name = name;
 		}
 
 		public FinderColumn build() {
-			return new FinderColumn(this);
+			FinderColumn finderColumn = _finderColumn;
+
+			_finderColumn = new FinderColumn();
+
+			return finderColumn;
 		}
 
 		public Builder caseInsensitive() {
-			_caseSensitive = false;
+			_finderColumn._caseSensitive = false;
 
 			return this;
 		}
 
 		public Builder withArrayableOperator(ArrayableOperator operator) {
-			_arrayableOperator = operator;
+			_finderColumn._arrayableOperator = operator;
 
 			return this;
 		}
 
 		public Builder withComparator(FinderComparator finderComparator) {
-			_comparator = finderComparator;
+			_finderColumn._comparator = finderComparator;
 
 			return this;
 		}
 
-		private ArrayableOperator _arrayableOperator;
-		private boolean _caseSensitive = true;
-		private FinderComparator _comparator;
-		private String _name;
+		private FinderColumn _finderColumn;
 
 	}
+
+	private FinderColumn() {}
 
 	/**
 	 * The attribute arrayable-operator takes in the values AND or OR and will

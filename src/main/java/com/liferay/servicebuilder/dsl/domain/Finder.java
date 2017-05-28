@@ -10,14 +10,6 @@ import java.util.Set;
  */
 public class Finder {
 
-	public Finder(Builder builder) {
-		_dbIndex = builder._dbIndex;
-		_finderColumns = builder._finderColumns;
-		_name = builder._name;
-		_returnType = builder._returnType;
-		_unique = builder._unique;
-	}
-
 	public Set<FinderColumn> getFinderColumns() {
 		return _finderColumns;
 	}
@@ -40,47 +32,51 @@ public class Finder {
 
 	public static class Builder {
 
-		public Builder(String name, String returnType) {
-			_name = name;
-			_returnType = returnType;
+		Builder(String name, String returnType) {
+			_finder = new Finder();
+
+			_finder._name = name;
+			_finder._returnType = returnType;
 		}
 
 		public Finder build() {
-			return new Finder(this);
+			Finder finder = _finder;
+
+			_finder = new Finder();
+
+			return finder;
 		}
 
 		public Builder unique() {
-			_unique = true;
+			_finder._unique = true;
 
 			return this;
 		}
 
 		public Builder withFinderColumn(FinderColumn finderColumn) {
-			_finderColumns.add(finderColumn);
+			_finder._finderColumns.add(finderColumn);
 
 			return this;
 		}
 
 		public Builder withoutSQLIndex() {
-			_dbIndex = false;
+			_finder._dbIndex = false;
 
 			return this;
 		}
 
-		private boolean _dbIndex = true;
-		private Set<FinderColumn> _finderColumns = new HashSet<>();
-		private String _name;
-		private String _returnType;
-		private boolean _unique;
+		private Finder _finder;
 
 	}
+
+	private Finder() {}
 
 	/**
 	 * If the db-index value is true, then the service will automatically
 	 * generate a SQL index for this finder. The default value is true.
 	 */
 	private boolean _dbIndex = true;
-	private Set<FinderColumn> _finderColumns;
+	private Set<FinderColumn> _finderColumns = new HashSet<>();
 	/**
 	 * Specifies the name of the finder method.
 	 */

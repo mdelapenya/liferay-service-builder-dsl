@@ -21,30 +21,6 @@ import java.util.Set;
  */
 public class Entity {
 
-	public Entity(Builder builder) {
-		_name = builder._name;
-
-		_cacheEnabled = builder._cacheEnabled;
-		_columns = builder._columns;
-		_datasource = builder._datasource;
-		_deprecated = builder._deprecated;
-		_dynamicUpdateEnabled = builder._dynamicUpdateEnabled;
-		_finders = builder._finders;
-		_humanName = builder._humanName;
-		_jsonEnabled = builder._jsonEnabled;
-		_localService = builder._localService;
-		_mvccEnabled = builder._mvccEnabled;
-		_orders = builder._orders;
-		_persistenceClass = builder._persistenceClass;
-		_remoteService = builder._remoteService;
-		_sessionFactory = builder._sessionFactory;
-		_table = builder._table;
-		_trashEnabled = builder._trashEnabled;
-		_txManager = builder._txManager;
-		_uuid = builder._uuid;
-		_uuidAccesor = builder._uuidAccesor;
-	}
-
 	public Set<Column> getColumns() {
 		return _columns;
 	}
@@ -127,82 +103,88 @@ public class Entity {
 
 	public static class Builder {
 
-		public Builder(String name) {
-			_name = name;
+		Builder(String name) {
+			_entity = new Entity();
+
+			_entity._name = name;
 		}
 
 		public Entity build() {
-			return new Entity(this);
+			Entity entity = _entity;
+
+			_entity = new Entity();
+
+			return entity;
 		}
 
 		public Builder disableCache() {
-			_cacheEnabled = false;
+			_entity._cacheEnabled = false;
 
 			return this;
 		}
 
 		public Builder deprecate() {
-			_deprecated = true;
+			_entity._deprecated = true;
 
 			return this;
 		}
 
 		public Builder withColumn(Column column) {
-			_columns.add(column);
+			_entity._columns.add(column);
 
 			return this;
 		}
 
 		public Builder withColumns(Column... column) {
-			Collections.addAll(_columns, column);
+			Collections.addAll(_entity._columns, column);
 
 			return this;
 		}
 
 		public Builder withDatasource(String datasource) {
-			_datasource = datasource;
+			_entity._datasource = datasource;
 
 			return this;
 		}
 
 		public Builder withDynamicUpdate(boolean dynamicUpdate) {
-			_dynamicUpdateEnabled = dynamicUpdate;
+			_entity._dynamicUpdateEnabled = dynamicUpdate;
 
 			return this;
 		}
 
 		public Builder withFinder(Finder finder) {
-			_finders.add(finder);
+			_entity._finders.add(finder);
 
 			return this;
 		}
 
 		public Builder withFinders(Finder... finder) {
-			Collections.addAll(_finders, finder);
+			Collections.addAll(_entity._finders, finder);
 
 			return this;
 		}
 
 		public Builder withHumanName(String humanName) {
-			_humanName = humanName;
+			_entity._humanName = humanName;
 
 			return this;
 		}
 
 		public Builder withJsonSerialization() {
-			_jsonEnabled = true;
+			_entity._jsonEnabled = true;
 
 			return this;
 		}
 
 		public Builder withLocalServices() {
-			_localService = true;
+			_entity._localService = true;
 
 			return this;
 		}
 
 		public Builder withMvcc(boolean mvccEnabled) {
-			_mvccEnabled = mvccEnabled;
+			_entity._mvccEnabled = mvccEnabled;
 
 			withDynamicUpdate(mvccEnabled);
 
@@ -210,25 +192,25 @@ public class Entity {
 		}
 
 		public Builder withOrder(Order order) {
-			_orders.add(order);
+			_entity._orders.add(order);
 
 			return this;
 		}
 
 		public Builder withOrders(Order... order) {
-			Collections.addAll(_orders, order);
+			Collections.addAll(_entity._orders, order);
 
 			return this;
 		}
 
 		public Builder withPersistenceClass(String persistenceClass) {
-			_persistenceClass = persistenceClass;
+			_entity._persistenceClass = persistenceClass;
 
 			return this;
 		}
 
 		public Builder withRemoteServices() {
-			_remoteService = true;
+			_entity._remoteService = true;
 
 			withJsonSerialization();
 
@@ -236,62 +218,46 @@ public class Entity {
 		}
 
 		public Builder withSessionFactory(String sessionFactory) {
-			_sessionFactory = sessionFactory;
+			_entity._sessionFactory = sessionFactory;
 
 			return this;
 		}
 
 		public Builder withTable(String table) {
-			_table = table;
+			_entity._table = table;
 
 			return this;
 		}
 
 		public Builder withTrashEnabled() {
-			_trashEnabled = true;
+			_entity._trashEnabled = true;
 
 			return this;
 		}
 
 		public Builder withTxManager(String txManager) {
-			_txManager = txManager;
+			_entity._txManager = txManager;
 
 			return this;
 		}
 
 		public Builder withUuid() {
-			_uuid = true;
+			_entity._uuid = true;
 
 			return this;
 		}
 
 		public Builder withUuidAccessor() {
-			_uuidAccesor = true;
+			_entity._uuidAccesor = true;
 
 			return this;
 		}
 
-		private boolean _cacheEnabled = true;
-		private Set<Column> _columns = new HashSet<>();
-		private String _datasource;
-		private boolean _deprecated;
-		private boolean _dynamicUpdateEnabled;
-		private Set<Finder> _finders = new HashSet<>();
-		private String _humanName;
-		private boolean _jsonEnabled;
-		private boolean _localService;
-		private boolean _mvccEnabled;
-		private final String _name;
-		private Set<Order> _orders = new HashSet<>();
-		private String _persistenceClass;
-		private boolean _remoteService;
-		private String _sessionFactory;
-		private String _table;
-		private boolean _trashEnabled;
-		private String _txManager;
-		private boolean _uuid;
-		private boolean _uuidAccesor;
+		private Entity _entity;
+
 	}
+
+	private Entity() {}
 
 	/**
 	 * The cache-enabled value specifies whether or not to cache this queries
@@ -299,7 +265,7 @@ public class Entity {
 	 * by other programs. The default value is true.
 	 */
 	private boolean _cacheEnabled = true;
-	private Set<Column> _columns;
+	private Set<Column> _columns = new HashSet<>();
 	/**
 	 * You can generate classes to use a custom data source and session factory.
 	 * Point "spring.configs" in portal.properties to load your custom Spring
@@ -323,7 +289,7 @@ public class Entity {
 	 * the value of the attribute mvcc-enabled.
 	 */
 	private boolean _dynamicUpdateEnabled;
-	private Set<Finder> _finders;
+	private Set<Finder> _finders = new HashSet<>();
 	/**
 	 * The human-name value specifies the readable name to use when generating
 	 * documentation for this entity. If none is specified, one will be
@@ -351,7 +317,7 @@ public class Entity {
 	 * The name value specifies the name of the entity.
 	 */
 	private String _name;
-	private Set<Order> _orders;
+	private Set<Order> _orders = new HashSet<>();
 	/**
 	 * The persistence-class value specifies the name of your custom persistence
 	 * class. This class must implement the generated persistence interface or

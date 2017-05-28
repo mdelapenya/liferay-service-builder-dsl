@@ -11,11 +11,6 @@ import java.util.Set;
  */
 public class Order {
 
-	public Order(Builder builder) {
-		_by = builder._by;
-		_orderColumns = builder._orderColumns;
-	}
-
 	public OrderBy getBy() {
 		return _by;
 	}
@@ -26,32 +21,41 @@ public class Order {
 
 	public static class Builder {
 
+		Builder() {
+			_order = new Order();
+		}
+
 		public Order build() {
-			return new Order(this);
+			Order order = _order;
+
+			_order = new Order();
+
+			return order;
 		}
 
 		public Builder by(OrderBy by) {
-			_by = by;
+			_order._by = by;
 
 			return this;
 		}
 
 		public Builder withOrderColumn(OrderColumn orderColumn) {
-			_orderColumns.add(orderColumn);
+			_order._orderColumns.add(orderColumn);
 
 			return this;
 		}
 
-		private OrderBy _by;
-		private Set<OrderColumn> _orderColumns = new HashSet<>();
+		private Order _order;
 
 	}
+
+	private Order() {}
 
 	/**
 	 * Set the by attribute to "asc" or "desc" to order by ascending or
 	 * descending.
 	 */
 	private OrderBy _by;
-	private Set<OrderColumn> _orderColumns;
+	private Set<OrderColumn> _orderColumns = new HashSet<>();
 
 }

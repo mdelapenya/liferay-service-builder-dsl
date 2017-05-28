@@ -39,12 +39,6 @@ package com.liferay.servicebuilder.dsl.domain;
  */
 public class OrderColumn {
 
-	public OrderColumn(Builder builder) {
-		_caseSensitive = builder._caseSensitive;
-		_name = builder._name;
-		_orderBy = builder._orderBy;
-	}
-
 	public String getName() {
 		return _name;
 	}
@@ -59,31 +53,38 @@ public class OrderColumn {
 
 	public static class Builder {
 
-		public Builder (String name) {
-			_name = name;
+		Builder (String name) {
+			_orderColumn = new OrderColumn();
+
+			_orderColumn._name = name;
 		}
 
 		public OrderColumn build() {
-			return new OrderColumn(this);
+			OrderColumn orderColumn = _orderColumn;
+
+			_orderColumn = new OrderColumn();
+
+			return orderColumn;
 		}
 
 		public Builder caseInsensitive() {
-			_caseSensitive = false;
+			_orderColumn._caseSensitive = false;
 
 			return this;
 		}
 
 		public Builder descending() {
-			_orderBy = OrderBy.DESC;
+			_orderColumn._orderBy = OrderBy.DESC;
 
 			return this;
 		}
 
-		private boolean _caseSensitive = true;
-		private String _name;
-		private OrderBy _orderBy = OrderBy.ASC;
+		private OrderColumn _orderColumn;
 
 	}
+
+	private OrderColumn() {}
+
 	private boolean _caseSensitive = true;
 	private String _name;
 	private OrderBy _orderBy = OrderBy.ASC;

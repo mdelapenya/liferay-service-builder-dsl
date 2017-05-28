@@ -7,26 +7,6 @@ package com.liferay.servicebuilder.dsl.domain;
  */
 public class Column {
 
-	public Column(Builder builder) {
-		_name = builder._name;
-		_type = builder._type;
-
-		_accessor = builder._accessor;
-		_containerModel = builder._containerModel;
-		_convertNull = builder._convertNull;
-		_entity = builder._entity;
-		_dbName = builder._dbName;
-		_filterPrimary = builder._filterPrimary;
-		_idParam = builder._idParam;
-		_idType = builder._idType;
-		_jsonEnabled = builder._jsonEnabled;
-		_lazy = builder._lazy;
-		_localized = builder._localized;
-		_mappingTable = builder._mappingTable;
-		_parentContainerModel = builder._parentContainerModel;
-		_primary = builder._primary;
-	}
-
 	public boolean hasAccessor() {
 		return _accessor;
 	}
@@ -93,41 +73,47 @@ public class Column {
 
 	public static class Builder {
 
-		public Builder(String name, String type) {
-			_name = name;
-			_type = type;
+		Builder(String name, String type) {
+			_column = new Column();
+
+			_column._name = name;
+			_column._type = type;
 		}
 
 		public Builder asPrimaryKey() {
-			_primary = true;
+			_column._primary = true;
 
 			return this;
 		}
 
 		public Column build() {
-			return new Column(this);
+			Column column = _column; 
+
+			_column = new Column();
+
+			return column;
 		}
 
 		public Builder containerModel() {
-			_containerModel = true;
+			_column._containerModel = true;
 
 			return this;
 		}
 
 		public Builder convertsNull() {
-			_convertNull = true;
+			_column._convertNull = true;
 
 			return this;
 		}
 
 		public Builder filterPrimary() {
-			_filterPrimary = true;
+			_column._filterPrimary = true;
 
 			return this;
 		}
 
 		public Builder withAccessor() {
-			_accessor = true;
+			_column._accessor = true;
 
 			return this;
 		}
@@ -155,9 +141,9 @@ public class Column {
 		public Builder autogeneratePrimaryKeyFromClass(
 			String columnType, String className) {
 
-			_idParam = className;
-			_idType = "class";
-			_type = columnType;
+			_column._idParam = className;
+			_column._idType = "class";
+			_column._type = columnType;
 
 			return this;
 		}
@@ -183,8 +169,8 @@ public class Column {
 		 * @return
 		 */
 		public Builder autogeneratePrimaryKeyFromIdentity(String columnType) {
-			_idType = "identity";
-			_type = columnType;
+			_column._idType = "identity";
+			_column._type = columnType;
 
 			return this;
 		}
@@ -207,8 +193,8 @@ public class Column {
 		 * @return
 		 */
 		public Builder autogeneratePrimaryKeyFromIncrement(String columnType) {
-			_idType = "increment";
-			_type = columnType;
+			_column._idType = "increment";
+			_column._type = columnType;
 
 			return this;
 		}
@@ -237,33 +223,33 @@ public class Column {
 		public Builder autogeneratePrimaryKeyFromSequence(
 			String columnType, String idSequence) {
 
-			_idParam = idSequence;
-			_idType = "sequence";
-			_type = columnType;
+			_column._idParam = idSequence;
+			_column._idType = "sequence";
+			_column._type = columnType;
 
 			return this;
 		}
 
 		public Builder localized() {
-			_localized = true;
+			_column._localized = true;
 
 			return this;
 		}
 
 		public Builder parentContainerModel() {
-			_parentContainerModel = true;
+			_column._parentContainerModel = true;
 
 			return this;
 		}
 
 		public Builder withDbName(String dbName) {
-			_dbName = dbName;
+			_column._dbName = dbName;
 
 			return this;
 		}
 
 		public Builder withJsonSerialization() {
-			_jsonEnabled = true;
+			_column._jsonEnabled = true;
 
 			return this;
 		}
@@ -271,40 +257,29 @@ public class Column {
 		public Builder withManyToManyRelationship(
 			String entity, String mappingTable) {
 
-			_entity = entity;
-			_mappingTable = mappingTable;
+			_column._entity = entity;
+			_column._mappingTable = mappingTable;
 
 			return this;
 		}
 
 		public Builder withoutLazyFetch() {
-			if ((_type == null) || (_type.isEmpty()) || !_type.equals("Blob")) {
+			if ((_column._type == null) || (_column._type.isEmpty()) ||
+				!_column._type.equals("Blob")) {
+
 				return this;
 			}
 
-			_lazy = false;
+			_column._lazy = false;
 
 			return this;
 		}
 
-		private boolean _accessor;
-		private boolean _containerModel;
-		private boolean _convertNull;
-		private String _dbName;
-		private String _entity;
-		private boolean _filterPrimary;
-		private String _idParam;
-		private String _idType;
-		private boolean _jsonEnabled;
-		private boolean _lazy = true;
-		private boolean _localized;
-		private String _mappingTable;
-		private String _name;
-		private boolean _parentContainerModel;
-		private boolean _primary;
-		private String _type;
+		private Column _column;
 
 	}
+
+	private Column() {}
 
 	/**
 	 * This accessor value specifies whether or not to generate an accessor for

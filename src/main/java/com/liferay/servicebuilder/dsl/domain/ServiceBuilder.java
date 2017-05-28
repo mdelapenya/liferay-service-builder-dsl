@@ -14,19 +14,6 @@ import java.util.List;
  */
 public class ServiceBuilder {
 
-	public ServiceBuilder(Builder builder) {
-		_packagePath = builder._packagePath;
-		_namespace = builder._namespace;
-
-		_author = builder._author;
-		_autoImportDefaultReferences =
-			builder._autoImportDefaultReferences;
-		_autoNamespaceTables = builder._autoNamespaceTables;
-		_entities = builder._entities;
-		_exceptions = builder._exceptions;
-		_mvccEnabled = builder._mvccEnabled;
-	}
-
 	public String getAuthor() {
 		return _author;
 	}
@@ -61,61 +48,62 @@ public class ServiceBuilder {
 
 	public static class Builder {
 
-		public Builder(String packagePath, String namespace) {
-			_packagePath = packagePath;
-			_namespace = namespace;
+		Builder(String packagePath, String namespace) {
+			_serviceBuilder = new ServiceBuilder();
+
+			_serviceBuilder._packagePath = packagePath;
+			_serviceBuilder._namespace = namespace;
 		}
 
 		public Builder autoImportDefaultReferences() {
-			_autoImportDefaultReferences = true;
+			_serviceBuilder._autoImportDefaultReferences = true;
 
 			return this;
 		}
 
 		public Builder autoNamespaceTables() {
-			_autoNamespaceTables = true;
+			_serviceBuilder._autoNamespaceTables = true;
 
 			return this;
 		}
 
 		public Builder enableMvcc() {
-			_mvccEnabled = true;
+			_serviceBuilder._mvccEnabled = true;
 
 			return this;
 		}
 
 		public ServiceBuilder build() {
-			return new ServiceBuilder(this);
+			ServiceBuilder serviceBuilder = _serviceBuilder;
+
+			_serviceBuilder = new ServiceBuilder();
+
+			return serviceBuilder;
 		}
 
 		public Builder withAuthor(String author) {
-			_author = author;
+			_serviceBuilder._author = author;
 
 			return this;
 		}
 
 		public Builder withEntity(Entity entity) {
-			_entities.add(entity);
+			_serviceBuilder._entities.add(entity);
 
 			return this;
 		}
 
 		public Builder withException(String exception) {
-			_exceptions.add(exception);
+			_serviceBuilder._exceptions.add(exception);
 
 			return this;
 		}
 
-		private String _author;
-		private boolean _autoImportDefaultReferences;
-		private boolean _autoNamespaceTables;
-		private List<Entity> _entities = new ArrayList<>();
-		private List<String> _exceptions = new ArrayList<>();
-		private boolean _mvccEnabled;
-		private final String _namespace;
-		private final String _packagePath;
+		private ServiceBuilder _serviceBuilder;
 
 	}
+
+	private ServiceBuilder() {}
 
 	/**
 	 * The author element is the name of the user associated with the generated
@@ -133,8 +121,8 @@ public class ServiceBuilder {
 	 * for plugin services.
 	 */
 	private boolean _autoNamespaceTables;
-	private List<Entity> _entities;
-	private List<String> _exceptions;
+	private List<Entity> _entities = new ArrayList<>();
+	private List<String> _exceptions = new ArrayList<>();
 	/**
 	 * The mvcc-enabled value specifies whether or not to enable MVCC by default
 	 * for entities to prevent lost updates. The default value is false.

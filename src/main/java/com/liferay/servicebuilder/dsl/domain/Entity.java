@@ -41,8 +41,8 @@ public class Entity {
 		return _name;
 	}
 
-	public Set<Order> getOrders() {
-		return _orders;
+	public Order getOrder() {
+		return _order;
 	}
 
 	public String getPersistenceClass() {
@@ -200,13 +200,7 @@ public class Entity {
 		}
 
 		public Builder withOrder(Order order) {
-			_entity._orders.add(order);
-
-			return this;
-		}
-
-		public Builder withOrders(Order... order) {
-			Collections.addAll(_entity._orders, order);
+			_entity._order = order;
 
 			return this;
 		}
@@ -350,7 +344,7 @@ public class Entity {
 	 * The name value specifies the name of the entity.
 	 */
 	private String _name;
-	private Set<Order> _orders = new HashSet<>();
+	private Order _order;
 	/**
 	 * The persistence-class value specifies the name of your custom persistence
 	 * class. This class must implement the generated persistence interface or

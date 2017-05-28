@@ -21,13 +21,10 @@ public class EntityTest {
 
 		Assert.assertTrue(columns.isEmpty());
 
-		Set<Order> orders = entity.getOrders();
-
-		Assert.assertTrue(orders.isEmpty());
-
 		Assert.assertFalse(entity.hasLocalService());
 		Assert.assertNull(entity.getDatasource());
 		Assert.assertNull(entity.getHumanName());
+		Assert.assertNull(entity.getOrder());
 		Assert.assertNull(entity.getPersistenceClass());
 		Assert.assertTrue(entity.hasCacheEnabled());
 		Assert.assertFalse(entity.hasDynamicUpdate());
@@ -223,37 +220,7 @@ public class EntityTest {
 
 		Entity entity = builder.withOrder(order).build();
 
-		Set<Order> orders = entity.getOrders();
-
-		Assert.assertEquals(1, orders.size());
-	}
-
-	@Test
-	public void testBuildWithOrderDuplicatedDoesNotAddIt() {
-		Order order = new Order.Builder().build();
-
-		Entity entity = builder
-			.withOrder(order)
-			.withOrder(order)
-			.build();
-
-		Set<Order> orders = entity.getOrders();
-
-		Assert.assertEquals(1, orders.size());
-	}
-
-	@Test
-	public void testBuildWithOrders() {
-		Order order1 = new Order.Builder().build();
-		Order order2 = new Order.Builder().build();
-
-		Entity entity = builder
-			.withOrders(order1, order2)
-			.build();
-
-		Set<Order> orders = entity.getOrders();
-
-		Assert.assertEquals(2, orders.size());
+		Assert.assertNotNull(entity.getOrder());
 	}
 
 	@Test

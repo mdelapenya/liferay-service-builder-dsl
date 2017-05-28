@@ -130,6 +130,21 @@ public class EntityTest {
 	}
 
 	@Test
+	public void testBuildWithFinderDuplicatedDoesNotAddIt() {
+		Finder.Builder finderBuilder = new Finder.Builder(
+			"G_C_DDMSK", "JournalArticle");
+
+		Finder finder = finderBuilder.build();
+
+		Entity entity = builder
+			.withFinder(finder)
+			.withFinder(finder)
+			.build();
+
+		Assert.assertEquals(1, entity.getFinders().size());
+	}
+
+	@Test
 	public void testBuildWithFinders() {
 		Finder.Builder finderBuilder1 = new Finder.Builder(
 			"G_C_DDMSK", "JournalArticle");

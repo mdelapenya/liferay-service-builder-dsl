@@ -1,7 +1,7 @@
 package com.liferay.servicebuilder.dsl.domain;
 
-import java.util.ArrayList;
-import java.util.List;
+import java.util.HashSet;
+import java.util.Set;
 
 /**
  * The order element specifies a default ordering and sorting of the entities
@@ -20,7 +20,7 @@ public class Order {
 		return _by;
 	}
 
-	public List<OrderColumn> getOrderColumns() {
+	public Set<OrderColumn> getOrderColumns() {
 		return _orderColumns;
 	}
 
@@ -43,7 +43,7 @@ public class Order {
 		}
 
 		private OrderBy _by;
-		private List<OrderColumn> _orderColumns = new ArrayList<>();
+		private Set<OrderColumn> _orderColumns = new HashSet<>();
 
 	}
 
@@ -52,6 +52,6 @@ public class Order {
 	 * descending.
 	 */
 	private OrderBy _by;
-	private List<OrderColumn> _orderColumns;
+	private Set<OrderColumn> _orderColumns;
 
 }

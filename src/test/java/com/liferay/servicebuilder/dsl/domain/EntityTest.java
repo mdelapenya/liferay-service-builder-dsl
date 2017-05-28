@@ -118,6 +118,35 @@ public class EntityTest {
 	}
 
 	@Test
+	public void testBuildWithFinder() {
+		Finder.Builder finderBuilder = new Finder.Builder(
+			"G_C_DDMSK", "JournalArticle");
+
+		Finder finder = finderBuilder.build();
+
+		Entity entity = builder.withFinder(finder).build();
+
+		Assert.assertEquals(1, entity.getFinders().size());
+	}
+
+	@Test
+	public void testBuildWithFinders() {
+		Finder.Builder finderBuilder1 = new Finder.Builder(
+			"G_C_DDMSK", "JournalArticle");
+
+		Finder finder1 = finderBuilder1.build();
+
+		Finder.Builder finderBuilder2 = new Finder.Builder(
+			"G_C", "JournalArticle");
+
+		Finder finder2 = finderBuilder2.build();
+
+		Entity entity = builder.withFinders(finder1, finder2).build();
+
+		Assert.assertEquals(2, entity.getFinders().size());
+	}
+
+	@Test
 	public void testBuildWithHumanName() {
 		Entity entity = builder.withHumanName("human-name").build();
 

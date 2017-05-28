@@ -1,7 +1,10 @@
 package com.liferay.servicebuilder.dsl.domain;
 
 import java.util.ArrayList;
+import java.util.Collections;
+import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
 
 /**
  * An entity usually represents a business facade and a table in the database.
@@ -28,6 +31,7 @@ public class Entity {
 		_datasource = builder._datasource;
 		_deprecated = builder._deprecated;
 		_dynamicUpdateEnabled = builder._dynamicUpdateEnabled;
+		_finders = builder._finders;
 		_humanName = builder._humanName;
 		_jsonEnabled = builder._jsonEnabled;
 		_localService = builder._localService;
@@ -49,6 +53,10 @@ public class Entity {
 
 	public String getDatasource() {
 		return _datasource;
+	}
+
+	public Set<Finder> getFinders() {
+		return _finders;
 	}
 
 	public String getHumanName() {
@@ -159,6 +167,18 @@ public class Entity {
 			return this;
 		}
 
+		public Builder withFinder(Finder finder) {
+			_finders.add(finder);
+
+			return this;
+		}
+
+		public Builder withFinders(Finder... finder) {
+			Collections.addAll(_finders, finder);
+
+			return this;
+		}
+
 		public Builder withHumanName(String humanName) {
 			_humanName = humanName;
 
@@ -246,6 +266,7 @@ public class Entity {
 		private String _datasource;
 		private boolean _deprecated;
 		private boolean _dynamicUpdateEnabled;
+		private Set<Finder> _finders = new HashSet<>();
 		private String _humanName;
 		private boolean _jsonEnabled;
 		private boolean _localService;
@@ -292,6 +313,7 @@ public class Entity {
 	 * the value of the attribute mvcc-enabled.
 	 */
 	private boolean _dynamicUpdateEnabled;
+	private Set<Finder> _finders;
 	/**
 	 * The human-name value specifies the readable name to use when generating
 	 * documentation for this entity. If none is specified, one will be

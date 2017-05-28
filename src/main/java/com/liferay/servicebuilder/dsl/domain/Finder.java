@@ -1,5 +1,8 @@
 package com.liferay.servicebuilder.dsl.domain;
 
+import java.util.ArrayList;
+import java.util.List;
+
 /**
  * The finder element represents a generated finder method.
  *
@@ -9,9 +12,14 @@ public class Finder {
 
 	public Finder(Builder builder) {
 		_dbIndex = builder._dbIndex;
+		_finderColumns = builder._finderColumns;
 		_name = builder._name;
 		_returnType = builder._returnType;
 		_unique = builder._unique;
+	}
+
+	public List<FinderColumn> getFinderColumns() {
+		return _finderColumns;
 	}
 
 	public String getName() {
@@ -47,6 +55,12 @@ public class Finder {
 			return this;
 		}
 
+		public Builder withFinderColumn(FinderColumn finderColumn) {
+			_finderColumns.add(finderColumn);
+
+			return this;
+		}
+
 		public Builder withoutSQLIndex() {
 			_dbIndex = false;
 
@@ -54,6 +68,7 @@ public class Finder {
 		}
 
 		private boolean _dbIndex = true;
+		private List<FinderColumn> _finderColumns = new ArrayList<>();
 		private String _name;
 		private String _returnType;
 		private boolean _unique;
@@ -65,6 +80,7 @@ public class Finder {
 	 * generate a SQL index for this finder. The default value is true.
 	 */
 	private boolean _dbIndex = true;
+	private List<FinderColumn> _finderColumns;
 	/**
 	 * Specifies the name of the finder method.
 	 */

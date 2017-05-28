@@ -335,6 +335,49 @@ public class EntityTest {
 	}
 
 	@Test
+	public void testBuildWithTxRequiredMethod() {
+		TxRequiredMethod txRequiredMethod =
+			new TxRequiredMethod.Builder().build();
+
+		Entity entity = builder.withTxRequiredMethod(txRequiredMethod).build();
+
+		Set<TxRequiredMethod> txRequiredMethods = entity.getTxRequiredMethods();
+
+		Assert.assertEquals(1, txRequiredMethods.size());
+	}
+
+	@Test
+	public void testBuildWithTxRequiredMethodDuplicatedDoesNotAddIt() {
+		TxRequiredMethod txRequiredMethod =
+			new TxRequiredMethod.Builder().build();
+
+		Entity entity = builder
+			.withTxRequiredMethod(txRequiredMethod)
+			.withTxRequiredMethod(txRequiredMethod)
+			.build();
+
+		Set<TxRequiredMethod> txRequiredMethods = entity.getTxRequiredMethods();
+
+		Assert.assertEquals(1, txRequiredMethods.size());
+	}
+
+	@Test
+	public void testBuildWithTxRequiredMethods() {
+		TxRequiredMethod txRequiredMethod1 =
+			new TxRequiredMethod.Builder().build();
+		TxRequiredMethod txRequiredMethod2 =
+			new TxRequiredMethod.Builder().build();
+
+		Entity entity = builder
+			.withTxRequiredMethods(txRequiredMethod1, txRequiredMethod2)
+			.build();
+
+		Set<TxRequiredMethod> txRequiredMethods = entity.getTxRequiredMethods();
+
+		Assert.assertEquals(2, txRequiredMethods.size());
+	}
+
+	@Test
 	public void testBuildWithTrashEnabled() {
 		Entity entity = builder.withTrashEnabled().build();
 

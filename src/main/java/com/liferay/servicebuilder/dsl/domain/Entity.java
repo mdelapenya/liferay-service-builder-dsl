@@ -61,6 +61,10 @@ public class Entity {
 		return _txManager;
 	}
 
+	public Set<TxRequiredMethod> getTxRequiredMethods() {
+		return _txRequiredMethodMethods;
+	}
+
 	public String getSessionFactory() {
 		return _sessionFactory;
 	}
@@ -257,6 +261,19 @@ public class Entity {
 			return this;
 		}
 
+		public Builder withTxRequiredMethod(TxRequiredMethod txRequiredMethod) {
+			_entity._txRequiredMethodMethods.add(txRequiredMethod);
+
+			return this;
+		}
+
+		public Builder withTxRequiredMethods(TxRequiredMethod... txRequiredMethod) {
+			Collections.addAll(
+				_entity._txRequiredMethodMethods, txRequiredMethod);
+
+			return this;
+		}
+
 		public Builder withUuid() {
 			_entity._uuid = true;
 
@@ -371,6 +388,7 @@ public class Entity {
 	 * Set this attribute to "none" to disable transaction management.
 	 */
 	private String _txManager;
+	private Set<TxRequiredMethod> _txRequiredMethodMethods = new HashSet<>();
 	/**
 	 * If the uuid value is true, then the service will generate a UUID column
 	 * for the service. This column will automatically be populated with a UUID.

@@ -49,6 +49,10 @@ public class Entity {
 		return _persistenceClass;
 	}
 
+	public Set<Reference> getReferences() {
+		return _references;
+	}
+
 	public String getTable() {
 		return _table;
 	}
@@ -209,6 +213,18 @@ public class Entity {
 			return this;
 		}
 
+		public Builder withReference(Reference reference) {
+			_entity._references.add(reference);
+
+			return this;
+		}
+
+		public Builder withReferences(Reference... reference) {
+			Collections.addAll(_entity._references, reference);
+
+			return this;
+		}
+
 		public Builder withRemoteServices() {
 			_entity._remoteService = true;
 
@@ -325,6 +341,7 @@ public class Entity {
 	 * default behavior without modifying the generated persistence class.
 	 */
 	private String _persistenceClass;
+	private Set<Reference> _references = new HashSet<>();
 	/**
 	 * If the remote-service value is true, then the service will generate
 	 * remote interfaces for the service. The default value is true.

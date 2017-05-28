@@ -267,6 +267,45 @@ public class EntityTest {
 	}
 
 	@Test
+	public void testBuildWithReference() {
+		Reference reference = new Reference.Builder().build();
+
+		Entity entity = builder.withReference(reference).build();
+
+		Set<Reference> references = entity.getReferences();
+
+		Assert.assertEquals(1, references.size());
+	}
+
+	@Test
+	public void testBuildWithReferenceDuplicatedDoesNotAddIt() {
+		Reference reference = new Reference.Builder().build();
+
+		Entity entity = builder
+			.withReference(reference)
+			.withReference(reference)
+			.build();
+
+		Set<Reference> references = entity.getReferences();
+
+		Assert.assertEquals(1, references.size());
+	}
+
+	@Test
+	public void testBuildWithReferences() {
+		Reference reference1 = new Reference.Builder().build();
+		Reference reference2 = new Reference.Builder().build();
+
+		Entity entity = builder
+			.withReferences(reference1, reference2)
+			.build();
+
+		Set<Reference> references = entity.getReferences();
+
+		Assert.assertEquals(2, references.size());
+	}
+
+	@Test
 	public void testBuildWithRemoteServices() {
 		Entity entity = builder.withRemoteServices().build();
 

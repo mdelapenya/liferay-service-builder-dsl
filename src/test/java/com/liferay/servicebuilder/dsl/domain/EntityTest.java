@@ -4,7 +4,7 @@ import org.junit.Assert;
 import org.junit.Ignore;
 import org.junit.Test;
 
-import java.util.List;
+import java.util.Set;
 
 /**
  * @author Manuel de la Peña
@@ -17,11 +17,11 @@ public class EntityTest {
 
 		Assert.assertEquals("JournalArticle", entity.getName());
 
-		List<Column> columns = entity.getColumns();
+		Set<Column> columns = entity.getColumns();
 
 		Assert.assertTrue(columns.isEmpty());
 
-		List<Order> orders = entity.getOrders();
+		Set<Order> orders = entity.getOrders();
 
 		Assert.assertTrue(orders.isEmpty());
 
@@ -57,7 +57,22 @@ public class EntityTest {
 
 		Entity entity = builder.withColumn(companyIdColumn).build();
 
-		List<Column> columns = entity.getColumns();
+		Set<Column> columns = entity.getColumns();
+
+		Assert.assertEquals(1, columns.size());
+	}
+
+	@Test
+	public void testBuildWithColumnDuplicatedDoesNotAddIt() {
+		Column companyIdColumn = new Column.Builder("companyId", "long")
+			.build();
+
+		Entity entity = builder
+			.withColumn(companyIdColumn)
+			.withColumn(companyIdColumn)
+			.build();
+
+		Set<Column> columns = entity.getColumns();
 
 		Assert.assertEquals(1, columns.size());
 	}
@@ -69,11 +84,10 @@ public class EntityTest {
 		Column groupIdColumn = new Column.Builder("groupId", "long").build();
 
 		Entity entity = builder
-			.withColumn(companyIdColumn)
-			.withColumn(groupIdColumn)
+			.withColumns(companyIdColumn, groupIdColumn)
 			.build();
 
-		List<Column> columns = entity.getColumns();
+		Set<Column> columns = entity.getColumns();
 
 		Assert.assertEquals(2, columns.size());
 	}
@@ -209,7 +223,21 @@ public class EntityTest {
 
 		Entity entity = builder.withOrder(order).build();
 
-		List<Order> orders = entity.getOrders();
+		Set<Order> orders = entity.getOrders();
+
+		Assert.assertEquals(1, orders.size());
+	}
+
+	@Test
+	public void testBuildWithOrderDuplicatedDoesNotAddIt() {
+		Order order = new Order.Builder().build();
+
+		Entity entity = builder
+			.withOrder(order)
+			.withOrder(order)
+			.build();
+
+		Set<Order> orders = entity.getOrders();
 
 		Assert.assertEquals(1, orders.size());
 	}
@@ -220,11 +248,10 @@ public class EntityTest {
 		Order order2 = new Order.Builder().build();
 
 		Entity entity = builder
-			.withOrder(order1)
-			.withOrder(order2)
+			.withOrders(order1, order2)
 			.build();
 
-		List<Order> orders = entity.getOrders();
+		Set<Order> orders = entity.getOrders();
 
 		Assert.assertEquals(2, orders.size());
 	}

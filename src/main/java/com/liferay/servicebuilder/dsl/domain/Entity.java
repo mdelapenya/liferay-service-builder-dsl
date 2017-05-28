@@ -1,9 +1,7 @@
 package com.liferay.servicebuilder.dsl.domain;
 
-import java.util.ArrayList;
 import java.util.Collections;
 import java.util.HashSet;
-import java.util.List;
 import java.util.Set;
 
 /**
@@ -47,7 +45,7 @@ public class Entity {
 		_uuidAccesor = builder._uuidAccesor;
 	}
 
-	public List<Column> getColumns() {
+	public Set<Column> getColumns() {
 		return _columns;
 	}
 
@@ -67,7 +65,7 @@ public class Entity {
 		return _name;
 	}
 
-	public List<Order> getOrders() {
+	public Set<Order> getOrders() {
 		return _orders;
 	}
 
@@ -155,6 +153,12 @@ public class Entity {
 			return this;
 		}
 
+		public Builder withColumns(Column... column) {
+			Collections.addAll(_columns, column);
+
+			return this;
+		}
+
 		public Builder withDatasource(String datasource) {
 			_datasource = datasource;
 
@@ -211,6 +215,12 @@ public class Entity {
 			return this;
 		}
 
+		public Builder withOrders(Order... order) {
+			Collections.addAll(_orders, order);
+
+			return this;
+		}
+
 		public Builder withPersistenceClass(String persistenceClass) {
 			_persistenceClass = persistenceClass;
 
@@ -262,7 +272,7 @@ public class Entity {
 		}
 
 		private boolean _cacheEnabled = true;
-		private List<Column> _columns = new ArrayList<>();
+		private Set<Column> _columns = new HashSet<>();
 		private String _datasource;
 		private boolean _deprecated;
 		private boolean _dynamicUpdateEnabled;
@@ -272,7 +282,7 @@ public class Entity {
 		private boolean _localService;
 		private boolean _mvccEnabled;
 		private final String _name;
-		private List<Order> _orders = new ArrayList<>();
+		private Set<Order> _orders = new HashSet<>();
 		private String _persistenceClass;
 		private boolean _remoteService;
 		private String _sessionFactory;
@@ -289,7 +299,7 @@ public class Entity {
 	 * by other programs. The default value is true.
 	 */
 	private boolean _cacheEnabled = true;
-	private List<Column> _columns;
+	private Set<Column> _columns;
 	/**
 	 * You can generate classes to use a custom data source and session factory.
 	 * Point "spring.configs" in portal.properties to load your custom Spring
@@ -341,7 +351,7 @@ public class Entity {
 	 * The name value specifies the name of the entity.
 	 */
 	private String _name;
-	private List<Order> _orders;
+	private Set<Order> _orders;
 	/**
 	 * The persistence-class value specifies the name of your custom persistence
 	 * class. This class must implement the generated persistence interface or

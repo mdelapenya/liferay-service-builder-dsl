@@ -16,7 +16,7 @@ public class ServiceBuilderTest {
 
 		Assert.assertEquals("com.liferay.foo", serviceBuilder.getPackagePath());
 		Assert.assertEquals("Journal", serviceBuilder.getNamespace());
-		Assert.assertTrue(serviceBuilder.getAuthor() == null);
+		Assert.assertNull(serviceBuilder.getAuthor());
 		Assert.assertTrue(serviceBuilder.getEntities().isEmpty());
 		Assert.assertTrue(serviceBuilder.getExceptions().isEmpty());
 		Assert.assertTrue(serviceBuilder.getServiceBuilderImports().isEmpty());

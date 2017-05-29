@@ -13,6 +13,17 @@ import com.fasterxml.jackson.dataformat.xml.annotation.JacksonXmlRootElement;
 @JsonPropertyOrder(alphabetic=true)
 public class FinderColumn implements ServiceBuilderElement {
 
+	@Override
+	public boolean equals(Object obj) {
+		if(!(obj instanceof FinderColumn)) {
+			return false;
+		}
+
+		FinderColumn that = (FinderColumn)obj;
+
+		return (_name.equals(that._name) && (that._name.equals(_name)));
+	}
+
 	@JacksonXmlProperty(isAttribute = true, localName = "arrayable-operator")
 	public ArrayableOperator getArrayableOperator() {
 		return _arrayableOperator;

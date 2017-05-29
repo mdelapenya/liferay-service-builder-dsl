@@ -3,7 +3,7 @@ package com.liferay.servicebuilder.dsl.domain;
 import org.junit.Assert;
 import org.junit.Test;
 
-import java.util.Set;
+import java.util.List;
 
 /**
  * @author Manuel de la Peña
@@ -48,7 +48,7 @@ public class FinderTest {
 
 		Finder finder = builder.withFinderColumn(finderColumn).build();
 
-		Set<FinderColumn> finderColumns = finder.getFinderColumns();
+		List<FinderColumn> finderColumns = finder.getFinderColumns();
 
 		Assert.assertEquals(1, finderColumns.size());
 	}
@@ -65,7 +65,7 @@ public class FinderTest {
 			.withFinderColumn(finderColumn2)
 			.build();
 
-		Set<FinderColumn> finderColumns = finder.getFinderColumns();
+		List<FinderColumn> finderColumns = finder.getFinderColumns();
 
 		Assert.assertEquals(2, finderColumns.size());
 	}

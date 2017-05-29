@@ -5,8 +5,8 @@ import com.fasterxml.jackson.dataformat.xml.annotation.JacksonXmlElementWrapper;
 import com.fasterxml.jackson.dataformat.xml.annotation.JacksonXmlProperty;
 import com.fasterxml.jackson.dataformat.xml.annotation.JacksonXmlRootElement;
 
-import java.util.HashSet;
-import java.util.Set;
+import java.util.ArrayList;
+import java.util.List;
 
 /**
  * The finder element represents a generated finder method.
@@ -30,7 +30,7 @@ public class Finder implements ServiceBuilderElement {
 
 	@JacksonXmlElementWrapper(useWrapping = false)
 	@JacksonXmlProperty(localName = "finder-column")
-	public Set<FinderColumn> getFinderColumns() {
+	public List<FinderColumn> getFinderColumns() {
 		return _finderColumns;
 	}
 
@@ -91,7 +91,9 @@ public class Finder implements ServiceBuilderElement {
 		}
 
 		public Builder withFinderColumn(FinderColumn finderColumn) {
-			_finder._finderColumns.add(finderColumn);
+			if (!_finder._finderColumns.contains(finderColumn)) {
+				_finder._finderColumns.add(finderColumn);
+			}
 
 			return this;
 		}
@@ -117,7 +119,7 @@ public class Finder implements ServiceBuilderElement {
 	 * generate a SQL index for this finder. The default value is true.
 	 */
 	private boolean _dbIndex = true;
-	private Set<FinderColumn> _finderColumns = new HashSet<>();
+	private List<FinderColumn> _finderColumns = new ArrayList<>();
 	/**
 	 * Specifies the name of the finder method.
 	 */

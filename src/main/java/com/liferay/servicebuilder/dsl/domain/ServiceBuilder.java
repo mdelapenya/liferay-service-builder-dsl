@@ -26,6 +26,10 @@ public class ServiceBuilder {
 		return _exceptions;
 	}
 
+	public Set<String> getServiceBuilderImports() {
+		return _serviceBuilderImports;
+	}
+
 	public String getNamespace() {
 		return _namespace;
 	}
@@ -79,6 +83,25 @@ public class ServiceBuilder {
 			_serviceBuilder = new ServiceBuilder();
 
 			return serviceBuilder;
+		}
+
+		/**
+		 * The service-builder-import allows you to split up a large Service
+		 * Builder file into smaller files by aggregrating the smaller Service
+		 * Builder into one file.
+		 *
+		 * Note that there can be at most one author element among all the
+		 * files. There can also only be one and only one namespace element
+		 * among all the files.
+		 *
+		 * @param file The file is interpreted as relative to the file that is
+		 *             importing it.
+		 * @return the ServiceBuilder Builder object
+		 */
+		public Builder importServiceBuilderFile(String file) {
+			_serviceBuilder._serviceBuilderImports.add(file);
+
+			return this;
 		}
 
 		public Builder withAuthor(String author) {
@@ -139,5 +162,18 @@ public class ServiceBuilder {
 	 * The package-path value specifies the package of the generated code.
 	 */
 	private String _packagePath;
+	/**
+	 * The service-builder-import allows you to split up a large Service Builder
+	 * file into smaller files by aggregrating the smaller Service Builder into
+	 * one file.
+	 * 
+	 * Note that there can be at most one author element among all the files.
+	 * There can also only be one and only one namespace element among all the
+	 * files.
+	 *
+	 * The attribute file is interpreted as relative to the file that is
+	 * importing it.
+	 */
+	private Set<String> _serviceBuilderImports = new HashSet<>();
 
 }

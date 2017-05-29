@@ -17,6 +17,7 @@ public class ServiceBuilderTest {
 		Assert.assertEquals("com.liferay.foo", serviceBuilder.getPackagePath());
 		Assert.assertEquals("Journal", serviceBuilder.getNamespace());
 		Assert.assertTrue(serviceBuilder.getAuthor() == null);
+		Assert.assertTrue(serviceBuilder.getServiceBuilderImports().isEmpty());
 		Assert.assertFalse(serviceBuilder.hasAutoImportDefaultReferences());
 		Assert.assertFalse(serviceBuilder.hasAutoNamespaceTables());
 		Assert.assertFalse(serviceBuilder.isMvccEnabled());
@@ -134,6 +135,44 @@ public class ServiceBuilderTest {
 		ServiceBuilder serviceBuilder = builder.enableMvcc().build();
 
 		Assert.assertTrue(serviceBuilder.isMvccEnabled());
+	}
+
+	@Test
+	public void testBuildImportServiceBuilderFile() {
+		ServiceBuilder serviceBuilder = builder
+			.importServiceBuilderFile("../foo/service.xml")
+			.build();
+
+		Set<String> serviceBuilderImports =
+			serviceBuilder.getServiceBuilderImports();
+
+		Assert.assertEquals(1, serviceBuilderImports.size());
+	}
+
+	@Test
+	public void testBuildImportServiceBuilderFileDuplicatedDoesNotAddIt() {
+		ServiceBuilder serviceBuilder = builder
+			.importServiceBuilderFile("../foo/service.xml")
+			.importServiceBuilderFile("../foo/service.xml")
+			.build();
+
+		Set<String> serviceBuilderImports =
+			serviceBuilder.getServiceBuilderImports();
+
+		Assert.assertEquals(1, serviceBuilderImports.size());
+	}
+
+	@Test
+	public void testBuildImportServiceBuilderFiles() {
+		ServiceBuilder serviceBuilder = builder
+			.importServiceBuilderFile("../foo/service.xml")
+			.importServiceBuilderFile("../bar/service.xml")
+			.build();
+
+		Set<String> serviceBuilderImports =
+			serviceBuilder.getServiceBuilderImports();
+
+		Assert.assertEquals(2, serviceBuilderImports.size());
 	}
 
 	private ServiceBuilder.Builder builder = new ServiceBuilder.Builder(

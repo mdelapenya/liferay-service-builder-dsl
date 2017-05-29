@@ -32,3 +32,5 @@ test {
         events "passed", "skipped", "failed", "standardOut", "standardError"
     }
 }
+
+test.outputs.upToDateWhen {false}

@@ -21,6 +21,17 @@ import java.util.List;
  */
 public class Entity implements ServiceBuilderElement {
 
+	@Override
+	public boolean equals(Object obj) {
+		if(!(obj instanceof Entity)) {
+			return false;
+		}
+
+		Entity that = (Entity)obj;
+
+		return (_name.equals(that._name) && (that._name.equals(_name)));
+	}
+
 	public List<Column> getColumns() {
 		return _columns;
 	}

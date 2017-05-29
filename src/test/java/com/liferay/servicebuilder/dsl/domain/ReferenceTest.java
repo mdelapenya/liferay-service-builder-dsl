@@ -39,6 +39,17 @@ public class ReferenceTest {
 	@Test
 	public void testEqualsNotEquals() {
 		Reference reference1 = new Reference.Builder(
+			"JournalFolder", "com.liferay.journal.folder").build();
+		Reference reference2 = new Reference.Builder(
+			"JournalArticle", "com.liferay.journal.article").build();
+
+		Assert.assertFalse(reference1.equals(reference2));
+		Assert.assertFalse(reference2.equals(reference1));
+	}
+
+	@Test
+	public void testEqualsNotEqualsDifferentEntity() {
+		Reference reference1 = new Reference.Builder(
 			"JournalFolder", "com.liferay.journal").build();
 		Reference reference2 = new Reference.Builder(
 			"JournalArticle", "com.liferay.journal").build();

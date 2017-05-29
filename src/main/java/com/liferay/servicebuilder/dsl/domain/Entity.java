@@ -114,7 +114,7 @@ public class Entity implements ServiceBuilderElement {
 		/**
 		 * @param name Specifies the name of the entity.
 		 */
-		Builder(String name) {
+		public Builder(String name) {
 			_entity = new Entity();
 
 			_entity._name = name;

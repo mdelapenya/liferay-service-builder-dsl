@@ -53,7 +53,7 @@ public class OrderColumn implements ServiceBuilderElement {
 
 	public static class Builder {
 
-		Builder (String name) {
+		public Builder (String name) {
 			_orderColumn = new OrderColumn();
 
 			_orderColumn._name = name;

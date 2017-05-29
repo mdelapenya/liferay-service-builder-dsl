@@ -83,7 +83,7 @@ public class Column implements ServiceBuilderElement {
 		 *             The above column specifies that there will be a getter
 		 *             called pojo.getCompanyId() that will return a String.
 		 */
-		Builder(String name, String type) {
+		public Builder(String name, String type) {
 			_column = new Column();
 
 			_column._name = name;

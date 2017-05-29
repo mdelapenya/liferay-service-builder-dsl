@@ -45,7 +45,7 @@ public class FinderColumn implements ServiceBuilderElement {
 		 * See com.liferay.portal.service.persistence.impl.LayoutPersistenceImpl
 		 * for a good example.
 		 */
-		Builder(String name) {
+		public Builder(String name) {
 			_finderColumn = new FinderColumn();
 
 			_finderColumn._name = name;

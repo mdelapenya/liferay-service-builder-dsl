@@ -18,7 +18,7 @@ public class TxRequiredMethod implements ServiceBuilderElement {
 
 	public static class Builder {
 
-		Builder() {
+		public Builder() {
 			_txRequiredMethod = new TxRequiredMethod();
 		}
 

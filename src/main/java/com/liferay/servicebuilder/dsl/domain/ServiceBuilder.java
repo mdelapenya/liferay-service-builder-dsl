@@ -61,7 +61,7 @@ public class ServiceBuilder implements ServiceBuilderElement {
 		 *                  scoped to this namespace as well (i.e.,
 		 *                  Liferay.Service.Test.* if the namespace is Test).
 		 */
-		Builder(String packagePath, String namespace) {
+		public Builder(String packagePath, String namespace) {
 			_serviceBuilder = new ServiceBuilder();
 
 			_serviceBuilder._packagePath = packagePath;

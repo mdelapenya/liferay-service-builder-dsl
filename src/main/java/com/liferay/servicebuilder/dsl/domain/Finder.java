@@ -41,7 +41,7 @@ public class Finder implements ServiceBuilderElement {
 		 *                   name of the entity, then this finder returns at
 		 *                   most one entity.
 		 */
-		Builder(String name, String returnType) {
+		public Builder(String name, String returnType) {
 			_finder = new Finder();
 
 			_finder._name = name;

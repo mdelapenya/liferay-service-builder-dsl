@@ -22,7 +22,7 @@ public class Reference implements ServiceBuilderElement {
 
 	public static class Builder {
 
-		Builder() {
+		public Builder() {
 			_reference = new Reference();
 		}
 

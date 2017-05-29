@@ -21,7 +21,7 @@ public class Order implements ServiceBuilderElement {
 
 	public static class Builder {
 
-		Builder() {
+		public Builder() {
 			_order = new Order();
 		}
 

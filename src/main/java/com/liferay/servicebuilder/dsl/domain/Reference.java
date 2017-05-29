@@ -1,5 +1,6 @@
 package com.liferay.servicebuilder.dsl.domain;
 
+import com.fasterxml.jackson.annotation.JsonPropertyOrder;
 import com.fasterxml.jackson.dataformat.xml.annotation.JacksonXmlProperty;
 import com.fasterxml.jackson.dataformat.xml.annotation.JacksonXmlRootElement;
 
@@ -14,6 +15,7 @@ import com.fasterxml.jackson.dataformat.xml.annotation.JacksonXmlRootElement;
  * @author Manuel de la Peña
  */
 @JacksonXmlRootElement(localName = "reference")
+@JsonPropertyOrder(alphabetic = true)
 public class Reference implements ServiceBuilderElement {
 
 	@JacksonXmlProperty(localName = "entity")

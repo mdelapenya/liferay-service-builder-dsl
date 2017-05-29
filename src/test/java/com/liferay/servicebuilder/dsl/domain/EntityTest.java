@@ -308,7 +308,7 @@ public class EntityTest {
 	@Test
 	public void testBuildWithTxRequiredMethod() {
 		TxRequiredMethod txRequiredMethod =
-			new TxRequiredMethod.Builder().build();
+			new TxRequiredMethod.Builder("getFoo").build();
 
 		Entity entity = builder.withTxRequiredMethod(txRequiredMethod).build();
 
@@ -320,7 +320,7 @@ public class EntityTest {
 	@Test
 	public void testBuildWithTxRequiredMethodDuplicatedDoesNotAddIt() {
 		TxRequiredMethod txRequiredMethod =
-			new TxRequiredMethod.Builder().build();
+			new TxRequiredMethod.Builder("getFoo").build();
 
 		Entity entity = builder
 			.withTxRequiredMethod(txRequiredMethod)
@@ -335,9 +335,9 @@ public class EntityTest {
 	@Test
 	public void testBuildWithTxRequiredMethods() {
 		TxRequiredMethod txRequiredMethod1 =
-			new TxRequiredMethod.Builder().build();
+			new TxRequiredMethod.Builder("getFoo").build();
 		TxRequiredMethod txRequiredMethod2 =
-			new TxRequiredMethod.Builder().build();
+			new TxRequiredMethod.Builder("getBar").build();
 
 		Entity entity = builder
 			.withTxRequiredMethods(txRequiredMethod1, txRequiredMethod2)

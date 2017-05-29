@@ -14,10 +14,8 @@ public class TxRequiredMethodSerializerTest {
 
 	@Test
 	public void testSerialize() throws JsonProcessingException {
-		TxRequiredMethod txRequiredMethod =
-			new TxRequiredMethod.Builder()
-				.addMethodRequiringTxPropagation("getFoo")
-				.build();
+		TxRequiredMethod txRequiredMethod = new TxRequiredMethod.Builder(
+			"getFoo").build();
 
 		XMLSerializer serializer = new TxRequiredMethodSerializer(
 			txRequiredMethod);

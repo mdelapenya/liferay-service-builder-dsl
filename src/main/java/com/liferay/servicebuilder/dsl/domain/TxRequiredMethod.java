@@ -35,18 +35,6 @@ public class TxRequiredMethod implements ServiceBuilderElement {
 
 	public static class Builder {
 
-		public Builder() {
-			_txRequiredMethod = new TxRequiredMethod();
-		}
-
-		public TxRequiredMethod build() {
-			TxRequiredMethod txRequiredMethod = _txRequiredMethod;
-
-			_txRequiredMethod = new TxRequiredMethod();
-
-			return txRequiredMethod;
-		}
-
 		/**
 		 * @param methodName This string will be used to match method names that
 		 *                   require transactions. By default, the methods:
@@ -56,12 +44,19 @@ public class TxRequiredMethod implements ServiceBuilderElement {
 		 *                   read only. If you want additional methods to fall
 		 *                   under transactions, add the method name to this
 		 *                   element.
-		 * @return
 		 */
-		public Builder addMethodRequiringTxPropagation(String methodName) {
-			_txRequiredMethod._methodName = methodName;
+		public Builder(String methodName) {
+			_txRequiredMethod = new TxRequiredMethod();
 
-			return this;
+			_txRequiredMethod._methodName = methodName;
+		}
+
+		public TxRequiredMethod build() {
+			TxRequiredMethod txRequiredMethod = _txRequiredMethod;
+
+			_txRequiredMethod = new TxRequiredMethod();
+
+			return txRequiredMethod;
 		}
 
 		private TxRequiredMethod _txRequiredMethod;

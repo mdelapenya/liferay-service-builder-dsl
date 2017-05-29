@@ -12,18 +12,17 @@ public class TxRequiredMethodTest {
 	public void testBuild() {
 		TxRequiredMethod txRequiredMethod = builder.build();
 
-		Assert.assertNull(txRequiredMethod.getMethodName());
+		Assert.assertEquals("getFoo", txRequiredMethod.getMethodName());
 	}
 
 	@Test
 	public void testBuildAddMethod() {
-		TxRequiredMethod txRequiredMethod = builder
-			.addMethodRequiringTxPropagation("getFoo")
-			.build();
+		TxRequiredMethod txRequiredMethod = builder.build();
 
 		Assert.assertEquals("getFoo", txRequiredMethod.getMethodName());
 	}
 
-	private TxRequiredMethod.Builder builder = new TxRequiredMethod.Builder();
+	private TxRequiredMethod.Builder builder = new TxRequiredMethod.Builder(
+		"getFoo");
 
 }

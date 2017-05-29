@@ -15,8 +15,7 @@ public class ReferenceSerializerTest {
 	@Test
 	public void testSerialize() throws JsonProcessingException {
 		Reference reference =
-			new Reference.Builder()
-				.injectService("JournalFolder", "com.liferay.journal")
+			new Reference.Builder("JournalFolder", "com.liferay.journal")
 				.build();
 
 		XMLSerializer serializer = new ReferenceSerializer(reference);

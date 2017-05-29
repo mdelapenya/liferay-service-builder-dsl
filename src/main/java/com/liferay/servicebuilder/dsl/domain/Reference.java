@@ -44,18 +44,6 @@ public class Reference implements ServiceBuilderElement {
 
 	public static class Builder {
 
-		public Builder() {
-			_reference = new Reference();
-		}
-
-		public Reference build() {
-			Reference reference = _reference;
-
-			_reference = new Reference();
-
-			return reference;
-		}
-
 		/**
 		 * Allows you to inject services from another service.xml within the
 		 * same class loader.
@@ -64,11 +52,19 @@ public class Reference implements ServiceBuilderElement {
 		 * @param packagePath the package path to the service.xml
 		 * @return
 		 */
-		public Builder injectService(String entity, String packagePath) {
+		public Builder(String entity, String packagePath) {
+			_reference = new Reference();
+
 			_reference._entity = entity;
 			_reference._packagePath = packagePath;
+		}
 
-			return this;
+		public Reference build() {
+			Reference reference = _reference;
+
+			_reference = new Reference();
+
+			return reference;
 		}
 
 		private Reference _reference;

@@ -235,7 +235,8 @@ public class EntityTest {
 
 	@Test
 	public void testBuildWithReference() {
-		Reference reference = new Reference.Builder().build();
+		Reference reference = new Reference.Builder(
+			"JournalFolder", "com.liferay.journal").build();
 
 		Entity entity = builder.withReference(reference).build();
 
@@ -246,7 +247,8 @@ public class EntityTest {
 
 	@Test
 	public void testBuildWithReferenceDuplicatedDoesNotAddIt() {
-		Reference reference = new Reference.Builder().build();
+		Reference reference = new Reference.Builder(
+			"JournalFolder", "com.liferay.journal").build();
 
 		Entity entity = builder
 			.withReference(reference)
@@ -260,8 +262,10 @@ public class EntityTest {
 
 	@Test
 	public void testBuildWithReferences() {
-		Reference reference1 = new Reference.Builder().build();
-		Reference reference2 = new Reference.Builder().build();
+		Reference reference1 = new Reference.Builder(
+			"JournalFolder", "com.liferay.journal").build();
+		Reference reference2 = new Reference.Builder(
+			"JournalFolder", "com.liferay.journal").build();
 
 		Entity entity = builder
 			.withReferences(reference1, reference2)

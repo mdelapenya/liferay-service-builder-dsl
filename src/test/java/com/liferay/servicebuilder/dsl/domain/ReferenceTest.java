@@ -12,19 +12,19 @@ public class ReferenceTest {
 	public void testBuild() {
 		Reference reference = builder.build();
 
-		Assert.assertNull(reference.getEntity());
-		Assert.assertNull(reference.getPackagePath());
+		Assert.assertEquals("JournalFolder", reference.getEntity());
+		Assert.assertEquals("com.liferay.journal", reference.getPackagePath());
 	}
 
 	@Test
 	public void testBuildInjectService() {
 		Reference reference = builder
-			.injectService("JournalFolder", "com.liferay.journal")
 			.build();
 
 		Assert.assertEquals("JournalFolder", reference.getEntity());
 		Assert.assertEquals("com.liferay.journal", reference.getPackagePath());
 	}
 
-	private Reference.Builder builder = new Reference.Builder();
+	private Reference.Builder builder = new Reference.Builder(
+		"JournalFolder", "com.liferay.journal");
 }

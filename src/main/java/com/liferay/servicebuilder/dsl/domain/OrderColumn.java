@@ -73,6 +73,9 @@ public class OrderColumn {
 			return this;
 		}
 
+		/**
+		 * Default order-by value is ascending
+		 */
 		public Builder descending() {
 			_orderColumn._orderBy = OrderBy.DESC;
 

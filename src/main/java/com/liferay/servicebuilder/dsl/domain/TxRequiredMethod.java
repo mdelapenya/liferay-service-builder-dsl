@@ -30,6 +30,17 @@ public class TxRequiredMethod {
 			return txRequiredMethod;
 		}
 
+		/**
+		 * @param methodName This string will be used to match method names that
+		 *                   require transactions. By default, the methods:
+		 *                   add*, check*, clear*, delete*, set*, and update*
+		 *                   require propagation of transactions. All other
+		 *                   methods support transactions but are assumed to be
+		 *                   read only. If you want additional methods to fall
+		 *                   under transactions, add the method name to this
+		 *                   element.
+		 * @return
+		 */
 		public Builder addMethodRequiringTxPropagation(String methodName) {
 			_txRequiredMethod._methodName = methodName;
 

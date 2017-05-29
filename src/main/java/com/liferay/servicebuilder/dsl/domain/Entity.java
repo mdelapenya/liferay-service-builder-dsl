@@ -111,6 +111,9 @@ public class Entity {
 
 	public static class Builder {
 
+		/**
+		 * @param name Specifies the name of the entity.
+		 */
 		Builder(String name) {
 			_entity = new Entity();
 
@@ -125,12 +128,21 @@ public class Entity {
 			return entity;
 		}
 
+		/**
+		 * The cache-enabled value specifies whether or not to cache this
+		 * queries for this entity. Set this to false if data in the table will
+		 * be updated by other programs. The default value is true.
+		 */
 		public Builder disableCache() {
 			_entity._cacheEnabled = false;
 
 			return this;
 		}
 
+		/**
+		 * The deprecated value specifies whether the entity's services are
+		 * deprecated.
+		 */
 		public Builder deprecate() {
 			_entity._deprecated = true;
 
@@ -149,12 +161,32 @@ public class Entity {
 			return this;
 		}
 
+		/**
+		 * You can generate classes to use a custom data source and session
+		 * factory. Point "spring.configs" in portal.properties to load your
+		 * custom Spring XML with the definitions of your custom data source and
+		 * session factory.
+		 *
+		 * Then set the data-source and session-factory values to your custom
+		 * values.
+		 *
+		 * @param datasource Specifies the data source target that is set to the
+		 *                   persistence class. The default value is the Liferay
+		 *                   data source. This is used in conjunction with
+		 *                   session-factory. See data-source-spring.xml.
+		 */
 		public Builder withDatasource(String datasource) {
 			_entity._datasource = datasource;
 
 			return this;
 		}
 
+		/**
+		 * @param dynamicUpdate Specifies whether or not unmodified properties
+		 *                      are excluded in the SQL update statement. The
+		 *                      default value is the value of the attribute
+		 *                      mvcc-enabled.
+		 */
 		public Builder withDynamicUpdate(boolean dynamicUpdate) {
 			_entity._dynamicUpdateEnabled = dynamicUpdate;
 
@@ -173,24 +205,44 @@ public class Entity {
 			return this;
 		}
 
+		/**
+		 * @param humanName Specifies the readable name to use when generating
+		 *                  documentation for this entity. If none is specified,
+		 *                  one will be generated from the name.
+		 */
 		public Builder withHumanName(String humanName) {
 			_entity._humanName = humanName;
 
 			return this;
 		}
 
+		/**
+		 * The json-enabled value specifies whether or not the entity should be
+		 * annotated for JSON serialization. By default, if the remote-service
+		 * value is true, then the json-enabled value is true.
+		 */
 		public Builder withJsonSerialization() {
 			_entity._jsonEnabled = true;
 
 			return this;
 		}
 
+		/**
+		 * If the local-service value is true, then the service will generate
+		 * the local interfaces for the service. The default value is false.
+		 */
 		public Builder withLocalServices() {
 			_entity._localService = true;
 
 			return this;
 		}
 
+		/**
+		 * @param mvccEnabled Specifies whether or not to enable MVCC for this
+		 *                    entity to prevent lost updates. The default value
+		 *                    is based on the mvcc-enabled attribute in the
+		 *                    service-builder element.
+		 */
 		public Builder withMvcc(boolean mvccEnabled) {
 			_entity._mvccEnabled = mvccEnabled;
 
@@ -205,6 +257,14 @@ public class Entity {
 			return this;
 		}
 
+		/**
+		 * @param persistenceClass Specifies the name of your custom persistence
+		 *                         class. This class must implement the
+		 *                         generated persistence interface or extend the
+		 *                         generated persistence class. This allows you
+		 *                         to override default behavior without
+		 *                         modifying the generated persistence class.
+		 */
 		public Builder withPersistenceClass(String persistenceClass) {
 			_entity._persistenceClass = persistenceClass;
 
@@ -223,6 +283,10 @@ public class Entity {
 			return this;
 		}
 
+		/**
+		 * If the remote-service value is true, then the service will generate
+		 * remote interfaces for the service. The default value is true.
+		 */
 		public Builder withRemoteServices() {
 			_entity._remoteService = true;
 
@@ -231,24 +295,48 @@ public class Entity {
 			return this;
 		}
 
+		/**
+		 * @param sessionFactory Specifies the session factory that is set to
+		 *                       the persistence class. The default value is the
+		 *                       Liferay session factory. This is used in
+		 *                       conjunction with data-source. See
+		 *                       data-source-spring.xml.
+		 */
 		public Builder withSessionFactory(String sessionFactory) {
 			_entity._sessionFactory = sessionFactory;
 
 			return this;
 		}
 
+		/**
+		 * @param table Specifies the name of the table that this entity maps to
+		 *              in the database. If this value is not set, then the name
+		 *              of the table is the same as the name of the entity.
+		 */
 		public Builder withTable(String table) {
 			_entity._table = table;
 
 			return this;
 		}
 
+		/**
+		 * The trash-enabled value specifies whether trash related methods
+		 * should be generated or not.
+		 */
 		public Builder withTrashEnabled() {
 			_entity._trashEnabled = true;
 
 			return this;
 		}
 
+		/**
+		 * @param txManager Specifies the transaction manager that Spring uses.
+		 *                  The default value is the Spring Hibernate
+		 *                  transaction manager that wraps the Liferay data
+		 *                  source and session factory. See
+		 *                  data-source-spring.xml. Set this attribute to "none"
+		 *                  to disable transaction management.
+		 */
 		public Builder withTxManager(String txManager) {
 			_entity._txManager = txManager;
 
@@ -268,12 +356,23 @@ public class Entity {
 			return this;
 		}
 
+		/**
+		 * If the uuid value is true, then the service will generate a UUID
+		 * column for the service. This column will automatically be populated
+		 * with a UUID. Developers will also be able to find and remove based on
+		 * that UUID. The default value is false.
+		 */
 		public Builder withUuid() {
 			_entity._uuid = true;
 
 			return this;
 		}
 
+		/**
+		 * If the uuid-accessor value is true, then the service will generate a
+		 * UUID column accessor for the service. This accessor will provide a
+		 * fast and type-safe way to access entity's UUID.
+		 */
 		public Builder withUuidAccessor() {
 			_entity._uuidAccesor = true;
 

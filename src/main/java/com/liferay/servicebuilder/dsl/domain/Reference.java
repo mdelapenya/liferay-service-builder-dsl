@@ -34,6 +34,14 @@ public class Reference {
 			return reference;
 		}
 
+		/**
+		 * Allows you to inject services from another service.xml within the
+		 * same class loader.
+		 *
+		 * @param entity the name of the entity
+		 * @param packagePath the package path to the service.xml
+		 * @return
+		 */
 		public Builder injectService(String entity, String packagePath) {
 			_reference._entity = entity;
 			_reference._packagePath = packagePath;

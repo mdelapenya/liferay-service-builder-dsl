@@ -32,6 +32,15 @@ public class Finder {
 
 	public static class Builder {
 
+		/**
+		 * @param name Specifies the name of the finder method.
+		 * @param returnType Specifies the return type of the finder. Valid
+		 *                   values are "Collection" or the name of the entity.
+		 *                   If the value is "Collection", then this finder
+		 *                   returns a list of entities. If the value is the
+		 *                   name of the entity, then this finder returns at
+		 *                   most one entity.
+		 */
 		Builder(String name, String returnType) {
 			_finder = new Finder();
 
@@ -47,6 +56,10 @@ public class Finder {
 			return finder;
 		}
 
+		/**
+		 * If the unique value is true, then the finder must return a unique
+		 * entity.
+		 */
 		public Builder unique() {
 			_finder._unique = true;
 
@@ -59,6 +72,10 @@ public class Finder {
 			return this;
 		}
 
+		/**
+		 * If the db-index value is true, then the service will automatically
+		 * generate a SQL index for this finder. The default value is true.
+		 */
 		public Builder withoutSQLIndex() {
 			_finder._dbIndex = false;
 

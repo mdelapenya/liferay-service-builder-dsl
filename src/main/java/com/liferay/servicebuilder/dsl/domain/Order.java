@@ -33,6 +33,10 @@ public class Order {
 			return order;
 		}
 
+		/**
+		 * @param by Set the by attribute to "asc" or "desc" to order by
+		 *           ascending or descending.
+		 */
 		public Builder by(OrderBy by) {
 			_order._by = by;
 

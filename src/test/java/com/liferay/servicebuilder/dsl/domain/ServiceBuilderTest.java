@@ -3,7 +3,7 @@ package com.liferay.servicebuilder.dsl.domain;
 import org.junit.Assert;
 import org.junit.Test;
 
-import java.util.List;
+import java.util.Set;
 
 /**
  * @author Manuel de la Peña
@@ -56,7 +56,22 @@ public class ServiceBuilderTest {
 			.withEntity(journalArticleEntity)
 			.build();
 
-		List<Entity> entities = serviceBuilder.getEntities();
+		Set<Entity> entities = serviceBuilder.getEntities();
+
+		Assert.assertEquals(1, entities.size());
+	}
+
+	@Test
+	public void testBuildWithEntityDuplicatedDoesNotAddIt() {
+		Entity journalArticleEntity =
+			new Entity.Builder("JournalArticle").build();
+
+		ServiceBuilder serviceBuilder = builder
+			.withEntity(journalArticleEntity)
+			.withEntity(journalArticleEntity)
+			.build();
+
+		Set<Entity> entities = serviceBuilder.getEntities();
 
 		Assert.assertEquals(1, entities.size());
 	}
@@ -74,7 +89,7 @@ public class ServiceBuilderTest {
 			.withEntity(journalArticleLocalizationEntity)
 			.build();
 
-		List<Entity> entities = serviceBuilder.getEntities();
+		Set<Entity> entities = serviceBuilder.getEntities();
 
 		Assert.assertEquals(2, entities.size());
 	}
@@ -85,7 +100,19 @@ public class ServiceBuilderTest {
 			.withException("ArticleContent")
 			.build();
 
-		List<String> exceptions = serviceBuilder.getExceptions();
+		Set<String> exceptions = serviceBuilder.getExceptions();
+
+		Assert.assertEquals(1, exceptions.size());
+	}
+
+	@Test
+	public void testBuildWithExceptionDuplicatedDoesNotAddIt() {
+		ServiceBuilder serviceBuilder = builder
+			.withException("ArticleContent")
+			.withException("ArticleContent")
+			.build();
+
+		Set<String> exceptions = serviceBuilder.getExceptions();
 
 		Assert.assertEquals(1, exceptions.size());
 	}
@@ -97,7 +124,7 @@ public class ServiceBuilderTest {
 			.withException("ArticleDisplayDate")
 			.build();
 
-		List<String> exceptions = serviceBuilder.getExceptions();
+		Set<String> exceptions = serviceBuilder.getExceptions();
 
 		Assert.assertEquals(2, exceptions.size());
 	}

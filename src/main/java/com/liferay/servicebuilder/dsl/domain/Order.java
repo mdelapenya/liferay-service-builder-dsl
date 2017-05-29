@@ -1,5 +1,10 @@
 package com.liferay.servicebuilder.dsl.domain;
 
+import com.fasterxml.jackson.annotation.JsonPropertyOrder;
+import com.fasterxml.jackson.dataformat.xml.annotation.JacksonXmlElementWrapper;
+import com.fasterxml.jackson.dataformat.xml.annotation.JacksonXmlProperty;
+import com.fasterxml.jackson.dataformat.xml.annotation.JacksonXmlRootElement;
+
 import java.util.HashSet;
 import java.util.Set;
 
@@ -9,12 +14,17 @@ import java.util.Set;
  * 
  * @author Manuel de la Peña
  */
+@JacksonXmlRootElement(localName = "order")
+@JsonPropertyOrder(alphabetic=true)
 public class Order implements ServiceBuilderElement {
 
+	@JacksonXmlProperty(isAttribute = true, localName = "by")
 	public OrderBy getBy() {
 		return _by;
 	}
 
+	@JacksonXmlElementWrapper(useWrapping = false)
+	@JacksonXmlProperty(localName = "order-column")
 	public Set<OrderColumn> getOrderColumns() {
 		return _orderColumns;
 	}

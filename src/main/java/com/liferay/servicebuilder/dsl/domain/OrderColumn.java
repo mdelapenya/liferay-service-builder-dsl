@@ -1,5 +1,9 @@
 package com.liferay.servicebuilder.dsl.domain;
 
+import com.fasterxml.jackson.annotation.JsonPropertyOrder;
+import com.fasterxml.jackson.dataformat.xml.annotation.JacksonXmlProperty;
+import com.fasterxml.jackson.dataformat.xml.annotation.JacksonXmlRootElement;
+
 /**
  * The order-column element allows you to order the entities by specific
  * columns.
@@ -37,16 +41,21 @@ package com.liferay.servicebuilder.dsl.domain;
  * 
  * @author Manuel de la Peña
  */
+@JacksonXmlRootElement(localName = "order-column")
+@JsonPropertyOrder(alphabetic=true)
 public class OrderColumn implements ServiceBuilderElement {
 
+	@JacksonXmlProperty(isAttribute = true, localName = "name")
 	public String getName() {
 		return _name;
 	}
 
+	@JacksonXmlProperty(isAttribute = true, localName = "case-sensitive")
 	public boolean isCaseSensitive() {
 		return _caseSensitive;
 	}
 
+	@JacksonXmlProperty(isAttribute = true, localName = "order-by")
 	public OrderBy getOrderBy() {
 		return _orderBy;
 	}

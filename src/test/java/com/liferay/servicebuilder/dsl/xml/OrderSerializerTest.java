@@ -35,7 +35,7 @@ public class OrderSerializerTest {
 
 		Assert.assertEquals(
 			"<order><order-column case-sensitive=\"true\" name=\"articleId\" " +
-				"order-by=\"DESC\"/><order-column case-sensitive=\"true\"" +
+				"order-by=\"DESC\"/><order-column case-sensitive=\"true\" " +
 				"name=\"version\" order-by=\"ASC\"/></order>",
 			xml);
 	}

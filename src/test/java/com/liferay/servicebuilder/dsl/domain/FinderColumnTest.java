@@ -51,6 +51,31 @@ public class FinderColumnTest {
 		Assert.assertEquals(FinderComparator.EQUALS, finderColumn.getComparator());
 	}
 
+	@Test
+	public void testEquals() {
+		FinderColumn finderColumn1 = new FinderColumn.Builder("f1").build();
+		FinderColumn finderColumn2 = new FinderColumn.Builder("f1").build();
+
+		Assert.assertTrue(finderColumn1.equals(finderColumn2));
+		Assert.assertTrue(finderColumn2.equals(finderColumn1));
+	}
+
+	@Test
+	public void testEqualsNotEquals() {
+		FinderColumn finderColumn1 = new FinderColumn.Builder("f1").build();
+		FinderColumn finderColumn2 = new FinderColumn.Builder("f2").build();
+
+		Assert.assertFalse(finderColumn1.equals(finderColumn2));
+		Assert.assertFalse(finderColumn2.equals(finderColumn1));
+	}
+
+	@Test
+	public void testEqualsSameInstance() {
+		FinderColumn finderColumn = new FinderColumn.Builder("f1").build();
+
+		Assert.assertTrue(finderColumn.equals(finderColumn));
+	}
+
 	private FinderColumn.Builder builder = new FinderColumn.Builder(
 		"companyId");
 

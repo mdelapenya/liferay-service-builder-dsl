@@ -173,6 +173,31 @@ public class ColumnTest {
 		Assert.assertEquals("Foo_Organizations", column.getMappingTable());
 	}
 
+	@Test
+	public void testEquals() {
+		Column column1 = new Column.Builder("companyId", "long").build();
+		Column column2 = new Column.Builder("companyId", "long").build();
+
+		Assert.assertTrue(column1.equals(column2));
+		Assert.assertTrue(column2.equals(column1));
+	}
+
+	@Test
+	public void testEqualsNotEquals() {
+		Column column1 = builder.build();
+		Column column2 = new Column.Builder("companyId", "long").build();
+
+		Assert.assertFalse(column1.equals(column2));
+		Assert.assertFalse(column2.equals(column1));
+	}
+
+	@Test
+	public void testEqualsSameInstance() {
+		Column column1 = builder.build();
+
+		Assert.assertTrue(column1.equals(column1));
+	}
+
 	private Column.Builder builder = new Column.Builder("groupId", "long");
 
 }

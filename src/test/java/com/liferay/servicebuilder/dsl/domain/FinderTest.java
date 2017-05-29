@@ -77,6 +77,31 @@ public class FinderTest {
 		Assert.assertFalse(finder.hasSQLIndex());
 	}
 
+	@Test
+	public void testEquals() {
+		Finder finder1 = new Finder.Builder("f1", "long").build();
+		Finder finder2 = new Finder.Builder("f1", "long").build();
+
+		Assert.assertTrue(finder1.equals(finder2));
+		Assert.assertTrue(finder2.equals(finder1));
+	}
+
+	@Test
+	public void testEqualsNotEquals() {
+		Finder finder1 = new Finder.Builder("f1", "long").build();
+		Finder finder2 = new Finder.Builder("f2", "long").build();
+
+		Assert.assertFalse(finder1.equals(finder2));
+		Assert.assertFalse(finder2.equals(finder1));
+	}
+
+	@Test
+	public void testEqualsSameInstance() {
+		Finder finder = new Finder.Builder("f1", "long").build();
+
+		Assert.assertTrue(finder.equals(finder));
+	}
+
 	private Finder.Builder builder = new Finder.Builder(
 		"G_C_DDMSK", "JournalArticle");
 

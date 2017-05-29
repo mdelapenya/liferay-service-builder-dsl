@@ -369,6 +369,31 @@ public class EntityTest {
 		Assert.assertTrue(entity.hasUuidAccessor());
 	}
 
+	@Test
+	public void testEquals() {
+		Entity entity1 = new Entity.Builder("JournalArticle").build();
+		Entity entity2 = new Entity.Builder("JournalArticle").build();
+
+		Assert.assertTrue(entity1.equals(entity2));
+		Assert.assertTrue(entity2.equals(entity1));
+	}
+
+	@Test
+	public void testEqualsNotEquals() {
+		Entity entity1 = new Entity.Builder("JournalArticle").build();
+		Entity entity2 = new Entity.Builder("JournalArticleVersion").build();
+
+		Assert.assertFalse(entity1.equals(entity2));
+		Assert.assertFalse(entity2.equals(entity1));
+	}
+
+	@Test
+	public void testEqualsSameInstance() {
+		Entity entity = new Entity.Builder("JournalArticle").build();
+
+		Assert.assertTrue(entity.equals(entity));
+	}
+
 	private Entity.Builder builder = new Entity.Builder("JournalArticle");
 
 }

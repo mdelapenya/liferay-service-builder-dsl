@@ -31,6 +31,31 @@ public class OrderColumnTest {
 		Assert.assertEquals(OrderBy.DESC, orderColumn.getOrderBy());
 	}
 
+	@Test
+	public void testEquals() {
+		OrderColumn orderColumn1 = new OrderColumn.Builder("o1").build();
+		OrderColumn orderColumn2 = new OrderColumn.Builder("o1").build();
+
+		Assert.assertTrue(orderColumn1.equals(orderColumn2));
+		Assert.assertTrue(orderColumn2.equals(orderColumn1));
+	}
+
+	@Test
+	public void testEqualsNotEquals() {
+		OrderColumn orderColumn1 = new OrderColumn.Builder("o1").build();
+		OrderColumn orderColumn2 = new OrderColumn.Builder("o2").build();
+
+		Assert.assertFalse(orderColumn1.equals(orderColumn2));
+		Assert.assertFalse(orderColumn2.equals(orderColumn1));
+	}
+
+	@Test
+	public void testEqualsSameInstance() {
+		OrderColumn orderColumn = new OrderColumn.Builder("o1").build();
+
+		Assert.assertTrue(orderColumn.equals(orderColumn));
+	}
+
 	private OrderColumn.Builder builder = new OrderColumn.Builder("name");
 
 }

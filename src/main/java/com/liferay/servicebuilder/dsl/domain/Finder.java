@@ -1,5 +1,10 @@
 package com.liferay.servicebuilder.dsl.domain;
 
+import com.fasterxml.jackson.annotation.JsonPropertyOrder;
+import com.fasterxml.jackson.dataformat.xml.annotation.JacksonXmlElementWrapper;
+import com.fasterxml.jackson.dataformat.xml.annotation.JacksonXmlProperty;
+import com.fasterxml.jackson.dataformat.xml.annotation.JacksonXmlRootElement;
+
 import java.util.HashSet;
 import java.util.Set;
 
@@ -8,24 +13,32 @@ import java.util.Set;
  *
  * @author Manuel de la Peña
  */
+@JacksonXmlRootElement(localName = "finder")
+@JsonPropertyOrder(alphabetic=true)
 public class Finder implements ServiceBuilderElement {
 
+	@JacksonXmlElementWrapper(useWrapping = false)
+	@JacksonXmlProperty(localName = "finder-column")
 	public Set<FinderColumn> getFinderColumns() {
 		return _finderColumns;
 	}
 
+	@JacksonXmlProperty(isAttribute = true, localName = "name")
 	public String getName() {
 		return _name;
 	}
 
+	@JacksonXmlProperty(isAttribute = true, localName = "return-type")
 	public String getReturnType() {
 		return _returnType;
 	}
 
+	@JacksonXmlProperty(isAttribute = true, localName = "db-index")
 	public boolean hasSQLIndex() {
 		return _dbIndex;
 	}
 
+	@JacksonXmlProperty(isAttribute = true, localName = "unique")
 	public boolean isUnique() {
 		return _unique;
 	}

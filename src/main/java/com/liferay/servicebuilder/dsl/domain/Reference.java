@@ -1,5 +1,8 @@
 package com.liferay.servicebuilder.dsl.domain;
 
+import com.fasterxml.jackson.dataformat.xml.annotation.JacksonXmlProperty;
+import com.fasterxml.jackson.dataformat.xml.annotation.JacksonXmlRootElement;
+
 /**
  * The reference element allows you to inject services from another service.xml
  * within the same class loader. For example, if you inject the Resource entity,
@@ -10,12 +13,15 @@ package com.liferay.servicebuilder.dsl.domain;
  *
  * @author Manuel de la Peña
  */
+@JacksonXmlRootElement(localName = "reference")
 public class Reference implements ServiceBuilderElement {
 
+	@JacksonXmlProperty(localName = "entity")
 	public String getEntity() {
 		return _entity;
 	}
 
+	@JacksonXmlProperty(localName = "package-path")
 	public String getPackagePath() {
 		return _packagePath;
 	}

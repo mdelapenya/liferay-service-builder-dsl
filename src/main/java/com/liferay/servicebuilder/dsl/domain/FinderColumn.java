@@ -1,24 +1,34 @@
 package com.liferay.servicebuilder.dsl.domain;
 
+import com.fasterxml.jackson.annotation.JsonPropertyOrder;
+import com.fasterxml.jackson.dataformat.xml.annotation.JacksonXmlProperty;
+import com.fasterxml.jackson.dataformat.xml.annotation.JacksonXmlRootElement;
+
 /**
  * The finder-column element specifies the columns to find by.
  * 
  * @author Manuel de la Peña
  */
+@JacksonXmlRootElement(localName = "finder-column")
+@JsonPropertyOrder(alphabetic=true)
 public class FinderColumn implements ServiceBuilderElement {
 
+	@JacksonXmlProperty(isAttribute = true, localName = "arrayable-operator")
 	public ArrayableOperator getArrayableOperator() {
 		return _arrayableOperator;
 	}
 
+	@JacksonXmlProperty(isAttribute = true, localName = "comparator")
 	public FinderComparator getComparator() {
 		return _comparator;
 	}
 
+	@JacksonXmlProperty(isAttribute = true, localName = "name")
 	public String getName() {
 		return _name;
 	}
 
+	@JacksonXmlProperty(isAttribute = true, localName = "case-sensitive")
 	public boolean isCaseSensitive() {
 		return _caseSensitive;
 	}

@@ -1,5 +1,8 @@
 package com.liferay.servicebuilder.dsl.domain;
 
+import com.fasterxml.jackson.dataformat.xml.annotation.JacksonXmlRootElement;
+import com.fasterxml.jackson.dataformat.xml.annotation.JacksonXmlText;
+
 /**
  * The tx-required element has a text value that will be used to match method 
  * names that require transactions. By default, the methods: add*, check*, 
@@ -10,8 +13,10 @@ package com.liferay.servicebuilder.dsl.domain;
  *
  * @author Manuel de la Peña
  */
+@JacksonXmlRootElement(localName = "tx-required")
 public class TxRequiredMethod implements ServiceBuilderElement {
 
+	@JacksonXmlText
 	public String getMethodName() {
 		return _methodName;
 	}

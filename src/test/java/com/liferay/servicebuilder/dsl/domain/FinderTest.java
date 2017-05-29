@@ -23,6 +23,9 @@ public class FinderTest {
 
 	@Test
 	public void testBuildCollection() {
+		Finder.Builder collectionBuilder = new Finder.Builder(
+			"ResourcePrimKey", "Collection");
+
 		Finder finder = collectionBuilder.build();
 
 		Assert.assertEquals("ResourcePrimKey", finder.getName());
@@ -76,7 +79,5 @@ public class FinderTest {
 
 	private Finder.Builder builder = new Finder.Builder(
 		"G_C_DDMSK", "JournalArticle");
-	private Finder.Builder collectionBuilder = new Finder.Builder(
-		"ResourcePrimKey", "Collection");
 
 }

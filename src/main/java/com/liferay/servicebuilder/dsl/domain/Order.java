@@ -9,7 +9,7 @@ import java.util.Set;
  * 
  * @author Manuel de la Peña
  */
-public class Order {
+public class Order implements ServiceBuilderElement {
 
 	public OrderBy getBy() {
 		return _by;

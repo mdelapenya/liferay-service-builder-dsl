@@ -5,7 +5,7 @@ package com.liferay.servicebuilder.dsl.domain;
  *
  * @author Manuel de la Peña
  */
-public class Column {
+public class Column implements ServiceBuilderElement {
 
 	public boolean hasAccessor() {
 		return _accessor;

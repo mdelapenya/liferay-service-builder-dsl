@@ -19,7 +19,7 @@ import java.util.Set;
  *
  * @author Manuel de la Peña
  */
-public class Entity {
+public class Entity implements ServiceBuilderElement {
 
 	public Set<Column> getColumns() {
 		return _columns;

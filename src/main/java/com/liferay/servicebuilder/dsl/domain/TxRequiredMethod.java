@@ -10,7 +10,7 @@ package com.liferay.servicebuilder.dsl.domain;
  *
  * @author Manuel de la Peña
  */
-public class TxRequiredMethod {
+public class TxRequiredMethod implements ServiceBuilderElement {
 
 	public String getMethodName() {
 		return _methodName;

@@ -10,7 +10,7 @@ package com.liferay.servicebuilder.dsl.domain;
  *
  * @author Manuel de la Peña
  */
-public class Reference {
+public class Reference implements ServiceBuilderElement {
 
 	public String getEntity() {
 		return _entity;

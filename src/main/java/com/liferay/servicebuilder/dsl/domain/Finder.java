@@ -8,7 +8,7 @@ import java.util.Set;
  *
  * @author Manuel de la Peña
  */
-public class Finder {
+public class Finder implements ServiceBuilderElement {
 
 	public Set<FinderColumn> getFinderColumns() {
 		return _finderColumns;

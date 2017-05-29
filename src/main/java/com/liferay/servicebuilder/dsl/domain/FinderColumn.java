@@ -5,7 +5,7 @@ package com.liferay.servicebuilder.dsl.domain;
  * 
  * @author Manuel de la Peña
  */
-public class FinderColumn {
+public class FinderColumn implements ServiceBuilderElement {
 
 	public ArrayableOperator getArrayableOperator() {
 		return _arrayableOperator;

@@ -12,7 +12,7 @@ import java.util.Set;
  *
  * @author Manuel de la Peña
  */
-public class ServiceBuilder {
+public class ServiceBuilder implements ServiceBuilderElement {
 
 	public String getAuthor() {
 		return _author;

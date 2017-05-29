@@ -37,7 +37,7 @@ package com.liferay.servicebuilder.dsl.domain;
  * 
  * @author Manuel de la Peña
  */
-public class OrderColumn {
+public class OrderColumn implements ServiceBuilderElement {
 
 	public String getName() {
 		return _name;

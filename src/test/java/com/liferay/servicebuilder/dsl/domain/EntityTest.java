@@ -4,7 +4,7 @@ import org.junit.Assert;
 import org.junit.Ignore;
 import org.junit.Test;
 
-import java.util.Set;
+import java.util.List;
 
 /**
  * @author Manuel de la Peña
@@ -17,7 +17,7 @@ public class EntityTest {
 
 		Assert.assertEquals("JournalArticle", entity.getName());
 
-		Set<Column> columns = entity.getColumns();
+		List<Column> columns = entity.getColumns();
 
 		Assert.assertTrue(columns.isEmpty());
 
@@ -54,7 +54,7 @@ public class EntityTest {
 
 		Entity entity = builder.withColumn(companyIdColumn).build();
 
-		Set<Column> columns = entity.getColumns();
+		List<Column> columns = entity.getColumns();
 
 		Assert.assertEquals(1, columns.size());
 	}
@@ -69,7 +69,7 @@ public class EntityTest {
 			.withColumn(companyIdColumn)
 			.build();
 
-		Set<Column> columns = entity.getColumns();
+		List<Column> columns = entity.getColumns();
 
 		Assert.assertEquals(1, columns.size());
 	}
@@ -84,7 +84,7 @@ public class EntityTest {
 			.withColumns(companyIdColumn, groupIdColumn)
 			.build();
 
-		Set<Column> columns = entity.getColumns();
+		List<Column> columns = entity.getColumns();
 
 		Assert.assertEquals(2, columns.size());
 	}
@@ -239,7 +239,7 @@ public class EntityTest {
 
 		Entity entity = builder.withReference(reference).build();
 
-		Set<Reference> references = entity.getReferences();
+		List<Reference> references = entity.getReferences();
 
 		Assert.assertEquals(1, references.size());
 	}
@@ -253,7 +253,7 @@ public class EntityTest {
 			.withReference(reference)
 			.build();
 
-		Set<Reference> references = entity.getReferences();
+		List<Reference> references = entity.getReferences();
 
 		Assert.assertEquals(1, references.size());
 	}
@@ -267,7 +267,7 @@ public class EntityTest {
 			.withReferences(reference1, reference2)
 			.build();
 
-		Set<Reference> references = entity.getReferences();
+		List<Reference> references = entity.getReferences();
 
 		Assert.assertEquals(2, references.size());
 	}
@@ -308,7 +308,7 @@ public class EntityTest {
 
 		Entity entity = builder.withTxRequiredMethod(txRequiredMethod).build();
 
-		Set<TxRequiredMethod> txRequiredMethods = entity.getTxRequiredMethods();
+		List<TxRequiredMethod> txRequiredMethods = entity.getTxRequiredMethods();
 
 		Assert.assertEquals(1, txRequiredMethods.size());
 	}
@@ -323,7 +323,7 @@ public class EntityTest {
 			.withTxRequiredMethod(txRequiredMethod)
 			.build();
 
-		Set<TxRequiredMethod> txRequiredMethods = entity.getTxRequiredMethods();
+		List<TxRequiredMethod> txRequiredMethods = entity.getTxRequiredMethods();
 
 		Assert.assertEquals(1, txRequiredMethods.size());
 	}
@@ -339,7 +339,7 @@ public class EntityTest {
 			.withTxRequiredMethods(txRequiredMethod1, txRequiredMethod2)
 			.build();
 
-		Set<TxRequiredMethod> txRequiredMethods = entity.getTxRequiredMethods();
+		List<TxRequiredMethod> txRequiredMethods = entity.getTxRequiredMethods();
 
 		Assert.assertEquals(2, txRequiredMethods.size());
 	}

@@ -59,6 +59,17 @@ public class Column implements ServiceBuilderElement {
 		return _primary;
 	}
 
+	@Override
+	public boolean equals(Object obj) {
+		if(!(obj instanceof Column)) {
+			return false;
+		}
+
+		Column that = (Column)obj;
+
+		return (_name.equals(that._name) && (that._name.equals(_name)));
+	}
+
 	@JacksonXmlProperty(isAttribute = true, localName = "db-name")
 	public String getDbName() {
 		return _dbName;

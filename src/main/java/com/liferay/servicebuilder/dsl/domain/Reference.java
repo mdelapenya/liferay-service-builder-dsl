@@ -18,6 +18,20 @@ import com.fasterxml.jackson.dataformat.xml.annotation.JacksonXmlRootElement;
 @JsonPropertyOrder(alphabetic = true)
 public class Reference implements ServiceBuilderElement {
 
+	@Override
+	public boolean equals(Object obj) {
+		if(!(obj instanceof Reference)) {
+			return false;
+		}
+
+		Reference that = (Reference)obj;
+
+		return (_entity.equals(that._entity) &&
+			(that._entity.equals(_entity)) &&
+			(_packagePath.equals(that._packagePath)) &&
+			(that._packagePath.equals(_packagePath)));
+	}
+
 	@JacksonXmlProperty(localName = "entity")
 	public String getEntity() {
 		return _entity;

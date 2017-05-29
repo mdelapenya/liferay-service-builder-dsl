@@ -5,8 +5,8 @@ import com.fasterxml.jackson.dataformat.xml.annotation.JacksonXmlElementWrapper;
 import com.fasterxml.jackson.dataformat.xml.annotation.JacksonXmlProperty;
 import com.fasterxml.jackson.dataformat.xml.annotation.JacksonXmlRootElement;
 
-import java.util.HashSet;
-import java.util.Set;
+import java.util.ArrayList;
+import java.util.List;
 
 /**
  * The order element specifies a default ordering and sorting of the entities
@@ -25,7 +25,7 @@ public class Order implements ServiceBuilderElement {
 
 	@JacksonXmlElementWrapper(useWrapping = false)
 	@JacksonXmlProperty(localName = "order-column")
-	public Set<OrderColumn> getOrderColumns() {
+	public List<OrderColumn> getOrderColumns() {
 		return _orderColumns;
 	}
 
@@ -54,7 +54,9 @@ public class Order implements ServiceBuilderElement {
 		}
 
 		public Builder withOrderColumn(OrderColumn orderColumn) {
-			_order._orderColumns.add(orderColumn);
+			if (!_order._orderColumns.contains(orderColumn)) {
+				_order._orderColumns.add(orderColumn);
+			}
 
 			return this;
 		}
@@ -70,6 +72,6 @@ public class Order implements ServiceBuilderElement {
 	 * descending.
 	 */
 	private OrderBy _by;
-	private Set<OrderColumn> _orderColumns = new HashSet<>();
+	private List<OrderColumn> _orderColumns = new ArrayList<>();
 
 }

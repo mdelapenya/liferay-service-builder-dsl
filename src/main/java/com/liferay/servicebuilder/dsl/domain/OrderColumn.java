@@ -55,6 +55,17 @@ public class OrderColumn implements ServiceBuilderElement {
 		return _caseSensitive;
 	}
 
+	@Override
+	public boolean equals(Object obj) {
+		if(!(obj instanceof OrderColumn)) {
+			return false;
+		}
+
+		OrderColumn that = (OrderColumn)obj;
+
+		return (_name.equals(that._name) && (that._name.equals(_name)));
+	}
+
 	@JacksonXmlProperty(isAttribute = true, localName = "order-by")
 	public OrderBy getOrderBy() {
 		return _orderBy;

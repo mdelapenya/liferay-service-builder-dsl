@@ -1,8 +1,8 @@
 package com.liferay.servicebuilder.dsl.domain;
 
 import java.util.Collections;
-import java.util.HashSet;
-import java.util.Set;
+import java.util.ArrayList;
+import java.util.List;
 
 /**
  * An entity usually represents a business facade and a table in the database.
@@ -21,7 +21,7 @@ import java.util.Set;
  */
 public class Entity implements ServiceBuilderElement {
 
-	public Set<Column> getColumns() {
+	public List<Column> getColumns() {
 		return _columns;
 	}
 
@@ -29,7 +29,7 @@ public class Entity implements ServiceBuilderElement {
 		return _datasource;
 	}
 
-	public Set<Finder> getFinders() {
+	public List<Finder> getFinders() {
 		return _finders;
 	}
 
@@ -49,7 +49,7 @@ public class Entity implements ServiceBuilderElement {
 		return _persistenceClass;
 	}
 
-	public Set<Reference> getReferences() {
+	public List<Reference> getReferences() {
 		return _references;
 	}
 
@@ -61,7 +61,7 @@ public class Entity implements ServiceBuilderElement {
 		return _txManager;
 	}
 
-	public Set<TxRequiredMethod> getTxRequiredMethods() {
+	public List<TxRequiredMethod> getTxRequiredMethods() {
 		return _txRequiredMethodMethods;
 	}
 
@@ -150,7 +150,9 @@ public class Entity implements ServiceBuilderElement {
 		}
 
 		public Builder withColumn(Column column) {
-			_entity._columns.add(column);
+			if (!_entity._columns.contains(column)) {
+				_entity._columns.add(column);
+			}
 
 			return this;
 		}
@@ -194,7 +196,9 @@ public class Entity implements ServiceBuilderElement {
 		}
 
 		public Builder withFinder(Finder finder) {
-			_entity._finders.add(finder);
+			if (!_entity._finders.contains(finder)) {
+				_entity._finders.add(finder);
+			}
 
 			return this;
 		}
@@ -272,7 +276,9 @@ public class Entity implements ServiceBuilderElement {
 		}
 
 		public Builder withReference(Reference reference) {
-			_entity._references.add(reference);
+			if (!_entity._references.contains(reference)) {
+				_entity._references.add(reference);
+			}
 
 			return this;
 		}
@@ -344,7 +350,9 @@ public class Entity implements ServiceBuilderElement {
 		}
 
 		public Builder withTxRequiredMethod(TxRequiredMethod txRequiredMethod) {
-			_entity._txRequiredMethodMethods.add(txRequiredMethod);
+			if (!_entity._txRequiredMethodMethods.contains(txRequiredMethod)) {
+				_entity._txRequiredMethodMethods.add(txRequiredMethod);
+			}
 
 			return this;
 		}
@@ -391,7 +399,7 @@ public class Entity implements ServiceBuilderElement {
 	 * by other programs. The default value is true.
 	 */
 	private boolean _cacheEnabled = true;
-	private Set<Column> _columns = new HashSet<>();
+	private List<Column> _columns = new ArrayList<>();
 	/**
 	 * You can generate classes to use a custom data source and session factory.
 	 * Point "spring.configs" in portal.properties to load your custom Spring
@@ -415,7 +423,7 @@ public class Entity implements ServiceBuilderElement {
 	 * the value of the attribute mvcc-enabled.
 	 */
 	private boolean _dynamicUpdateEnabled;
-	private Set<Finder> _finders = new HashSet<>();
+	private List<Finder> _finders = new ArrayList<>();
 	/**
 	 * The human-name value specifies the readable name to use when generating
 	 * documentation for this entity. If none is specified, one will be
@@ -451,7 +459,7 @@ public class Entity implements ServiceBuilderElement {
 	 * default behavior without modifying the generated persistence class.
 	 */
 	private String _persistenceClass;
-	private Set<Reference> _references = new HashSet<>();
+	private List<Reference> _references = new ArrayList<>();
 	/**
 	 * If the remote-service value is true, then the service will generate
 	 * remote interfaces for the service. The default value is true.
@@ -481,7 +489,7 @@ public class Entity implements ServiceBuilderElement {
 	 * Set this attribute to "none" to disable transaction management.
 	 */
 	private String _txManager;
-	private Set<TxRequiredMethod> _txRequiredMethodMethods = new HashSet<>();
+	private List<TxRequiredMethod> _txRequiredMethodMethods = new ArrayList<>();
 	/**
 	 * If the uuid value is true, then the service will generate a UUID column
 	 * for the service. This column will automatically be populated with a UUID.

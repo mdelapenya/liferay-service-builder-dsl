@@ -16,6 +16,18 @@ import com.fasterxml.jackson.dataformat.xml.annotation.JacksonXmlText;
 @JacksonXmlRootElement(localName = "tx-required")
 public class TxRequiredMethod implements ServiceBuilderElement {
 
+	@Override
+	public boolean equals(Object obj) {
+		if(!(obj instanceof TxRequiredMethod)) {
+			return false;
+		}
+
+		TxRequiredMethod that = (TxRequiredMethod) obj;
+
+		return (_methodName.equals(that._methodName) &&
+			(that._methodName.equals(_methodName)));
+	}
+
 	@JacksonXmlText
 	public String getMethodName() {
 		return _methodName;

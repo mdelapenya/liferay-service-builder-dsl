@@ -17,6 +17,17 @@ import java.util.Set;
 @JsonPropertyOrder(alphabetic=true)
 public class Finder implements ServiceBuilderElement {
 
+	@Override
+	public boolean equals(Object obj) {
+		if(!(obj instanceof Finder)) {
+			return false;
+		}
+
+		Finder that = (Finder)obj;
+
+		return (_name.equals(that._name) && (that._name.equals(_name)));
+	}
+
 	@JacksonXmlElementWrapper(useWrapping = false)
 	@JacksonXmlProperty(localName = "finder-column")
 	public Set<FinderColumn> getFinderColumns() {

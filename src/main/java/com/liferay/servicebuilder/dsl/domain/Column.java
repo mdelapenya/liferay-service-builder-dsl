@@ -67,7 +67,7 @@ public class Column implements ServiceBuilderElement {
 
 		Column that = (Column)obj;
 
-		return (_name.equals(that._name) && (that._name.equals(_name)));
+		return _name.equals(that._name);
 	}
 
 	@JacksonXmlProperty(isAttribute = true, localName = "db-name")

@@ -21,7 +21,7 @@ public class FinderColumn implements ServiceBuilderElement {
 
 		FinderColumn that = (FinderColumn)obj;
 
-		return (_name.equals(that._name) && (that._name.equals(_name)));
+		return _name.equals(that._name);
 	}
 
 	@JacksonXmlProperty(isAttribute = true, localName = "arrayable-operator")

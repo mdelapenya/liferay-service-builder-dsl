@@ -25,7 +25,7 @@ public class Finder implements ServiceBuilderElement {
 
 		Finder that = (Finder)obj;
 
-		return (_name.equals(that._name) && (that._name.equals(_name)));
+		return _name.equals(that._name);
 	}
 
 	@JacksonXmlElementWrapper(useWrapping = false)

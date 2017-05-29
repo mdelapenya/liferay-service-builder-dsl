@@ -27,9 +27,7 @@ public class Reference implements ServiceBuilderElement {
 		Reference that = (Reference)obj;
 
 		return (_entity.equals(that._entity) &&
-			(that._entity.equals(_entity)) &&
-			(_packagePath.equals(that._packagePath)) &&
-			(that._packagePath.equals(_packagePath)));
+			(_packagePath.equals(that._packagePath)));
 	}
 
 	@JacksonXmlProperty(localName = "entity")

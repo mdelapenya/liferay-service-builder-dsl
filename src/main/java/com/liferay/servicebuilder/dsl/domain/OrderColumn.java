@@ -63,7 +63,7 @@ public class OrderColumn implements ServiceBuilderElement {
 
 		OrderColumn that = (OrderColumn)obj;
 
-		return (_name.equals(that._name) && (that._name.equals(_name)));
+		return _name.equals(that._name);
 	}
 
 	@JacksonXmlProperty(isAttribute = true, localName = "order-by")

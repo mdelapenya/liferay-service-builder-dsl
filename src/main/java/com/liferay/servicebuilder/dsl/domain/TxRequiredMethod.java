@@ -24,8 +24,7 @@ public class TxRequiredMethod implements ServiceBuilderElement {
 
 		TxRequiredMethod that = (TxRequiredMethod) obj;
 
-		return (_methodName.equals(that._methodName) &&
-			(that._methodName.equals(_methodName)));
+		return _methodName.equals(that._methodName);
 	}
 
 	@JacksonXmlText

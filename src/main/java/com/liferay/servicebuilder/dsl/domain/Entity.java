@@ -29,7 +29,7 @@ public class Entity implements ServiceBuilderElement {
 
 		Entity that = (Entity)obj;
 
-		return (_name.equals(that._name) && (that._name.equals(_name)));
+		return _name.equals(that._name);
 	}
 
 	public List<Column> getColumns() {

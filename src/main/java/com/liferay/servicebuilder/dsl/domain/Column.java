@@ -1,72 +1,95 @@
 package com.liferay.servicebuilder.dsl.domain;
 
+import com.fasterxml.jackson.annotation.JsonPropertyOrder;
+import com.fasterxml.jackson.dataformat.xml.annotation.JacksonXmlProperty;
+import com.fasterxml.jackson.dataformat.xml.annotation.JacksonXmlRootElement;
+
 /**
  * The column element represents a column in the database.
  *
  * @author Manuel de la Peña
  */
+@JacksonXmlRootElement(localName = "column")
+@JsonPropertyOrder(alphabetic=true)
 public class Column implements ServiceBuilderElement {
 
+	@JacksonXmlProperty(isAttribute = true, localName = "accessor")
 	public boolean hasAccessor() {
 		return _accessor;
 	}
 
+	@JacksonXmlProperty(isAttribute = true, localName = "json-enabled")
 	public boolean hasJsonSerialization() {
 		return _jsonEnabled;
 	}
 
+	@JacksonXmlProperty(isAttribute = true, localName = "container-model")
 	public boolean isContainerModel() {
 		return _containerModel;
 	}
 
+	@JacksonXmlProperty(isAttribute = true, localName = "convert-null")
 	public boolean isConvertNull() {
 		return _convertNull;
 	}
 
+	@JacksonXmlProperty(isAttribute = true, localName = "filter-primary")
 	public boolean isFilterPrimary() {
 		return _filterPrimary;
 	}
 
+	@JacksonXmlProperty(isAttribute = true, localName = "lazy")
 	public boolean isLazy() {
 		return _lazy;
 	}
 
+	@JacksonXmlProperty(isAttribute = true, localName = "localized")
 	public boolean isLocalized() {
 		return _localized;
 	}
 
+	@JacksonXmlProperty(
+		isAttribute = true, localName = "parent-container-model")
 	public boolean isParentContainerModel() {
 		return _parentContainerModel;
 	}
 
+	@JacksonXmlProperty(isAttribute = true, localName = "primary")
 	public boolean isPrimary() {
 		return _primary;
 	}
 
+	@JacksonXmlProperty(isAttribute = true, localName = "db-name")
 	public String getDbName() {
 		return _dbName;
 	}
 
+	@JacksonXmlProperty(isAttribute = true, localName = "entity")
 	public String getEntity() {
 		return _entity;
 	}
 
+	@JacksonXmlProperty(isAttribute = true, localName = "id-param")
 	public String getIdParam() {
 		return _idParam;
 	}
 
+	@JacksonXmlProperty(isAttribute = true, localName = "id-type")
 	public String getIdType() {
 		return _idType;
 	}
 
+	@JacksonXmlProperty(isAttribute = true, localName = "mapping-table")
 	public String getMappingTable() {
 		return _mappingTable;
 	}
 
+	@JacksonXmlProperty(isAttribute = true, localName = "name")
 	public String getName() {
 		return _name;
 	}
 
+	@JacksonXmlProperty(isAttribute = true, localName = "type")
 	public String getType() {
 		return _type;
 	}

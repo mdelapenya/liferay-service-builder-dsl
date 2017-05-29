@@ -17,9 +17,9 @@ public class ReferenceTest {
 	}
 
 	@Test
-	public void testBuildInject() {
+	public void testBuildInjectService() {
 		Reference reference = builder
-			.inject("JournalFolder", "com.liferay.journal")
+			.injectService("JournalFolder", "com.liferay.journal")
 			.build();
 
 		Assert.assertEquals("JournalFolder", reference.getEntity());

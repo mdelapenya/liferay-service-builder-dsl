@@ -34,7 +34,7 @@ public class Reference {
 			return reference;
 		}
 
-		public Builder inject(String entity, String packagePath) {
+		public Builder injectService(String entity, String packagePath) {
 			_reference._entity = entity;
 			_reference._packagePath = packagePath;
 

@@ -509,7 +509,7 @@ public class Entity implements ServiceBuilderElement {
 	 * If the remote-service value is true, then the service will generate
 	 * remote interfaces for the service. The default value is true.
 	 */
-	private boolean _remoteService;
+	private boolean _remoteService = true;
 	/**
 	 * The session-factory value specifies the session factory that is set to
 	 * the persistence class. The default value is the Liferay session factory.

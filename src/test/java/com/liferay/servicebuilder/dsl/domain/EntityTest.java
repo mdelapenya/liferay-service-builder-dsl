@@ -30,7 +30,7 @@ public class EntityTest {
 		Assert.assertFalse(entity.hasDynamicUpdate());
 		Assert.assertFalse(entity.hasJsonSerialization());
 		Assert.assertFalse(entity.hasMvccEnabled());
-		Assert.assertFalse(entity.hasRemoteService());
+		Assert.assertTrue(entity.hasRemoteService());
 		Assert.assertFalse(entity.isDeprecated());
 		Assert.assertNull(entity.getSessionFactory());
 		Assert.assertNull(entity.getTable());

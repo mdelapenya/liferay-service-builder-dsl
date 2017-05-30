@@ -1,7 +1,7 @@
 package com.liferay.servicebuilder.dsl.domain;
 
-import java.util.HashSet;
-import java.util.Set;
+import java.util.ArrayList;
+import java.util.List;
 
 /**
  * The service-builder element is the root of the deployment descriptor for
@@ -18,15 +18,15 @@ public class ServiceBuilder implements ServiceBuilderElement {
 		return _author;
 	}
 
-	public Set<Entity> getEntities() {
+	public List<Entity> getEntities() {
 		return _entities;
 	}
 
-	public Set<String> getExceptions() {
+	public List<String> getExceptions() {
 		return _exceptions;
 	}
 
-	public Set<String> getServiceBuilderImports() {
+	public List<String> getServiceBuilderImports() {
 		return _serviceBuilderImports;
 	}
 
@@ -171,8 +171,8 @@ public class ServiceBuilder implements ServiceBuilderElement {
 	 * for plugin services.
 	 */
 	private boolean _autoNamespaceTables;
-	private Set<Entity> _entities = new HashSet<>();
-	private Set<String> _exceptions = new HashSet<>();
+	private List<Entity> _entities = new ArrayList<>();
+	private List<String> _exceptions = new ArrayList<>();
 	/**
 	 * The mvcc-enabled value specifies whether or not to enable MVCC by default
 	 * for entities to prevent lost updates. The default value is false.
@@ -201,6 +201,6 @@ public class ServiceBuilder implements ServiceBuilderElement {
 	 * The attribute file is interpreted as relative to the file that is
 	 * importing it.
 	 */
-	private Set<String> _serviceBuilderImports = new HashSet<>();
+	private List<String> _serviceBuilderImports = new ArrayList<>();
 
 }

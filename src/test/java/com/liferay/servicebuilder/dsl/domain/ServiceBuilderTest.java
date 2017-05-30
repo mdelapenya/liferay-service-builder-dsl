@@ -3,7 +3,7 @@ package com.liferay.servicebuilder.dsl.domain;
 import org.junit.Assert;
 import org.junit.Test;
 
-import java.util.Set;
+import java.util.List;
 
 /**
  * @author Manuel de la Peña
@@ -59,7 +59,7 @@ public class ServiceBuilderTest {
 			.withEntity(journalArticleEntity)
 			.build();
 
-		Set<Entity> entities = serviceBuilder.getEntities();
+		List<Entity> entities = serviceBuilder.getEntities();
 
 		Assert.assertEquals(1, entities.size());
 	}
@@ -74,7 +74,7 @@ public class ServiceBuilderTest {
 			.withEntity(journalArticleEntity)
 			.build();
 
-		Set<Entity> entities = serviceBuilder.getEntities();
+		List<Entity> entities = serviceBuilder.getEntities();
 
 		Assert.assertEquals(1, entities.size());
 	}
@@ -92,7 +92,7 @@ public class ServiceBuilderTest {
 			.withEntity(journalArticleLocalizationEntity)
 			.build();
 
-		Set<Entity> entities = serviceBuilder.getEntities();
+		List<Entity> entities = serviceBuilder.getEntities();
 
 		Assert.assertEquals(2, entities.size());
 	}
@@ -103,7 +103,7 @@ public class ServiceBuilderTest {
 			.withException("ArticleContent")
 			.build();
 
-		Set<String> exceptions = serviceBuilder.getExceptions();
+		List<String> exceptions = serviceBuilder.getExceptions();
 
 		Assert.assertEquals(1, exceptions.size());
 	}
@@ -115,7 +115,7 @@ public class ServiceBuilderTest {
 			.withException("ArticleContent")
 			.build();
 
-		Set<String> exceptions = serviceBuilder.getExceptions();
+		List<String> exceptions = serviceBuilder.getExceptions();
 
 		Assert.assertEquals(1, exceptions.size());
 	}
@@ -127,7 +127,7 @@ public class ServiceBuilderTest {
 			.withException("ArticleDisplayDate")
 			.build();
 
-		Set<String> exceptions = serviceBuilder.getExceptions();
+		List<String> exceptions = serviceBuilder.getExceptions();
 
 		Assert.assertEquals(2, exceptions.size());
 	}
@@ -145,7 +145,7 @@ public class ServiceBuilderTest {
 			.importServiceBuilderFile("../foo/service.xml")
 			.build();
 
-		Set<String> serviceBuilderImports =
+		List<String> serviceBuilderImports =
 			serviceBuilder.getServiceBuilderImports();
 
 		Assert.assertEquals(1, serviceBuilderImports.size());
@@ -158,7 +158,7 @@ public class ServiceBuilderTest {
 			.importServiceBuilderFile("../foo/service.xml")
 			.build();
 
-		Set<String> serviceBuilderImports =
+		List<String> serviceBuilderImports =
 			serviceBuilder.getServiceBuilderImports();
 
 		Assert.assertEquals(1, serviceBuilderImports.size());
@@ -171,7 +171,7 @@ public class ServiceBuilderTest {
 			.importServiceBuilderFile("../bar/service.xml")
 			.build();
 
-		Set<String> serviceBuilderImports =
+		List<String> serviceBuilderImports =
 			serviceBuilder.getServiceBuilderImports();
 
 		Assert.assertEquals(2, serviceBuilderImports.size());

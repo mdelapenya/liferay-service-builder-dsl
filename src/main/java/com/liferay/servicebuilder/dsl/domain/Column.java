@@ -101,7 +101,7 @@ public class Column implements ServiceBuilderElement {
 	}
 
 	@JacksonXmlProperty(isAttribute = true, localName = "type")
-	public String getType() {
+	public ServiceBuilderType getType() {
 		return _type;
 	}
 
@@ -117,7 +117,7 @@ public class Column implements ServiceBuilderElement {
 		 *             The above column specifies that there will be a getter
 		 *             called pojo.getCompanyId() that will return a String.
 		 */
-		public Builder(String name, String type) {
+		public Builder(String name, ServiceBuilderType type) {
 			_column = new Column();
 
 			_column._name = name;
@@ -211,7 +211,7 @@ public class Column implements ServiceBuilderElement {
 		 * @return
 		 */
 		public Builder autogeneratePrimaryKeyFromClass(
-			String columnType, String className) {
+			ServiceBuilderType columnType, String className) {
 
 			_column._idParam = className;
 			_column._idType = "class";
@@ -240,7 +240,9 @@ public class Column implements ServiceBuilderElement {
 		 * @param columnType
 		 * @return
 		 */
-		public Builder autogeneratePrimaryKeyFromIdentity(String columnType) {
+		public Builder autogeneratePrimaryKeyFromIdentity(
+			ServiceBuilderType columnType) {
+
 			_column._idType = "identity";
 			_column._type = columnType;
 
@@ -264,7 +266,9 @@ public class Column implements ServiceBuilderElement {
 		 * @param columnType
 		 * @return
 		 */
-		public Builder autogeneratePrimaryKeyFromIncrement(String columnType) {
+		public Builder autogeneratePrimaryKeyFromIncrement(
+			ServiceBuilderType columnType) {
+
 			_column._idType = "increment";
 			_column._type = columnType;
 
@@ -293,7 +297,7 @@ public class Column implements ServiceBuilderElement {
 		 * @return
 		 */
 		public Builder autogeneratePrimaryKeyFromSequence(
-			String columnType, String idSequence) {
+			ServiceBuilderType columnType, String idSequence) {
 
 			_column._idParam = idSequence;
 			_column._idType = "sequence";
@@ -392,8 +396,8 @@ public class Column implements ServiceBuilderElement {
 		 * or not to do a lazy fetch for Blob. The default value is true.
 		 */
 		public Builder withoutLazyFetch() {
-			if ((_column._type == null) || (_column._type.isEmpty()) ||
-				!_column._type.equals("Blob")) {
+			if ((_column._type == null) ||
+				!_column._type.equals(ServiceBuilderType.BLOB)) {
 
 				return this;
 			}
@@ -600,6 +604,6 @@ public class Column implements ServiceBuilderElement {
 	 * The above column specifies that there will be a getter called
 	 * pojo.getCompanyId() that will return a String.
 	 */
-	private String _type;
+	private ServiceBuilderType _type;
 
 }

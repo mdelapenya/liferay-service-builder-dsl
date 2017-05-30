@@ -8,6 +8,7 @@ import com.liferay.servicebuilder.dsl.domain.Finder;
 import com.liferay.servicebuilder.dsl.domain.FinderColumn;
 import com.liferay.servicebuilder.dsl.domain.Order;
 import com.liferay.servicebuilder.dsl.domain.OrderColumn;
+import com.liferay.servicebuilder.dsl.domain.ServiceBuilderType;
 
 import org.junit.Assert;
 import org.junit.Test;
@@ -19,7 +20,7 @@ public class EntitySerializerTest {
 
 	@Test
 	public void testSerialize() throws JsonProcessingException {
-		Column column = new Column.Builder("companyId", "long")
+		Column column = new Column.Builder("companyId", ServiceBuilderType.LONG)
 			.asPrimaryKey()
 			.build();
 

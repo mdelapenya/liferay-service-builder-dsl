@@ -49,8 +49,8 @@ public class EntityTest {
 
 	@Test
 	public void testBuildWithColumn() {
-		Column companyIdColumn = new Column.Builder("companyId", "long")
-			.build();
+		Column companyIdColumn =
+			new Column.Builder("companyId", ServiceBuilderType.LONG).build();
 
 		Entity entity = builder.withColumn(companyIdColumn).build();
 
@@ -61,8 +61,8 @@ public class EntityTest {
 
 	@Test
 	public void testBuildWithColumnDuplicatedDoesNotAddIt() {
-		Column companyIdColumn = new Column.Builder("companyId", "long")
-			.build();
+		Column companyIdColumn =
+			new Column.Builder("companyId", ServiceBuilderType.LONG).build();
 
 		Entity entity = builder
 			.withColumn(companyIdColumn)
@@ -76,9 +76,10 @@ public class EntityTest {
 
 	@Test
 	public void testBuildWithColumns() {
-		Column companyIdColumn = new Column.Builder("companyId", "long")
-			.build();
-		Column groupIdColumn = new Column.Builder("groupId", "long").build();
+		Column companyIdColumn =
+			new Column.Builder("companyId", ServiceBuilderType.LONG).build();
+		Column groupIdColumn =
+			new Column.Builder("groupId", ServiceBuilderType.LONG).build();
 
 		Entity entity = builder
 			.withColumns(companyIdColumn, groupIdColumn)

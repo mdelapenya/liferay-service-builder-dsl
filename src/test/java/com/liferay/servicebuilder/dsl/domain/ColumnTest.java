@@ -13,7 +13,7 @@ public class ColumnTest {
 		Column column = builder.build();
 
 		Assert.assertEquals("groupId", column.getName());
-		Assert.assertEquals("long", column.getType());
+		Assert.assertEquals(ServiceBuilderType.LONG, column.getType());
 		Assert.assertFalse(column.isConvertNull());
 		Assert.assertFalse(column.isContainerModel());
 		Assert.assertNull(column.getDbName());
@@ -38,10 +38,11 @@ public class ColumnTest {
 	@Test
 	public void testBuildAutogeneratePrimaryKeyFromClass() {
 		Column column = builder
-			.autogeneratePrimaryKeyFromClass("Integer", "com.liferay.Foo")
+			.autogeneratePrimaryKeyFromClass(
+				ServiceBuilderType.INTEGER, "com.liferay.Foo")
 			.build();
 
-		Assert.assertEquals("Integer", column.getType());
+		Assert.assertEquals(ServiceBuilderType.INTEGER, column.getType());
 		Assert.assertEquals("com.liferay.Foo", column.getIdParam());
 		Assert.assertEquals("class", column.getIdType());
 	}
@@ -49,10 +50,10 @@ public class ColumnTest {
 	@Test
 	public void testBuildAutogeneratePrimaryKeyFromIdentity() {
 		Column column = builder
-			.autogeneratePrimaryKeyFromIdentity("Integer")
+			.autogeneratePrimaryKeyFromIdentity(ServiceBuilderType.INTEGER)
 			.build();
 
-		Assert.assertEquals("Integer", column.getType());
+		Assert.assertEquals(ServiceBuilderType.INTEGER, column.getType());
 		Assert.assertNull(column.getIdParam());
 		Assert.assertEquals("identity", column.getIdType());
 	}
@@ -60,10 +61,10 @@ public class ColumnTest {
 	@Test
 	public void testBuildAutogeneratePrimaryKeyFromIncrement() {
 		Column column = builder
-			.autogeneratePrimaryKeyFromIncrement("Integer")
+			.autogeneratePrimaryKeyFromIncrement(ServiceBuilderType.INTEGER)
 			.build();
 
-		Assert.assertEquals("Integer", column.getType());
+		Assert.assertEquals(ServiceBuilderType.INTEGER, column.getType());
 		Assert.assertNull(column.getIdParam());
 		Assert.assertEquals("increment", column.getIdType());
 	}
@@ -71,10 +72,11 @@ public class ColumnTest {
 	@Test
 	public void testBuildAutogeneratePrimaryKeyFromSequence() {
 		Column column = builder
-			.autogeneratePrimaryKeyFromSequence("Integer", "id_sequence")
+			.autogeneratePrimaryKeyFromSequence(
+				ServiceBuilderType.INTEGER, "id_sequence")
 			.build();
 
-		Assert.assertEquals("Integer", column.getType());
+		Assert.assertEquals(ServiceBuilderType.INTEGER, column.getType());
 		Assert.assertEquals("id_sequence", column.getIdParam());
 		Assert.assertEquals("sequence", column.getIdType());
 	}
@@ -144,7 +146,8 @@ public class ColumnTest {
 
 	@Test
 	public void testBuildWithoutLazyFetchFromNonBlobField() {
-		Column.Builder builder = new Column.Builder("blobField", "Blob");
+		Column.Builder builder =
+			new Column.Builder("blobField", ServiceBuilderType.BLOB);
 
 		Column column = builder.withoutLazyFetch().build();
 
@@ -175,8 +178,10 @@ public class ColumnTest {
 
 	@Test
 	public void testEquals() {
-		Column column1 = new Column.Builder("companyId", "long").build();
-		Column column2 = new Column.Builder("companyId", "long").build();
+		Column column1 =
+			new Column.Builder("companyId", ServiceBuilderType.LONG).build();
+		Column column2 =
+			new Column.Builder("companyId", ServiceBuilderType.LONG).build();
 
 		Assert.assertTrue(column1.equals(column2));
 		Assert.assertTrue(column2.equals(column1));
@@ -185,7 +190,8 @@ public class ColumnTest {
 	@Test
 	public void testEqualsNotEquals() {
 		Column column1 = builder.build();
-		Column column2 = new Column.Builder("companyId", "long").build();
+		Column column2 =
+			new Column.Builder("companyId", ServiceBuilderType.LONG).build();
 
 		Assert.assertFalse(column1.equals(column2));
 		Assert.assertFalse(column2.equals(column1));
@@ -198,6 +204,7 @@ public class ColumnTest {
 		Assert.assertTrue(column1.equals(column1));
 	}
 
-	private Column.Builder builder = new Column.Builder("groupId", "long");
+	private Column.Builder builder =
+		new Column.Builder("groupId", ServiceBuilderType.LONG);
 
 }

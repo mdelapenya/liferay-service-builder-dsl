@@ -142,7 +142,9 @@ public class ServiceBuilder implements ServiceBuilderElement {
 		 * @return the ServiceBuilder Builder object
 		 */
 		public Builder importServiceBuilderFile(String file) {
-			_serviceBuilder._serviceBuilderImports.add(file);
+			if (!_serviceBuilder._serviceBuilderImports.contains(file)) {
+				_serviceBuilder._serviceBuilderImports.add(file);
+			}
 
 			return this;
 		}
@@ -158,13 +160,17 @@ public class ServiceBuilder implements ServiceBuilderElement {
 		}
 
 		public Builder withEntity(Entity entity) {
-			_serviceBuilder._entities.add(entity);
+			if (!_serviceBuilder._entities.contains(entity)) {
+				_serviceBuilder._entities.add(entity);
+			}
 
 			return this;
 		}
 
 		public Builder withException(String exception) {
-			_serviceBuilder._exceptions.add(exception);
+			if (!_serviceBuilder._exceptions.contains(exception)) {
+				_serviceBuilder._exceptions.add(exception);
+			}
 
 			return this;
 		}

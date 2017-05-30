@@ -1,5 +1,10 @@
 package com.liferay.servicebuilder.dsl.domain;
 
+import com.fasterxml.jackson.annotation.JsonPropertyOrder;
+import com.fasterxml.jackson.dataformat.xml.annotation.JacksonXmlElementWrapper;
+import com.fasterxml.jackson.dataformat.xml.annotation.JacksonXmlProperty;
+import com.fasterxml.jackson.dataformat.xml.annotation.JacksonXmlRootElement;
+
 import java.util.Collections;
 import java.util.ArrayList;
 import java.util.List;
@@ -19,6 +24,8 @@ import java.util.List;
  *
  * @author Manuel de la Peña
  */
+@JacksonXmlRootElement(localName = "entity")
+@JsonPropertyOrder(alphabetic=true)
 public class Entity implements ServiceBuilderElement {
 
 	@Override
@@ -32,90 +39,117 @@ public class Entity implements ServiceBuilderElement {
 		return _name.equals(that._name);
 	}
 
+	@JacksonXmlElementWrapper(useWrapping = false)
+	@JacksonXmlProperty(localName = "column")
 	public List<Column> getColumns() {
 		return _columns;
 	}
 
+	@JacksonXmlProperty(isAttribute = true, localName = "data-source")
 	public String getDatasource() {
 		return _datasource;
 	}
 
+	@JacksonXmlElementWrapper(useWrapping = false)
+	@JacksonXmlProperty(localName = "finder")
 	public List<Finder> getFinders() {
 		return _finders;
 	}
 
+	@JacksonXmlProperty(isAttribute = true, localName = "human-name")
 	public String getHumanName() {
 		return _humanName;
 	}
-	
+
+	@JacksonXmlProperty(isAttribute = true, localName = "name")
 	public String getName() {
 		return _name;
 	}
 
+	@JacksonXmlProperty(localName = "order")
 	public Order getOrder() {
 		return _order;
 	}
 
+	@JacksonXmlProperty(isAttribute = true, localName = "persistence-class")
 	public String getPersistenceClass() {
 		return _persistenceClass;
 	}
 
+	@JacksonXmlElementWrapper(useWrapping = false)
+	@JacksonXmlProperty(localName = "reference")
 	public List<Reference> getReferences() {
 		return _references;
 	}
 
+	@JacksonXmlProperty(isAttribute = true, localName = "table")
 	public String getTable() {
 		return _table;
 	}
 
+	@JacksonXmlProperty(isAttribute = true, localName = "tx-manager")
 	public String getTxManager() {
 		return _txManager;
 	}
 
+	@JacksonXmlElementWrapper(useWrapping = false)
+	@JacksonXmlProperty(localName = "tx-required")
 	public List<TxRequiredMethod> getTxRequiredMethods() {
 		return _txRequiredMethodMethods;
 	}
 
+	@JacksonXmlProperty(isAttribute = true, localName = "session-factory")
 	public String getSessionFactory() {
 		return _sessionFactory;
 	}
 
+	@JacksonXmlProperty(isAttribute = true, localName = "cache-enabled")
 	public boolean hasCacheEnabled() {
 		return _cacheEnabled;
 	}
 
+	@JacksonXmlProperty(
+		isAttribute = true, localName = "dynamic-update-enabled")
 	public boolean hasDynamicUpdate() {
 		return _dynamicUpdateEnabled;
 	}
 
+	@JacksonXmlProperty(isAttribute = true, localName = "json-enabled")
 	public boolean hasJsonSerialization() {
 		return _jsonEnabled;
 	}
 
+	@JacksonXmlProperty(isAttribute = true, localName = "local-service")
 	public boolean hasLocalService() {
 		return _localService;
 	}
 
+	@JacksonXmlProperty(isAttribute = true, localName = "mvcc-enabled")
 	public boolean hasMvccEnabled() {
 		return _mvccEnabled;
 	}
 
+	@JacksonXmlProperty(isAttribute = true, localName = "remote-service")
 	public boolean hasRemoteService() {
 		return _remoteService;
 	}
 
+	@JacksonXmlProperty(isAttribute = true, localName = "trash-enabled")
 	public boolean hasTrashEnabled() {
 		return _trashEnabled;
 	}
 
+	@JacksonXmlProperty(isAttribute = true, localName = "uuid")
 	public boolean hasUuid() {
 		return _uuid;
 	}
 
+	@JacksonXmlProperty(isAttribute = true, localName = "uuid-accessor")
 	public boolean hasUuidAccessor() {
 		return _uuidAccesor;
 	}
 
+	@JacksonXmlProperty(isAttribute = true, localName = "deprecated")
 	public boolean isDeprecated() {
 		return _deprecated;
 	}

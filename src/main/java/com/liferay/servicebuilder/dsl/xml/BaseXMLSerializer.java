@@ -2,6 +2,7 @@ package com.liferay.servicebuilder.dsl.xml;
 
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
+import com.fasterxml.jackson.databind.SerializationFeature;
 import com.fasterxml.jackson.dataformat.xml.XmlMapper;
 
 import com.liferay.servicebuilder.dsl.domain.ServiceBuilderElement;
@@ -18,6 +19,8 @@ public abstract class BaseXMLSerializer implements XMLSerializer {
 	@Override
 	public String serialize() throws JsonProcessingException {
 		ObjectMapper xmlMapper = new XmlMapper();
+
+		xmlMapper.enable(SerializationFeature.WRITE_ENUMS_USING_TO_STRING);
 
 		return xmlMapper.writeValueAsString(_serviceBuilderElement);
 	}

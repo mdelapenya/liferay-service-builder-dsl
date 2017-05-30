@@ -306,6 +306,13 @@ public class EntityTest {
 	}
 
 	@Test
+	public void testBuildWithTxManagerDisabled() {
+		Entity entity = builder.disableTxManager().build();
+
+		Assert.assertEquals("none", entity.getTxManager());
+	}
+
+	@Test
 	public void testBuildWithTxRequiredMethod() {
 		TxRequiredMethod txRequiredMethod =
 			new TxRequiredMethod.Builder("getFoo").build();

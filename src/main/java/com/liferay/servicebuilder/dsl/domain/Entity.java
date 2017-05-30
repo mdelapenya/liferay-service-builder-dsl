@@ -185,6 +185,15 @@ public class Entity implements ServiceBuilderElement {
 		}
 
 		/**
+		 * @see withTxManager
+		 */
+		public Builder disableTxManager() {
+			_entity._txManager = "none";
+
+			return this;
+		}
+
+		/**
 		 * The deprecated value specifies whether the entity's services are
 		 * deprecated.
 		 */

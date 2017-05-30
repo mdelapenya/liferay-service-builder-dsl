@@ -1,5 +1,10 @@
 package com.liferay.servicebuilder.dsl.domain;
 
+import com.fasterxml.jackson.annotation.JsonPropertyOrder;
+import com.fasterxml.jackson.dataformat.xml.annotation.JacksonXmlElementWrapper;
+import com.fasterxml.jackson.dataformat.xml.annotation.JacksonXmlProperty;
+import com.fasterxml.jackson.dataformat.xml.annotation.JacksonXmlRootElement;
+
 import java.util.ArrayList;
 import java.util.List;
 
@@ -12,40 +17,55 @@ import java.util.List;
  *
  * @author Manuel de la Peña
  */
+@JacksonXmlRootElement(localName = "service-builder")
+@JsonPropertyOrder(alphabetic=true)
 public class ServiceBuilder implements ServiceBuilderElement {
 
+	@JacksonXmlProperty(localName = "author")
 	public String getAuthor() {
 		return _author;
 	}
 
+	@JacksonXmlElementWrapper(useWrapping = false)
+	@JacksonXmlProperty(localName = "entity")
 	public List<Entity> getEntities() {
 		return _entities;
 	}
 
+	@JacksonXmlElementWrapper(localName = "exceptions")
+	@JacksonXmlProperty(localName = "exception")
 	public List<String> getExceptions() {
 		return _exceptions;
 	}
 
+	@JacksonXmlElementWrapper(useWrapping = false)
+	@JacksonXmlProperty(localName = "service-builder-import")
 	public List<String> getServiceBuilderImports() {
 		return _serviceBuilderImports;
 	}
 
+	@JacksonXmlProperty(localName = "namespace")
 	public String getNamespace() {
 		return _namespace;
 	}
 
+	@JacksonXmlProperty(isAttribute = true, localName = "package-path")
 	public String getPackagePath() {
 		return _packagePath;
 	}
 
+	@JacksonXmlProperty(
+		isAttribute = true, localName = "auto-import-references")
 	public boolean hasAutoImportDefaultReferences() {
 		return _autoImportDefaultReferences;
 	}
 
+	@JacksonXmlProperty(isAttribute = true, localName = "auto-namespace-tables")
 	public boolean hasAutoNamespaceTables() {
 		return _autoNamespaceTables;
 	}
 
+	@JacksonXmlProperty(isAttribute = true, localName = "mvcc-enabled")
 	public boolean isMvccEnabled() {
 		return _mvccEnabled;
 	}

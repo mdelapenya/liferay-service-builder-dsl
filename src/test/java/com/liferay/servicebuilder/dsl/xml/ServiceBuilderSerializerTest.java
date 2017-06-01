@@ -63,7 +63,10 @@ public class ServiceBuilderSerializerTest {
 		String xml = serializer.serialize();
 
 		Assert.assertEquals(
-			"<service-builder auto-import-references=\"false\" " +
+			"<!DOCTYPE service-builder PUBLIC \"-//Liferay//DTD Service " +
+				"Builder 7.0.0//EN\" \"http://www.liferay.com/dtd/liferay-" +
+				"service-builder_7_0_0.dtd\"><service-builder " +
+				"auto-import-references=\"false\" " +
 				"auto-namespace-tables=\"false\" mvcc-enabled=\"false\" " +
 				"package-path=\"\"><author>Manuel de la Peña</author>" +
 				"<entity cache-enabled=\"false\" deprecated=\"false\" " +

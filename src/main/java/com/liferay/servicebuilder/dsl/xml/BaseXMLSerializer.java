@@ -20,6 +20,7 @@ public abstract class BaseXMLSerializer implements XMLSerializer {
 	public String serialize() throws JsonProcessingException {
 		ObjectMapper xmlMapper = new XmlMapper();
 
+		xmlMapper.enable(SerializationFeature.INDENT_OUTPUT);
 		xmlMapper.enable(SerializationFeature.WRITE_ENUMS_USING_TO_STRING);
 
 		return xmlMapper.writeValueAsString(_serviceBuilderElement);

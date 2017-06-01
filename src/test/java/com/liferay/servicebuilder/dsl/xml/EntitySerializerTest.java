@@ -61,16 +61,22 @@ public class EntitySerializerTest {
 				"local-service=\"true\" mvcc-enabled=\"false\" " +
 				"name=\"JournalArticle\" remote-service=\"true\" " +
 				"trash-enabled=\"false\" tx-manager=\"none\" uuid=\"false\" " +
-				"uuid-accessor=\"false\"><column accessor=\"false\" " +
-				"container-model=\"false\" convert-null=\"false\" " +
-				"filter-primary=\"false\" json-enabled=\"false\" " +
-				"lazy=\"true\" localized=\"false\" name=\"companyId\" " +
-				"parent-container-model=\"false\" primary=\"true\" " +
-				"type=\"long\"/><finder db-index=\"true\" name=\"CompanyId\" " +
-				"return-type=\"Collection\" unique=\"false\"><finder-column " +
-				"case-sensitive=\"true\" name=\"companyId\"/></finder>" +
-				"<order><order-column case-sensitive=\"true\" " +
-				"name=\"companyId\" order-by=\"DESC\"/></order></entity>",
+				"uuid-accessor=\"false\">\n" +
+				"  <column accessor=\"false\" container-model=\"false\" " +
+				"convert-null=\"false\" filter-primary=\"false\" " +
+				"json-enabled=\"false\" lazy=\"true\" localized=\"false\" " +
+				"name=\"companyId\" parent-container-model=\"false\" " +
+				"primary=\"true\" type=\"long\"/>\n" +
+				"  <finder db-index=\"true\" name=\"CompanyId\" " +
+				"return-type=\"Collection\" unique=\"false\">\n" +
+				"    <finder-column case-sensitive=\"true\" " +
+				"name=\"companyId\"/>\n" +
+				"  </finder>\n" +
+				"  <order>\n" +
+				"    <order-column case-sensitive=\"true\" " +
+				"name=\"companyId\" order-by=\"DESC\"/>\n" +
+				"  </order>\n" +
+				"</entity>",
 			xml);
 	}
 

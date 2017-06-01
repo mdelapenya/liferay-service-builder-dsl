@@ -17,7 +17,7 @@ public class ServiceBuilderSerializer extends BaseXMLSerializer {
 	public String serialize() throws JsonProcessingException {
 		StringBuilder sb = new StringBuilder();
 
-		sb.append("<?xml version=\"1.0\"?>");
+		sb.append("<?xml version=\"1.0\"?>\n");
 		sb.append("<!DOCTYPE service-builder ");
 		sb.append("PUBLIC \"-//Liferay//DTD Service Builder ");
 		sb.append(MAJOR_VERSION);
@@ -32,7 +32,7 @@ public class ServiceBuilderSerializer extends BaseXMLSerializer {
 		sb.append(MINOR_VERSION);
 		sb.append("_");
 		sb.append(REVISION_VERSION);
-		sb.append(".dtd\">");
+		sb.append(".dtd\">\n");
 
 		sb.append(super.serialize());
 

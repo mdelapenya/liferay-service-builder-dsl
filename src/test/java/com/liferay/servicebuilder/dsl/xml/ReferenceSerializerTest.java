@@ -23,8 +23,10 @@ public class ReferenceSerializerTest {
 		String xml = serializer.serialize();
 
 		Assert.assertEquals(
-			"<reference><entity>JournalFolder</entity>" +
-				"<package-path>com.liferay.journal</package-path></reference>",
+			"<reference>\n" +
+				"  <entity>JournalFolder</entity>\n" +
+				"  <package-path>com.liferay.journal</package-path>\n" +
+				"</reference>",
 			xml);
 	}
 

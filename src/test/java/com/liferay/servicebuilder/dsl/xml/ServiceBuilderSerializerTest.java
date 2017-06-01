@@ -63,30 +63,40 @@ public class ServiceBuilderSerializerTest {
 		String xml = serializer.serialize();
 
 		Assert.assertEquals(
-			"<?xml version=\"1.0\"?>" +
+			"<?xml version=\"1.0\"?>\n" +
 				"<!DOCTYPE service-builder PUBLIC \"-//Liferay//DTD Service " +
 				"Builder 7.0.0//EN\" \"http://www.liferay.com/dtd/liferay-" +
-				"service-builder_7_0_0.dtd\"><service-builder " +
-				"auto-import-references=\"false\" " +
+				"service-builder_7_0_0.dtd\">\n" +
+				"<service-builder auto-import-references=\"false\" " +
 				"auto-namespace-tables=\"false\" mvcc-enabled=\"false\" " +
-				"package-path=\"\"><author>Manuel de la Peña</author>" +
-				"<entity cache-enabled=\"false\" deprecated=\"false\" " +
+				"package-path=\"\">\n" +
+				"  <author>Manuel de la Peña</author>\n" +
+				"  <entity cache-enabled=\"false\" deprecated=\"false\" " +
 				"dynamic-update-enabled=\"true\" json-enabled=\"true\" " +
 				"local-service=\"true\" mvcc-enabled=\"false\" name=\"Foo\" " +
 				"remote-service=\"true\" trash-enabled=\"false\" " +
-				"tx-manager=\"none\" uuid=\"false\" uuid-accessor=\"false\">" +
-				"<column accessor=\"false\" container-model=\"false\" " +
+				"tx-manager=\"none\" uuid=\"false\" " +
+				"uuid-accessor=\"false\">\n" +
+				"    <column accessor=\"false\" container-model=\"false\" " +
 				"convert-null=\"false\" filter-primary=\"false\" " +
 				"json-enabled=\"false\" lazy=\"true\" localized=\"false\" " +
 				"name=\"companyId\" parent-container-model=\"false\" " +
-				"primary=\"true\" type=\"long\"/><finder db-index=\"true\" " +
-				"name=\"CompanyId\" return-type=\"Collection\" " +
-				"unique=\"false\"><finder-column case-sensitive=\"true\" " +
-				"name=\"companyId\"/></finder><order><order-column " +
-				"case-sensitive=\"true\" name=\"companyId\" " +
-				"order-by=\"DESC\"/></order></entity><exceptions>" +
-				"<exception>FooException</exception></exceptions>" +
-				"<namespace></namespace></service-builder>",
+				"primary=\"true\" type=\"long\"/>\n" +
+				"    <finder db-index=\"true\" name=\"CompanyId\" " +
+				"return-type=\"Collection\" unique=\"false\">\n" +
+				"      <finder-column case-sensitive=\"true\" " +
+				"name=\"companyId\"/>\n" +
+				"    </finder>\n" +
+				"    <order>\n" +
+				"      <order-column case-sensitive=\"true\" " +
+				"name=\"companyId\" order-by=\"DESC\"/>\n" +
+				"    </order>\n" +
+				"  </entity>\n" +
+				"  <exceptions>\n" +
+				"    <exception>FooException</exception>\n" +
+				"  </exceptions>\n" +
+				"  <namespace></namespace>\n" +
+				"</service-builder>",
 			xml);
 	}
 

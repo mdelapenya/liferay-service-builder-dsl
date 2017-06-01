@@ -34,10 +34,12 @@ public class FinderSerializerTest {
 
 		Assert.assertEquals(
 			"<finder db-index=\"false\" name=\"C_V\" " +
-				"return-type=\"Collection\" unique=\"true\">" +
-				"<finder-column case-sensitive=\"true\" " +
-				"name=\"companyId\"/><finder-column case-sensitive=\"true\" " +
-				"name=\"version\"/></finder>",
+				"return-type=\"Collection\" unique=\"true\">\n" +
+				"  <finder-column case-sensitive=\"true\" " +
+				"name=\"companyId\"/>\n" +
+				"  <finder-column case-sensitive=\"true\" " +
+				"name=\"version\"/>\n" +
+				"</finder>",
 			xml);
 	}
 

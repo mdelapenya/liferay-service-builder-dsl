@@ -63,7 +63,8 @@ public class ServiceBuilderSerializerTest {
 		String xml = serializer.serialize();
 
 		Assert.assertEquals(
-			"<!DOCTYPE service-builder PUBLIC \"-//Liferay//DTD Service " +
+			"<?xml version=\"1.0\"?>" +
+				"<!DOCTYPE service-builder PUBLIC \"-//Liferay//DTD Service " +
 				"Builder 7.0.0//EN\" \"http://www.liferay.com/dtd/liferay-" +
 				"service-builder_7_0_0.dtd\"><service-builder " +
 				"auto-import-references=\"false\" " +

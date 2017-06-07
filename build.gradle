@@ -2,12 +2,23 @@ group 'com.liferay'
 version '1.0.0-SNAPSHOT'
 
 apply plugin:'application'
+apply plugin: 'com.liferay.source.formatter'
 apply plugin: 'java'
 apply plugin: 'jacoco'
 
 mainClassName = "com.liferay.servicebuilder.dsl.Entrypoint"
 
 sourceCompatibility = 1.8
+
+buildscript {
+	dependencies {
+		classpath group: 'com.liferay', name: 'com.liferay.gradle.plugins.source.formatter', version: '1.0.1'
+	}
+
+	repositories {
+		mavenCentral()
+	}
+}
 
 repositories {
     mavenCentral()

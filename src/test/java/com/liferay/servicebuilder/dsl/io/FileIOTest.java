@@ -40,7 +40,7 @@ public class FileIOTest {
 
 	@Test
 	public void shouldReadServiceXMLFile() throws Exception {
-		URL url = this.getClass().getResource("/service.xml");
+		URL url = getClass().getResource("/service.xml");
 
 		File xmlFile = new File(url.toURI());
 

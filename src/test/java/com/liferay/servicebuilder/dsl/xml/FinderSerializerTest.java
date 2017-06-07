@@ -32,15 +32,16 @@ public class FinderSerializerTest {
 
 		String xml = serializer.serialize();
 
-		Assert.assertEquals(
-			"<finder db-index=\"false\" name=\"C_V\" " +
-				"return-type=\"Collection\" unique=\"true\">\n" +
-				"  <finder-column case-sensitive=\"true\" " +
-				"name=\"companyId\"/>\n" +
-				"  <finder-column case-sensitive=\"true\" " +
-				"name=\"version\"/>\n" +
-				"</finder>",
-			xml);
+		StringBuilder sb = new StringBuilder(6);
+
+		sb.append("<finder db-index=\"false\" name=\"C_V\" ");
+		sb.append("return-type=\"Collection\" unique=\"true\">\n");
+		sb.append("  <finder-column case-sensitive=\"true\" ");
+		sb.append("name=\"companyId\"/>\n");
+		sb.append("  <finder-column case-sensitive=\"true\" ");
+		sb.append("name=\"version\"/>\n</finder>");
+
+		Assert.assertEquals(sb.toString(), xml);
 	}
 
 }

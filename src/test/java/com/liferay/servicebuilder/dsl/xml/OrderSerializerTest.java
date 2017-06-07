@@ -32,14 +32,15 @@ public class OrderSerializerTest {
 
 		String xml = serializer.serialize();
 
-		Assert.assertEquals(
-			"<order>\n" +
-				"  <order-column case-sensitive=\"true\" name=\"articleId\" " +
-				"order-by=\"DESC\"/>\n" +
-				"  <order-column case-sensitive=\"true\" " +
-				"name=\"version\" order-by=\"ASC\"/>\n" +
-				"</order>",
-			xml);
+		StringBuilder sb = new StringBuilder(5);
+
+		sb.append("<order>\n");
+		sb.append("  <order-column case-sensitive=\"true\" ");
+		sb.append("name=\"articleId\" order-by=\"DESC\"/>\n");
+		sb.append("  <order-column case-sensitive=\"true\" ");
+		sb.append("name=\"version\" order-by=\"ASC\"/>\n</order>");
+
+		Assert.assertEquals(sb.toString(), xml);
 	}
 
 }

@@ -22,13 +22,15 @@ public class ColumnSerializerTest {
 
 		String xml = serializer.serialize();
 
-		Assert.assertEquals(
-			"<column accessor=\"false\" container-model=\"false\" " +
-				"convert-null=\"false\" filter-primary=\"false\" " +
-				"json-enabled=\"false\" lazy=\"true\" localized=\"false\" " +
-				"name=\"companyId\" parent-container-model=\"false\" " +
-				"primary=\"false\" type=\"long\"/>",
-			xml);
+		StringBuilder sb = new StringBuilder(5);
+
+		sb.append("<column accessor=\"false\" container-model=\"false\" ");
+		sb.append("convert-null=\"false\" filter-primary=\"false\" ");
+		sb.append("json-enabled=\"false\" lazy=\"true\" localized=\"false\" ");
+		sb.append("name=\"companyId\" parent-container-model=\"false\" ");
+		sb.append("primary=\"false\" type=\"long\"/>");
+
+		Assert.assertEquals(sb.toString(), xml);
 	}
 
 }

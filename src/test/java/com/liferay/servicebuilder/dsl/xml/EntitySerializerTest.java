@@ -55,29 +55,31 @@ public class EntitySerializerTest {
 
 		String xml = serializer.serialize();
 
-		Assert.assertEquals(
-			"<entity cache-enabled=\"false\" deprecated=\"false\" " +
-				"dynamic-update-enabled=\"true\" json-enabled=\"true\" " +
-				"local-service=\"true\" mvcc-enabled=\"false\" " +
-				"name=\"JournalArticle\" remote-service=\"true\" " +
-				"trash-enabled=\"false\" tx-manager=\"none\" uuid=\"false\" " +
-				"uuid-accessor=\"false\">\n" +
-				"  <column accessor=\"false\" container-model=\"false\" " +
-				"convert-null=\"false\" filter-primary=\"false\" " +
-				"json-enabled=\"false\" lazy=\"true\" localized=\"false\" " +
-				"name=\"companyId\" parent-container-model=\"false\" " +
-				"primary=\"true\" type=\"long\"/>\n" +
-				"  <finder db-index=\"true\" name=\"CompanyId\" " +
-				"return-type=\"Collection\" unique=\"false\">\n" +
-				"    <finder-column case-sensitive=\"true\" " +
-				"name=\"companyId\"/>\n" +
-				"  </finder>\n" +
-				"  <order>\n" +
-				"    <order-column case-sensitive=\"true\" " +
-				"name=\"companyId\" order-by=\"DESC\"/>\n" +
-				"  </order>\n" +
-				"</entity>",
-			xml);
+		StringBuilder sb = new StringBuilder(21);
+
+		sb.append("<entity cache-enabled=\"false\" deprecated=\"false\" ");
+		sb.append("dynamic-update-enabled=\"true\" json-enabled=\"true\" ");
+		sb.append("local-service=\"true\" mvcc-enabled=\"false\" ");
+		sb.append("name=\"JournalArticle\" remote-service=\"true\" ");
+		sb.append("trash-enabled=\"false\" tx-manager=\"none\" ");
+		sb.append("uuid=\"false\" uuid-accessor=\"false\">\n");
+		sb.append("  <column accessor=\"false\" container-model=\"false\" ");
+		sb.append("convert-null=\"false\" filter-primary=\"false\" ");
+		sb.append("json-enabled=\"false\" lazy=\"true\" localized=\"false\" ");
+		sb.append("name=\"companyId\" parent-container-model=\"false\" ");
+		sb.append("primary=\"true\" type=\"long\"/>\n");
+		sb.append("  <finder db-index=\"true\" name=\"CompanyId\" ");
+		sb.append("return-type=\"Collection\" unique=\"false\">\n");
+		sb.append("    <finder-column case-sensitive=\"true\" ");
+		sb.append("name=\"companyId\"/>\n");
+		sb.append("  </finder>\n");
+		sb.append("  <order>\n");
+		sb.append("    <order-column case-sensitive=\"true\" ");
+		sb.append("name=\"companyId\" order-by=\"DESC\"/>\n");
+		sb.append("  </order>\n");
+		sb.append("</entity>");
+
+		Assert.assertEquals(sb.toString(), xml);
 	}
 
 }

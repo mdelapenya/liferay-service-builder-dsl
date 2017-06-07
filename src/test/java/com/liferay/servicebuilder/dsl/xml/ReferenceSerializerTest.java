@@ -22,10 +22,13 @@ public class ReferenceSerializerTest {
 
 		String xml = serializer.serialize();
 
-		Assert.assertEquals(
-			"<reference>\n  <entity>JournalFolder</entity>\n  <package-path>" +
-				"com.liferay.journal</package-path>\n</reference>",
-			xml);
+		StringBuilder sb = new StringBuilder(3);
+
+		sb.append("<reference>\n  <entity>JournalFolder</entity>\n  ");
+		sb.append("<package-path>com.liferay.journal</package-path>\n");
+		sb.append("</reference>");
+
+		Assert.assertEquals(sb.toString(), xml);
 	}
 
 }

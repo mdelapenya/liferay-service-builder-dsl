@@ -1,5 +1,7 @@
 package com.liferay.servicebuilder.dsl.io;
 
+import com.liferay.servicebuilder.dsl.domain.ServiceBuilder;
+
 import org.junit.Assert;
 import org.junit.Rule;
 import org.junit.Test;
@@ -28,7 +30,12 @@ public class FileIOTest {
 
 		Path path = Paths.get(tempFile.toURI());
 
-		new FileWriter().createXMLFile(null, path);
+		ServiceBuilder serviceBuilder = new ServiceBuilder.Builder(
+			"com.liferay.foo", "Foo").build();
+
+		File file = new FileWriter().createXMLFile(serviceBuilder, path);
+
+		Assert.assertTrue(file.exists());
 	}
 
 	@Test

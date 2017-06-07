@@ -1,12 +1,13 @@
 package com.liferay.servicebuilder.dsl.io;
 
-import org.w3c.dom.Document;
+import com.liferay.servicebuilder.dsl.domain.ServiceBuilder;
+import com.liferay.servicebuilder.dsl.xml.ServiceBuilderSerializer;
+import com.liferay.servicebuilder.dsl.xml.XMLSerializer;
 
-import javax.xml.transform.Transformer;
-import javax.xml.transform.TransformerException;
-import javax.xml.transform.TransformerFactory;
-import javax.xml.transform.dom.DOMSource;
-import javax.xml.transform.stream.StreamResult;
+import java.io.File;
+import java.io.IOException;
+import java.io.PrintWriter;
+import java.io.Writer;
 
 import java.nio.file.Path;
 
@@ -15,19 +16,21 @@ import java.nio.file.Path;
  */
 public class FileWriter {
 
-	public void createXMLFile(Document document, Path outputFilePath)
-		throws TransformerException {
+	public File createXMLFile(
+			ServiceBuilder serviceBuilder, Path outputFilePath)
+		throws IOException {
 
-		TransformerFactory transformerFactory =
-			TransformerFactory.newInstance();
+		XMLSerializer serializer = new ServiceBuilderSerializer(serviceBuilder);
 
-		Transformer transformer = transformerFactory.newTransformer();
+		String xml = serializer.serialize();
 
-		DOMSource source = new DOMSource(document);
+		File file = outputFilePath.toFile();
 
-		StreamResult result = new StreamResult(outputFilePath.toFile());
+		try (Writer out = new PrintWriter(file)) {
+			out.write(xml);
+		}
 
-		transformer.transform(source, result);
+		return file;
 	}
 
 }

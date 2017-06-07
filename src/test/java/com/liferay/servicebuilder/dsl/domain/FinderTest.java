@@ -50,7 +50,7 @@ public class FinderTest {
 
 		List<FinderColumn> finderColumns = finder.getFinderColumns();
 
-		Assert.assertEquals(1, finderColumns.size());
+		Assert.assertEquals(finderColumns.toString(), 1, finderColumns.size());
 	}
 
 	@Test
@@ -67,7 +67,7 @@ public class FinderTest {
 
 		List<FinderColumn> finderColumns = finder.getFinderColumns();
 
-		Assert.assertEquals(2, finderColumns.size());
+		Assert.assertEquals(finderColumns.toString(), 2, finderColumns.size());
 	}
 
 	@Test

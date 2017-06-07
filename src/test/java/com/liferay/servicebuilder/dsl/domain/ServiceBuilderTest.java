@@ -59,7 +59,8 @@ public class ServiceBuilderTest {
 		List<String> serviceBuilderImports =
 			serviceBuilder.getServiceBuilderImports();
 
-		Assert.assertEquals(1, serviceBuilderImports.size());
+		Assert.assertEquals(
+			serviceBuilderImports.toString(), 1, serviceBuilderImports.size());
 	}
 
 	@Test
@@ -72,7 +73,8 @@ public class ServiceBuilderTest {
 		List<String> serviceBuilderImports =
 			serviceBuilder.getServiceBuilderImports();
 
-		Assert.assertEquals(1, serviceBuilderImports.size());
+		Assert.assertEquals(
+			serviceBuilderImports.toString(), 1, serviceBuilderImports.size());
 	}
 
 	@Test
@@ -85,7 +87,8 @@ public class ServiceBuilderTest {
 		List<String> serviceBuilderImports =
 			serviceBuilder.getServiceBuilderImports();
 
-		Assert.assertEquals(2, serviceBuilderImports.size());
+		Assert.assertEquals(
+			serviceBuilderImports.toString(), 2, serviceBuilderImports.size());
 	}
 
 	@Test
@@ -103,7 +106,7 @@ public class ServiceBuilderTest {
 
 		List<Entity> entities = serviceBuilder.getEntities();
 
-		Assert.assertEquals(2, entities.size());
+		Assert.assertEquals(entities.toString(), 2, entities.size());
 	}
 
 	@Test
@@ -117,7 +120,7 @@ public class ServiceBuilderTest {
 
 		List<Entity> entities = serviceBuilder.getEntities();
 
-		Assert.assertEquals(1, entities.size());
+		Assert.assertEquals(entities.toString(), 1, entities.size());
 	}
 
 	@Test
@@ -132,7 +135,7 @@ public class ServiceBuilderTest {
 
 		List<Entity> entities = serviceBuilder.getEntities();
 
-		Assert.assertEquals(1, entities.size());
+		Assert.assertEquals(entities.toString(), 1, entities.size());
 	}
 
 	@Test
@@ -143,7 +146,7 @@ public class ServiceBuilderTest {
 
 		List<String> exceptions = serviceBuilder.getExceptions();
 
-		Assert.assertEquals(1, exceptions.size());
+		Assert.assertEquals(exceptions.toString(), 1, exceptions.size());
 	}
 
 	@Test
@@ -155,7 +158,7 @@ public class ServiceBuilderTest {
 
 		List<String> exceptions = serviceBuilder.getExceptions();
 
-		Assert.assertEquals(1, exceptions.size());
+		Assert.assertEquals(exceptions.toString(), 1, exceptions.size());
 	}
 
 	@Test
@@ -167,7 +170,7 @@ public class ServiceBuilderTest {
 
 		List<String> exceptions = serviceBuilder.getExceptions();
 
-		Assert.assertEquals(2, exceptions.size());
+		Assert.assertEquals(exceptions.toString(), 2, exceptions.size());
 	}
 
 	@Test

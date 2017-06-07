@@ -56,7 +56,7 @@ public class EntityTest {
 
 		List<Column> columns = entity.getColumns();
 
-		Assert.assertEquals(1, columns.size());
+		Assert.assertEquals(columns.toString(), 1, columns.size());
 	}
 
 	@Test
@@ -71,7 +71,7 @@ public class EntityTest {
 
 		List<Column> columns = entity.getColumns();
 
-		Assert.assertEquals(1, columns.size());
+		Assert.assertEquals(columns.toString(), 1, columns.size());
 	}
 
 	@Test
@@ -87,7 +87,7 @@ public class EntityTest {
 
 		List<Column> columns = entity.getColumns();
 
-		Assert.assertEquals(2, columns.size());
+		Assert.assertEquals(columns.toString(), 2, columns.size());
 	}
 
 	@Test
@@ -243,7 +243,7 @@ public class EntityTest {
 
 		List<Reference> references = entity.getReferences();
 
-		Assert.assertEquals(1, references.size());
+		Assert.assertEquals(references.toString(), 1, references.size());
 	}
 
 	@Test
@@ -258,7 +258,7 @@ public class EntityTest {
 
 		List<Reference> references = entity.getReferences();
 
-		Assert.assertEquals(1, references.size());
+		Assert.assertEquals(references.toString(), 1, references.size());
 	}
 
 	@Test
@@ -274,7 +274,7 @@ public class EntityTest {
 
 		List<Reference> references = entity.getReferences();
 
-		Assert.assertEquals(2, references.size());
+		Assert.assertEquals(references.toString(), 2, references.size());
 	}
 
 	@Test
@@ -330,7 +330,8 @@ public class EntityTest {
 		List<TxRequiredMethod> txRequiredMethods =
 			entity.getTxRequiredMethods();
 
-		Assert.assertEquals(1, txRequiredMethods.size());
+		Assert.assertEquals(
+			txRequiredMethods.toString(), 1, txRequiredMethods.size());
 	}
 
 	@Test
@@ -346,7 +347,8 @@ public class EntityTest {
 		List<TxRequiredMethod> txRequiredMethods =
 			entity.getTxRequiredMethods();
 
-		Assert.assertEquals(1, txRequiredMethods.size());
+		Assert.assertEquals(
+			txRequiredMethods.toString(), 1, txRequiredMethods.size());
 	}
 
 	@Test
@@ -363,7 +365,8 @@ public class EntityTest {
 		List<TxRequiredMethod> txRequiredMethods =
 			entity.getTxRequiredMethods();
 
-		Assert.assertEquals(2, txRequiredMethods.size());
+		Assert.assertEquals(
+			txRequiredMethods.toString(), 2, txRequiredMethods.size());
 	}
 
 	@Test

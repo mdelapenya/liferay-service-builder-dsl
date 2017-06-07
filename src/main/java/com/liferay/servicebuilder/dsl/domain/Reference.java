@@ -26,8 +26,8 @@ public class Reference implements ServiceBuilderElement {
 
 		Reference that = (Reference)obj;
 
-		if ((_entity.equals(that._entity) &&
-			 (_packagePath.equals(that._packagePath)))) {
+		if (_entity.equals(that._entity) &&
+			_packagePath.equals(that._packagePath)) {
 
 			return true;
 		}

@@ -4,8 +4,8 @@ import com.fasterxml.jackson.dataformat.xml.annotation.JacksonXmlRootElement;
 import com.fasterxml.jackson.dataformat.xml.annotation.JacksonXmlText;
 
 /**
- * The tx-required element has a text value that will be used to match method 
- * names that require transactions. By default, the methods: add*, check*, 
+ * The tx-required element has a text value that will be used to match method
+ * names that require transactions. By default, the methods: add*, check*,
  * clear*, delete*, set*, and update* require propagation of transactions. All
  * other methods support transactions but are assumed to be read only. If you
  * want additional methods to fall under transactions, add the method name to
@@ -18,11 +18,11 @@ public class TxRequiredMethod implements ServiceBuilderElement {
 
 	@Override
 	public boolean equals(Object obj) {
-		if(!(obj instanceof TxRequiredMethod)) {
+		if (!(obj instanceof TxRequiredMethod)) {
 			return false;
 		}
 
-		TxRequiredMethod that = (TxRequiredMethod) obj;
+		TxRequiredMethod that = (TxRequiredMethod)obj;
 
 		return _methodName.equals(that._methodName);
 	}
@@ -62,7 +62,8 @@ public class TxRequiredMethod implements ServiceBuilderElement {
 
 	}
 
-	private TxRequiredMethod() {}
+	private TxRequiredMethod() {
+	}
 
 	private String _methodName;
 

@@ -14,12 +14,12 @@ import java.util.List;
  * @author Manuel de la Peña
  */
 @JacksonXmlRootElement(localName = "finder")
-@JsonPropertyOrder(alphabetic=true)
+@JsonPropertyOrder(alphabetic = true)
 public class Finder implements ServiceBuilderElement {
 
 	@Override
 	public boolean equals(Object obj) {
-		if(!(obj instanceof Finder)) {
+		if (!(obj instanceof Finder)) {
 			return false;
 		}
 
@@ -112,18 +112,22 @@ public class Finder implements ServiceBuilderElement {
 
 	}
 
-	private Finder() {}
+	private Finder() {
+	}
 
 	/**
 	 * If the db-index value is true, then the service will automatically
 	 * generate a SQL index for this finder. The default value is true.
 	 */
 	private boolean _dbIndex = true;
+
 	private List<FinderColumn> _finderColumns = new ArrayList<>();
+
 	/**
 	 * Specifies the name of the finder method.
 	 */
 	private String _name;
+
 	/**
 	 * The return-type value specifies the return type of the finder. Valid
 	 * values are "Collection" or the name of the entity. If the value is
@@ -131,6 +135,7 @@ public class Finder implements ServiceBuilderElement {
 	 * is the name of the entity, then this finder returns at most one entity.
 	 */
 	private String _returnType;
+
 	/**
 	 * If the unique value is true, then the finder must return a unique entity.
 	 */

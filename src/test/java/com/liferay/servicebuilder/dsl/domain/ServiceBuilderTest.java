@@ -1,9 +1,9 @@
 package com.liferay.servicebuilder.dsl.domain;
 
+import java.util.List;
+
 import org.junit.Assert;
 import org.junit.Test;
-
-import java.util.List;
 
 /**
  * @author Manuel de la Peña
@@ -26,15 +26,6 @@ public class ServiceBuilderTest {
 	}
 
 	@Test
-	public void testBuildAutoWithAuthor() {
-		ServiceBuilder serviceBuilder = builder
-			.withAuthor("Manuel de la Peña")
-			.build();
-
-		Assert.assertEquals("Manuel de la Peña", serviceBuilder.getAuthor());
-	}
-
-	@Test
 	public void testBuildAutoImportDefaultReferences() {
 		ServiceBuilder serviceBuilder = builder
 			.autoImportDefaultReferences()
@@ -51,9 +42,74 @@ public class ServiceBuilderTest {
 	}
 
 	@Test
+	public void testBuildAutoWithAuthor() {
+		ServiceBuilder serviceBuilder = builder
+			.withAuthor("Manuel de la Peña")
+			.build();
+
+		Assert.assertEquals("Manuel de la Peña", serviceBuilder.getAuthor());
+	}
+
+	@Test
+	public void testBuildImportServiceBuilderFile() {
+		ServiceBuilder serviceBuilder = builder
+			.importServiceBuilderFile("../foo/service.xml")
+			.build();
+
+		List<String> serviceBuilderImports =
+			serviceBuilder.getServiceBuilderImports();
+
+		Assert.assertEquals(1, serviceBuilderImports.size());
+	}
+
+	@Test
+	public void testBuildImportServiceBuilderFileDuplicatedDoesNotAddIt() {
+		ServiceBuilder serviceBuilder = builder
+			.importServiceBuilderFile("../foo/service.xml")
+			.importServiceBuilderFile("../foo/service.xml")
+			.build();
+
+		List<String> serviceBuilderImports =
+			serviceBuilder.getServiceBuilderImports();
+
+		Assert.assertEquals(1, serviceBuilderImports.size());
+	}
+
+	@Test
+	public void testBuildImportServiceBuilderFiles() {
+		ServiceBuilder serviceBuilder = builder
+			.importServiceBuilderFile("../foo/service.xml")
+			.importServiceBuilderFile("../bar/service.xml")
+			.build();
+
+		List<String> serviceBuilderImports =
+			serviceBuilder.getServiceBuilderImports();
+
+		Assert.assertEquals(2, serviceBuilderImports.size());
+	}
+
+	@Test
+	public void testBuildWithEntities() {
+		Entity journalArticleEntity = new Entity.Builder(
+			"JournalArticle").build();
+
+		Entity journalArticleLocalizationEntity = new Entity.Builder(
+			"JournalArticleLocalization").build();
+
+		ServiceBuilder serviceBuilder = builder
+			.withEntity(journalArticleEntity)
+			.withEntity(journalArticleLocalizationEntity)
+			.build();
+
+		List<Entity> entities = serviceBuilder.getEntities();
+
+		Assert.assertEquals(2, entities.size());
+	}
+
+	@Test
 	public void testBuildWithEntity() {
-		Entity journalArticleEntity =
-			new Entity.Builder("JournalArticle").build();
+		Entity journalArticleEntity = new Entity.Builder(
+			"JournalArticle").build();
 
 		ServiceBuilder serviceBuilder = builder
 			.withEntity(journalArticleEntity)
@@ -66,8 +122,8 @@ public class ServiceBuilderTest {
 
 	@Test
 	public void testBuildWithEntityDuplicatedDoesNotAddIt() {
-		Entity journalArticleEntity =
-			new Entity.Builder("JournalArticle").build();
+		Entity journalArticleEntity = new Entity.Builder(
+			"JournalArticle").build();
 
 		ServiceBuilder serviceBuilder = builder
 			.withEntity(journalArticleEntity)
@@ -77,24 +133,6 @@ public class ServiceBuilderTest {
 		List<Entity> entities = serviceBuilder.getEntities();
 
 		Assert.assertEquals(1, entities.size());
-	}
-
-	@Test
-	public void testBuildWithEntities() {
-		Entity journalArticleEntity =
-			new Entity.Builder("JournalArticle").build();
-
-		Entity journalArticleLocalizationEntity =
-			new Entity.Builder("JournalArticleLocalization").build();
-
-		ServiceBuilder serviceBuilder = builder
-			.withEntity(journalArticleEntity)
-			.withEntity(journalArticleLocalizationEntity)
-			.build();
-
-		List<Entity> entities = serviceBuilder.getEntities();
-
-		Assert.assertEquals(2, entities.size());
 	}
 
 	@Test
@@ -137,44 +175,6 @@ public class ServiceBuilderTest {
 		ServiceBuilder serviceBuilder = builder.enableMvcc().build();
 
 		Assert.assertTrue(serviceBuilder.isMvccEnabled());
-	}
-
-	@Test
-	public void testBuildImportServiceBuilderFile() {
-		ServiceBuilder serviceBuilder = builder
-			.importServiceBuilderFile("../foo/service.xml")
-			.build();
-
-		List<String> serviceBuilderImports =
-			serviceBuilder.getServiceBuilderImports();
-
-		Assert.assertEquals(1, serviceBuilderImports.size());
-	}
-
-	@Test
-	public void testBuildImportServiceBuilderFileDuplicatedDoesNotAddIt() {
-		ServiceBuilder serviceBuilder = builder
-			.importServiceBuilderFile("../foo/service.xml")
-			.importServiceBuilderFile("../foo/service.xml")
-			.build();
-
-		List<String> serviceBuilderImports =
-			serviceBuilder.getServiceBuilderImports();
-
-		Assert.assertEquals(1, serviceBuilderImports.size());
-	}
-
-	@Test
-	public void testBuildImportServiceBuilderFiles() {
-		ServiceBuilder serviceBuilder = builder
-			.importServiceBuilderFile("../foo/service.xml")
-			.importServiceBuilderFile("../bar/service.xml")
-			.build();
-
-		List<String> serviceBuilderImports =
-			serviceBuilder.getServiceBuilderImports();
-
-		Assert.assertEquals(2, serviceBuilderImports.size());
 	}
 
 	private ServiceBuilder.Builder builder = new ServiceBuilder.Builder(

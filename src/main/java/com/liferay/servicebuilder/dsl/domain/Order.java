@@ -11,11 +11,11 @@ import java.util.List;
 /**
  * The order element specifies a default ordering and sorting of the entities
  * when they are retrieved from the database.
- * 
+ *
  * @author Manuel de la Peña
  */
 @JacksonXmlRootElement(localName = "order")
-@JsonPropertyOrder(alphabetic=true)
+@JsonPropertyOrder(alphabetic = true)
 public class Order implements ServiceBuilderElement {
 
 	@JacksonXmlProperty(isAttribute = true, localName = "by")
@@ -65,13 +65,15 @@ public class Order implements ServiceBuilderElement {
 
 	}
 
-	private Order() {}
+	private Order() {
+	}
 
 	/**
 	 * Set the by attribute to "asc" or "desc" to order by ascending or
 	 * descending.
 	 */
 	private OrderBy _by;
+
 	private List<OrderColumn> _orderColumns = new ArrayList<>();
 
 }

@@ -38,26 +38,16 @@ import com.fasterxml.jackson.dataformat.xml.annotation.JacksonXmlRootElement;
  *
  * The above settings will order by articleId in an ascending manner and then by
  * version in a descending manner.
- * 
+ *
  * @author Manuel de la Peña
  */
 @JacksonXmlRootElement(localName = "order-column")
-@JsonPropertyOrder(alphabetic=true)
+@JsonPropertyOrder(alphabetic = true)
 public class OrderColumn implements ServiceBuilderElement {
-
-	@JacksonXmlProperty(isAttribute = true, localName = "name")
-	public String getName() {
-		return _name;
-	}
-
-	@JacksonXmlProperty(isAttribute = true, localName = "case-sensitive")
-	public boolean isCaseSensitive() {
-		return _caseSensitive;
-	}
 
 	@Override
 	public boolean equals(Object obj) {
-		if(!(obj instanceof OrderColumn)) {
+		if (!(obj instanceof OrderColumn)) {
 			return false;
 		}
 
@@ -66,14 +56,24 @@ public class OrderColumn implements ServiceBuilderElement {
 		return _name.equals(that._name);
 	}
 
+	@JacksonXmlProperty(isAttribute = true, localName = "name")
+	public String getName() {
+		return _name;
+	}
+
 	@JacksonXmlProperty(isAttribute = true, localName = "order-by")
 	public OrderBy getOrderBy() {
 		return _orderBy;
 	}
 
+	@JacksonXmlProperty(isAttribute = true, localName = "case-sensitive")
+	public boolean isCaseSensitive() {
+		return _caseSensitive;
+	}
+
 	public static class Builder {
 
-		public Builder (String name) {
+		public Builder(String name) {
 			_orderColumn = new OrderColumn();
 
 			_orderColumn._name = name;
@@ -106,9 +106,11 @@ public class OrderColumn implements ServiceBuilderElement {
 
 	}
 
-	private OrderColumn() {}
+	private OrderColumn() {
+	}
 
 	private boolean _caseSensitive = true;
 	private String _name;
 	private OrderBy _orderBy = OrderBy.ASC;
+
 }

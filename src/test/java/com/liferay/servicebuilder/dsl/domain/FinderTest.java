@@ -1,9 +1,9 @@
 package com.liferay.servicebuilder.dsl.domain;
 
+import java.util.List;
+
 import org.junit.Assert;
 import org.junit.Test;
-
-import java.util.List;
 
 /**
  * @author Manuel de la Peña
@@ -55,10 +55,10 @@ public class FinderTest {
 
 	@Test
 	public void testBuildWithFinderColumns() {
-		FinderColumn finderColumn1 =
-			new FinderColumn.Builder("groupId").build();
-		FinderColumn finderColumn2 =
-			new FinderColumn.Builder("companyId").build();
+		FinderColumn finderColumn1 = new FinderColumn.Builder(
+			"groupId").build();
+		FinderColumn finderColumn2 = new FinderColumn.Builder(
+			"companyId").build();
 
 		Finder finder = builder
 			.withFinderColumn(finderColumn1)

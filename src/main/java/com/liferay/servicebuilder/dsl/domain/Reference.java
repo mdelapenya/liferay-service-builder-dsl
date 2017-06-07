@@ -20,14 +20,19 @@ public class Reference implements ServiceBuilderElement {
 
 	@Override
 	public boolean equals(Object obj) {
-		if(!(obj instanceof Reference)) {
+		if (!(obj instanceof Reference)) {
 			return false;
 		}
 
 		Reference that = (Reference)obj;
 
-		return (_entity.equals(that._entity) &&
-			(_packagePath.equals(that._packagePath)));
+		if ((_entity.equals(that._entity) &&
+			 (_packagePath.equals(that._packagePath)))) {
+
+			return true;
+		}
+
+		return false;
 	}
 
 	@JacksonXmlProperty(localName = "entity")
@@ -69,7 +74,8 @@ public class Reference implements ServiceBuilderElement {
 
 	}
 
-	private Reference() {}
+	private Reference() {
+	}
 
 	private String _entity;
 	private String _packagePath;

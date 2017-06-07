@@ -15,10 +15,10 @@ public class FinderSerializerTest {
 
 	@Test
 	public void testSerialize() throws JsonProcessingException {
-		FinderColumn companyIdFinderColumn =
-			new FinderColumn.Builder("companyId").build();
-		FinderColumn versionFinderColumn =
-			new FinderColumn.Builder("version").build();
+		FinderColumn companyIdFinderColumn = new FinderColumn.Builder(
+			"companyId").build();
+		FinderColumn versionFinderColumn = new FinderColumn.Builder(
+			"version").build();
 
 		Finder finder =
 			new Finder.Builder("C_V", "Collection")

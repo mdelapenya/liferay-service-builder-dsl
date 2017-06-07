@@ -48,7 +48,8 @@ public class FinderColumnTest {
 			.withComparator(FinderComparator.EQUALS)
 			.build();
 
-		Assert.assertEquals(FinderComparator.EQUALS, finderColumn.getComparator());
+		Assert.assertEquals(
+			FinderComparator.EQUALS, finderColumn.getComparator());
 	}
 
 	@Test

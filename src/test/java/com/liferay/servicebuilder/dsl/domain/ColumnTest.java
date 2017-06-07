@@ -138,23 +138,6 @@ public class ColumnTest {
 	}
 
 	@Test
-	public void testBuildWithoutLazyFetchFromBlob() {
-		Column column = builder.withoutLazyFetch().build();
-
-		Assert.assertTrue(column.isLazy());
-	}
-
-	@Test
-	public void testBuildWithoutLazyFetchFromNonBlobField() {
-		Column.Builder builder =
-			new Column.Builder("blobField", ServiceBuilderType.BLOB);
-
-		Column column = builder.withoutLazyFetch().build();
-
-		Assert.assertFalse(column.isLazy());
-	}
-
-	@Test
 	public void testBuildWithManyToManyRelationship() {
 		Column column = builder
 			.withManyToManyRelationship("Role", "Groups_Roles")
@@ -177,11 +160,28 @@ public class ColumnTest {
 	}
 
 	@Test
+	public void testBuildWithoutLazyFetchFromBlob() {
+		Column column = builder.withoutLazyFetch().build();
+
+		Assert.assertTrue(column.isLazy());
+	}
+
+	@Test
+	public void testBuildWithoutLazyFetchFromNonBlobField() {
+		Column.Builder builder = new Column.Builder(
+			"blobField", ServiceBuilderType.BLOB);
+
+		Column column = builder.withoutLazyFetch().build();
+
+		Assert.assertFalse(column.isLazy());
+	}
+
+	@Test
 	public void testEquals() {
-		Column column1 =
-			new Column.Builder("companyId", ServiceBuilderType.LONG).build();
-		Column column2 =
-			new Column.Builder("companyId", ServiceBuilderType.LONG).build();
+		Column column1 = new Column.Builder(
+			"companyId", ServiceBuilderType.LONG).build();
+		Column column2 = new Column.Builder(
+			"companyId", ServiceBuilderType.LONG).build();
 
 		Assert.assertTrue(column1.equals(column2));
 		Assert.assertTrue(column2.equals(column1));
@@ -190,8 +190,8 @@ public class ColumnTest {
 	@Test
 	public void testEqualsNotEquals() {
 		Column column1 = builder.build();
-		Column column2 =
-			new Column.Builder("companyId", ServiceBuilderType.LONG).build();
+		Column column2 = new Column.Builder(
+			"companyId", ServiceBuilderType.LONG).build();
 
 		Assert.assertFalse(column1.equals(column2));
 		Assert.assertFalse(column2.equals(column1));
@@ -204,7 +204,7 @@ public class ColumnTest {
 		Assert.assertTrue(column1.equals(column1));
 	}
 
-	private Column.Builder builder =
-		new Column.Builder("groupId", ServiceBuilderType.LONG);
+	private Column.Builder builder = new Column.Builder(
+		"groupId", ServiceBuilderType.LONG);
 
 }

@@ -1,10 +1,10 @@
 package com.liferay.servicebuilder.dsl.domain;
 
+import java.util.List;
+
 import org.junit.Assert;
 import org.junit.Ignore;
 import org.junit.Test;
-
-import java.util.List;
 
 /**
  * @author Manuel de la Peña
@@ -49,8 +49,8 @@ public class EntityTest {
 
 	@Test
 	public void testBuildWithColumn() {
-		Column companyIdColumn =
-			new Column.Builder("companyId", ServiceBuilderType.LONG).build();
+		Column companyIdColumn = new Column.Builder(
+			"companyId", ServiceBuilderType.LONG).build();
 
 		Entity entity = builder.withColumn(companyIdColumn).build();
 
@@ -61,8 +61,8 @@ public class EntityTest {
 
 	@Test
 	public void testBuildWithColumnDuplicatedDoesNotAddIt() {
-		Column companyIdColumn =
-			new Column.Builder("companyId", ServiceBuilderType.LONG).build();
+		Column companyIdColumn = new Column.Builder(
+			"companyId", ServiceBuilderType.LONG).build();
 
 		Entity entity = builder
 			.withColumn(companyIdColumn)
@@ -76,10 +76,10 @@ public class EntityTest {
 
 	@Test
 	public void testBuildWithColumns() {
-		Column companyIdColumn =
-			new Column.Builder("companyId", ServiceBuilderType.LONG).build();
-		Column groupIdColumn =
-			new Column.Builder("groupId", ServiceBuilderType.LONG).build();
+		Column companyIdColumn = new Column.Builder(
+			"companyId", ServiceBuilderType.LONG).build();
+		Column groupIdColumn = new Column.Builder(
+			"groupId", ServiceBuilderType.LONG).build();
 
 		Entity entity = builder
 			.withColumns(companyIdColumn, groupIdColumn)
@@ -300,6 +300,13 @@ public class EntityTest {
 	}
 
 	@Test
+	public void testBuildWithTrashEnabled() {
+		Entity entity = builder.withTrashEnabled().build();
+
+		Assert.assertTrue(entity.hasTrashEnabled());
+	}
+
+	@Test
 	public void testBuildWithTxManager() {
 		Entity entity = builder.withTxManager("txManager").build();
 
@@ -315,52 +322,48 @@ public class EntityTest {
 
 	@Test
 	public void testBuildWithTxRequiredMethod() {
-		TxRequiredMethod txRequiredMethod =
-			new TxRequiredMethod.Builder("getFoo").build();
+		TxRequiredMethod txRequiredMethod = new TxRequiredMethod.Builder(
+			"getFoo").build();
 
 		Entity entity = builder.withTxRequiredMethod(txRequiredMethod).build();
 
-		List<TxRequiredMethod> txRequiredMethods = entity.getTxRequiredMethods();
+		List<TxRequiredMethod> txRequiredMethods =
+			entity.getTxRequiredMethods();
 
 		Assert.assertEquals(1, txRequiredMethods.size());
 	}
 
 	@Test
 	public void testBuildWithTxRequiredMethodDuplicatedDoesNotAddIt() {
-		TxRequiredMethod txRequiredMethod =
-			new TxRequiredMethod.Builder("getFoo").build();
+		TxRequiredMethod txRequiredMethod = new TxRequiredMethod.Builder(
+			"getFoo").build();
 
 		Entity entity = builder
 			.withTxRequiredMethod(txRequiredMethod)
 			.withTxRequiredMethod(txRequiredMethod)
 			.build();
 
-		List<TxRequiredMethod> txRequiredMethods = entity.getTxRequiredMethods();
+		List<TxRequiredMethod> txRequiredMethods =
+			entity.getTxRequiredMethods();
 
 		Assert.assertEquals(1, txRequiredMethods.size());
 	}
 
 	@Test
 	public void testBuildWithTxRequiredMethods() {
-		TxRequiredMethod txRequiredMethod1 =
-			new TxRequiredMethod.Builder("getFoo").build();
-		TxRequiredMethod txRequiredMethod2 =
-			new TxRequiredMethod.Builder("getBar").build();
+		TxRequiredMethod txRequiredMethod1 = new TxRequiredMethod.Builder(
+			"getFoo").build();
+		TxRequiredMethod txRequiredMethod2 = new TxRequiredMethod.Builder(
+			"getBar").build();
 
 		Entity entity = builder
 			.withTxRequiredMethods(txRequiredMethod1, txRequiredMethod2)
 			.build();
 
-		List<TxRequiredMethod> txRequiredMethods = entity.getTxRequiredMethods();
+		List<TxRequiredMethod> txRequiredMethods =
+			entity.getTxRequiredMethods();
 
 		Assert.assertEquals(2, txRequiredMethods.size());
-	}
-
-	@Test
-	public void testBuildWithTrashEnabled() {
-		Entity entity = builder.withTrashEnabled().build();
-
-		Assert.assertTrue(entity.hasTrashEnabled());
 	}
 
 	@Test

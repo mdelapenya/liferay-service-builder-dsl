@@ -18,7 +18,7 @@ import java.util.List;
  * @author Manuel de la Peña
  */
 @JacksonXmlRootElement(localName = "service-builder")
-@JsonPropertyOrder(alphabetic=true)
+@JsonPropertyOrder(alphabetic = true)
 public class ServiceBuilder implements ServiceBuilderElement {
 
 	@JacksonXmlProperty(localName = "author")
@@ -38,12 +38,6 @@ public class ServiceBuilder implements ServiceBuilderElement {
 		return _exceptions;
 	}
 
-	@JacksonXmlElementWrapper(useWrapping = false)
-	@JacksonXmlProperty(localName = "service-builder-import")
-	public List<String> getServiceBuilderImports() {
-		return _serviceBuilderImports;
-	}
-
 	@JacksonXmlProperty(localName = "namespace")
 	public String getNamespace() {
 		return _namespace;
@@ -54,8 +48,15 @@ public class ServiceBuilder implements ServiceBuilderElement {
 		return _packagePath;
 	}
 
+	@JacksonXmlElementWrapper(useWrapping = false)
+	@JacksonXmlProperty(localName = "service-builder-import")
+	public List<String> getServiceBuilderImports() {
+		return _serviceBuilderImports;
+	}
+
 	@JacksonXmlProperty(
-		isAttribute = true, localName = "auto-import-references")
+		isAttribute = true, localName = "auto-import-references"
+	)
 	public boolean hasAutoImportDefaultReferences() {
 		return _autoImportDefaultReferences;
 	}
@@ -109,6 +110,14 @@ public class ServiceBuilder implements ServiceBuilderElement {
 			return this;
 		}
 
+		public ServiceBuilder build() {
+			ServiceBuilder serviceBuilder = _serviceBuilder;
+
+			_serviceBuilder = new ServiceBuilder();
+
+			return serviceBuilder;
+		}
+
 		/**
 		 * The mvcc-enabled value specifies whether or not to enable MVCC by
 		 * default for entities to prevent lost updates. The default value is
@@ -118,14 +127,6 @@ public class ServiceBuilder implements ServiceBuilderElement {
 			_serviceBuilder._mvccEnabled = true;
 
 			return this;
-		}
-
-		public ServiceBuilder build() {
-			ServiceBuilder serviceBuilder = _serviceBuilder;
-
-			_serviceBuilder = new ServiceBuilder();
-
-			return serviceBuilder;
 		}
 
 		/**
@@ -179,47 +180,55 @@ public class ServiceBuilder implements ServiceBuilderElement {
 
 	}
 
-	private ServiceBuilder() {}
+	private ServiceBuilder() {
+	}
 
 	/**
 	 * The author element is the name of the user associated with the generated
 	 * code.
 	 */
 	private String _author;
+
 	/**
 	 * The auto-import-default-references value specifies whether or not to
 	 * automatically default references. The default value is true.
 	 */
 	private boolean _autoImportDefaultReferences;
+
 	/**
 	 * The auto-namespace-tables value specifies whether or not to automatically
 	 * namespace tables. The default value is false for core services and true
 	 * for plugin services.
 	 */
 	private boolean _autoNamespaceTables;
+
 	private List<Entity> _entities = new ArrayList<>();
 	private List<String> _exceptions = new ArrayList<>();
+
 	/**
 	 * The mvcc-enabled value specifies whether or not to enable MVCC by default
 	 * for entities to prevent lost updates. The default value is false.
 	 */
 	private boolean _mvccEnabled;
+
 	/**
 	 * The namespace element must be a unique namespace for this component.
 	 * Table names will be prepended with this namespace. Generated JSON
-	 * JavaScript will be scoped to this namespace as well 
+	 * JavaScript will be scoped to this namespace as well
 	 * (i.e., Liferay.Service.Test.* if the namespace is Test).
 	 */
 	private String _namespace;
+
 	/**
 	 * The package-path value specifies the package of the generated code.
 	 */
 	private String _packagePath;
+
 	/**
 	 * The service-builder-import allows you to split up a large Service Builder
 	 * file into smaller files by aggregrating the smaller Service Builder into
 	 * one file.
-	 * 
+	 *
 	 * Note that there can be at most one author element among all the files.
 	 * There can also only be one and only one namespace element among all the
 	 * files.

@@ -40,7 +40,9 @@ public class ServiceBuilderSerializer extends BaseXMLSerializer {
 	}
 
 	private static final int MAJOR_VERSION = 7;
+
 	private static final int MINOR_VERSION = 0;
+
 	private static final int REVISION_VERSION = 0;
 
 }

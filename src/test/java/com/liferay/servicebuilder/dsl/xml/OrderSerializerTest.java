@@ -19,9 +19,8 @@ public class OrderSerializerTest {
 			new OrderColumn.Builder("articleId")
 				.descending()
 				.build();
-		OrderColumn versionOrderColumn =
-			new OrderColumn.Builder("version")
-				.build();
+		OrderColumn versionOrderColumn = new OrderColumn.Builder(
+			"version") .build();
 
 		Order order =
 			new Order.Builder()

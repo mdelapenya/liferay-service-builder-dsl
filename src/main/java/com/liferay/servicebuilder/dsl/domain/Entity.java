@@ -5,8 +5,8 @@ import com.fasterxml.jackson.dataformat.xml.annotation.JacksonXmlElementWrapper;
 import com.fasterxml.jackson.dataformat.xml.annotation.JacksonXmlProperty;
 import com.fasterxml.jackson.dataformat.xml.annotation.JacksonXmlRootElement;
 
-import java.util.Collections;
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 
 /**
@@ -25,12 +25,12 @@ import java.util.List;
  * @author Manuel de la Peña
  */
 @JacksonXmlRootElement(localName = "entity")
-@JsonPropertyOrder(alphabetic=true)
+@JsonPropertyOrder(alphabetic = true)
 public class Entity implements ServiceBuilderElement {
 
 	@Override
 	public boolean equals(Object obj) {
-		if(!(obj instanceof Entity)) {
+		if (!(obj instanceof Entity)) {
 			return false;
 		}
 
@@ -82,6 +82,11 @@ public class Entity implements ServiceBuilderElement {
 		return _references;
 	}
 
+	@JacksonXmlProperty(isAttribute = true, localName = "session-factory")
+	public String getSessionFactory() {
+		return _sessionFactory;
+	}
+
 	@JacksonXmlProperty(isAttribute = true, localName = "table")
 	public String getTable() {
 		return _table;
@@ -98,18 +103,14 @@ public class Entity implements ServiceBuilderElement {
 		return _txRequiredMethodMethods;
 	}
 
-	@JacksonXmlProperty(isAttribute = true, localName = "session-factory")
-	public String getSessionFactory() {
-		return _sessionFactory;
-	}
-
 	@JacksonXmlProperty(isAttribute = true, localName = "cache-enabled")
 	public boolean hasCacheEnabled() {
 		return _cacheEnabled;
 	}
 
 	@JacksonXmlProperty(
-		isAttribute = true, localName = "dynamic-update-enabled")
+		isAttribute = true, localName = "dynamic-update-enabled"
+	)
 	public boolean hasDynamicUpdate() {
 		return _dynamicUpdateEnabled;
 	}
@@ -174,6 +175,16 @@ public class Entity implements ServiceBuilderElement {
 		}
 
 		/**
+		 * The deprecated value specifies whether the entity's services are
+		 * deprecated.
+		 */
+		public Builder deprecate() {
+			_entity._deprecated = true;
+
+			return this;
+		}
+
+		/**
 		 * The cache-enabled value specifies whether or not to cache this
 		 * queries for this entity. Set this to false if data in the table will
 		 * be updated by other programs. The default value is true.
@@ -189,16 +200,6 @@ public class Entity implements ServiceBuilderElement {
 		 */
 		public Builder disableTxManager() {
 			_entity._txManager = "none";
-
-			return this;
-		}
-
-		/**
-		 * The deprecated value specifies whether the entity's services are
-		 * deprecated.
-		 */
-		public Builder deprecate() {
-			_entity._deprecated = true;
 
 			return this;
 		}
@@ -411,7 +412,9 @@ public class Entity implements ServiceBuilderElement {
 			return this;
 		}
 
-		public Builder withTxRequiredMethods(TxRequiredMethod... txRequiredMethod) {
+		public Builder withTxRequiredMethods(
+			TxRequiredMethod... txRequiredMethod) {
+
 			Collections.addAll(
 				_entity._txRequiredMethodMethods, txRequiredMethod);
 
@@ -445,7 +448,8 @@ public class Entity implements ServiceBuilderElement {
 
 	}
 
-	private Entity() {}
+	private Entity() {
+	}
 
 	/**
 	 * The cache-enabled value specifies whether or not to cache this queries
@@ -453,7 +457,9 @@ public class Entity implements ServiceBuilderElement {
 	 * by other programs. The default value is true.
 	 */
 	private boolean _cacheEnabled = true;
+
 	private List<Column> _columns = new ArrayList<>();
+
 	/**
 	 * You can generate classes to use a custom data source and session factory.
 	 * Point "spring.configs" in portal.properties to load your custom Spring
@@ -466,46 +472,56 @@ public class Entity implements ServiceBuilderElement {
 	 * used in conjunction with session-factory. See data-source-spring.xml.
 	 */
 	private String _datasource;
+
 	/**
 	 * The deprecated value specifies whether the entity's services are
 	 * deprecated.
 	 */
 	private boolean _deprecated;
+
 	/**
 	 * The dynamic-update-enabled value specifies whether or not unmodified
 	 * properties are excluded in the SQL update statement. The default value is
 	 * the value of the attribute mvcc-enabled.
 	 */
 	private boolean _dynamicUpdateEnabled;
+
 	private List<Finder> _finders = new ArrayList<>();
+
 	/**
 	 * The human-name value specifies the readable name to use when generating
 	 * documentation for this entity. If none is specified, one will be
 	 * generated from the name.
 	 */
 	private String _humanName;
+
 	/**
 	 * The json-enabled value specifies whether or not the entity should be
 	 * annotated for JSON serialization. By default, if the remote-service value
 	 * is true, then the json-enabled value is true.
 	 */
 	private boolean _jsonEnabled;
+
 	/**
 	 * If the local-service value is true, then the service will generate the
 	 * local interfaces for the service. The default value is false.
 	 */
 	private boolean _localService;
+
 	/**
 	 * The mvcc-enabled value specifies whether or not to enable MVCC for this
 	 * entity to prevent lost updates. The default value is based on the
 	 * mvcc-enabled attribute in the service-builder element.
 	 */
 	private boolean _mvccEnabled;
+
 	/**
 	 * The name value specifies the name of the entity.
 	 */
 	private String _name;
+
 	private Order _order;
+
 	/**
 	 * The persistence-class value specifies the name of your custom persistence
 	 * class. This class must implement the generated persistence interface or
@@ -513,29 +529,35 @@ public class Entity implements ServiceBuilderElement {
 	 * default behavior without modifying the generated persistence class.
 	 */
 	private String _persistenceClass;
+
 	private List<Reference> _references = new ArrayList<>();
+
 	/**
 	 * If the remote-service value is true, then the service will generate
 	 * remote interfaces for the service. The default value is true.
 	 */
 	private boolean _remoteService = true;
+
 	/**
 	 * The session-factory value specifies the session factory that is set to
 	 * the persistence class. The default value is the Liferay session factory.
 	 * This is used in conjunction with data-source. See data-source-spring.xml.
 	 */
 	private String _sessionFactory;
+
 	/**
 	 * The table value specifies the name of the table that this entity maps to
 	 * in the database. If this value is not set, then the name of the table is
 	 * the same as the name of the entity.
 	 */
 	private String _table;
+
 	/**
 	 * The trash-enabled value specifies whether trash related methods should be
 	 * generated or not.
 	 */
 	private boolean _trashEnabled;
+
 	/**
 	 * The tx-manager value specifies the transaction manager that Spring uses.
 	 * The default value is the Spring Hibernate transaction manager that wraps
@@ -543,7 +565,9 @@ public class Entity implements ServiceBuilderElement {
 	 * Set this attribute to "none" to disable transaction management.
 	 */
 	private String _txManager;
+
 	private List<TxRequiredMethod> _txRequiredMethodMethods = new ArrayList<>();
+
 	/**
 	 * If the uuid value is true, then the service will generate a UUID column
 	 * for the service. This column will automatically be populated with a UUID.
@@ -551,6 +575,7 @@ public class Entity implements ServiceBuilderElement {
 	 * default value is false.
 	 */
 	private boolean _uuid;
+
 	/**
 	 * If the uuid-accessor value is true, then the service will generate a
 	 * UUID column accessor for the service. This accessor will provide a fast

@@ -15,9 +15,8 @@ public class ColumnSerializerTest {
 
 	@Test
 	public void testSerialize() throws JsonProcessingException {
-		Column column =
-			new Column.Builder("companyId", ServiceBuilderType.LONG)
-				.build();
+		Column column = new Column.Builder(
+			"companyId", ServiceBuilderType.LONG) .build();
 
 		XMLSerializer serializer = new ColumnSerializer(column);
 

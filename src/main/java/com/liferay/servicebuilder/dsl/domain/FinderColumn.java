@@ -6,16 +6,16 @@ import com.fasterxml.jackson.dataformat.xml.annotation.JacksonXmlRootElement;
 
 /**
  * The finder-column element specifies the columns to find by.
- * 
+ *
  * @author Manuel de la Peña
  */
 @JacksonXmlRootElement(localName = "finder-column")
-@JsonPropertyOrder(alphabetic=true)
+@JsonPropertyOrder(alphabetic = true)
 public class FinderColumn implements ServiceBuilderElement {
 
 	@Override
 	public boolean equals(Object obj) {
-		if(!(obj instanceof FinderColumn)) {
+		if (!(obj instanceof FinderColumn)) {
 			return false;
 		}
 
@@ -120,7 +120,8 @@ public class FinderColumn implements ServiceBuilderElement {
 
 	}
 
-	private FinderColumn() {}
+	private FinderColumn() {
+	}
 
 	/**
 	 * The attribute arrayable-operator takes in the values AND or OR and will
@@ -132,16 +133,19 @@ public class FinderColumn implements ServiceBuilderElement {
 	 * clause.
 	 */
 	private ArrayableOperator _arrayableOperator;
+
 	/**
 	 * The attribute case-sensitive is a boolean value and is only used if the
 	 * column is a String value.
 	 */
 	private boolean _caseSensitive = true;
+
 	/**
 	 * The attribute comparator takes in the values =, !=, <, <=, >, >=, or LIKE
 	 * and is used to compare this column.
 	 */
 	private FinderComparator _comparator;
+
 	/**
 	 * The name value specifies the name of the finder method.
 	 *

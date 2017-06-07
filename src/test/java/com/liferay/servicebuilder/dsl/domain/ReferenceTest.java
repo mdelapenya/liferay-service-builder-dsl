@@ -18,8 +18,7 @@ public class ReferenceTest {
 
 	@Test
 	public void testBuildInjectService() {
-		Reference reference = builder
-			.build();
+		Reference reference = builder .build();
 
 		Assert.assertEquals("JournalFolder", reference.getEntity());
 		Assert.assertEquals("com.liferay.journal", reference.getPackagePath());
@@ -79,4 +78,5 @@ public class ReferenceTest {
 
 	private Reference.Builder builder = new Reference.Builder(
 		"JournalFolder", "com.liferay.journal");
+
 }

@@ -24,7 +24,7 @@ public class FinderSerializerTest {
 			new Finder.Builder("C_V", "Collection", companyIdFinderColumn)
 				.unique()
 				.withoutSQLIndex()
-				.withFinderColumn(versionFinderColumn)
+				.withFinderColumns(versionFinderColumn)
 				.build();
 
 		XMLSerializer serializer = new FinderSerializer(finder);

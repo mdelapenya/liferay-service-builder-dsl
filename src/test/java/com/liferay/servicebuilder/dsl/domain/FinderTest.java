@@ -63,7 +63,7 @@ public class FinderTest {
 	public void testBuildWithFinderColumn() {
 		FinderColumn finderColumn = new FinderColumn.Builder("groupId").build();
 
-		Finder finder = builder.withFinderColumn(finderColumn).build();
+		Finder finder = builder.withFinderColumns(finderColumn).build();
 
 		List<FinderColumn> finderColumns = finder.getFinderColumns();
 
@@ -78,8 +78,7 @@ public class FinderTest {
 			"companyId").build();
 
 		Finder finder = builder
-			.withFinderColumn(finderColumn1)
-			.withFinderColumn(finderColumn2)
+			.withFinderColumns(finderColumn1, finderColumn2)
 			.build();
 
 		List<FinderColumn> finderColumns = finder.getFinderColumns();

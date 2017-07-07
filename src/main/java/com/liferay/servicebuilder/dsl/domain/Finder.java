@@ -98,9 +98,11 @@ public class Finder implements ServiceBuilderElement {
 			return this;
 		}
 
-		public Builder withFinderColumn(FinderColumn finderColumn) {
-			if (!_finder._finderColumns.contains(finderColumn)) {
-				_finder._finderColumns.add(finderColumn);
+		public Builder withFinderColumns(FinderColumn... finderColumns) {
+			for (FinderColumn finderColumn : finderColumns) {
+				if (!_finder._finderColumns.contains(finderColumn)) {
+					_finder._finderColumns.add(finderColumn);
+				}
 			}
 
 			return this;

@@ -75,9 +75,7 @@ public class Finder implements ServiceBuilderElement {
 			_finder._name = name;
 			_finder._returnType = returnType;
 
-			if (!_finder._finderColumns.contains(finderColumn)) {
-				_finder._finderColumns.add(finderColumn);
-			}
+			_addFinderColumn(finderColumn);
 		}
 
 		public Finder build() {
@@ -100,9 +98,7 @@ public class Finder implements ServiceBuilderElement {
 
 		public Builder withFinderColumns(FinderColumn... finderColumns) {
 			for (FinderColumn finderColumn : finderColumns) {
-				if (!_finder._finderColumns.contains(finderColumn)) {
-					_finder._finderColumns.add(finderColumn);
-				}
+				_addFinderColumn(finderColumn);
 			}
 
 			return this;
@@ -116,6 +112,12 @@ public class Finder implements ServiceBuilderElement {
 			_finder._dbIndex = false;
 
 			return this;
+		}
+
+		private void _addFinderColumn(FinderColumn finderColumn) {
+			if (!_finder._finderColumns.contains(finderColumn)) {
+				_finder._finderColumns.add(finderColumn);
+			}
 		}
 
 		private Finder _finder;

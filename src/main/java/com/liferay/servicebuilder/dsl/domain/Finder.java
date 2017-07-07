@@ -64,12 +64,20 @@ public class Finder implements ServiceBuilderElement {
 		 *                   returns a list of entities. If the value is the
 		 *                   name of the entity, then this finder returns at
 		 *                   most one entity.
+		 * @param finderColumn Specifies that an initial finder-column element
+		 *                     is required.
 		 */
-		public Builder(String name, String returnType) {
+		public Builder(
+			String name, String returnType, FinderColumn finderColumn) {
+
 			_finder = new Finder();
 
 			_finder._name = name;
 			_finder._returnType = returnType;
+
+			if (!_finder._finderColumns.contains(finderColumn)) {
+				_finder._finderColumns.add(finderColumn);
+			}
 		}
 
 		public Finder build() {

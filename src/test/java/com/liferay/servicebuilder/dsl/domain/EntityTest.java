@@ -131,8 +131,11 @@ public class EntityTest {
 
 	@Test
 	public void testBuildWithFinder() {
+		FinderColumn finderColumn = new FinderColumn.Builder(
+			"groupId").build();
+
 		Finder.Builder finderBuilder = new Finder.Builder(
-			"G_C_DDMSK", "JournalArticle");
+			"G_C_DDMSK", "JournalArticle", finderColumn);
 
 		Finder finder = finderBuilder.build();
 
@@ -143,8 +146,11 @@ public class EntityTest {
 
 	@Test
 	public void testBuildWithFinderDuplicatedDoesNotAddIt() {
+		FinderColumn finderColumn = new FinderColumn.Builder(
+			"groupId").build();
+
 		Finder.Builder finderBuilder = new Finder.Builder(
-			"G_C_DDMSK", "JournalArticle");
+			"G_C_DDMSK", "JournalArticle", finderColumn);
 
 		Finder finder = finderBuilder.build();
 
@@ -158,13 +164,16 @@ public class EntityTest {
 
 	@Test
 	public void testBuildWithFinders() {
+		FinderColumn finderColumn = new FinderColumn.Builder(
+			"groupId").build();
+
 		Finder.Builder finderBuilder1 = new Finder.Builder(
-			"G_C_DDMSK", "JournalArticle");
+			"G_C_DDMSK", "JournalArticle", finderColumn);
 
 		Finder finder1 = finderBuilder1.build();
 
 		Finder.Builder finderBuilder2 = new Finder.Builder(
-			"G_C", "JournalArticle");
+			"G_C", "JournalArticle", finderColumn);
 
 		Finder finder2 = finderBuilder2.build();
 

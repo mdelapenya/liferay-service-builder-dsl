@@ -36,9 +36,8 @@ public class ServiceBuilderSerializerTest {
 		FinderColumn finderColumn = new FinderColumn.Builder("companyId")
 			.build();
 
-		Finder finder = new Finder.Builder("CompanyId", "Collection")
-			.withFinderColumn(finderColumn)
-			.build();
+		Finder finder =
+			new Finder.Builder("CompanyId", "Collection", finderColumn).build();
 
 		Entity entity =
 			new Entity.Builder("Foo")

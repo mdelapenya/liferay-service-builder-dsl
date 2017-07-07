@@ -21,10 +21,9 @@ public class FinderSerializerTest {
 			"version").build();
 
 		Finder finder =
-			new Finder.Builder("C_V", "Collection")
+			new Finder.Builder("C_V", "Collection", companyIdFinderColumn)
 				.unique()
 				.withoutSQLIndex()
-				.withFinderColumn(companyIdFinderColumn)
 				.withFinderColumn(versionFinderColumn)
 				.build();
 

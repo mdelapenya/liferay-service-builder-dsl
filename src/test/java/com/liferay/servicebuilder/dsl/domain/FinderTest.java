@@ -18,13 +18,23 @@ public class FinderTest {
 		Assert.assertEquals("JournalArticle", finder.getReturnType());
 		Assert.assertTrue(finder.hasSQLIndex());
 		Assert.assertFalse(finder.isUnique());
-		Assert.assertTrue(finder.getFinderColumns().isEmpty());
+
+		List<FinderColumn> finderColumns = finder.getFinderColumns();
+
+		Assert.assertFalse(finderColumns.isEmpty());
+
+		FinderColumn finderColumn = finderColumns.get(0);
+
+		Assert.assertEquals("groupId", finderColumn.getName());
 	}
 
 	@Test
 	public void testBuildCollection() {
+		FinderColumn finderColumn = new FinderColumn.Builder(
+			"groupId").build();
+
 		Finder.Builder collectionBuilder = new Finder.Builder(
-			"ResourcePrimKey", "Collection");
+			"ResourcePrimKey", "Collection", finderColumn);
 
 		Finder finder = collectionBuilder.build();
 
@@ -32,7 +42,14 @@ public class FinderTest {
 		Assert.assertEquals("Collection", finder.getReturnType());
 		Assert.assertTrue(finder.hasSQLIndex());
 		Assert.assertFalse(finder.isUnique());
-		Assert.assertTrue(finder.getFinderColumns().isEmpty());
+
+		List<FinderColumn> finderColumns = finder.getFinderColumns();
+
+		Assert.assertFalse(finderColumns.isEmpty());
+
+		FinderColumn finderColumn1 = finderColumns.get(0);
+
+		Assert.assertEquals("groupId", finderColumn1.getName());
 	}
 
 	@Test
@@ -79,8 +96,11 @@ public class FinderTest {
 
 	@Test
 	public void testEquals() {
-		Finder finder1 = new Finder.Builder("f1", "long").build();
-		Finder finder2 = new Finder.Builder("f1", "long").build();
+		FinderColumn finderColumn = new FinderColumn.Builder(
+			"groupId").build();
+
+		Finder finder1 = new Finder.Builder("f1", "long", finderColumn).build();
+		Finder finder2 = new Finder.Builder("f1", "long", finderColumn).build();
 
 		Assert.assertTrue(finder1.equals(finder2));
 		Assert.assertTrue(finder2.equals(finder1));
@@ -88,8 +108,11 @@ public class FinderTest {
 
 	@Test
 	public void testEqualsNotEquals() {
-		Finder finder1 = new Finder.Builder("f1", "long").build();
-		Finder finder2 = new Finder.Builder("f2", "long").build();
+		FinderColumn finderColumn = new FinderColumn.Builder(
+			"groupId").build();
+
+		Finder finder1 = new Finder.Builder("f1", "long", finderColumn).build();
+		Finder finder2 = new Finder.Builder("f2", "long", finderColumn).build();
 
 		Assert.assertFalse(finder1.equals(finder2));
 		Assert.assertFalse(finder2.equals(finder1));
@@ -97,12 +120,16 @@ public class FinderTest {
 
 	@Test
 	public void testEqualsSameInstance() {
-		Finder finder = new Finder.Builder("f1", "long").build();
+		FinderColumn finderColumn = new FinderColumn.Builder(
+			"groupId").build();
+
+		Finder finder = new Finder.Builder("f1", "long", finderColumn).build();
 
 		Assert.assertTrue(finder.equals(finder));
 	}
 
 	private Finder.Builder builder = new Finder.Builder(
-		"G_C_DDMSK", "JournalArticle");
+		"G_C_DDMSK", "JournalArticle",
+		new FinderColumn.Builder("groupId").build());
 
 }

@@ -405,9 +405,7 @@ public class Entity implements ServiceBuilderElement {
 		}
 
 		public Builder withTxRequiredMethod(TxRequiredMethod txRequiredMethod) {
-			if (!_entity._txRequiredMethodMethods.contains(txRequiredMethod)) {
-				_entity._txRequiredMethodMethods.add(txRequiredMethod);
-			}
+			_addTxRequiredMethod(txRequiredMethod);
 
 			return this;
 		}
@@ -415,8 +413,9 @@ public class Entity implements ServiceBuilderElement {
 		public Builder withTxRequiredMethods(
 			TxRequiredMethod... txRequiredMethod) {
 
-			Collections.addAll(
-				_entity._txRequiredMethodMethods, txRequiredMethod);
+			for (TxRequiredMethod requiredMethod : txRequiredMethod) {
+				_addTxRequiredMethod(requiredMethod);
+			}
 
 			return this;
 		}
@@ -442,6 +441,12 @@ public class Entity implements ServiceBuilderElement {
 			_entity._uuidAccesor = true;
 
 			return this;
+		}
+
+		private void _addTxRequiredMethod(TxRequiredMethod txRequiredMethod) {
+			if (!_entity._txRequiredMethodMethods.contains(txRequiredMethod)) {
+				_entity._txRequiredMethodMethods.add(txRequiredMethod);
+			}
 		}
 
 		private Entity _entity;

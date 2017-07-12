@@ -209,15 +209,15 @@ public class Entity implements ServiceBuilderElement {
 		}
 
 		public Builder withColumn(Column column) {
-			if (!_entity._columns.contains(column)) {
-				_entity._columns.add(column);
-			}
+			_addColumn(column);
 
 			return this;
 		}
 
-		public Builder withColumns(Column... column) {
-			Collections.addAll(_entity._columns, column);
+		public Builder withColumns(Column... columns) {
+			for (Column column : columns) {
+				_addColumn(column);
+			}
 
 			return this;
 		}
@@ -447,6 +447,12 @@ public class Entity implements ServiceBuilderElement {
 			_entity._uuidAccesor = true;
 
 			return this;
+		}
+
+		private void _addColumn(Column column) {
+			if (!_entity._columns.contains(column)) {
+				_entity._columns.add(column);
+			}
 		}
 
 		private void _addTxRequiredMethod(TxRequiredMethod txRequiredMethod) {

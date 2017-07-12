@@ -111,7 +111,11 @@ public class Entity implements ServiceBuilderElement {
 	@JacksonXmlProperty(
 		isAttribute = true, localName = "dynamic-update-enabled"
 	)
-	public boolean hasDynamicUpdate() {
+	public Boolean hasDynamicUpdate() {
+		if (_dynamicUpdateEnabled == null) {
+			return hasMvccEnabled();
+		}
+
 		return _dynamicUpdateEnabled;
 	}
 
@@ -244,7 +248,7 @@ public class Entity implements ServiceBuilderElement {
 		 *                      default value is the value of the attribute
 		 *                      mvcc-enabled.
 		 */
-		public Builder withDynamicUpdate(boolean dynamicUpdate) {
+		public Builder withDynamicUpdate(Boolean dynamicUpdate) {
 			_entity._dynamicUpdateEnabled = dynamicUpdate;
 
 			return this;
@@ -305,7 +309,9 @@ public class Entity implements ServiceBuilderElement {
 		public Builder withMvcc(boolean mvccEnabled) {
 			_entity._mvccEnabled = mvccEnabled;
 
-			withDynamicUpdate(mvccEnabled);
+			if (_entity._dynamicUpdateEnabled == null) {
+				withDynamicUpdate(mvccEnabled);
+			}
 
 			return this;
 		}
@@ -489,7 +495,7 @@ public class Entity implements ServiceBuilderElement {
 	 * properties are excluded in the SQL update statement. The default value is
 	 * the value of the attribute mvcc-enabled.
 	 */
-	private boolean _dynamicUpdateEnabled;
+	private Boolean _dynamicUpdateEnabled;
 
 	private List<Finder> _finders = new ArrayList<>();
 

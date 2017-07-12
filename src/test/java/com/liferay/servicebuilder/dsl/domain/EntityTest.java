@@ -27,9 +27,11 @@ public class EntityTest {
 		Assert.assertNull(entity.getOrder());
 		Assert.assertNull(entity.getPersistenceClass());
 		Assert.assertTrue(entity.hasCacheEnabled());
-		Assert.assertFalse(entity.hasDynamicUpdate());
-		Assert.assertFalse(entity.hasJsonSerialization());
+
 		Assert.assertFalse(entity.hasMvccEnabled());
+		Assert.assertEquals(entity.hasMvccEnabled(), entity.hasDynamicUpdate());
+
+		Assert.assertFalse(entity.hasJsonSerialization());
 		Assert.assertTrue(entity.hasRemoteService());
 		Assert.assertFalse(entity.isDeprecated());
 		Assert.assertNull(entity.getSessionFactory());
@@ -112,21 +114,40 @@ public class EntityTest {
 	}
 
 	@Test
-	public void testBuildWithDynamicUpdateFromMvcc() {
-		Entity entity = builder.withMvcc(true).build();
-
-		Assert.assertEquals(entity.hasMvccEnabled(), entity.hasDynamicUpdate());
-	}
-
-	@Ignore
-	@Test
-	public void testBuildWithDynamicUpdateFromMvccAfter() {
+	public void testBuildWithDynamicUpdateIsNotModifiedByMvcc() {
 		Entity entity = builder
 			.withDynamicUpdate(true)
 			.withMvcc(false)
 			.build();
 
 		Assert.assertTrue(entity.hasDynamicUpdate());
+
+		entity = builder
+			.withDynamicUpdate(false)
+			.withMvcc(true)
+			.build();
+
+		Assert.assertFalse(entity.hasDynamicUpdate());
+	}
+
+	@Test
+	public void testBuildWithDynamicUpdateIsNotNull() {
+		Entity entity = builder.build();
+
+		Assert.assertFalse(entity.hasDynamicUpdate());
+	}
+
+	@Test
+	public void testBuildWithDynamicUpdateWhenIsNotSetTakesMvccValue() {
+		Entity entity = builder.withMvcc(true).build();
+
+		Assert.assertEquals(entity.hasMvccEnabled(), entity.hasDynamicUpdate());
+		Assert.assertTrue(entity.hasDynamicUpdate());
+
+		entity = builder.withMvcc(false).build();
+
+		Assert.assertEquals(entity.hasMvccEnabled(), entity.hasDynamicUpdate());
+		Assert.assertFalse(entity.hasDynamicUpdate());
 	}
 
 	@Test

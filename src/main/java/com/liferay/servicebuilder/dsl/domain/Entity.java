@@ -159,12 +159,13 @@ public class Entity implements ServiceBuilderElement {
 		return _deprecated;
 	}
 
-	public static class Builder {
+	public static class BuilderImpl
+		implements Builder, EntityBuilder, BuilderWithoutFilterPrimary {
 
 		/**
 		 * @param name Specifies the name of the entity.
 		 */
-		public Builder(String name) {
+		public BuilderImpl(String name) {
 			_entity = new Entity();
 
 			_entity._name = name;
@@ -182,7 +183,7 @@ public class Entity implements ServiceBuilderElement {
 		 * The deprecated value specifies whether the entity's services are
 		 * deprecated.
 		 */
-		public Builder deprecate() {
+		public EntityBuilder deprecate() {
 			_entity._deprecated = true;
 
 			return this;
@@ -193,7 +194,7 @@ public class Entity implements ServiceBuilderElement {
 		 * queries for this entity. Set this to false if data in the table will
 		 * be updated by other programs. The default value is true.
 		 */
-		public Builder disableCache() {
+		public EntityBuilder disableCache() {
 			_entity._cacheEnabled = false;
 
 			return this;
@@ -202,19 +203,19 @@ public class Entity implements ServiceBuilderElement {
 		/**
 		 * @see withTxManager
 		 */
-		public Builder disableTxManager() {
+		public EntityBuilder disableTxManager() {
 			_entity._txManager = "none";
 
 			return this;
 		}
 
-		public Builder withColumn(Column column) {
+		public BuilderWithoutFilterPrimary withColumn(Column column) {
 			_addColumn(column);
 
 			return this;
 		}
 
-		public Builder withColumns(Column... columns) {
+		public BuilderWithoutFilterPrimary withColumns(Column... columns) {
 			for (Column column : columns) {
 				_addColumn(column);
 			}
@@ -236,7 +237,7 @@ public class Entity implements ServiceBuilderElement {
 		 *                   data source. This is used in conjunction with
 		 *                   session-factory. See data-source-spring.xml.
 		 */
-		public Builder withDatasource(String datasource) {
+		public EntityBuilder withDatasource(String datasource) {
 			_entity._datasource = datasource;
 
 			return this;
@@ -248,13 +249,19 @@ public class Entity implements ServiceBuilderElement {
 		 *                      default value is the value of the attribute
 		 *                      mvcc-enabled.
 		 */
-		public Builder withDynamicUpdate(Boolean dynamicUpdate) {
+		public EntityBuilder withDynamicUpdate(Boolean dynamicUpdate) {
 			_entity._dynamicUpdateEnabled = dynamicUpdate;
 
 			return this;
 		}
 
-		public Builder withFinder(Finder finder) {
+		public EntityBuilder withFilterPrimaryColumn(Column column) {
+			_addColumn(column);
+
+			return this;
+		}
+
+		public EntityBuilder withFinder(Finder finder) {
 			if (!_entity._finders.contains(finder)) {
 				_entity._finders.add(finder);
 			}
@@ -262,7 +269,7 @@ public class Entity implements ServiceBuilderElement {
 			return this;
 		}
 
-		public Builder withFinders(Finder... finder) {
+		public EntityBuilder withFinders(Finder... finder) {
 			Collections.addAll(_entity._finders, finder);
 
 			return this;
@@ -273,7 +280,7 @@ public class Entity implements ServiceBuilderElement {
 		 *                  documentation for this entity. If none is specified,
 		 *                  one will be generated from the name.
 		 */
-		public Builder withHumanName(String humanName) {
+		public EntityBuilder withHumanName(String humanName) {
 			_entity._humanName = humanName;
 
 			return this;
@@ -284,7 +291,7 @@ public class Entity implements ServiceBuilderElement {
 		 * annotated for JSON serialization. By default, if the remote-service
 		 * value is true, then the json-enabled value is true.
 		 */
-		public Builder withJsonSerialization() {
+		public EntityBuilder withJsonSerialization() {
 			_entity._jsonEnabled = true;
 
 			return this;
@@ -294,7 +301,7 @@ public class Entity implements ServiceBuilderElement {
 		 * If the local-service value is true, then the service will generate
 		 * the local interfaces for the service. The default value is false.
 		 */
-		public Builder withLocalServices() {
+		public EntityBuilder withLocalServices() {
 			_entity._localService = true;
 
 			return this;
@@ -306,7 +313,7 @@ public class Entity implements ServiceBuilderElement {
 		 *                    is based on the mvcc-enabled attribute in the
 		 *                    service-builder element.
 		 */
-		public Builder withMvcc(boolean mvccEnabled) {
+		public EntityBuilder withMvcc(boolean mvccEnabled) {
 			_entity._mvccEnabled = mvccEnabled;
 
 			if (_entity._dynamicUpdateEnabled == null) {
@@ -316,7 +323,7 @@ public class Entity implements ServiceBuilderElement {
 			return this;
 		}
 
-		public Builder withOrder(Order order) {
+		public EntityBuilder withOrder(Order order) {
 			_entity._order = order;
 
 			return this;
@@ -330,13 +337,13 @@ public class Entity implements ServiceBuilderElement {
 		 *                         to override default behavior without
 		 *                         modifying the generated persistence class.
 		 */
-		public Builder withPersistenceClass(String persistenceClass) {
+		public EntityBuilder withPersistenceClass(String persistenceClass) {
 			_entity._persistenceClass = persistenceClass;
 
 			return this;
 		}
 
-		public Builder withReference(Reference reference) {
+		public EntityBuilder withReference(Reference reference) {
 			if (!_entity._references.contains(reference)) {
 				_entity._references.add(reference);
 			}
@@ -344,7 +351,7 @@ public class Entity implements ServiceBuilderElement {
 			return this;
 		}
 
-		public Builder withReferences(Reference... reference) {
+		public EntityBuilder withReferences(Reference... reference) {
 			Collections.addAll(_entity._references, reference);
 
 			return this;
@@ -354,7 +361,7 @@ public class Entity implements ServiceBuilderElement {
 		 * If the remote-service value is true, then the service will generate
 		 * remote interfaces for the service. The default value is true.
 		 */
-		public Builder withRemoteServices() {
+		public EntityBuilder withRemoteServices() {
 			_entity._remoteService = true;
 
 			withJsonSerialization();
@@ -369,7 +376,7 @@ public class Entity implements ServiceBuilderElement {
 		 *                       conjunction with data-source. See
 		 *                       data-source-spring.xml.
 		 */
-		public Builder withSessionFactory(String sessionFactory) {
+		public EntityBuilder withSessionFactory(String sessionFactory) {
 			_entity._sessionFactory = sessionFactory;
 
 			return this;
@@ -380,7 +387,7 @@ public class Entity implements ServiceBuilderElement {
 		 *              in the database. If this value is not set, then the name
 		 *              of the table is the same as the name of the entity.
 		 */
-		public Builder withTable(String table) {
+		public EntityBuilder withTable(String table) {
 			_entity._table = table;
 
 			return this;
@@ -390,7 +397,7 @@ public class Entity implements ServiceBuilderElement {
 		 * The trash-enabled value specifies whether trash related methods
 		 * should be generated or not.
 		 */
-		public Builder withTrashEnabled() {
+		public EntityBuilder withTrashEnabled() {
 			_entity._trashEnabled = true;
 
 			return this;
@@ -404,19 +411,21 @@ public class Entity implements ServiceBuilderElement {
 		 *                  data-source-spring.xml. Set this attribute to "none"
 		 *                  to disable transaction management.
 		 */
-		public Builder withTxManager(String txManager) {
+		public EntityBuilder withTxManager(String txManager) {
 			_entity._txManager = txManager;
 
 			return this;
 		}
 
-		public Builder withTxRequiredMethod(TxRequiredMethod txRequiredMethod) {
+		public EntityBuilder withTxRequiredMethod(
+			TxRequiredMethod txRequiredMethod) {
+
 			_addTxRequiredMethod(txRequiredMethod);
 
 			return this;
 		}
 
-		public Builder withTxRequiredMethods(
+		public EntityBuilder withTxRequiredMethods(
 			TxRequiredMethod... txRequiredMethod) {
 
 			for (TxRequiredMethod requiredMethod : txRequiredMethod) {
@@ -432,7 +441,7 @@ public class Entity implements ServiceBuilderElement {
 		 * with a UUID. Developers will also be able to find and remove based on
 		 * that UUID. The default value is false.
 		 */
-		public Builder withUuid() {
+		public EntityBuilder withUuid() {
 			_entity._uuid = true;
 
 			return this;
@@ -443,7 +452,7 @@ public class Entity implements ServiceBuilderElement {
 		 * UUID column accessor for the service. This accessor will provide a
 		 * fast and type-safe way to access entity's UUID.
 		 */
-		public Builder withUuidAccessor() {
+		public EntityBuilder withUuidAccessor() {
 			_entity._uuidAccesor = true;
 
 			return this;
@@ -599,5 +608,76 @@ public class Entity implements ServiceBuilderElement {
 	 * and type-safe way to access entity's UUID.
 	 */
 	private boolean _uuidAccesor;
+
+
+	public interface Builder {
+
+		Entity build();
+
+	}
+
+	public interface BuilderWithoutFilterPrimary
+		extends EntityBuilder {
+
+		EntityBuilder withFilterPrimaryColumn(Column column);
+
+	}
+
+	public interface EntityBuilder extends Builder {
+
+		EntityBuilder deprecate();
+
+		EntityBuilder disableCache();
+
+		EntityBuilder disableTxManager();
+
+		EntityBuilder withColumn(Column column);
+
+		EntityBuilder withColumns(Column... columns);
+
+		EntityBuilder withDatasource(String datasource);
+
+		EntityBuilder withDynamicUpdate(Boolean dynamicUpdate);
+
+		EntityBuilder withFinder(Finder finder);
+
+		EntityBuilder withFinders(Finder... finders);
+
+		EntityBuilder withHumanName(String humanName);
+
+		EntityBuilder withJsonSerialization();
+
+		EntityBuilder withLocalServices();
+
+		EntityBuilder withMvcc(boolean mvccEnabled);
+
+		EntityBuilder withOrder(Order order);
+
+		EntityBuilder withPersistenceClass(String persistenceClass);
+
+		EntityBuilder withReference(Reference reference);
+
+		EntityBuilder withReferences(Reference... reference);
+
+		EntityBuilder withRemoteServices();
+
+		EntityBuilder withSessionFactory(String sessionFactory);
+
+		EntityBuilder withTable(String table);
+
+		EntityBuilder withTrashEnabled();
+
+		EntityBuilder withTxManager(String txManager);
+
+		EntityBuilder withTxRequiredMethod(TxRequiredMethod txRequiredMethod);
+
+		EntityBuilder withTxRequiredMethods(
+			TxRequiredMethod... txRequiredMethod);
+
+		EntityBuilder withUuid();
+
+		EntityBuilder withUuidAccessor();
+
+	}
 
 }

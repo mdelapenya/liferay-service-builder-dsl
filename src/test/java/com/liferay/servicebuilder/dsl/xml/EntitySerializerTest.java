@@ -39,7 +39,7 @@ public class EntitySerializerTest {
 			new Finder.Builder("CompanyId", "Collection", finderColumn).build();
 
 		Entity entity =
-			new Entity.Builder("JournalArticle")
+			new Entity.BuilderImpl("JournalArticle")
 				.withDynamicUpdate(true)
 				.disableCache()
 				.withLocalServices()

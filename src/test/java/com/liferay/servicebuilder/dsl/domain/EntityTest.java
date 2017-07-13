@@ -3,7 +3,6 @@ package com.liferay.servicebuilder.dsl.domain;
 import java.util.List;
 
 import org.junit.Assert;
-import org.junit.Ignore;
 import org.junit.Test;
 
 /**
@@ -66,9 +65,59 @@ public class EntityTest {
 		Column companyIdColumn = new Column.Builder(
 			"companyId", ServiceBuilderType.LONG).build();
 
-		Entity entity = builder
-			.withColumn(companyIdColumn)
-			.withColumn(companyIdColumn)
+		Entity.BuilderWithoutFilterPrimary builderWithoutFilterPrimary =
+			(Entity.BuilderWithoutFilterPrimary) builder;
+
+		Entity entity =
+			builderWithoutFilterPrimary
+				.withColumn(companyIdColumn)
+				.withColumn(companyIdColumn)
+				.build();
+
+		List<Column> columns = entity.getColumns();
+
+		Assert.assertEquals(columns.toString(), 1, columns.size());
+	}
+
+	@Test
+	public void testBuildWithColumnFilterPrimaryAllowsOtherColumn() {
+		Column companyIdColumn =
+			new Column.Builder("companyId", ServiceBuilderType.LONG)
+				.filterPrimary()
+				.build();
+
+		Column groupIdColumn =
+			new Column.Builder("groupId", ServiceBuilderType.LONG)
+				.build();
+
+		Entity.BuilderWithoutFilterPrimary builderWithoutFilterPrimary =
+			(Entity.BuilderWithoutFilterPrimary) builder;
+
+		Entity entity = builderWithoutFilterPrimary
+			.withFilterPrimaryColumn(companyIdColumn)
+			.withColumn(groupIdColumn)
+			.build();
+
+		List<Column> columns = entity.getColumns();
+
+		Assert.assertEquals(columns.toString(), 2, columns.size());
+	}
+
+	@Test
+	public void
+		testBuildWithColumnFilterPrimaryDoesNotAllowOtherFilterPrimaryColumn() {
+
+		Column companyIdColumn =
+			new Column.Builder("companyId", ServiceBuilderType.LONG)
+				.filterPrimary()
+				.build();
+
+		Entity.BuilderWithoutFilterPrimary builderWithoutFilterPrimary =
+			(Entity.BuilderWithoutFilterPrimary) builder;
+
+		Entity entity = builderWithoutFilterPrimary
+			.withFilterPrimaryColumn(companyIdColumn)
+			// compiler does not allow invoking withFilterPrimaryColumn twice
 			.build();
 
 		List<Column> columns = entity.getColumns();
@@ -83,7 +132,10 @@ public class EntityTest {
 		Column groupIdColumn = new Column.Builder(
 			"groupId", ServiceBuilderType.LONG).build();
 
-		Entity entity = builder
+		Entity.BuilderWithoutFilterPrimary builderWithoutFilterPrimary =
+			(Entity.BuilderWithoutFilterPrimary) builder;
+
+		Entity entity = builderWithoutFilterPrimary
 			.withColumns(companyIdColumn, groupIdColumn)
 			.build();
 
@@ -415,8 +467,8 @@ public class EntityTest {
 
 	@Test
 	public void testEquals() {
-		Entity entity1 = new Entity.Builder("JournalArticle").build();
-		Entity entity2 = new Entity.Builder("JournalArticle").build();
+		Entity entity1 = new Entity.BuilderImpl("JournalArticle").build();
+		Entity entity2 = new Entity.BuilderImpl("JournalArticle").build();
 
 		Assert.assertTrue(entity1.equals(entity2));
 		Assert.assertTrue(entity2.equals(entity1));
@@ -424,8 +476,8 @@ public class EntityTest {
 
 	@Test
 	public void testEqualsNotEquals() {
-		Entity entity1 = new Entity.Builder("JournalArticle").build();
-		Entity entity2 = new Entity.Builder("JournalArticleVersion").build();
+		Entity entity1 = new Entity.BuilderImpl("JournalArticle").build();
+		Entity entity2 = new Entity.BuilderImpl("JournalArticleVersion").build();
 
 		Assert.assertFalse(entity1.equals(entity2));
 		Assert.assertFalse(entity2.equals(entity1));
@@ -433,11 +485,12 @@ public class EntityTest {
 
 	@Test
 	public void testEqualsSameInstance() {
-		Entity entity = new Entity.Builder("JournalArticle").build();
+		Entity entity = new Entity.BuilderImpl("JournalArticle").build();
 
 		Assert.assertTrue(entity.equals(entity));
 	}
 
-	private Entity.Builder builder = new Entity.Builder("JournalArticle");
+	private Entity.EntityBuilder builder = new Entity.BuilderImpl(
+		"JournalArticle");
 
 }

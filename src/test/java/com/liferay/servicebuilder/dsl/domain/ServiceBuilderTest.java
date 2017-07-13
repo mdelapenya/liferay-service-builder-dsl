@@ -93,10 +93,10 @@ public class ServiceBuilderTest {
 
 	@Test
 	public void testBuildWithEntities() {
-		Entity journalArticleEntity = new Entity.Builder(
+		Entity journalArticleEntity = new Entity.BuilderImpl(
 			"JournalArticle").build();
 
-		Entity journalArticleLocalizationEntity = new Entity.Builder(
+		Entity journalArticleLocalizationEntity = new Entity.BuilderImpl(
 			"JournalArticleLocalization").build();
 
 		ServiceBuilder serviceBuilder = builder
@@ -111,7 +111,7 @@ public class ServiceBuilderTest {
 
 	@Test
 	public void testBuildWithEntity() {
-		Entity journalArticleEntity = new Entity.Builder(
+		Entity journalArticleEntity = new Entity.BuilderImpl(
 			"JournalArticle").build();
 
 		ServiceBuilder serviceBuilder = builder
@@ -125,7 +125,7 @@ public class ServiceBuilderTest {
 
 	@Test
 	public void testBuildWithEntityDuplicatedDoesNotAddIt() {
-		Entity journalArticleEntity = new Entity.Builder(
+		Entity journalArticleEntity = new Entity.BuilderImpl(
 			"JournalArticle").build();
 
 		ServiceBuilder serviceBuilder = builder

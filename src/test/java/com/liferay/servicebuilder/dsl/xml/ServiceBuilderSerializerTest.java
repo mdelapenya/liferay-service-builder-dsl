@@ -39,8 +39,13 @@ public class ServiceBuilderSerializerTest {
 		Finder finder =
 			new Finder.Builder("CompanyId", "Collection", finderColumn).build();
 
+		Entity.BuilderImpl builder = new Entity.BuilderImpl("Foo");
+
+		Entity.BuilderWithoutFilterPrimary builderWithoutFilterPrimary =
+			builder;
+
 		Entity entity =
-			new Entity.Builder("Foo")
+			builderWithoutFilterPrimary
 				.withDynamicUpdate(true)
 				.disableCache()
 				.withLocalServices()

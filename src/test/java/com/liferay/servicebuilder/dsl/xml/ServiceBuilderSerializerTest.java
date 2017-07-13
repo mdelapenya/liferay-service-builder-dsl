@@ -41,11 +41,8 @@ public class ServiceBuilderSerializerTest {
 
 		Entity.BuilderImpl builder = new Entity.BuilderImpl("Foo");
 
-		Entity.BuilderWithoutFilterPrimary builderWithoutFilterPrimary =
-			builder;
-
 		Entity entity =
-			builderWithoutFilterPrimary
+			builder
 				.withDynamicUpdate(true)
 				.disableCache()
 				.withLocalServices()

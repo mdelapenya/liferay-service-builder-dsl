@@ -65,11 +65,7 @@ public class EntityTest {
 		Column companyIdColumn = new Column.Builder(
 			"companyId", ServiceBuilderType.LONG).build();
 
-		Entity.BuilderWithoutFilterPrimary builderWithoutFilterPrimary =
-			(Entity.BuilderWithoutFilterPrimary) builder;
-
-		Entity entity =
-			builderWithoutFilterPrimary
+		Entity entity = builder
 				.withColumn(companyIdColumn)
 				.withColumn(companyIdColumn)
 				.build();
@@ -90,10 +86,7 @@ public class EntityTest {
 			new Column.Builder("groupId", ServiceBuilderType.LONG)
 				.build();
 
-		Entity.BuilderWithoutFilterPrimary builderWithoutFilterPrimary =
-			(Entity.BuilderWithoutFilterPrimary) builder;
-
-		Entity entity = builderWithoutFilterPrimary
+		Entity entity = builder
 			.withFilterPrimaryColumn(companyIdColumn)
 			.withColumn(groupIdColumn)
 			.build();
@@ -112,10 +105,7 @@ public class EntityTest {
 				.filterPrimary()
 				.build();
 
-		Entity.BuilderWithoutFilterPrimary builderWithoutFilterPrimary =
-			(Entity.BuilderWithoutFilterPrimary) builder;
-
-		Entity entity = builderWithoutFilterPrimary
+		Entity entity = builder
 			.withFilterPrimaryColumn(companyIdColumn)
 			// compiler does not allow invoking withFilterPrimaryColumn twice
 			.build();
@@ -132,10 +122,7 @@ public class EntityTest {
 		Column groupIdColumn = new Column.Builder(
 			"groupId", ServiceBuilderType.LONG).build();
 
-		Entity.BuilderWithoutFilterPrimary builderWithoutFilterPrimary =
-			(Entity.BuilderWithoutFilterPrimary) builder;
-
-		Entity entity = builderWithoutFilterPrimary
+		Entity entity = builder
 			.withColumns(companyIdColumn, groupIdColumn)
 			.build();
 

@@ -160,7 +160,7 @@ public class Entity implements ServiceBuilderElement {
 	}
 
 	public static class BuilderImpl
-		implements Builder, EntityBuilder, BuilderWithoutFilterPrimary {
+		implements Builder, BuilderWithFilterPrimary, EntityBuilder {
 
 		/**
 		 * @param name Specifies the name of the entity.
@@ -209,13 +209,13 @@ public class Entity implements ServiceBuilderElement {
 			return this;
 		}
 
-		public BuilderWithoutFilterPrimary withColumn(Column column) {
+		public EntityBuilder withColumn(Column column) {
 			_addColumn(column);
 
 			return this;
 		}
 
-		public BuilderWithoutFilterPrimary withColumns(Column... columns) {
+		public EntityBuilder withColumns(Column... columns) {
 			for (Column column : columns) {
 				_addColumn(column);
 			}
@@ -616,14 +616,13 @@ public class Entity implements ServiceBuilderElement {
 
 	}
 
-	public interface BuilderWithoutFilterPrimary
-		extends EntityBuilder {
+	public interface EntityBuilder extends BuilderWithFilterPrimary {
 
-		EntityBuilder withFilterPrimaryColumn(Column column);
+		BuilderWithFilterPrimary withFilterPrimaryColumn(Column column);
 
 	}
 
-	public interface EntityBuilder extends Builder {
+	public interface BuilderWithFilterPrimary extends Builder {
 
 		EntityBuilder deprecate();
 

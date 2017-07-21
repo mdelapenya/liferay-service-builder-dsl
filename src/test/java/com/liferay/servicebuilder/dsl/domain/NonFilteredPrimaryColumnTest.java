@@ -20,11 +20,11 @@ import org.junit.Test;
 /**
  * @author Manuel de la Peña
  */
-public class ColumnTest {
+public class NonFilteredPrimaryColumnTest {
 
 	@Test
 	public void testBuild() {
-		Column column = builder.build();
+		NonFilteredPrimaryColumn column = builder.build();
 
 		Assert.assertEquals("groupId", column.getName());
 		Assert.assertEquals(ServiceBuilderType.LONG, column.getType());
@@ -44,14 +44,14 @@ public class ColumnTest {
 
 	@Test
 	public void testBuildAsPrimaryKey() {
-		Column column = builder.asPrimaryKey().build();
+		NonFilteredPrimaryColumn column = builder.asPrimaryKey().build();
 
 		Assert.assertTrue(column.isPrimary());
 	}
 
 	@Test
 	public void testBuildAutogeneratePrimaryKeyFromClass() {
-		Column column = builder
+		NonFilteredPrimaryColumn column = builder
 			.autogeneratePrimaryKeyFromClass(
 				ServiceBuilderType.INTEGER, "com.liferay.Foo")
 			.build();
@@ -63,7 +63,7 @@ public class ColumnTest {
 
 	@Test
 	public void testBuildAutogeneratePrimaryKeyFromIdentity() {
-		Column column = builder
+		NonFilteredPrimaryColumn column = builder
 			.autogeneratePrimaryKeyFromIdentity(ServiceBuilderType.INTEGER)
 			.build();
 
@@ -74,7 +74,7 @@ public class ColumnTest {
 
 	@Test
 	public void testBuildAutogeneratePrimaryKeyFromIncrement() {
-		Column column = builder
+		NonFilteredPrimaryColumn column = builder
 			.autogeneratePrimaryKeyFromIncrement(ServiceBuilderType.INTEGER)
 			.build();
 
@@ -85,7 +85,7 @@ public class ColumnTest {
 
 	@Test
 	public void testBuildAutogeneratePrimaryKeyFromSequence() {
-		Column column = builder
+		NonFilteredPrimaryColumn column = builder
 			.autogeneratePrimaryKeyFromSequence(
 				ServiceBuilderType.INTEGER, "id_sequence")
 			.build();
@@ -97,63 +97,63 @@ public class ColumnTest {
 
 	@Test
 	public void testBuildContainerModel() {
-		Column column = builder.containerModel().build();
+		NonFilteredPrimaryColumn column = builder.containerModel().build();
 
 		Assert.assertTrue(column.isContainerModel());
 	}
 
 	@Test
 	public void testBuildConvertNull() {
-		Column column = builder.convertsNull().build();
+		NonFilteredPrimaryColumn column = builder.convertsNull().build();
 
 		Assert.assertTrue(column.isConvertNull());
 	}
 
 	@Test
 	public void testBuildFilterPrimary() {
-		Column column = builder.filterPrimary().build();
+		NonFilteredPrimaryColumn column = builder.filterPrimary().build();
 
 		Assert.assertTrue(column.isFilterPrimary());
 	}
 
 	@Test
 	public void testBuildLocalized() {
-		Column column = builder.localized().build();
+		NonFilteredPrimaryColumn column = builder.localized().build();
 
 		Assert.assertTrue(column.isLocalized());
 	}
 
 	@Test
 	public void testBuildParentContainerModel() {
-		Column column = builder.parentContainerModel().build();
+		NonFilteredPrimaryColumn column = builder.parentContainerModel().build();
 
 		Assert.assertTrue(column.isParentContainerModel());
 	}
 
 	@Test
 	public void testBuildWithAccessor() {
-		Column column = builder.withAccessor().build();
+		NonFilteredPrimaryColumn column = builder.withAccessor().build();
 
 		Assert.assertTrue(column.hasAccessor());
 	}
 
 	@Test
 	public void testBuildWithDbName() {
-		Column column = builder.withDbName("dbName").build();
+		NonFilteredPrimaryColumn column = builder.withDbName("dbName").build();
 
 		Assert.assertEquals("dbName", column.getDbName());
 	}
 
 	@Test
 	public void testBuildWithJsonSerialization() {
-		Column column = builder.withJsonSerialization().build();
+		NonFilteredPrimaryColumn column = builder.withJsonSerialization().build();
 
 		Assert.assertTrue(column.hasJsonSerialization());
 	}
 
 	@Test
 	public void testBuildWithManyToManyRelationship() {
-		Column column = builder
+		NonFilteredPrimaryColumn column = builder
 			.withManyToManyRelationship("Role", "Groups_Roles")
 			.build();
 
@@ -163,7 +163,7 @@ public class ColumnTest {
 
 	@Test
 	public void testBuildWithManyToManyRelationshipOtherServiceXML() {
-		Column column = builder
+		NonFilteredPrimaryColumn column = builder
 			.withManyToManyRelationship(
 				"com.liferay.portal.Organization", "Foo_Organizations")
 			.build();
@@ -175,26 +175,26 @@ public class ColumnTest {
 
 	@Test
 	public void testBuildWithoutLazyFetchFromBlob() {
-		Column column = builder.withoutLazyFetch().build();
+		NonFilteredPrimaryColumn column = builder.withoutLazyFetch().build();
 
 		Assert.assertTrue(column.isLazy());
 	}
 
 	@Test
 	public void testBuildWithoutLazyFetchFromNonBlobField() {
-		Column.Builder builder = new Column.Builder(
+		NonFilteredPrimaryColumn.Builder builder = new NonFilteredPrimaryColumn.Builder(
 			"blobField", ServiceBuilderType.BLOB);
 
-		Column column = builder.withoutLazyFetch().build();
+		NonFilteredPrimaryColumn column = builder.withoutLazyFetch().build();
 
 		Assert.assertFalse(column.isLazy());
 	}
 
 	@Test
 	public void testEquals() {
-		Column column1 = new Column.Builder(
+		NonFilteredPrimaryColumn column1 = new NonFilteredPrimaryColumn.Builder(
 			"companyId", ServiceBuilderType.LONG).build();
-		Column column2 = new Column.Builder(
+		NonFilteredPrimaryColumn column2 = new NonFilteredPrimaryColumn.Builder(
 			"companyId", ServiceBuilderType.LONG).build();
 
 		Assert.assertTrue(column1.equals(column2));
@@ -203,8 +203,8 @@ public class ColumnTest {
 
 	@Test
 	public void testEqualsNotEquals() {
-		Column column1 = builder.build();
-		Column column2 = new Column.Builder(
+		NonFilteredPrimaryColumn column1 = builder.build();
+		NonFilteredPrimaryColumn column2 = new NonFilteredPrimaryColumn.Builder(
 			"companyId", ServiceBuilderType.LONG).build();
 
 		Assert.assertFalse(column1.equals(column2));
@@ -213,12 +213,12 @@ public class ColumnTest {
 
 	@Test
 	public void testEqualsSameInstance() {
-		Column column1 = builder.build();
+		NonFilteredPrimaryColumn column1 = builder.build();
 
 		Assert.assertTrue(column1.equals(column1));
 	}
 
-	private Column.Builder builder = new Column.Builder(
+	private NonFilteredPrimaryColumn.Builder builder = new NonFilteredPrimaryColumn.Builder(
 		"groupId", ServiceBuilderType.LONG);
 
 }

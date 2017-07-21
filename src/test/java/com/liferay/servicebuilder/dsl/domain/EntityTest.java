@@ -30,7 +30,7 @@ public class EntityTest {
 
 		Assert.assertEquals("JournalArticle", entity.getName());
 
-		List<Column> columns = entity.getColumns();
+		List<NonFilteredPrimaryColumn> columns = entity.getColumns();
 
 		Assert.assertTrue(columns.isEmpty());
 
@@ -64,19 +64,19 @@ public class EntityTest {
 
 	@Test
 	public void testBuildWithColumn() {
-		Column companyIdColumn = new Column.Builder(
+		NonFilteredPrimaryColumn companyIdColumn = new NonFilteredPrimaryColumn.Builder(
 			"companyId", ServiceBuilderType.LONG).build();
 
 		Entity entity = builder.withColumn(companyIdColumn).build();
 
-		List<Column> columns = entity.getColumns();
+		List<NonFilteredPrimaryColumn> columns = entity.getColumns();
 
 		Assert.assertEquals(columns.toString(), 1, columns.size());
 	}
 
 	@Test
 	public void testBuildWithColumnDuplicatedDoesNotAddIt() {
-		Column companyIdColumn = new Column.Builder(
+		NonFilteredPrimaryColumn companyIdColumn = new NonFilteredPrimaryColumn.Builder(
 			"companyId", ServiceBuilderType.LONG).build();
 
 		Entity entity = builder
@@ -84,20 +84,20 @@ public class EntityTest {
 				.withColumn(companyIdColumn)
 				.build();
 
-		List<Column> columns = entity.getColumns();
+		List<NonFilteredPrimaryColumn> columns = entity.getColumns();
 
 		Assert.assertEquals(columns.toString(), 1, columns.size());
 	}
 
 	@Test
 	public void testBuildWithColumnFilterPrimaryAllowsOtherColumn() {
-		Column companyIdColumn =
-			new Column.Builder("companyId", ServiceBuilderType.LONG)
+		NonFilteredPrimaryColumn companyIdColumn =
+			new NonFilteredPrimaryColumn.Builder("companyId", ServiceBuilderType.LONG)
 				.filterPrimary()
 				.build();
 
-		Column groupIdColumn =
-			new Column.Builder("groupId", ServiceBuilderType.LONG)
+		NonFilteredPrimaryColumn groupIdColumn =
+			new NonFilteredPrimaryColumn.Builder("groupId", ServiceBuilderType.LONG)
 				.build();
 
 		Entity entity = builder
@@ -105,7 +105,7 @@ public class EntityTest {
 			.withColumn(groupIdColumn)
 			.build();
 
-		List<Column> columns = entity.getColumns();
+		List<NonFilteredPrimaryColumn> columns = entity.getColumns();
 
 		Assert.assertEquals(columns.toString(), 2, columns.size());
 	}
@@ -114,8 +114,8 @@ public class EntityTest {
 	public void
 		testBuildWithColumnFilterPrimaryDoesNotAllowOtherFilterPrimaryColumn() {
 
-		Column companyIdColumn =
-			new Column.Builder("companyId", ServiceBuilderType.LONG)
+		NonFilteredPrimaryColumn companyIdColumn =
+			new NonFilteredPrimaryColumn.Builder("companyId", ServiceBuilderType.LONG)
 				.filterPrimary()
 				.build();
 
@@ -124,23 +124,23 @@ public class EntityTest {
 			// compiler does not allow invoking withFilterPrimaryColumn twice
 			.build();
 
-		List<Column> columns = entity.getColumns();
+		List<NonFilteredPrimaryColumn> columns = entity.getColumns();
 
 		Assert.assertEquals(columns.toString(), 1, columns.size());
 	}
 
 	@Test
 	public void testBuildWithColumns() {
-		Column companyIdColumn = new Column.Builder(
+		NonFilteredPrimaryColumn companyIdColumn = new NonFilteredPrimaryColumn.Builder(
 			"companyId", ServiceBuilderType.LONG).build();
-		Column groupIdColumn = new Column.Builder(
+		NonFilteredPrimaryColumn groupIdColumn = new NonFilteredPrimaryColumn.Builder(
 			"groupId", ServiceBuilderType.LONG).build();
 
 		Entity entity = builder
 			.withColumns(companyIdColumn, groupIdColumn)
 			.build();
 
-		List<Column> columns = entity.getColumns();
+		List<NonFilteredPrimaryColumn> columns = entity.getColumns();
 
 		Assert.assertEquals(columns.toString(), 2, columns.size());
 	}

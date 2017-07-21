@@ -25,15 +25,15 @@ import com.fasterxml.jackson.dataformat.xml.annotation.JacksonXmlRootElement;
  */
 @JacksonXmlRootElement(localName = "column")
 @JsonPropertyOrder(alphabetic = true)
-public class Column implements ServiceBuilderElement {
+public class NonFilteredPrimaryColumn implements ServiceBuilderElement {
 
 	@Override
 	public boolean equals(Object obj) {
-		if (!(obj instanceof Column)) {
+		if (!(obj instanceof NonFilteredPrimaryColumn)) {
 			return false;
 		}
 
-		Column that = (Column)obj;
+		NonFilteredPrimaryColumn that = (NonFilteredPrimaryColumn)obj;
 
 		return _name.equals(that._name);
 	}
@@ -133,7 +133,7 @@ public class Column implements ServiceBuilderElement {
 		 *             called pojo.getCompanyId() that will return a String.
 		 */
 		public Builder(String name, ServiceBuilderType type) {
-			_column = new Column();
+			_column = new NonFilteredPrimaryColumn();
 
 			_column._name = name;
 			_column._type = type;
@@ -266,10 +266,10 @@ public class Column implements ServiceBuilderElement {
 			return this;
 		}
 
-		public Column build() {
-			Column column = _column;
+		public NonFilteredPrimaryColumn build() {
+			NonFilteredPrimaryColumn column = _column;
 
-			_column = new Column();
+			_column = new NonFilteredPrimaryColumn();
 
 			return column;
 		}
@@ -422,11 +422,11 @@ public class Column implements ServiceBuilderElement {
 			return this;
 		}
 
-		private Column _column;
+		private NonFilteredPrimaryColumn _column;
 
 	}
 
-	private Column() {
+	private NonFilteredPrimaryColumn() {
 	}
 
 	/**

@@ -14,14 +14,14 @@
 
 package com.liferay.servicebuilder.dsl.xml;
 
-import com.liferay.servicebuilder.dsl.domain.Column;
+import com.liferay.servicebuilder.dsl.domain.NonFilteredPrimaryColumn;
 
 /**
  * @author Manuel de la Peña
  */
 public class ColumnSerializer extends BaseXMLSerializer {
 
-	public ColumnSerializer(Column column) {
+	public ColumnSerializer(NonFilteredPrimaryColumn column) {
 		super(column);
 	}
 

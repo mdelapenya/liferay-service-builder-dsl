@@ -64,7 +64,7 @@ public class EntityTest {
 
 	@Test
 	public void testBuildWithColumn() {
-		Column companyIdColumn = new ColumnBuilder(
+		Column companyIdColumn = new NonFilterPrimaryColumnBuilder(
 			"companyId", ServiceBuilderType.LONG).build();
 
 		Entity entity = builder.withColumn(companyIdColumn).build();
@@ -76,7 +76,7 @@ public class EntityTest {
 
 	@Test
 	public void testBuildWithColumnDuplicatedDoesNotAddIt() {
-		Column companyIdColumn = new ColumnBuilder(
+		Column companyIdColumn = new NonFilterPrimaryColumnBuilder(
 			"companyId", ServiceBuilderType.LONG).build();
 
 		Entity entity = builder
@@ -96,7 +96,8 @@ public class EntityTest {
 				.build();
 
 		Column groupIdColumn =
-			new ColumnBuilder("groupId", ServiceBuilderType.LONG)
+			new NonFilterPrimaryColumnBuilder(
+					"groupId", ServiceBuilderType.LONG)
 				.build();
 
 		Entity entity = builder
@@ -129,9 +130,9 @@ public class EntityTest {
 
 	@Test
 	public void testBuildWithColumns() {
-		Column companyIdColumn = new ColumnBuilder(
+		Column companyIdColumn = new NonFilterPrimaryColumnBuilder(
 			"companyId", ServiceBuilderType.LONG).build();
-		Column groupIdColumn = new ColumnBuilder(
+		Column groupIdColumn = new NonFilterPrimaryColumnBuilder(
 			"groupId", ServiceBuilderType.LONG).build();
 
 		Entity entity = builder

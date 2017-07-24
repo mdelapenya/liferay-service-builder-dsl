@@ -17,7 +17,7 @@ package com.liferay.servicebuilder.dsl.xml;
 import com.fasterxml.jackson.core.JsonProcessingException;
 
 import com.liferay.servicebuilder.dsl.domain.Column;
-import com.liferay.servicebuilder.dsl.domain.ColumnBuilder;
+import com.liferay.servicebuilder.dsl.domain.NonFilterPrimaryColumnBuilder;
 import com.liferay.servicebuilder.dsl.domain.ServiceBuilderType;
 
 import org.junit.Assert;
@@ -30,7 +30,7 @@ public class NonFilterPrimaryColumnSerializerTest {
 
 	@Test
 	public void testSerialize() throws JsonProcessingException {
-		Column column = new ColumnBuilder(
+		Column column = new NonFilterPrimaryColumnBuilder(
 			"companyId", ServiceBuilderType.LONG) .build();
 
 		XMLSerializer serializer = new ColumnSerializer(column);

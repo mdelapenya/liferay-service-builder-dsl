@@ -17,7 +17,7 @@ package com.liferay.servicebuilder.dsl.domain;
 /**
  * @author Manuel de la Peña
  */
-public class ColumnBuilder {
+public class NonFilterPrimaryColumnBuilder {
 
 	/**
 	 * @param name Specifies the getter and setter name in the entity.
@@ -29,7 +29,7 @@ public class ColumnBuilder {
 	 *             The above column specifies that there will be a getter
 	 *             called pojo.getCompanyId() that will return a String.
 	 */
-	public ColumnBuilder(String name, ServiceBuilderType type) {
+	public NonFilterPrimaryColumnBuilder(String name, ServiceBuilderType type) {
 		_column = new NonFilterPrimaryColumn();
 
 		_column.setName(name);
@@ -41,7 +41,7 @@ public class ColumnBuilder {
 	 * primary key of the entity. If multiple columns have the primary value
 	 * set to true, then a compound key will be created.
 	 */
-	public ColumnBuilder asPrimaryKey() {
+	public NonFilterPrimaryColumnBuilder asPrimaryKey() {
 		_column.setPrimary(true);
 
 		return this;
@@ -67,7 +67,7 @@ public class ColumnBuilder {
 	 * @param className the class name that retrieves a unique identifier
 	 * @return
 	 */
-	public ColumnBuilder autogeneratePrimaryKeyFromClass(
+	public NonFilterPrimaryColumnBuilder autogeneratePrimaryKeyFromClass(
 		ServiceBuilderType columnType, String className) {
 
 		_column.setIdParam(className);
@@ -97,7 +97,7 @@ public class ColumnBuilder {
 	 * @param columnType
 	 * @return
 	 */
-	public ColumnBuilder autogeneratePrimaryKeyFromIdentity(
+	public NonFilterPrimaryColumnBuilder autogeneratePrimaryKeyFromIdentity(
 		ServiceBuilderType columnType) {
 
 		_column.setIdType("identity");
@@ -123,7 +123,7 @@ public class ColumnBuilder {
 	 * @param columnType
 	 * @return
 	 */
-	public ColumnBuilder autogeneratePrimaryKeyFromIncrement(
+	public NonFilterPrimaryColumnBuilder autogeneratePrimaryKeyFromIncrement(
 		ServiceBuilderType columnType) {
 
 		_column.setIdType("increment");
@@ -153,7 +153,7 @@ public class ColumnBuilder {
 	 * @param idSequence
 	 * @return
 	 */
-	public ColumnBuilder autogeneratePrimaryKeyFromSequence(
+	public NonFilterPrimaryColumnBuilder autogeneratePrimaryKeyFromSequence(
 		ServiceBuilderType columnType, String idSequence) {
 
 		_column.setIdParam(idSequence);
@@ -175,7 +175,7 @@ public class ColumnBuilder {
 	 * The container-model value specifies whether the column represents the
 	 * primary key of a container model.
 	 */
-	public ColumnBuilder containerModel() {
+	public NonFilterPrimaryColumnBuilder containerModel() {
 		_column.setContainerModel(true);
 
 		return this;
@@ -189,7 +189,7 @@ public class ColumnBuilder {
 	 * that Hibernate does not try to issue unnecessary updates. The default
 	 * value is true.
 	 */
-	public ColumnBuilder convertsNull() {
+	public NonFilterPrimaryColumnBuilder convertsNull() {
 		_column.setConvertNull(true);
 
 		return this;
@@ -200,7 +200,7 @@ public class ColumnBuilder {
 	 * can have different values for different locales. The default value is
 	 * false.
 	 */
-	public ColumnBuilder localized() {
+	public NonFilterPrimaryColumnBuilder localized() {
 		_column.setLocalized(true);
 
 		return this;
@@ -210,7 +210,7 @@ public class ColumnBuilder {
 	 * The parent-container-model value specifies whether the column
 	 * represents the primary key of a parent container model.
 	 */
-	public ColumnBuilder parentContainerModel() {
+	public NonFilterPrimaryColumnBuilder parentContainerModel() {
 		_column.setParentContainerModel(true);
 
 		return this;
@@ -221,7 +221,7 @@ public class ColumnBuilder {
 	 * for this column. This accessor will provide a fast and type-safe way
 	 * to access column value.
 	 */
-	public ColumnBuilder withAccessor() {
+	public NonFilterPrimaryColumnBuilder withAccessor() {
 		_column.setAccessor(true);
 
 		return this;
@@ -231,7 +231,7 @@ public class ColumnBuilder {
 	 * Set db-name to map the field to a physical database column that is
 	 * different from the column name.
 	 */
-	public ColumnBuilder withDbName(String dbName) {
+	public NonFilterPrimaryColumnBuilder withDbName(String dbName) {
 		_column.setDbName(dbName);
 
 		return this;
@@ -243,7 +243,7 @@ public class ColumnBuilder {
 	 * value in the entity element is true, then the json-enabled value in
 	 * the column element is true.
 	 */
-	public ColumnBuilder withJsonSerialization() {
+	public NonFilterPrimaryColumnBuilder withJsonSerialization() {
 		_column.setJsonSerialization(true);
 
 		return this;
@@ -282,7 +282,7 @@ public class ColumnBuilder {
 	 * @param entity
 	 * @param mappingTable
 	 */
-	public ColumnBuilder withManyToManyRelationship(
+	public NonFilterPrimaryColumnBuilder withManyToManyRelationship(
 		String entity, String mappingTable) {
 
 		_column.setEntity(entity);
@@ -295,7 +295,7 @@ public class ColumnBuilder {
 	 * The lazy value is only valid when type is Blob. It specifies whether
 	 * or not to do a lazy fetch for Blob. The default value is true.
 	 */
-	public ColumnBuilder withoutLazyFetch() {
+	public NonFilterPrimaryColumnBuilder withoutLazyFetch() {
 		if ((_column.getType() == null) ||
 			!_column.getType().equals(ServiceBuilderType.BLOB)) {
 

@@ -182,8 +182,8 @@ public class NonFilterPrimaryColumnTest {
 
 	@Test
 	public void testBuildWithoutLazyFetchFromNonBlobField() {
-		NonFilterPrimaryColumnBuilder builder = new
-			NonFilterPrimaryColumnBuilder("blobField", ServiceBuilderType.BLOB);
+		ColumnBuilder builder = ColumnBuilderFactory.getColumnBuilder(
+			"blobField", ServiceBuilderType.BLOB, false);
 
 		Column column = builder.withoutLazyFetch().build();
 
@@ -192,10 +192,10 @@ public class NonFilterPrimaryColumnTest {
 
 	@Test
 	public void testEquals() {
-		Column column1 = new NonFilterPrimaryColumnBuilder(
-			"companyId", ServiceBuilderType.LONG).build();
-		Column column2 = new NonFilterPrimaryColumnBuilder(
-			"companyId", ServiceBuilderType.LONG).build();
+		Column column1 = ColumnBuilderFactory.getColumnBuilder(
+			"companyId", ServiceBuilderType.LONG, false).build();
+		Column column2 = ColumnBuilderFactory.getColumnBuilder(
+			"companyId", ServiceBuilderType.LONG, false).build();
 
 		Assert.assertTrue(column1.equals(column2));
 		Assert.assertTrue(column2.equals(column1));
@@ -204,8 +204,8 @@ public class NonFilterPrimaryColumnTest {
 	@Test
 	public void testEqualsNotEquals() {
 		Column column1 = builder.build();
-		Column column2 = new NonFilterPrimaryColumnBuilder(
-			"companyId", ServiceBuilderType.LONG).build();
+		Column column2 = ColumnBuilderFactory.getColumnBuilder(
+			"companyId", ServiceBuilderType.LONG, false).build();
 
 		Assert.assertFalse(column1.equals(column2));
 		Assert.assertFalse(column2.equals(column1));
@@ -218,7 +218,7 @@ public class NonFilterPrimaryColumnTest {
 		Assert.assertTrue(column1.equals(column1));
 	}
 
-	private NonFilterPrimaryColumnBuilder builder =
-		new NonFilterPrimaryColumnBuilder("groupId", ServiceBuilderType.LONG);
+	private ColumnBuilder builder = ColumnBuilderFactory.getColumnBuilder(
+		"groupId", ServiceBuilderType.LONG, false);
 
 }

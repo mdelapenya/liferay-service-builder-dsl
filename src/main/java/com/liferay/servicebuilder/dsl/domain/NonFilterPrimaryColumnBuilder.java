@@ -17,7 +17,7 @@ package com.liferay.servicebuilder.dsl.domain;
 /**
  * @author Manuel de la Peña
  */
-public class NonFilterPrimaryColumnBuilder {
+public class NonFilterPrimaryColumnBuilder extends BaseColumnBuilder {
 
 	/**
 	 * @param name Specifies the getter and setter name in the entity.
@@ -30,283 +30,21 @@ public class NonFilterPrimaryColumnBuilder {
 	 *             called pojo.getCompanyId() that will return a String.
 	 */
 	public NonFilterPrimaryColumnBuilder(String name, ServiceBuilderType type) {
-		_column = new NonFilterPrimaryColumn();
-
-		_column.setName(name);
-		_column.setType(type);
+		super(name, type, false);
 	}
 
-	/**
-	 * If the primary value is set to true, then this column is part of the
-	 * primary key of the entity. If multiple columns have the primary value
-	 * set to true, then a compound key will be created.
-	 */
-	public NonFilterPrimaryColumnBuilder asPrimaryKey() {
-		_column.setPrimary(true);
-
-		return this;
-	}
-
-	/**
-	 * Uses a class to generate a primary key. For example:
-	 *
-	 * <column
-	 *     name="id"
-	 *     type="Integer"
-	 *     primary="true"
-	 *     id-type="class"
-	 *     id-param="com.liferay.counter.service.persistence.IDGenerator"
-	 * />
-	 *
-	 * The class specified in the id-param value will be called to retrieve
-	 * a unique identifier (in the example above, an Integer) that will be
-	 * used as the primary key for the new record. This implementation works
-	 * for all supported databases.
-	 *
-	 * @param columnType
-	 * @param className the class name that retrieves a unique identifier
-	 * @return
-	 */
-	public NonFilterPrimaryColumnBuilder autogeneratePrimaryKeyFromClass(
-		ServiceBuilderType columnType, String className) {
-
-		_column.setIdParam(className);
-		_column.setIdType("class");
-		_column.setType(columnType);
-
-		return this;
-	}
-
-	/**
-	 * Uses an identity column to generate a primary key.
-	 *
-	 * For example:
-	 *
-	 * <column
-	 *     name="id"
-	 *     type="Integer"
-	 *     primary="true"
-	 *     id-type="identity"
-	 * />
-	 *
-	 * In this implementation, the create table SQL generated for this
-	 * entity will create an identity column that natively auto-generates a
-	 * primary key whenever an insert occurs. This implementation is only
-	 * supported by DB2, MySQL, and MS SQL Server.
-	 *
-	 * @param columnType
-	 * @return
-	 */
-	public NonFilterPrimaryColumnBuilder autogeneratePrimaryKeyFromIdentity(
-		ServiceBuilderType columnType) {
-
-		_column.setIdType("identity");
-		_column.setType(columnType);
-
-		return this;
-	}
-
-	/**
-	 * Generates identifiers that are unique only when no other process is
-	 * inserting data into the same table. This implementation should NOT be
-	 * used in a clustered environment, but it does work for all supported
-	 * databases.
-	 *
-	 * For example:
-	 *
-	 * <column
-	 *     name="id"
-	 *     type="Integer"
-	 *     primary="true"
-	 *     id-type="increment"
-	 * />
-	 * @param columnType
-	 * @return
-	 */
-	public NonFilterPrimaryColumnBuilder autogeneratePrimaryKeyFromIncrement(
-		ServiceBuilderType columnType) {
-
-		_column.setIdType("increment");
-		_column.setType(columnType);
-
-		return this;
-	}
-
-	/**
-	 * Uses a sequence to generate a primary key. For example:
-	 *
-	 * <column
-	 *     name="id"
-	 *     type="Integer"
-	 *     primary="true"
-	 *     id-type="sequence"
-	 *     id-param="id_sequence"
-	 * />
-	 *
-	 * In this implementation, a create sequence SQL statement is created
-	 * based on the id-param value (stored in /sql/sequences.sql). This
-	 * sequence is then accessed to generate a unique identifier whenever an
-	 * insert occurs. This implementation is only supported by DB2, Oracle,
-	 * PostgreSQL, and SAP DB.
-	 *
-	 * @param columnType
-	 * @param idSequence
-	 * @return
-	 */
-	public NonFilterPrimaryColumnBuilder autogeneratePrimaryKeyFromSequence(
-		ServiceBuilderType columnType, String idSequence) {
-
-		_column.setIdParam(idSequence);
-		_column.setIdType("sequence");
-		_column.setType(columnType);
-
-		return this;
-	}
-
+	@Override
 	public Column build() {
-		NonFilterPrimaryColumn column = _column;
+		NonFilterPrimaryColumn column = (NonFilterPrimaryColumn)this.column;
 
-		_column = new NonFilterPrimaryColumn();
+		this.column = new NonFilterPrimaryColumn();
 
 		return column;
 	}
 
-	/**
-	 * The container-model value specifies whether the column represents the
-	 * primary key of a container model.
-	 */
-	public NonFilterPrimaryColumnBuilder containerModel() {
-		_column.setContainerModel(true);
-
-		return this;
+	@Override
+	protected Column newColumn() {
+		return new NonFilterPrimaryColumn();
 	}
-
-	/**
-	 * The convert-null value specifies whether or not the column value is
-	 * automatically converted to a non null value if it is null. This only
-	 * applies if the type value is String. This is particularly useful if
-	 * your entity is referencing a read only table or a database view so
-	 * that Hibernate does not try to issue unnecessary updates. The default
-	 * value is true.
-	 */
-	public NonFilterPrimaryColumnBuilder convertsNull() {
-		_column.setConvertNull(true);
-
-		return this;
-	}
-
-	/**
-	 * The localized value specifies whether or not the value of the column
-	 * can have different values for different locales. The default value is
-	 * false.
-	 */
-	public NonFilterPrimaryColumnBuilder localized() {
-		_column.setLocalized(true);
-
-		return this;
-	}
-
-	/**
-	 * The parent-container-model value specifies whether the column
-	 * represents the primary key of a parent container model.
-	 */
-	public NonFilterPrimaryColumnBuilder parentContainerModel() {
-		_column.setParentContainerModel(true);
-
-		return this;
-	}
-
-	/**
-	 * This accessor value specifies whether or not to generate an accessor
-	 * for this column. This accessor will provide a fast and type-safe way
-	 * to access column value.
-	 */
-	public NonFilterPrimaryColumnBuilder withAccessor() {
-		_column.setAccessor(true);
-
-		return this;
-	}
-
-	/**
-	 * Set db-name to map the field to a physical database column that is
-	 * different from the column name.
-	 */
-	public NonFilterPrimaryColumnBuilder withDbName(String dbName) {
-		_column.setDbName(dbName);
-
-		return this;
-	}
-
-	/**
-	 * The json-enabled value specifies whether or not the column should be
-	 * annotated for JSON serialization. By default, if the json-enabled
-	 * value in the entity element is true, then the json-enabled value in
-	 * the column element is true.
-	 */
-	public NonFilterPrimaryColumnBuilder withJsonSerialization() {
-		_column.setJsonSerialization(true);
-
-		return this;
-	}
-
-	/**
-	 * The Service Builder will assume you are specifying a many to many
-	 * relationship.
-	 *
-	 * For example:
-	 *
-	 * <column
-	 *    name="roles"
-	 *    type="Collection"
-	 *    entity="Role"
-	 *    mapping-table="Groups_Roles"
-	 * />
-	 *
-	 * The above column specifies that there will be a getter called
-	 * pojo.getRoles() that will return a collection. It will use a mapping
-	 * table called Groups_Roles to give a many to many relationship between
-	 * groups and roles.
-	 *
-	 * If you are creating a mapping table for an entity defined in another
-	 * service.xml, you need to specify the full package path.
-	 *
-	 * For example:
-	 *
-	 * <column
-	 *     name="organizations"
-	 *     type="Collection"
-	 *     entity="com.liferay.portal.Organization"
-	 *     mapping-table="Foo_Organizations"
-	 * />
-	 *
-	 * @param entity
-	 * @param mappingTable
-	 */
-	public NonFilterPrimaryColumnBuilder withManyToManyRelationship(
-		String entity, String mappingTable) {
-
-		_column.setEntity(entity);
-		_column.setMappingTable(mappingTable);
-
-		return this;
-	}
-
-	/**
-	 * The lazy value is only valid when type is Blob. It specifies whether
-	 * or not to do a lazy fetch for Blob. The default value is true.
-	 */
-	public NonFilterPrimaryColumnBuilder withoutLazyFetch() {
-		if ((_column.getType() == null) ||
-			!_column.getType().equals(ServiceBuilderType.BLOB)) {
-
-			return this;
-		}
-
-		_column.setLazy(false);
-
-		return this;
-	}
-
-	private NonFilterPrimaryColumn _column;
 
 }

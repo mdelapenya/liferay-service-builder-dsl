@@ -64,8 +64,8 @@ public class EntityTest {
 
 	@Test
 	public void testBuildWithColumn() {
-		Column companyIdColumn = new NonFilterPrimaryColumnBuilder(
-			"companyId", ServiceBuilderType.LONG).build();
+		Column companyIdColumn = ColumnBuilderFactory.getColumnBuilder(
+			"companyId", ServiceBuilderType.LONG, false).build();
 
 		Entity entity = builder.withColumn(companyIdColumn).build();
 
@@ -76,8 +76,8 @@ public class EntityTest {
 
 	@Test
 	public void testBuildWithColumnDuplicatedDoesNotAddIt() {
-		Column companyIdColumn = new NonFilterPrimaryColumnBuilder(
-			"companyId", ServiceBuilderType.LONG).build();
+		Column companyIdColumn = ColumnBuilderFactory.getColumnBuilder(
+			"companyId", ServiceBuilderType.LONG, false).build();
 
 		Entity entity = builder
 				.withColumn(companyIdColumn)
@@ -92,12 +92,13 @@ public class EntityTest {
 	@Test
 	public void testBuildWithColumnFilterPrimaryAllowsOtherColumn() {
 		FilterPrimaryColumn companyIdColumn =
-			new FilterPrimaryColumnBuilder("companyId", ServiceBuilderType.LONG)
+			(FilterPrimaryColumn) ColumnBuilderFactory.getColumnBuilder(
+					"companyId", ServiceBuilderType.LONG, true)
 				.build();
 
 		Column groupIdColumn =
-			new NonFilterPrimaryColumnBuilder(
-					"groupId", ServiceBuilderType.LONG)
+			ColumnBuilderFactory.getColumnBuilder(
+					"groupId", ServiceBuilderType.LONG, false)
 				.build();
 
 		Entity entity = builder
@@ -115,7 +116,8 @@ public class EntityTest {
 		testBuildWithColumnFilterPrimaryDoesNotAllowOtherFilterPrimaryColumn() {
 
 		FilterPrimaryColumn companyIdColumn =
-			new FilterPrimaryColumnBuilder("companyId", ServiceBuilderType.LONG)
+			(FilterPrimaryColumn) ColumnBuilderFactory.getColumnBuilder(
+					"companyId", ServiceBuilderType.LONG, true)
 				.build();
 
 		Entity entity = builder
@@ -130,10 +132,10 @@ public class EntityTest {
 
 	@Test
 	public void testBuildWithColumns() {
-		Column companyIdColumn = new NonFilterPrimaryColumnBuilder(
-			"companyId", ServiceBuilderType.LONG).build();
-		Column groupIdColumn = new NonFilterPrimaryColumnBuilder(
-			"groupId", ServiceBuilderType.LONG).build();
+		Column companyIdColumn = ColumnBuilderFactory.getColumnBuilder(
+			"companyId", ServiceBuilderType.LONG, false).build();
+		Column groupIdColumn = ColumnBuilderFactory.getColumnBuilder(
+			"groupId", ServiceBuilderType.LONG, false).build();
 
 		Entity entity = builder
 			.withColumns(companyIdColumn, groupIdColumn)

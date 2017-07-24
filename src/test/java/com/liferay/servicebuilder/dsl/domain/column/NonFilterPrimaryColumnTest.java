@@ -204,6 +204,26 @@ public class NonFilterPrimaryColumnTest {
 	}
 
 	@Test
+	public void testEqualsFilterPrimaryColumnDifferentName() {
+		Column column1 = builder.build();
+		Column column2 = ColumnBuilderFactory.getFilterPrimaryColumnBuilder(
+			"companyId", ServiceBuilderType.LONG).build();
+
+		Assert.assertFalse(column1.equals(column2));
+		Assert.assertFalse(column2.equals(column1));
+	}
+
+	@Test
+	public void testEqualsFilterPrimaryColumnSameName() {
+		Column column1 = builder.build();
+		Column column2 = ColumnBuilderFactory.getFilterPrimaryColumnBuilder(
+			"groupId", ServiceBuilderType.LONG).build();
+
+		Assert.assertTrue(column1.equals(column2));
+		Assert.assertTrue(column2.equals(column1));
+	}
+
+	@Test
 	public void testEqualsNotEquals() {
 		Column column1 = builder.build();
 		Column column2 = ColumnBuilderFactory.getColumnBuilder(

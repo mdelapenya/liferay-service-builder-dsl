@@ -29,13 +29,13 @@ public class FilterPrimaryColumn extends NonFilterPrimaryColumn {
 
 	@Override
 	public boolean equals(Object obj) {
-		if (!(obj instanceof FilterPrimaryColumn)) {
+		if (!(obj instanceof Column)) {
 			return false;
 		}
 
-		FilterPrimaryColumn that = (FilterPrimaryColumn)obj;
+		Column that = (Column)obj;
 
-		return name.equals(that.name);
+		return name.equals(that.getName());
 	}
 
 	@JacksonXmlProperty(isAttribute = true, localName = "filter-primary")

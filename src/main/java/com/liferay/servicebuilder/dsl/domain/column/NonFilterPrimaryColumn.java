@@ -31,13 +31,13 @@ public class NonFilterPrimaryColumn implements Column {
 
 	@Override
 	public boolean equals(Object obj) {
-		if (!(obj instanceof NonFilterPrimaryColumn)) {
+		if (!(obj instanceof Column)) {
 			return false;
 		}
 
-		NonFilterPrimaryColumn that = (NonFilterPrimaryColumn)obj;
+		Column that = (Column)obj;
 
-		return name.equals(that.name);
+		return name.equals(that.getName());
 	}
 
 	@JacksonXmlProperty(isAttribute = true, localName = "db-name")

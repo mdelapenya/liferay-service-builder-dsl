@@ -31,7 +31,7 @@ public class NonFilterPrimaryColumnSerializerTest {
 	@Test
 	public void testSerialize() throws JsonProcessingException {
 		Column column = ColumnBuilderFactory.getColumnBuilder(
-			"companyId", ServiceBuilderType.LONG, false).build();
+			"companyId", ServiceBuilderType.LONG).build();
 
 		XMLSerializer serializer = new ColumnSerializer(column);
 

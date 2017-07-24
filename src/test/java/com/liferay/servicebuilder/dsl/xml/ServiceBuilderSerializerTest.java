@@ -37,7 +37,7 @@ public class ServiceBuilderSerializerTest {
 	@Test
 	public void testSerialize() throws JsonProcessingException {
 		Column column = ColumnBuilderFactory.getColumnBuilder(
-				"companyId", ServiceBuilderType.LONG, false)
+				"companyId", ServiceBuilderType.LONG)
 			.asPrimaryKey()
 			.build();
 

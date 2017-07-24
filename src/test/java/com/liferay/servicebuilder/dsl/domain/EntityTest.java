@@ -65,7 +65,7 @@ public class EntityTest {
 	@Test
 	public void testBuildWithColumn() {
 		Column companyIdColumn = ColumnBuilderFactory.getColumnBuilder(
-			"companyId", ServiceBuilderType.LONG, false).build();
+			"companyId", ServiceBuilderType.LONG).build();
 
 		Entity entity = builder.withColumn(companyIdColumn).build();
 
@@ -77,12 +77,12 @@ public class EntityTest {
 	@Test
 	public void testBuildWithColumnDuplicatedDoesNotAddIt() {
 		Column companyIdColumn = ColumnBuilderFactory.getColumnBuilder(
-			"companyId", ServiceBuilderType.LONG, false).build();
+			"companyId", ServiceBuilderType.LONG).build();
 
 		Entity entity = builder
-				.withColumn(companyIdColumn)
-				.withColumn(companyIdColumn)
-				.build();
+			.withColumn(companyIdColumn)
+			.withColumn(companyIdColumn)
+			.build();
 
 		List<Column> columns = entity.getColumns();
 
@@ -92,13 +92,14 @@ public class EntityTest {
 	@Test
 	public void testBuildWithColumnFilterPrimaryAllowsOtherColumn() {
 		FilterPrimaryColumn companyIdColumn =
-			(FilterPrimaryColumn) ColumnBuilderFactory.getColumnBuilder(
-					"companyId", ServiceBuilderType.LONG, true)
+			(FilterPrimaryColumn)ColumnBuilderFactory
+				.getFilterPrimaryColumnBuilder(
+					"companyId", ServiceBuilderType.LONG)
 				.build();
 
 		Column groupIdColumn =
 			ColumnBuilderFactory.getColumnBuilder(
-					"groupId", ServiceBuilderType.LONG, false)
+					"groupId", ServiceBuilderType.LONG)
 				.build();
 
 		Entity entity = builder
@@ -116,8 +117,9 @@ public class EntityTest {
 		testBuildWithColumnFilterPrimaryDoesNotAllowOtherFilterPrimaryColumn() {
 
 		FilterPrimaryColumn companyIdColumn =
-			(FilterPrimaryColumn) ColumnBuilderFactory.getColumnBuilder(
-					"companyId", ServiceBuilderType.LONG, true)
+			(FilterPrimaryColumn)ColumnBuilderFactory
+				.getFilterPrimaryColumnBuilder(
+					"companyId", ServiceBuilderType.LONG)
 				.build();
 
 		Entity entity = builder
@@ -133,9 +135,9 @@ public class EntityTest {
 	@Test
 	public void testBuildWithColumns() {
 		Column companyIdColumn = ColumnBuilderFactory.getColumnBuilder(
-			"companyId", ServiceBuilderType.LONG, false).build();
+			"companyId", ServiceBuilderType.LONG).build();
 		Column groupIdColumn = ColumnBuilderFactory.getColumnBuilder(
-			"groupId", ServiceBuilderType.LONG, false).build();
+			"groupId", ServiceBuilderType.LONG).build();
 
 		Entity entity = builder
 			.withColumns(companyIdColumn, groupIdColumn)

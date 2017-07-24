@@ -28,8 +28,8 @@ public class FilteredPrimaryColumnSerializerTest {
 
 	@Test
 	public void testSerialize() throws JsonProcessingException {
-		Column column = ColumnBuilderFactory.getColumnBuilder(
-			"companyId", ServiceBuilderType.LONG, true).build();
+		Column column = ColumnBuilderFactory.getFilterPrimaryColumnBuilder(
+			"companyId", ServiceBuilderType.LONG).build();
 
 		XMLSerializer serializer = new ColumnSerializer(column);
 

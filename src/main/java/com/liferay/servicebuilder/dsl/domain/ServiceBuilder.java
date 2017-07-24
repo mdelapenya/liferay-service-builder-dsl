@@ -22,6 +22,9 @@ import com.fasterxml.jackson.dataformat.xml.annotation.JacksonXmlRootElement;
 import java.util.ArrayList;
 import java.util.List;
 
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
+
 /**
  * The service-builder element is the root of the deployment descriptor for
  * a Service Builder descriptor that is used to generate services available to
@@ -160,6 +163,13 @@ public class ServiceBuilder implements ServiceBuilderElement {
 			if (!_serviceBuilder._serviceBuilderImports.contains(file)) {
 				_serviceBuilder._serviceBuilderImports.add(file);
 			}
+			else {
+				if (_logger.isWarnEnabled()) {
+					_logger.warn(
+						"Not adding " + file +
+							" Service Builder file because it already exists");
+				}
+			}
 
 			return this;
 		}
@@ -178,6 +188,13 @@ public class ServiceBuilder implements ServiceBuilderElement {
 			if (!_serviceBuilder._entities.contains(entity)) {
 				_serviceBuilder._entities.add(entity);
 			}
+			else {
+				if (_logger.isWarnEnabled()) {
+					_logger.warn(
+						"Not adding " + entity.getName() +
+							" entity because it already exists");
+				}
+			}
 
 			return this;
 		}
@@ -185,6 +202,13 @@ public class ServiceBuilder implements ServiceBuilderElement {
 		public Builder withException(String exception) {
 			if (!_serviceBuilder._exceptions.contains(exception)) {
 				_serviceBuilder._exceptions.add(exception);
+			}
+			else {
+				if (_logger.isWarnEnabled()) {
+					_logger.warn(
+						"Not adding " + exception +
+							" exception because it already exists");
+				}
 			}
 
 			return this;
@@ -251,5 +275,8 @@ public class ServiceBuilder implements ServiceBuilderElement {
 	 * importing it.
 	 */
 	private List<String> _serviceBuilderImports = new ArrayList<>();
+
+	private static final Logger _logger = LogManager.getLogger(
+		ServiceBuilder.class);
 
 }

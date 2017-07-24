@@ -118,6 +118,31 @@ public class EntityTest {
 
 	@Test
 	public void
+		testBuildWithColumnFilterPrimaryDoesNotAllowColumnsWithSameName() {
+
+		FilterPrimaryColumn companyIdColumn =
+			(FilterPrimaryColumn)ColumnBuilderFactory
+				.getFilterPrimaryColumnBuilder(
+					"companyId", ServiceBuilderType.LONG)
+				.build();
+
+		Column groupIdColumn =
+			ColumnBuilderFactory.getColumnBuilder(
+				"companyId", ServiceBuilderType.LONG)
+				.build();
+
+		Entity entity = builder
+			.withFilterPrimaryColumn(companyIdColumn)
+			.withColumn(groupIdColumn)
+			.build();
+
+		List<Column> columns = entity.getColumns();
+
+		Assert.assertEquals(columns.toString(), 1, columns.size());
+	}
+
+	@Test
+	public void
 		testBuildWithColumnFilterPrimaryDoesNotAllowOtherFilterPrimaryColumn() {
 
 		FilterPrimaryColumn companyIdColumn =

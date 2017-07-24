@@ -22,6 +22,9 @@ import com.fasterxml.jackson.dataformat.xml.annotation.JacksonXmlRootElement;
 import java.util.ArrayList;
 import java.util.List;
 
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
+
 /**
  * The order element specifies a default ordering and sorting of the entities
  * when they are retrieved from the database.
@@ -71,6 +74,13 @@ public class Order implements ServiceBuilderElement {
 			if (!_order._orderColumns.contains(orderColumn)) {
 				_order._orderColumns.add(orderColumn);
 			}
+			else {
+				if (_logger.isWarnEnabled()) {
+					_logger.warn(
+						"Not adding " + orderColumn.getName() +
+							" order-column because it already exists");
+				}
+			}
 
 			return this;
 		}
@@ -89,5 +99,7 @@ public class Order implements ServiceBuilderElement {
 	private OrderBy _by;
 
 	private List<OrderColumn> _orderColumns = new ArrayList<>();
+
+	private static final Logger _logger = LogManager.getLogger(Order.class);
 
 }

@@ -26,6 +26,9 @@ import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 
+import org.apache.logging.log4j.Logger;
+import org.apache.logging.log4j.LogManager;
+
 /**
  * An entity usually represents a business facade and a table in the database.
  * If an entity does not have any columns, then it only represents a business
@@ -284,6 +287,13 @@ public class Entity implements ServiceBuilderElement {
 			if (!_entity._finders.contains(finder)) {
 				_entity._finders.add(finder);
 			}
+			else {
+				if (_logger.isWarnEnabled()) {
+					_logger.warn(
+						"Not adding " + finder.getName() +
+							" finder because it already exists");
+				}
+			}
 
 			return this;
 		}
@@ -481,11 +491,25 @@ public class Entity implements ServiceBuilderElement {
 			if (!_entity._columns.contains(column)) {
 				_entity._columns.add(column);
 			}
+			else {
+				if (_logger.isWarnEnabled()) {
+					_logger.warn(
+						"Not adding " + column.getName() +
+							" column because it already exists");
+				}
+			}
 		}
 
 		private void _addTxRequiredMethod(TxRequiredMethod txRequiredMethod) {
 			if (!_entity._txRequiredMethodMethods.contains(txRequiredMethod)) {
 				_entity._txRequiredMethodMethods.add(txRequiredMethod);
+			}
+			else {
+				if (_logger.isWarnEnabled()) {
+					_logger.warn(
+						"Not adding " + txRequiredMethod.getMethodName() +
+							" txRequiredMethod because it already exists");
+				}
 			}
 		}
 
@@ -698,5 +722,7 @@ public class Entity implements ServiceBuilderElement {
 		EntityBuilder withUuidAccessor();
 
 	}
+
+	private static final Logger _logger = LogManager.getLogger(Entity.class);
 
 }

@@ -22,6 +22,9 @@ import com.fasterxml.jackson.dataformat.xml.annotation.JacksonXmlRootElement;
 import java.util.ArrayList;
 import java.util.List;
 
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
+
 /**
  * The finder element represents a generated finder method.
  *
@@ -132,6 +135,13 @@ public class Finder implements ServiceBuilderElement {
 			if (!_finder._finderColumns.contains(finderColumn)) {
 				_finder._finderColumns.add(finderColumn);
 			}
+			else {
+				if (_logger.isWarnEnabled()) {
+					_logger.warn(
+						"Not adding " + finderColumn.getName() +
+							" finder-column because it already exists");
+				}
+			}
 		}
 
 		private Finder _finder;
@@ -166,5 +176,7 @@ public class Finder implements ServiceBuilderElement {
 	 * If the unique value is true, then the finder must return a unique entity.
 	 */
 	private boolean _unique;
+
+	private static final Logger _logger = LogManager.getLogger(Entity.class);
 
 }

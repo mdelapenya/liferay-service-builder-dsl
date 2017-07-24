@@ -32,7 +32,7 @@ public class NonFilterPrimaryColumnBuilder extends BaseColumnBuilder {
 	 *             called pojo.getCompanyId() that will return a String.
 	 */
 	public NonFilterPrimaryColumnBuilder(String name, ServiceBuilderType type) {
-		super(name, type, false);
+		super(name, type);
 	}
 
 	@Override

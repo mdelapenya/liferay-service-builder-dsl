@@ -32,7 +32,7 @@ public class FilterPrimaryColumnBuilder extends BaseColumnBuilder {
 	 *             called pojo.getCompanyId() that will return a String.
 	 */
 	public FilterPrimaryColumnBuilder(String name, ServiceBuilderType type) {
-		super(name, type, true);
+		super(name, type);
 
 		((FilterPrimaryColumn)column).setFilterPrimary(true);
 	}

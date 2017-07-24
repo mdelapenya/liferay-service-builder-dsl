@@ -31,9 +31,7 @@ public abstract class BaseColumnBuilder implements ColumnBuilder {
 	 *             The above column specifies that there will be a getter
 	 *             called pojo.getCompanyId() that will return a String.
 	 */
-	protected BaseColumnBuilder(
-		String name, ServiceBuilderType type, boolean filterPrimary) {
-
+	protected BaseColumnBuilder(String name, ServiceBuilderType type) {
 		column = newColumn();
 
 		column.setName(name);

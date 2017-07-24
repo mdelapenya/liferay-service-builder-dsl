@@ -74,10 +74,22 @@ public class FinderTest {
 	}
 
 	@Test
-	public void testBuildWithFinderColumn() {
-		FinderColumn finderColumn = new FinderColumn.Builder("groupId").build();
+	public void testBuildWithDuplicatedFinderColumnDoesNotAddIt() {
+		FinderColumn finderColumn1 = new FinderColumn.Builder(
+			"groupId").build();
 
-		Finder finder = builder.withFinderColumns(finderColumn).build();
+		Finder finder = builder
+			.withFinderColumns(finderColumn1)
+			.build();
+
+		List<FinderColumn> finderColumns = finder.getFinderColumns();
+
+		Assert.assertEquals(finderColumns.toString(), 1, finderColumns.size());
+	}
+
+	@Test
+	public void testBuildWithFinderColumn() {
+		Finder finder = builder.build();
 
 		List<FinderColumn> finderColumns = finder.getFinderColumns();
 
@@ -87,12 +99,10 @@ public class FinderTest {
 	@Test
 	public void testBuildWithFinderColumns() {
 		FinderColumn finderColumn1 = new FinderColumn.Builder(
-			"groupId").build();
-		FinderColumn finderColumn2 = new FinderColumn.Builder(
 			"companyId").build();
 
 		Finder finder = builder
-			.withFinderColumns(finderColumn1, finderColumn2)
+			.withFinderColumns(finderColumn1)
 			.build();
 
 		List<FinderColumn> finderColumns = finder.getFinderColumns();

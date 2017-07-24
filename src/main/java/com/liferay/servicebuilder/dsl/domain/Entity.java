@@ -269,7 +269,9 @@ public class Entity implements ServiceBuilderElement {
 			return this;
 		}
 
-		public EntityBuilder withFilterPrimaryColumn(Column column) {
+		public EntityBuilder withFilterPrimaryColumn(
+			FilteredPrimaryColumn column) {
+
 			_addColumn(column);
 
 			return this;
@@ -632,7 +634,8 @@ public class Entity implements ServiceBuilderElement {
 
 	public interface EntityBuilder extends BuilderWithFilterPrimary {
 
-		BuilderWithFilterPrimary withFilterPrimaryColumn(Column column);
+		BuilderWithFilterPrimary withFilterPrimaryColumn(
+			FilteredPrimaryColumn column);
 
 	}
 

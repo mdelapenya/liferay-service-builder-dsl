@@ -164,7 +164,7 @@ public class FilterPrimaryColumnBuilder {
 		return this;
 	}
 
-	public Column build() {
+	public FilteredPrimaryColumn build() {
 		FilteredPrimaryColumn column = _column;
 
 		_column = new FilteredPrimaryColumn();

@@ -30,7 +30,7 @@ public class ColumnBuilder {
 	 *             called pojo.getCompanyId() that will return a String.
 	 */
 	public ColumnBuilder(String name, ServiceBuilderType type) {
-		_column = new NonFilteredPrimaryColumn();
+		_column = new NonFilterPrimaryColumn();
 
 		_column.setName(name);
 		_column.setType(type);
@@ -164,9 +164,9 @@ public class ColumnBuilder {
 	}
 
 	public Column build() {
-		NonFilteredPrimaryColumn column = _column;
+		NonFilterPrimaryColumn column = _column;
 
-		_column = new NonFilteredPrimaryColumn();
+		_column = new NonFilterPrimaryColumn();
 
 		return column;
 	}
@@ -307,6 +307,6 @@ public class ColumnBuilder {
 		return this;
 	}
 
-	private NonFilteredPrimaryColumn _column;
+	private NonFilterPrimaryColumn _column;
 
 }

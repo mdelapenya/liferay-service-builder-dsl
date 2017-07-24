@@ -91,7 +91,7 @@ public class EntityTest {
 
 	@Test
 	public void testBuildWithColumnFilterPrimaryAllowsOtherColumn() {
-		FilteredPrimaryColumn companyIdColumn =
+		FilterPrimaryColumn companyIdColumn =
 			new FilterPrimaryColumnBuilder("companyId", ServiceBuilderType.LONG)
 				.build();
 
@@ -113,7 +113,7 @@ public class EntityTest {
 	public void
 		testBuildWithColumnFilterPrimaryDoesNotAllowOtherFilterPrimaryColumn() {
 
-		FilteredPrimaryColumn companyIdColumn =
+		FilterPrimaryColumn companyIdColumn =
 			new FilterPrimaryColumnBuilder("companyId", ServiceBuilderType.LONG)
 				.build();
 

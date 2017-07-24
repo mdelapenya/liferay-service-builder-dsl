@@ -25,15 +25,15 @@ import com.fasterxml.jackson.dataformat.xml.annotation.JacksonXmlRootElement;
  */
 @JacksonXmlRootElement(localName = "column")
 @JsonPropertyOrder(alphabetic = true)
-public class FilteredPrimaryColumn extends NonFilteredPrimaryColumn {
+public class FilterPrimaryColumn extends NonFilterPrimaryColumn {
 
 	@Override
 	public boolean equals(Object obj) {
-		if (!(obj instanceof FilteredPrimaryColumn)) {
+		if (!(obj instanceof FilterPrimaryColumn)) {
 			return false;
 		}
 
-		FilteredPrimaryColumn that = (FilteredPrimaryColumn)obj;
+		FilterPrimaryColumn that = (FilterPrimaryColumn)obj;
 
 		return name.equals(that.name);
 	}
@@ -47,7 +47,7 @@ public class FilteredPrimaryColumn extends NonFilteredPrimaryColumn {
 		_filterPrimary = filterPrimary;
 	}
 
-	protected FilteredPrimaryColumn() {
+	protected FilterPrimaryColumn() {
 		super();
 	}
 

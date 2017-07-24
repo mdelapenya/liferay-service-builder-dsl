@@ -20,7 +20,7 @@ import org.junit.Test;
 /**
  * @author Manuel de la Peña
  */
-public class NonFilteredPrimaryColumnTest {
+public class NonFilterPrimaryColumnTest {
 
 	@Test
 	public void testBuild() {

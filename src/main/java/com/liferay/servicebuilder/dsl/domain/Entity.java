@@ -55,7 +55,7 @@ public class Entity implements ServiceBuilderElement {
 
 	@JacksonXmlElementWrapper(useWrapping = false)
 	@JacksonXmlProperty(localName = "column")
-	public List<NonFilteredPrimaryColumn> getColumns() {
+	public List<Column> getColumns() {
 		return _columns;
 	}
 
@@ -223,14 +223,14 @@ public class Entity implements ServiceBuilderElement {
 			return this;
 		}
 
-		public EntityBuilder withColumn(NonFilteredPrimaryColumn column) {
+		public EntityBuilder withColumn(Column column) {
 			_addColumn(column);
 
 			return this;
 		}
 
-		public EntityBuilder withColumns(NonFilteredPrimaryColumn... columns) {
-			for (NonFilteredPrimaryColumn column : columns) {
+		public EntityBuilder withColumns(Column... columns) {
+			for (Column column : columns) {
 				_addColumn(column);
 			}
 
@@ -269,7 +269,7 @@ public class Entity implements ServiceBuilderElement {
 			return this;
 		}
 
-		public EntityBuilder withFilterPrimaryColumn(NonFilteredPrimaryColumn column) {
+		public EntityBuilder withFilterPrimaryColumn(Column column) {
 			_addColumn(column);
 
 			return this;
@@ -472,7 +472,7 @@ public class Entity implements ServiceBuilderElement {
 			return this;
 		}
 
-		private void _addColumn(NonFilteredPrimaryColumn column) {
+		private void _addColumn(Column column) {
 			if (!_entity._columns.contains(column)) {
 				_entity._columns.add(column);
 			}
@@ -498,7 +498,7 @@ public class Entity implements ServiceBuilderElement {
 	 */
 	private boolean _cacheEnabled = true;
 
-	private List<NonFilteredPrimaryColumn> _columns = new ArrayList<>();
+	private List<Column> _columns = new ArrayList<>();
 
 	/**
 	 * You can generate classes to use a custom data source and session factory.
@@ -632,7 +632,7 @@ public class Entity implements ServiceBuilderElement {
 
 	public interface EntityBuilder extends BuilderWithFilterPrimary {
 
-		BuilderWithFilterPrimary withFilterPrimaryColumn(NonFilteredPrimaryColumn column);
+		BuilderWithFilterPrimary withFilterPrimaryColumn(Column column);
 
 	}
 
@@ -644,9 +644,9 @@ public class Entity implements ServiceBuilderElement {
 
 		EntityBuilder disableTxManager();
 
-		EntityBuilder withColumn(NonFilteredPrimaryColumn column);
+		EntityBuilder withColumn(Column column);
 
-		EntityBuilder withColumns(NonFilteredPrimaryColumn... columns);
+		EntityBuilder withColumns(Column... columns);
 
 		EntityBuilder withDatasource(String datasource);
 

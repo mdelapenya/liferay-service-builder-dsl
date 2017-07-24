@@ -15,22 +15,21 @@
 package com.liferay.servicebuilder.dsl.xml;
 
 import com.fasterxml.jackson.core.JsonProcessingException;
-
 import com.liferay.servicebuilder.dsl.domain.Column;
 import com.liferay.servicebuilder.dsl.domain.ColumnBuilder;
+import com.liferay.servicebuilder.dsl.domain.FilterPrimaryColumnBuilder;
 import com.liferay.servicebuilder.dsl.domain.ServiceBuilderType;
-
 import org.junit.Assert;
 import org.junit.Test;
 
 /**
  * @author Manuel de la Peña
  */
-public class NonFilteredPrimaryColumnSerializerTest {
+public class FilteredPrimaryColumnSerializerTest {
 
 	@Test
 	public void testSerialize() throws JsonProcessingException {
-		Column column = new ColumnBuilder(
+		Column column = new FilterPrimaryColumnBuilder(
 			"companyId", ServiceBuilderType.LONG) .build();
 
 		XMLSerializer serializer = new ColumnSerializer(column);
@@ -40,7 +39,7 @@ public class NonFilteredPrimaryColumnSerializerTest {
 		StringBuilder sb = new StringBuilder(5);
 
 		sb.append("<column accessor=\"false\" container-model=\"false\" ");
-		sb.append("convert-null=\"false\" filter-primary=\"false\" ");
+		sb.append("convert-null=\"false\" filter-primary=\"true\" ");
 		sb.append("json-enabled=\"false\" lazy=\"true\" localized=\"false\" ");
 		sb.append("name=\"companyId\" parent-container-model=\"false\" ");
 		sb.append("primary=\"false\" type=\"long\"/>");

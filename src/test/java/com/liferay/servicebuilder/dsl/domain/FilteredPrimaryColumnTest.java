@@ -20,7 +20,7 @@ import org.junit.Test;
 /**
  * @author Manuel de la Peña
  */
-public class NonFilteredPrimaryColumnTest {
+public class FilteredPrimaryColumnTest {
 
 	@Test
 	public void testBuild() {
@@ -35,7 +35,7 @@ public class NonFilteredPrimaryColumnTest {
 		Assert.assertNull(column.getMappingTable());
 		Assert.assertFalse(column.hasAccessor());
 		Assert.assertFalse(column.hasJsonSerialization());
-		Assert.assertFalse(column.isFilterPrimary());
+		Assert.assertTrue(column.isFilterPrimary());
 		Assert.assertTrue(column.isLazy());
 		Assert.assertFalse(column.isLocalized());
 		Assert.assertFalse(column.isParentContainerModel());
@@ -113,7 +113,7 @@ public class NonFilteredPrimaryColumnTest {
 	public void testBuildFilterPrimary() {
 		Column column = builder.build();
 
-		Assert.assertFalse(column.isFilterPrimary());
+		Assert.assertTrue(column.isFilterPrimary());
 	}
 
 	@Test
@@ -218,7 +218,7 @@ public class NonFilteredPrimaryColumnTest {
 		Assert.assertTrue(column1.equals(column1));
 	}
 
-	private ColumnBuilder builder = new ColumnBuilder(
+	private FilterPrimaryColumnBuilder builder = new FilterPrimaryColumnBuilder(
 		"groupId", ServiceBuilderType.LONG);
 
 }

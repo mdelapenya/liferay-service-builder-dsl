@@ -12,33 +12,25 @@
  * details.
  */
 
-package com.liferay.servicebuilder.dsl.domain;
+package com.liferay.servicebuilder.dsl.domain.column;
 
-import org.junit.Assert;
-import org.junit.Test;
+import com.liferay.servicebuilder.dsl.domain.ServiceBuilderType;
 
 /**
  * @author Manuel de la Peña
  */
-public class ColumnBuilderFactoryTest {
+public class ColumnBuilderFactory {
 
-	@Test
-	public void testGetColumnBuilder() {
-		ColumnBuilder columnBuilder =
-			ColumnBuilderFactory.getColumnBuilder(
-				"name", ServiceBuilderType.LONG);
+	public static ColumnBuilder getColumnBuilder(
+		String name, ServiceBuilderType type) {
 
-		Assert.assertTrue(
-			columnBuilder instanceof NonFilterPrimaryColumnBuilder);
+		return new NonFilterPrimaryColumnBuilder(name, type);
 	}
 
-	@Test
-	public void testGetFilterPrimaryColumnBuilder() {
-		ColumnBuilder columnBuilder =
-			ColumnBuilderFactory.getFilterPrimaryColumnBuilder(
-				"name", ServiceBuilderType.LONG);
+	public static ColumnBuilder getFilterPrimaryColumnBuilder(
+		String name, ServiceBuilderType type) {
 
-		Assert.assertTrue(columnBuilder instanceof FilterPrimaryColumnBuilder);
+		return new FilterPrimaryColumnBuilder(name, type);
 	}
 
 }

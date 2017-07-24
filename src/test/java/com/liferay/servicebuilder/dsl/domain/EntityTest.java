@@ -16,6 +16,10 @@ package com.liferay.servicebuilder.dsl.domain;
 
 import java.util.List;
 
+import com.liferay.servicebuilder.dsl.domain.column.Column;
+import com.liferay.servicebuilder.dsl.domain.column.ColumnBuilderFactory;
+import com.liferay.servicebuilder.dsl.domain.column.FilterPrimaryColumn;
+
 import org.junit.Assert;
 import org.junit.Test;
 

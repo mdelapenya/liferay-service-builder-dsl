@@ -16,8 +16,8 @@ package com.liferay.servicebuilder.dsl.xml;
 
 import com.fasterxml.jackson.core.JsonProcessingException;
 
-import com.liferay.servicebuilder.dsl.domain.Column;
-import com.liferay.servicebuilder.dsl.domain.ColumnBuilderFactory;
+import com.liferay.servicebuilder.dsl.domain.column.Column;
+import com.liferay.servicebuilder.dsl.domain.column.ColumnBuilderFactory;
 import com.liferay.servicebuilder.dsl.domain.ServiceBuilderType;
 
 import org.junit.Assert;

@@ -14,7 +14,7 @@
 
 package com.liferay.servicebuilder.dsl.xml;
 
-import com.liferay.servicebuilder.dsl.domain.Column;
+import com.liferay.servicebuilder.dsl.domain.column.Column;
 
 /**
  * @author Manuel de la Peña

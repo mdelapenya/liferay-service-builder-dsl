@@ -19,6 +19,9 @@ import com.fasterxml.jackson.dataformat.xml.annotation.JacksonXmlElementWrapper;
 import com.fasterxml.jackson.dataformat.xml.annotation.JacksonXmlProperty;
 import com.fasterxml.jackson.dataformat.xml.annotation.JacksonXmlRootElement;
 
+import com.liferay.servicebuilder.dsl.domain.column.Column;
+import com.liferay.servicebuilder.dsl.domain.column.FilterPrimaryColumn;
+
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;

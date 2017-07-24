@@ -12,7 +12,10 @@
  * details.
  */
 
-package com.liferay.servicebuilder.dsl.domain;
+package com.liferay.servicebuilder.dsl.domain.column;
+
+import com.liferay.servicebuilder.dsl.domain.ServiceBuilderElement;
+import com.liferay.servicebuilder.dsl.domain.ServiceBuilderType;
 
 /**
  * @author Manuel de la Peña

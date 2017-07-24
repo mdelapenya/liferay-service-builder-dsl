@@ -12,7 +12,9 @@
  * details.
  */
 
-package com.liferay.servicebuilder.dsl.domain;
+package com.liferay.servicebuilder.dsl.domain.column;
+
+import com.liferay.servicebuilder.dsl.domain.ServiceBuilderType;
 
 import org.junit.Assert;
 import org.junit.Test;
@@ -20,7 +22,7 @@ import org.junit.Test;
 /**
  * @author Manuel de la Peña
  */
-public class FilteredPrimaryColumnTest {
+public class NonFilterPrimaryColumnTest {
 
 	@Test
 	public void testBuild() {
@@ -35,7 +37,7 @@ public class FilteredPrimaryColumnTest {
 		Assert.assertNull(column.getMappingTable());
 		Assert.assertFalse(column.hasAccessor());
 		Assert.assertFalse(column.hasJsonSerialization());
-		Assert.assertTrue(column.isFilterPrimary());
+		Assert.assertFalse(column.isFilterPrimary());
 		Assert.assertTrue(column.isLazy());
 		Assert.assertFalse(column.isLocalized());
 		Assert.assertFalse(column.isParentContainerModel());
@@ -113,7 +115,7 @@ public class FilteredPrimaryColumnTest {
 	public void testBuildFilterPrimary() {
 		Column column = builder.build();
 
-		Assert.assertTrue(column.isFilterPrimary());
+		Assert.assertFalse(column.isFilterPrimary());
 	}
 
 	@Test
@@ -182,9 +184,8 @@ public class FilteredPrimaryColumnTest {
 
 	@Test
 	public void testBuildWithoutLazyFetchFromNonBlobField() {
-		ColumnBuilder builder =
-			ColumnBuilderFactory.getFilterPrimaryColumnBuilder(
-				"blobField", ServiceBuilderType.BLOB);
+		ColumnBuilder builder = ColumnBuilderFactory.getColumnBuilder(
+			"blobField", ServiceBuilderType.BLOB);
 
 		Column column = builder.withoutLazyFetch().build();
 
@@ -193,9 +194,9 @@ public class FilteredPrimaryColumnTest {
 
 	@Test
 	public void testEquals() {
-		Column column1 = ColumnBuilderFactory.getFilterPrimaryColumnBuilder(
+		Column column1 = ColumnBuilderFactory.getColumnBuilder(
 			"companyId", ServiceBuilderType.LONG).build();
-		Column column2 = ColumnBuilderFactory.getFilterPrimaryColumnBuilder(
+		Column column2 = ColumnBuilderFactory.getColumnBuilder(
 			"companyId", ServiceBuilderType.LONG).build();
 
 		Assert.assertTrue(column1.equals(column2));
@@ -205,7 +206,7 @@ public class FilteredPrimaryColumnTest {
 	@Test
 	public void testEqualsNotEquals() {
 		Column column1 = builder.build();
-		Column column2 = ColumnBuilderFactory.getFilterPrimaryColumnBuilder(
+		Column column2 = ColumnBuilderFactory.getColumnBuilder(
 			"companyId", ServiceBuilderType.LONG).build();
 
 		Assert.assertFalse(column1.equals(column2));
@@ -219,8 +220,7 @@ public class FilteredPrimaryColumnTest {
 		Assert.assertTrue(column1.equals(column1));
 	}
 
-	private ColumnBuilder builder =
-		ColumnBuilderFactory.getFilterPrimaryColumnBuilder(
-			"groupId", ServiceBuilderType.LONG);
+	private ColumnBuilder builder = ColumnBuilderFactory.getColumnBuilder(
+		"groupId", ServiceBuilderType.LONG);
 
 }

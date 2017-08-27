@@ -151,6 +151,8 @@ public class Finder implements ServiceBuilderElement {
 	private Finder() {
 	}
 
+	private static final Logger _logger = LogManager.getLogger(Entity.class);
+
 	/**
 	 * If the db-index value is true, then the service will automatically
 	 * generate a SQL index for this finder. The default value is true.
@@ -176,7 +178,5 @@ public class Finder implements ServiceBuilderElement {
 	 * If the unique value is true, then the finder must return a unique entity.
 	 */
 	private boolean _unique;
-
-	private static final Logger _logger = LogManager.getLogger(Entity.class);
 
 }

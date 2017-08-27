@@ -221,6 +221,9 @@ public class ServiceBuilder implements ServiceBuilderElement {
 	private ServiceBuilder() {
 	}
 
+	private static final Logger _logger = LogManager.getLogger(
+		ServiceBuilder.class);
+
 	/**
 	 * The author element is the name of the user associated with the generated
 	 * code.
@@ -275,8 +278,5 @@ public class ServiceBuilder implements ServiceBuilderElement {
 	 * importing it.
 	 */
 	private List<String> _serviceBuilderImports = new ArrayList<>();
-
-	private static final Logger _logger = LogManager.getLogger(
-		ServiceBuilder.class);
 
 }

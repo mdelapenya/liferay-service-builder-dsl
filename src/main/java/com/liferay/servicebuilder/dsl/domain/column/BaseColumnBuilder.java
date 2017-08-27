@@ -22,23 +22,6 @@ import com.liferay.servicebuilder.dsl.domain.ServiceBuilderType;
 public abstract class BaseColumnBuilder implements ColumnBuilder {
 
 	/**
-	 * @param name Specifies the getter and setter name in the entity.
-	 * @param type Specifies whether the column is a String, Boolean, or
-	 *             int, etc.
-	 *             For example:
-	 *             <column name="companyId" db-name="companyId"
-	 *                     type="String" />
-	 *             The above column specifies that there will be a getter
-	 *             called pojo.getCompanyId() that will return a String.
-	 */
-	protected BaseColumnBuilder(String name, ServiceBuilderType type) {
-		column = newColumn();
-
-		column.setName(name);
-		column.setType(type);
-	}
-
-	/**
 	 * If the primary value is set to true, then this column is part of the
 	 * primary key of the entity. If multiple columns have the primary value
 	 * set to true, then a compound key will be created.
@@ -299,6 +282,23 @@ public abstract class BaseColumnBuilder implements ColumnBuilder {
 		column.setLazy(false);
 
 		return this;
+	}
+
+	/**
+	 * @param name Specifies the getter and setter name in the entity.
+	 * @param type Specifies whether the column is a String, Boolean, or
+	 *             int, etc.
+	 *             For example:
+	 *             <column name="companyId" db-name="companyId"
+	 *                     type="String" />
+	 *             The above column specifies that there will be a getter
+	 *             called pojo.getCompanyId() that will return a String.
+	 */
+	protected BaseColumnBuilder(String name, ServiceBuilderType type) {
+		column = newColumn();
+
+		column.setName(name);
+		column.setType(type);
 	}
 
 	protected abstract Column newColumn();

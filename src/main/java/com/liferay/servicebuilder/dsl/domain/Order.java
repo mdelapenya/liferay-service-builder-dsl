@@ -92,6 +92,8 @@ public class Order implements ServiceBuilderElement {
 	private Order() {
 	}
 
+	private static final Logger _logger = LogManager.getLogger(Order.class);
+
 	/**
 	 * Set the by attribute to "asc" or "desc" to order by ascending or
 	 * descending.
@@ -99,7 +101,5 @@ public class Order implements ServiceBuilderElement {
 	private OrderBy _by;
 
 	private List<OrderColumn> _orderColumns = new ArrayList<>();
-
-	private static final Logger _logger = LogManager.getLogger(Order.class);
 
 }

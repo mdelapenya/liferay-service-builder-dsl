@@ -26,8 +26,8 @@ import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 
-import org.apache.logging.log4j.Logger;
 import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 
 /**
  * An entity usually represents a business facade and a table in the database.
@@ -517,8 +517,80 @@ public class Entity implements ServiceBuilderElement {
 
 	}
 
+	public interface Builder {
+
+		Entity build();
+
+	}
+
+	public interface BuilderWithFilterPrimary extends Builder {
+
+		EntityBuilder deprecate();
+
+		EntityBuilder disableCache();
+
+		EntityBuilder disableTxManager();
+
+		EntityBuilder withColumn(Column column);
+
+		EntityBuilder withColumns(Column... columns);
+
+		EntityBuilder withDatasource(String datasource);
+
+		EntityBuilder withDynamicUpdate(Boolean dynamicUpdate);
+
+		EntityBuilder withFinder(Finder finder);
+
+		EntityBuilder withFinders(Finder... finders);
+
+		EntityBuilder withHumanName(String humanName);
+
+		EntityBuilder withJsonSerialization();
+
+		EntityBuilder withLocalServices();
+
+		EntityBuilder withMvcc(boolean mvccEnabled);
+
+		EntityBuilder withOrder(Order order);
+
+		EntityBuilder withPersistenceClass(String persistenceClass);
+
+		EntityBuilder withReference(Reference reference);
+
+		EntityBuilder withReferences(Reference... reference);
+
+		EntityBuilder withRemoteServices();
+
+		EntityBuilder withSessionFactory(String sessionFactory);
+
+		EntityBuilder withTable(String table);
+
+		EntityBuilder withTrashEnabled();
+
+		EntityBuilder withTxManager(String txManager);
+
+		EntityBuilder withTxRequiredMethod(TxRequiredMethod txRequiredMethod);
+
+		EntityBuilder withTxRequiredMethods(
+			TxRequiredMethod... txRequiredMethod);
+
+		EntityBuilder withUuid();
+
+		EntityBuilder withUuidAccessor();
+
+	}
+
+	public interface EntityBuilder extends BuilderWithFilterPrimary {
+
+		BuilderWithFilterPrimary withFilterPrimaryColumn(
+			FilterPrimaryColumn column);
+
+	}
+
 	private Entity() {
 	}
+
+	private static final Logger _logger = LogManager.getLogger(Entity.class);
 
 	/**
 	 * The cache-enabled value specifies whether or not to cache this queries
@@ -651,78 +723,5 @@ public class Entity implements ServiceBuilderElement {
 	 * and type-safe way to access entity's UUID.
 	 */
 	private boolean _uuidAccesor;
-
-
-	public interface Builder {
-
-		Entity build();
-
-	}
-
-	public interface EntityBuilder extends BuilderWithFilterPrimary {
-
-		BuilderWithFilterPrimary withFilterPrimaryColumn(
-			FilterPrimaryColumn column);
-
-	}
-
-	public interface BuilderWithFilterPrimary extends Builder {
-
-		EntityBuilder deprecate();
-
-		EntityBuilder disableCache();
-
-		EntityBuilder disableTxManager();
-
-		EntityBuilder withColumn(Column column);
-
-		EntityBuilder withColumns(Column... columns);
-
-		EntityBuilder withDatasource(String datasource);
-
-		EntityBuilder withDynamicUpdate(Boolean dynamicUpdate);
-
-		EntityBuilder withFinder(Finder finder);
-
-		EntityBuilder withFinders(Finder... finders);
-
-		EntityBuilder withHumanName(String humanName);
-
-		EntityBuilder withJsonSerialization();
-
-		EntityBuilder withLocalServices();
-
-		EntityBuilder withMvcc(boolean mvccEnabled);
-
-		EntityBuilder withOrder(Order order);
-
-		EntityBuilder withPersistenceClass(String persistenceClass);
-
-		EntityBuilder withReference(Reference reference);
-
-		EntityBuilder withReferences(Reference... reference);
-
-		EntityBuilder withRemoteServices();
-
-		EntityBuilder withSessionFactory(String sessionFactory);
-
-		EntityBuilder withTable(String table);
-
-		EntityBuilder withTrashEnabled();
-
-		EntityBuilder withTxManager(String txManager);
-
-		EntityBuilder withTxRequiredMethod(TxRequiredMethod txRequiredMethod);
-
-		EntityBuilder withTxRequiredMethods(
-			TxRequiredMethod... txRequiredMethod);
-
-		EntityBuilder withUuid();
-
-		EntityBuilder withUuidAccessor();
-
-	}
-
-	private static final Logger _logger = LogManager.getLogger(Entity.class);
 
 }

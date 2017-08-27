@@ -26,9 +26,8 @@ public class ColumnBuilderFactoryTest {
 
 	@Test
 	public void testGetColumnBuilder() {
-		ColumnBuilder columnBuilder =
-			ColumnBuilderFactory.getColumnBuilder(
-				"name", ServiceBuilderType.LONG);
+		ColumnBuilder columnBuilder = ColumnBuilderFactory.getColumnBuilder(
+			"name", ServiceBuilderType.LONG);
 
 		Assert.assertTrue(
 			columnBuilder instanceof NonFilterPrimaryColumnBuilder);

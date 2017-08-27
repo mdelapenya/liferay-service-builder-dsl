@@ -44,8 +44,7 @@ public class FinderTest {
 
 	@Test
 	public void testBuildCollection() {
-		FinderColumn finderColumn = new FinderColumn.Builder(
-			"groupId").build();
+		FinderColumn finderColumn = new FinderColumn.Builder("groupId").build();
 
 		Finder.Builder collectionBuilder = new Finder.Builder(
 			"ResourcePrimKey", "Collection", finderColumn);
@@ -119,8 +118,7 @@ public class FinderTest {
 
 	@Test
 	public void testEquals() {
-		FinderColumn finderColumn = new FinderColumn.Builder(
-			"groupId").build();
+		FinderColumn finderColumn = new FinderColumn.Builder("groupId").build();
 
 		Finder finder1 = new Finder.Builder("f1", "long", finderColumn).build();
 		Finder finder2 = new Finder.Builder("f1", "long", finderColumn).build();
@@ -131,8 +129,7 @@ public class FinderTest {
 
 	@Test
 	public void testEqualsNotEquals() {
-		FinderColumn finderColumn = new FinderColumn.Builder(
-			"groupId").build();
+		FinderColumn finderColumn = new FinderColumn.Builder("groupId").build();
 
 		Finder finder1 = new Finder.Builder("f1", "long", finderColumn).build();
 		Finder finder2 = new Finder.Builder("f2", "long", finderColumn).build();
@@ -143,8 +140,7 @@ public class FinderTest {
 
 	@Test
 	public void testEqualsSameInstance() {
-		FinderColumn finderColumn = new FinderColumn.Builder(
-			"groupId").build();
+		FinderColumn finderColumn = new FinderColumn.Builder("groupId").build();
 
 		Finder finder = new Finder.Builder("f1", "long", finderColumn).build();
 

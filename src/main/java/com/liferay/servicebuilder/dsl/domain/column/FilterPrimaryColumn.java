@@ -48,7 +48,6 @@ public class FilterPrimaryColumn extends NonFilterPrimaryColumn {
 	}
 
 	protected FilterPrimaryColumn() {
-		super();
 	}
 
 	/**

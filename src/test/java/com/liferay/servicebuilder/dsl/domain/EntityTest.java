@@ -14,11 +14,11 @@
 
 package com.liferay.servicebuilder.dsl.domain;
 
-import java.util.List;
-
 import com.liferay.servicebuilder.dsl.domain.column.Column;
 import com.liferay.servicebuilder.dsl.domain.column.ColumnBuilderFactory;
 import com.liferay.servicebuilder.dsl.domain.column.FilterPrimaryColumn;
+
+import java.util.List;
 
 import org.junit.Assert;
 import org.junit.Test;
@@ -101,10 +101,9 @@ public class EntityTest {
 					"companyId", ServiceBuilderType.LONG)
 				.build();
 
-		Column groupIdColumn =
-			ColumnBuilderFactory.getColumnBuilder(
-					"groupId", ServiceBuilderType.LONG)
-				.build();
+		Column groupIdColumn = ColumnBuilderFactory.getColumnBuilder(
+				"groupId", ServiceBuilderType.LONG)
+			.build();
 
 		Entity entity = builder
 			.withFilterPrimaryColumn(companyIdColumn)
@@ -117,19 +116,16 @@ public class EntityTest {
 	}
 
 	@Test
-	public void
-		testBuildWithColumnFilterPrimaryDoesNotAllowColumnsWithSameName() {
-
+	public void testBuildWithColumnFilterPrimaryDoesNotAllowColumnsWithSameName() {
 		FilterPrimaryColumn companyIdColumn =
 			(FilterPrimaryColumn)ColumnBuilderFactory
 				.getFilterPrimaryColumnBuilder(
 					"companyId", ServiceBuilderType.LONG)
 				.build();
 
-		Column groupIdColumn =
-			ColumnBuilderFactory.getColumnBuilder(
+		Column groupIdColumn = ColumnBuilderFactory.getColumnBuilder(
 				"companyId", ServiceBuilderType.LONG)
-				.build();
+			.build();
 
 		Entity entity = builder
 			.withFilterPrimaryColumn(companyIdColumn)
@@ -142,9 +138,7 @@ public class EntityTest {
 	}
 
 	@Test
-	public void
-		testBuildWithColumnFilterPrimaryDoesNotAllowOtherFilterPrimaryColumn() {
-
+	public void testBuildWithColumnFilterPrimaryDoesNotAllowOtherFilterPrimaryColumn() {
 		FilterPrimaryColumn companyIdColumn =
 			(FilterPrimaryColumn)ColumnBuilderFactory
 				.getFilterPrimaryColumnBuilder(
@@ -153,7 +147,9 @@ public class EntityTest {
 
 		Entity entity = builder
 			.withFilterPrimaryColumn(companyIdColumn)
+
 			// compiler does not allow invoking withFilterPrimaryColumn twice
+
 			.build();
 
 		List<Column> columns = entity.getColumns();
@@ -237,8 +233,7 @@ public class EntityTest {
 
 	@Test
 	public void testBuildWithFinder() {
-		FinderColumn finderColumn = new FinderColumn.Builder(
-			"groupId").build();
+		FinderColumn finderColumn = new FinderColumn.Builder("groupId").build();
 
 		Finder.Builder finderBuilder = new Finder.Builder(
 			"G_C_DDMSK", "JournalArticle", finderColumn);
@@ -252,8 +247,7 @@ public class EntityTest {
 
 	@Test
 	public void testBuildWithFinderDuplicatedDoesNotAddIt() {
-		FinderColumn finderColumn = new FinderColumn.Builder(
-			"groupId").build();
+		FinderColumn finderColumn = new FinderColumn.Builder("groupId").build();
 
 		Finder.Builder finderBuilder = new Finder.Builder(
 			"G_C_DDMSK", "JournalArticle", finderColumn);
@@ -270,8 +264,7 @@ public class EntityTest {
 
 	@Test
 	public void testBuildWithFinders() {
-		FinderColumn finderColumn = new FinderColumn.Builder(
-			"groupId").build();
+		FinderColumn finderColumn = new FinderColumn.Builder("groupId").build();
 
 		Finder.Builder finderBuilder1 = new Finder.Builder(
 			"G_C_DDMSK", "JournalArticle", finderColumn);
@@ -510,7 +503,8 @@ public class EntityTest {
 	@Test
 	public void testEqualsNotEquals() {
 		Entity entity1 = new Entity.BuilderImpl("JournalArticle").build();
-		Entity entity2 = new Entity.BuilderImpl("JournalArticleVersion").build();
+		Entity entity2 = new Entity.BuilderImpl(
+			"JournalArticleVersion").build();
 
 		Assert.assertFalse(entity1.equals(entity2));
 		Assert.assertFalse(entity2.equals(entity1));

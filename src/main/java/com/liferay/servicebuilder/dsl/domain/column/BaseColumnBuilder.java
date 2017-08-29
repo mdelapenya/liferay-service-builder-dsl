@@ -85,6 +85,7 @@ public abstract class BaseColumnBuilder implements ColumnBuilder {
 	public BaseColumnBuilder autogeneratePrimaryKeyFromIdentity(
 		ServiceBuilderType columnType) {
 
+		column.setIdParam(null);
 		column.setIdType("identity");
 		column.setType(columnType);
 
@@ -111,6 +112,7 @@ public abstract class BaseColumnBuilder implements ColumnBuilder {
 	public BaseColumnBuilder autogeneratePrimaryKeyFromIncrement(
 		ServiceBuilderType columnType) {
 
+		column.setIdParam(null);
 		column.setIdType("increment");
 		column.setType(columnType);
 

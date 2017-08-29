@@ -91,9 +91,10 @@ public class ServiceBuilderSerializerTest {
 		sb.append("package-path=\"\">\n");
 		sb.append("  <author>Manuel de la Peña</author>\n");
 		sb.append("  <entity cache-enabled=\"false\" deprecated=\"false\" ");
-		sb.append("dynamic-update-enabled=\"true\" json-enabled=\"true\" ");
-		sb.append("local-service=\"true\" mvcc-enabled=\"false\" ");
-		sb.append("name=\"Foo\" remote-service=\"true\" ");
+		sb.append("dynamic-update-enabled=\"true\" human-name=\"Foo\" ");
+		sb.append("json-enabled=\"true\" local-service=\"true\" ");
+		sb.append("mvcc-enabled=\"false\" name=\"Foo\" ");
+		sb.append("remote-service=\"true\" table=\"Foo\" ");
 		sb.append("trash-enabled=\"false\" tx-manager=\"none\" ");
 		sb.append("uuid=\"false\" uuid-accessor=\"false\">\n");
 		sb.append("    <column accessor=\"false\" container-model=\"false\" ");

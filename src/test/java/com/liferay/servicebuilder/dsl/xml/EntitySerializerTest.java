@@ -73,11 +73,13 @@ public class EntitySerializerTest {
 		StringBuilder sb = new StringBuilder(21);
 
 		sb.append("<entity cache-enabled=\"false\" deprecated=\"false\" ");
-		sb.append("dynamic-update-enabled=\"true\" json-enabled=\"true\" ");
+		sb.append("dynamic-update-enabled=\"true\" ");
+		sb.append("human-name=\"JournalArticle\" json-enabled=\"true\" ");
 		sb.append("local-service=\"true\" mvcc-enabled=\"false\" ");
 		sb.append("name=\"JournalArticle\" remote-service=\"true\" ");
-		sb.append("trash-enabled=\"false\" tx-manager=\"none\" ");
-		sb.append("uuid=\"false\" uuid-accessor=\"false\">\n");
+		sb.append("table=\"JournalArticle\" trash-enabled=\"false\" ");
+		sb.append("tx-manager=\"none\" uuid=\"false\" ");
+		sb.append("uuid-accessor=\"false\">\n");
 		sb.append("  <column accessor=\"false\" container-model=\"false\" ");
 		sb.append("convert-null=\"false\" filter-primary=\"false\" ");
 		sb.append("json-enabled=\"false\" lazy=\"true\" localized=\"false\" ");

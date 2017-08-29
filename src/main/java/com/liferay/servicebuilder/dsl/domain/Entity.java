@@ -78,6 +78,10 @@ public class Entity implements ServiceBuilderElement {
 
 	@JacksonXmlProperty(isAttribute = true, localName = "human-name")
 	public String getHumanName() {
+		if (_humanName == null) {
+			return _name;
+		}
+
 		return _humanName;
 	}
 

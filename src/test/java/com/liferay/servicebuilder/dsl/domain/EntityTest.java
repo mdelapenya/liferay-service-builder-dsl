@@ -40,7 +40,7 @@ public class EntityTest {
 
 		Assert.assertFalse(entity.hasLocalService());
 		Assert.assertNull(entity.getDatasource());
-		Assert.assertNull(entity.getHumanName());
+		Assert.assertEquals("JournalArticle", entity.getHumanName());
 		Assert.assertNull(entity.getOrder());
 		Assert.assertNull(entity.getPersistenceClass());
 		Assert.assertTrue(entity.hasCacheEnabled());

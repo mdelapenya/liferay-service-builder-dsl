@@ -149,6 +149,10 @@ public class Entity implements ServiceBuilderElement {
 
 	@JacksonXmlProperty(isAttribute = true, localName = "json-enabled")
 	public boolean hasJsonSerialization() {
+		if (_jsonEnabled == null) {
+			return _remoteService;
+		}
+
 		return _jsonEnabled;
 	}
 
@@ -649,7 +653,7 @@ public class Entity implements ServiceBuilderElement {
 	 * annotated for JSON serialization. By default, if the remote-service value
 	 * is true, then the json-enabled value is true.
 	 */
-	private boolean _jsonEnabled;
+	private Boolean _jsonEnabled;
 
 	/**
 	 * If the local-service value is true, then the service will generate the

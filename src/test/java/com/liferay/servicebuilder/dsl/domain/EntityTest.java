@@ -48,8 +48,10 @@ public class EntityTest {
 		Assert.assertFalse(entity.hasMvccEnabled());
 		Assert.assertEquals(entity.hasMvccEnabled(), entity.hasDynamicUpdate());
 
-		Assert.assertFalse(entity.hasJsonSerialization());
 		Assert.assertTrue(entity.hasRemoteService());
+		Assert.assertEquals(
+			entity.hasRemoteService(), entity.hasJsonSerialization());
+
 		Assert.assertFalse(entity.isDeprecated());
 		Assert.assertNull(entity.getSessionFactory());
 		Assert.assertEquals(entity.getName(), entity.getTable());

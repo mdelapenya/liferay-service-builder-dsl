@@ -61,6 +61,11 @@ public class Finder implements ServiceBuilderElement {
 		return _returnType;
 	}
 
+	@JacksonXmlProperty(isAttribute = true, localName = "where")
+	public String getWhere() {
+		return _where;
+	}
+
 	@JacksonXmlProperty(isAttribute = true, localName = "db-index")
 	public boolean hasSQLIndex() {
 		return _dbIndex;
@@ -109,6 +114,12 @@ public class Finder implements ServiceBuilderElement {
 		 */
 		public Builder unique() {
 			_finder._unique = true;
+
+			return this;
+		}
+
+		public Builder where(String where) {
+			_finder._where = where;
 
 			return this;
 		}
@@ -178,5 +189,10 @@ public class Finder implements ServiceBuilderElement {
 	 * If the unique value is true, then the finder must return a unique entity.
 	 */
 	private boolean _unique;
+
+	/**
+	 * Adds a custom sql query to add to the filter.
+	 */
+	private String _where;
 
 }

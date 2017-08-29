@@ -73,6 +73,13 @@ public class FinderTest {
 	}
 
 	@Test
+	public void testBuildWhere() {
+		Finder finder = builder.where("status != 5").build();
+
+		Assert.assertEquals("status != 5", finder.getWhere());
+	}
+
+	@Test
 	public void testBuildWithDuplicatedFinderColumnDoesNotAddIt() {
 		FinderColumn finderColumn1 = new FinderColumn.Builder(
 			"groupId").build();

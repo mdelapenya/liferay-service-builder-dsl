@@ -37,6 +37,7 @@ public class FinderSerializerTest {
 		Finder finder =
 			new Finder.Builder("C_V", "Collection", companyIdFinderColumn)
 				.unique()
+				.where("status != 5")
 				.withoutSQLIndex()
 				.withFinderColumns(versionFinderColumn)
 				.build();
@@ -48,7 +49,8 @@ public class FinderSerializerTest {
 		StringBuilder sb = new StringBuilder(6);
 
 		sb.append("<finder db-index=\"false\" name=\"C_V\" ");
-		sb.append("return-type=\"Collection\" unique=\"true\">\n");
+		sb.append("return-type=\"Collection\" unique=\"true\" ");
+		sb.append("where=\"status != 5\">\n");
 		sb.append("  <finder-column case-sensitive=\"true\" ");
 		sb.append("name=\"companyId\"/>\n");
 		sb.append("  <finder-column case-sensitive=\"true\" ");

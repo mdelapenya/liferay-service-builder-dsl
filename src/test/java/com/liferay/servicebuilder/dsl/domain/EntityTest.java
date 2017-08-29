@@ -40,7 +40,7 @@ public class EntityTest {
 
 		Assert.assertFalse(entity.hasLocalService());
 		Assert.assertNull(entity.getDatasource());
-		Assert.assertEquals("JournalArticle", entity.getHumanName());
+		Assert.assertEquals(entity.getName(), entity.getHumanName());
 		Assert.assertNull(entity.getOrder());
 		Assert.assertNull(entity.getPersistenceClass());
 		Assert.assertTrue(entity.hasCacheEnabled());
@@ -52,7 +52,7 @@ public class EntityTest {
 		Assert.assertTrue(entity.hasRemoteService());
 		Assert.assertFalse(entity.isDeprecated());
 		Assert.assertNull(entity.getSessionFactory());
-		Assert.assertEquals("JournalArticle", entity.getTable());
+		Assert.assertEquals(entity.getName(), entity.getTable());
 		Assert.assertNull(entity.getTxManager());
 		Assert.assertFalse(entity.hasTrashEnabled());
 		Assert.assertFalse(entity.hasUuid());

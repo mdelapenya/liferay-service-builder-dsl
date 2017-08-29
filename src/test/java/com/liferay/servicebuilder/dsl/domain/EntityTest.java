@@ -52,7 +52,7 @@ public class EntityTest {
 		Assert.assertTrue(entity.hasRemoteService());
 		Assert.assertFalse(entity.isDeprecated());
 		Assert.assertNull(entity.getSessionFactory());
-		Assert.assertNull(entity.getTable());
+		Assert.assertEquals("JournalArticle", entity.getTable());
 		Assert.assertNull(entity.getTxManager());
 		Assert.assertFalse(entity.hasTrashEnabled());
 		Assert.assertFalse(entity.hasUuid());

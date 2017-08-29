@@ -113,6 +113,10 @@ public class Entity implements ServiceBuilderElement {
 
 	@JacksonXmlProperty(isAttribute = true, localName = "table")
 	public String getTable() {
+		if (_table == null) {
+			return _name;
+		}
+
 		return _table;
 	}
 

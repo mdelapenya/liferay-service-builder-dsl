@@ -20,6 +20,7 @@ import com.fasterxml.jackson.dataformat.xml.annotation.JacksonXmlProperty;
 import com.fasterxml.jackson.dataformat.xml.annotation.JacksonXmlRootElement;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 
 import org.apache.logging.log4j.LogManager;
@@ -81,6 +82,13 @@ public class Order implements ServiceBuilderElement {
 							" order-column because it already exists");
 				}
 			}
+
+			return this;
+		}
+
+		public Builder withOrderColumns(OrderColumn... orderColumns) {
+			Arrays.stream(orderColumns)
+				.forEach(orderColumn -> withOrderColumn(orderColumn));
 
 			return this;
 		}

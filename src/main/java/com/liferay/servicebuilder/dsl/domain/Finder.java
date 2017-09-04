@@ -20,6 +20,7 @@ import com.fasterxml.jackson.dataformat.xml.annotation.JacksonXmlProperty;
 import com.fasterxml.jackson.dataformat.xml.annotation.JacksonXmlRootElement;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 
 import org.apache.logging.log4j.LogManager;
@@ -125,9 +126,8 @@ public class Finder implements ServiceBuilderElement {
 		}
 
 		public Builder withFinderColumns(FinderColumn... finderColumns) {
-			for (FinderColumn finderColumn : finderColumns) {
-				_addFinderColumn(finderColumn);
-			}
+			Arrays.stream(finderColumns)
+				.forEach(finderColumn -> _addFinderColumn(finderColumn));
 
 			return this;
 		}

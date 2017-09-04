@@ -23,6 +23,7 @@ import com.liferay.servicebuilder.dsl.domain.column.Column;
 import com.liferay.servicebuilder.dsl.domain.column.FilterPrimaryColumn;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.Collections;
 import java.util.List;
 
@@ -248,9 +249,7 @@ public class Entity implements ServiceBuilderElement {
 		}
 
 		public EntityBuilder withColumns(Column... columns) {
-			for (Column column : columns) {
-				_addColumn(column);
-			}
+			Arrays.stream(columns).forEach(column -> withColumn(column));
 
 			return this;
 		}
@@ -467,11 +466,11 @@ public class Entity implements ServiceBuilderElement {
 		}
 
 		public EntityBuilder withTxRequiredMethods(
-			TxRequiredMethod... txRequiredMethod) {
+			TxRequiredMethod... txRequiredMethods) {
 
-			for (TxRequiredMethod requiredMethod : txRequiredMethod) {
-				_addTxRequiredMethod(requiredMethod);
-			}
+			Arrays.stream(txRequiredMethods)
+				.forEach(
+					txRequiredMethod -> withTxRequiredMethod(txRequiredMethod));
 
 			return this;
 		}

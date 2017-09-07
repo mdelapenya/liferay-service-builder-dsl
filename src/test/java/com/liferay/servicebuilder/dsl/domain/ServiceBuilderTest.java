@@ -56,12 +56,22 @@ public class ServiceBuilderTest {
 	}
 
 	@Test
-	public void testBuildAutoWithAuthor() {
+	public void testBuildWithAuthor() {
 		ServiceBuilder serviceBuilder = builder
 			.withAuthor("Manuel de la Peña")
 			.build();
 
 		Assert.assertEquals("Manuel de la Peña", serviceBuilder.getAuthor());
+	}
+
+	@Test
+	public void testBuildWithTwoAuthors() {
+		ServiceBuilder serviceBuilder = builder
+			.withAuthor("Manuel de la Peña")
+			.withAuthor("Leo Messi")
+			.build();
+
+		Assert.assertEquals("Leo Messi", serviceBuilder.getAuthor());
 	}
 
 	@Test

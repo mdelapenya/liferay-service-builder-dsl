@@ -26,7 +26,7 @@ import org.junit.Test;
 /**
  * @author Manuel de la Peña
  */
-public class FilteredPrimaryColumnSerializerTest {
+public class FilterPrimaryColumnSerializerTest {
 
 	@Test
 	public void testSerialize() throws JsonProcessingException {

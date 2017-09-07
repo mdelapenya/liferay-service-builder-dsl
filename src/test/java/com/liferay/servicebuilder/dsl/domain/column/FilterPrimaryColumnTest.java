@@ -21,7 +21,7 @@ import org.junit.Assert;
 /**
  * @author Manuel de la Peña
  */
-public class FilteredPrimaryColumnTest extends BaseColumnTest {
+public class FilterPrimaryColumnTest extends BaseColumnTest {
 
 	@Override
 	protected void checkFilterPrimary(boolean filterPrimary) {

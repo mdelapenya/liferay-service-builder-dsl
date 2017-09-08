@@ -54,17 +54,6 @@ public class OrderTest {
 	}
 
 	@Test
-	public void testBuildWithOrderColumnsDuplicatedDoesNotAddIt() {
-		OrderColumn orderColumn = new OrderColumn.Builder("name").build();
-
-		Order order = builder
-			.withOrderColumns(orderColumn, orderColumn)
-			.build();
-
-		Assert.assertEquals(1, order.getOrderColumns().size());
-	}
-
-	@Test
 	public void testBuildWithOrderColumns() {
 		OrderColumn orderColumn1 = new OrderColumn.Builder("name1").build();
 		OrderColumn orderColumn2 = new OrderColumn.Builder("name2").build();
@@ -74,6 +63,17 @@ public class OrderTest {
 			.build();
 
 		Assert.assertEquals(2, order.getOrderColumns().size());
+	}
+
+	@Test
+	public void testBuildWithOrderColumnsDuplicatedDoesNotAddIt() {
+		OrderColumn orderColumn = new OrderColumn.Builder("name").build();
+
+		Order order = builder
+			.withOrderColumns(orderColumn, orderColumn)
+			.build();
+
+		Assert.assertEquals(1, order.getOrderColumns().size());
 	}
 
 	private Order.Builder builder = new Order.Builder();

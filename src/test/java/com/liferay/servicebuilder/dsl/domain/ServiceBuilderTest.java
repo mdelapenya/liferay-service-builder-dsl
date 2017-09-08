@@ -56,25 +56,6 @@ public class ServiceBuilderTest {
 	}
 
 	@Test
-	public void testBuildWithAuthor() {
-		ServiceBuilder serviceBuilder = builder
-			.withAuthor("Manuel de la Peña")
-			.build();
-
-		Assert.assertEquals("Manuel de la Peña", serviceBuilder.getAuthor());
-	}
-
-	@Test
-	public void testBuildWithTwoAuthors() {
-		ServiceBuilder serviceBuilder = builder
-			.withAuthor("Manuel de la Peña")
-			.withAuthor("Leo Messi")
-			.build();
-
-		Assert.assertEquals("Leo Messi", serviceBuilder.getAuthor());
-	}
-
-	@Test
 	public void testBuildImportServiceBuilderFile() {
 		ServiceBuilder serviceBuilder = builder
 			.importServiceBuilderFile("../foo/service.xml")
@@ -113,6 +94,15 @@ public class ServiceBuilderTest {
 
 		Assert.assertEquals(
 			serviceBuilderImports.toString(), 2, serviceBuilderImports.size());
+	}
+
+	@Test
+	public void testBuildWithAuthor() {
+		ServiceBuilder serviceBuilder = builder
+			.withAuthor("Manuel de la Peña")
+			.build();
+
+		Assert.assertEquals("Manuel de la Peña", serviceBuilder.getAuthor());
 	}
 
 	@Test
@@ -202,6 +192,16 @@ public class ServiceBuilderTest {
 		ServiceBuilder serviceBuilder = builder.enableMvcc().build();
 
 		Assert.assertTrue(serviceBuilder.isMvccEnabled());
+	}
+
+	@Test
+	public void testBuildWithTwoAuthors() {
+		ServiceBuilder serviceBuilder = builder
+			.withAuthor("Manuel de la Peña")
+			.withAuthor("Leo Messi")
+			.build();
+
+		Assert.assertEquals("Leo Messi", serviceBuilder.getAuthor());
 	}
 
 	private ServiceBuilder.Builder builder = new ServiceBuilder.Builder(

@@ -374,7 +374,7 @@ public class EntityTest {
 	@Test
 	public void testBuildWithReferences() {
 		Reference reference1 = new Reference.Builder(
-			"JournalFolder", "com.liferay.journal").build();
+			"JournalArticle", "com.liferay.journal").build();
 		Reference reference2 = new Reference.Builder(
 			"JournalFolder", "com.liferay.journal").build();
 
@@ -385,6 +385,22 @@ public class EntityTest {
 		List<Reference> references = entity.getReferences();
 
 		Assert.assertEquals(references.toString(), 2, references.size());
+	}
+
+	@Test
+	public void testBuildWithReferencesDuplicatedDoesNotAddIt() {
+		Reference reference1 = new Reference.Builder(
+			"JournalFolder", "com.liferay.journal").build();
+		Reference reference2 = new Reference.Builder(
+			"JournalFolder", "com.liferay.journal").build();
+
+		Entity entity = builder
+			.withReferences(reference1, reference2)
+			.build();
+
+		List<Reference> references = entity.getReferences();
+
+		Assert.assertEquals(references.toString(), 1, references.size());
 	}
 
 	@Test

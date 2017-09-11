@@ -80,6 +80,11 @@ public class NonFilterPrimaryColumn implements Column {
 		return _accessor;
 	}
 
+	@Override
+	public int hashCode() {
+		return super.hashCode();
+	}
+
 	@JacksonXmlProperty(isAttribute = true, localName = "json-enabled")
 	public boolean hasJsonSerialization() {
 		return _jsonEnabled;

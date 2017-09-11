@@ -38,6 +38,11 @@ public class FilterPrimaryColumn extends NonFilterPrimaryColumn {
 		return name.equals(that.getName());
 	}
 
+	@Override
+	public int hashCode() {
+		return super.hashCode();
+	}
+
 	@JacksonXmlProperty(isAttribute = true, localName = "filter-primary")
 	public boolean isFilterPrimary() {
 		return _filterPrimary;

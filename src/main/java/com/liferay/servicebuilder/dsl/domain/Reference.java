@@ -59,6 +59,11 @@ public class Reference implements ServiceBuilderElement {
 		return _packagePath;
 	}
 
+	@Override
+	public int hashCode() {
+		return super.hashCode();
+	}
+
 	public static class Builder {
 
 		/**

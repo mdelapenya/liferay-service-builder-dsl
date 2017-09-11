@@ -53,6 +53,11 @@ public class FinderColumn implements ServiceBuilderElement {
 		return _name;
 	}
 
+	@Override
+	public int hashCode() {
+		return super.hashCode();
+	}
+
 	@JacksonXmlProperty(isAttribute = true, localName = "case-sensitive")
 	public boolean isCaseSensitive() {
 		return _caseSensitive;

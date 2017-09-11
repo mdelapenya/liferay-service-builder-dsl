@@ -67,6 +67,11 @@ public class Finder implements ServiceBuilderElement {
 		return _where;
 	}
 
+	@Override
+	public int hashCode() {
+		return super.hashCode();
+	}
+
 	@JacksonXmlProperty(isAttribute = true, localName = "db-index")
 	public boolean hasSQLIndex() {
 		return _dbIndex;

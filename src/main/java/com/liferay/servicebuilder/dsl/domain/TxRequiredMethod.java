@@ -46,6 +46,11 @@ public class TxRequiredMethod implements ServiceBuilderElement {
 		return _methodName;
 	}
 
+	@Override
+	public int hashCode() {
+		return super.hashCode();
+	}
+
 	public static class Builder {
 
 		/**

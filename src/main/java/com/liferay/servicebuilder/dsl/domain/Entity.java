@@ -136,6 +136,11 @@ public class Entity implements ServiceBuilderElement {
 		return _cacheEnabled;
 	}
 
+	@Override
+	public int hashCode() {
+		return super.hashCode();
+	}
+
 	@JacksonXmlProperty(
 		isAttribute = true, localName = "dynamic-update-enabled"
 	)

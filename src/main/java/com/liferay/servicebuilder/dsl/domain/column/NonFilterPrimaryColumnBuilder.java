@@ -35,6 +35,12 @@ public class NonFilterPrimaryColumnBuilder extends BaseColumnBuilder {
 		super(name, type);
 	}
 
+	/**
+	 * Builds the NonFilterPrimaryColumn object from the previous composition
+	 * operations.
+	 *
+	 * @return the NonFilterPrimaryColumn model
+	 */
 	@Override
 	public Column build() {
 		NonFilterPrimaryColumn column = (NonFilterPrimaryColumn)this.column;

@@ -37,6 +37,12 @@ public class FilterPrimaryColumnBuilder extends BaseColumnBuilder {
 		((FilterPrimaryColumn)column).setFilterPrimary(true);
 	}
 
+	/**
+	 * Builds the FilterPrimaryColumn object from the previous composition
+	 * operations.
+	 *
+	 * @return the FilterPrimaryColumn model
+	 */
 	@Override
 	public FilterPrimaryColumn build() {
 		FilterPrimaryColumn column = (FilterPrimaryColumn)this.column;

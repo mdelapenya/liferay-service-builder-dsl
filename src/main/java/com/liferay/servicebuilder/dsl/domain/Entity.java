@@ -215,6 +215,8 @@ public class Entity implements ServiceBuilderElement {
 		/**
 		 * The deprecated value specifies whether the entity's services are
 		 * deprecated.
+		 * 
+		 * @return the instance representing the entity builder
 		 */
 		public EntityBuilder deprecate() {
 			_entity._deprecated = true;
@@ -226,6 +228,8 @@ public class Entity implements ServiceBuilderElement {
 		 * The cache-enabled value specifies whether or not to cache this
 		 * queries for this entity. Set this to false if data in the table will
 		 * be updated by other programs. The default value is true.
+		 * 
+		 * @return the instance representing the entity builder
 		 */
 		public EntityBuilder disableCache() {
 			_entity._cacheEnabled = false;
@@ -234,7 +238,10 @@ public class Entity implements ServiceBuilderElement {
 		}
 
 		/**
+		 * Disables the transaction manager.
+		 * 
 		 * @see EntityBuilder#withTxManager(String)
+		 * @return the instance representing the entity builder
 		 */
 		public EntityBuilder disableTxManager() {
 			_entity._txManager = "none";
@@ -242,12 +249,24 @@ public class Entity implements ServiceBuilderElement {
 			return this;
 		}
 
+		/**
+		 * Adds a column to the list of columns in the entity.
+		 * 
+		 * @param column the column object to be added to the entity
+		 * @return the instance representing the entity builder
+		 */
 		public EntityBuilder withColumn(Column column) {
 			_addColumn(column);
 
 			return this;
 		}
 
+		/**
+		 * Adds an array of columns to the list of columns in the entity.
+		 * 
+		 * @param columns the columns array to be added to the entity
+		 * @return the instance representing the entity builder
+		 */
 		public EntityBuilder withColumns(Column... columns) {
 			Arrays.stream(columns).forEach(column -> withColumn(column));
 
@@ -267,6 +286,7 @@ public class Entity implements ServiceBuilderElement {
 		 *                   persistence class. The default value is the Liferay
 		 *                   data source. This is used in conjunction with
 		 *                   session-factory. See data-source-spring.xml.
+		 * @return the instance representing the entity builder
 		 */
 		public EntityBuilder withDatasource(String datasource) {
 			_entity._datasource = datasource;
@@ -279,6 +299,7 @@ public class Entity implements ServiceBuilderElement {
 		 *                      are excluded in the SQL update statement. The
 		 *                      default value is the value of the attribute
 		 *                      mvcc-enabled.
+		 * @return the instance representing the entity builder
 		 */
 		public EntityBuilder withDynamicUpdate(Boolean dynamicUpdate) {
 			_entity._dynamicUpdateEnabled = dynamicUpdate;
@@ -286,6 +307,12 @@ public class Entity implements ServiceBuilderElement {
 			return this;
 		}
 
+		/**
+		 * Adds the only one filter-primary column to the entity.
+		 * 
+		 * @param column the filter-primary column to be added to the entity
+		 * @return the instance representing the entity builder
+		 */
 		public EntityBuilder withFilterPrimaryColumn(
 			FilterPrimaryColumn column) {
 
@@ -294,6 +321,12 @@ public class Entity implements ServiceBuilderElement {
 			return this;
 		}
 
+		/**
+		 * Adds a finder method to the list of finder methods in the entity.
+		 *
+		 * @param finder the finder method to be added to the entity
+		 * @return the instance representing the entity builder
+		 */
 		public EntityBuilder withFinder(Finder finder) {
 			if (!_entity._finders.contains(finder)) {
 				_entity._finders.add(finder);
@@ -309,8 +342,15 @@ public class Entity implements ServiceBuilderElement {
 			return this;
 		}
 
-		public EntityBuilder withFinders(Finder... finder) {
-			Collections.addAll(_entity._finders, finder);
+		/**
+		 * Adds an array of finder methods to the list of finder methods in the
+		 * entity.
+		 * 
+		 * @param finders the array of finder methods to be added to the entity
+		 * @return the instance representing the entity builder
+		 */
+		public EntityBuilder withFinders(Finder... finders) {
+			Collections.addAll(_entity._finders, finders);
 
 			return this;
 		}
@@ -319,6 +359,7 @@ public class Entity implements ServiceBuilderElement {
 		 * @param humanName Specifies the readable name to use when generating
 		 *                  documentation for this entity. If none is specified,
 		 *                  one will be generated from the name.
+		 * @return the instance representing the entity builder
 		 */
 		public EntityBuilder withHumanName(String humanName) {
 			_entity._humanName = humanName;
@@ -330,6 +371,8 @@ public class Entity implements ServiceBuilderElement {
 		 * The json-enabled value specifies whether or not the entity should be
 		 * annotated for JSON serialization. By default, if the remote-service
 		 * value is true, then the json-enabled value is true.
+		 * 
+		 * @return the instance representing the entity builder
 		 */
 		public EntityBuilder withJsonSerialization() {
 			_entity._jsonEnabled = true;
@@ -340,6 +383,8 @@ public class Entity implements ServiceBuilderElement {
 		/**
 		 * If the local-service value is true, then the service will generate
 		 * the local interfaces for the service. The default value is false.
+		 * 
+		 * @return the instance representing the entity builder
 		 */
 		public EntityBuilder withLocalServices() {
 			_entity._localService = true;
@@ -352,6 +397,7 @@ public class Entity implements ServiceBuilderElement {
 		 *                    entity to prevent lost updates. The default value
 		 *                    is based on the mvcc-enabled attribute in the
 		 *                    service-builder element.
+		 * @return the instance representing the entity builder
 		 */
 		public EntityBuilder withMvcc(boolean mvccEnabled) {
 			_entity._mvccEnabled = mvccEnabled;
@@ -363,6 +409,12 @@ public class Entity implements ServiceBuilderElement {
 			return this;
 		}
 
+		/**
+		 * Specifies the order for the retrieval of the entity.
+		 * 
+		 * @param order the order to be applied when the entity is retrieved
+		 * @return the instance representing the entity builder
+		 */
 		public EntityBuilder withOrder(Order order) {
 			_entity._order = order;
 
@@ -376,6 +428,7 @@ public class Entity implements ServiceBuilderElement {
 		 *                         generated persistence class. This allows you
 		 *                         to override default behavior without
 		 *                         modifying the generated persistence class.
+		 * @return the instance representing the entity builder
 		 */
 		public EntityBuilder withPersistenceClass(String persistenceClass) {
 			_entity._persistenceClass = persistenceClass;
@@ -383,6 +436,12 @@ public class Entity implements ServiceBuilderElement {
 			return this;
 		}
 
+		/**
+		 * Adds a reference to the list of references in the entity.
+		 * 
+		 * @param reference the reference to be added to the entity
+		 * @return the instance representing the entity builder
+		 */
 		public EntityBuilder withReference(Reference reference) {
 			if (!_entity._references.contains(reference)) {
 				_entity._references.add(reference);
@@ -391,8 +450,14 @@ public class Entity implements ServiceBuilderElement {
 			return this;
 		}
 
-		public EntityBuilder withReferences(Reference... reference) {
-			Collections.addAll(_entity._references, reference);
+		/**
+		 * Adds an array of references to the list of references in the entity.
+		 *
+		 * @param references the array of references to be added to the entity
+		 * @return the instance representing the entity builder
+		 */
+		public EntityBuilder withReferences(Reference... references) {
+			Collections.addAll(_entity._references, references);
 
 			return this;
 		}
@@ -400,6 +465,8 @@ public class Entity implements ServiceBuilderElement {
 		/**
 		 * If the remote-service value is true, then the service will generate
 		 * remote interfaces for the service. The default value is true.
+		 * 
+		 * @return the instance representing the entity builder
 		 */
 		public EntityBuilder withRemoteServices() {
 			_entity._remoteService = true;
@@ -415,6 +482,7 @@ public class Entity implements ServiceBuilderElement {
 		 *                       Liferay session factory. This is used in
 		 *                       conjunction with data-source. See
 		 *                       data-source-spring.xml.
+		 * @return the instance representing the entity builder
 		 */
 		public EntityBuilder withSessionFactory(String sessionFactory) {
 			_entity._sessionFactory = sessionFactory;
@@ -426,6 +494,7 @@ public class Entity implements ServiceBuilderElement {
 		 * @param table Specifies the name of the table that this entity maps to
 		 *              in the database. If this value is not set, then the name
 		 *              of the table is the same as the name of the entity.
+		 * @return the instance representing the entity builder
 		 */
 		public EntityBuilder withTable(String table) {
 			_entity._table = table;
@@ -436,6 +505,8 @@ public class Entity implements ServiceBuilderElement {
 		/**
 		 * The trash-enabled value specifies whether trash related methods
 		 * should be generated or not.
+		 * 
+		 * @return the instance representing the entity builder
 		 */
 		public EntityBuilder withTrashEnabled() {
 			_entity._trashEnabled = true;
@@ -450,6 +521,7 @@ public class Entity implements ServiceBuilderElement {
 		 *                  source and session factory. See
 		 *                  data-source-spring.xml. Set this attribute to "none"
 		 *                  to disable transaction management.
+		 * @return the instance representing the entity builder
 		 */
 		public EntityBuilder withTxManager(String txManager) {
 			_entity._txManager = txManager;
@@ -457,6 +529,13 @@ public class Entity implements ServiceBuilderElement {
 			return this;
 		}
 
+		/**
+		 * Adds a method that requires transactions to the list of methods that
+		 * in require transactions in the entity.
+		 * 
+		 * @param txRequiredMethod the method that requires transactions 
+		 * @return the instance representing the entity builder
+		 */
 		public EntityBuilder withTxRequiredMethod(
 			TxRequiredMethod txRequiredMethod) {
 
@@ -465,6 +544,14 @@ public class Entity implements ServiceBuilderElement {
 			return this;
 		}
 
+		/**
+		 * Adds an array of method that requires transactions to the list of
+		 * methods that in require transactions in the entity.
+		 *
+		 * @param txRequiredMethods the array of methods that requires
+		 *                          transactions 
+		 * @return the instance representing the entity builder
+		 */
 		public EntityBuilder withTxRequiredMethods(
 			TxRequiredMethod... txRequiredMethods) {
 
@@ -480,6 +567,8 @@ public class Entity implements ServiceBuilderElement {
 		 * column for the service. This column will automatically be populated
 		 * with a UUID. Developers will also be able to find and remove based on
 		 * that UUID. The default value is false.
+		 * 
+		 * @return the instance representing the entity builder
 		 */
 		public EntityBuilder withUuid() {
 			_entity._uuid = true;
@@ -491,6 +580,8 @@ public class Entity implements ServiceBuilderElement {
 		 * If the uuid-accessor value is true, then the service will generate a
 		 * UUID column accessor for the service. This accessor will provide a
 		 * fast and type-safe way to access entity's UUID.
+		 * 
+		 * @return the instance representing the entity builder
 		 */
 		public EntityBuilder withUuidAccessor() {
 			_entity._uuidAccesor = true;

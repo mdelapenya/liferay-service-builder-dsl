@@ -112,6 +112,8 @@ public class Finder implements ServiceBuilderElement {
 		/**
 		 * If the unique value is true, then the finder must return a unique
 		 * entity.
+		 * 
+		 * @return the instance representing the finder builder
 		 */
 		public Builder unique() {
 			_finder._unique = true;
@@ -119,12 +121,25 @@ public class Finder implements ServiceBuilderElement {
 			return this;
 		}
 
+		/**
+		 * Adds a SQL where clause to the finder.
+		 * 
+		 * @param where the SQL where clause to be added to the finder
+		 * @return the instance representing the finder builder
+		 */
 		public Builder where(String where) {
 			_finder._where = where;
 
 			return this;
 		}
 
+		/**
+		 * Adds an array of finder columns to the finder.
+		 * 
+		 * @param finderColumns the array of finder columns to be added to the
+		 *                      finder
+		 * @return the instance representing the finder builder
+		 */
 		public Builder withFinderColumns(FinderColumn... finderColumns) {
 			Arrays.stream(finderColumns)
 				.forEach(finderColumn -> _addFinderColumn(finderColumn));
@@ -135,6 +150,8 @@ public class Finder implements ServiceBuilderElement {
 		/**
 		 * If the db-index value is true, then the service will automatically
 		 * generate a SQL index for this finder. The default value is true.
+		 * 
+		 * @return the instance representing the finder builder
 		 */
 		public Builder withoutSQLIndex() {
 			_finder._dbIndex = false;

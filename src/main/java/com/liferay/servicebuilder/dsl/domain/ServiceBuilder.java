@@ -109,6 +109,8 @@ public class ServiceBuilder implements ServiceBuilderElement {
 		/**
 		 * The auto-import-default-references value specifies whether or not to
 		 * automatically default references. The default value is true.
+		 * 
+		 * @return the instance representing the ServiceBuilder builder
 		 */
 		public Builder autoImportDefaultReferences() {
 			_serviceBuilder._autoImportDefaultReferences = true;
@@ -120,6 +122,8 @@ public class ServiceBuilder implements ServiceBuilderElement {
 		 * The auto-namespace-tables value specifies whether or not to
 		 * automatically namespace tables. The default value is false for core
 		 * services and true for plugin services.
+		 * 
+		 * @return the instance representing the ServiceBuilder builder
 		 */
 		public Builder autoNamespaceTables() {
 			_serviceBuilder._autoNamespaceTables = true;
@@ -139,6 +143,8 @@ public class ServiceBuilder implements ServiceBuilderElement {
 		 * The mvcc-enabled value specifies whether or not to enable MVCC by
 		 * default for entities to prevent lost updates. The default value is
 		 * false.
+		 * 
+		 * @return the instance representing the ServiceBuilder builder
 		 */
 		public Builder enableMvcc() {
 			_serviceBuilder._mvccEnabled = true;
@@ -157,7 +163,7 @@ public class ServiceBuilder implements ServiceBuilderElement {
 		 *
 		 * @param file The file is interpreted as relative to the file that is
 		 *             importing it.
-		 * @return the ServiceBuilder Builder object
+		 * @return the instance representing the ServiceBuilder builder
 		 */
 		public Builder importServiceBuilderFile(String file) {
 			if (!_serviceBuilder._serviceBuilderImports.contains(file)) {
@@ -177,6 +183,8 @@ public class ServiceBuilder implements ServiceBuilderElement {
 		/**
 		 * The author element is the name of the user associated with the
 		 * generated code.
+		 * 
+		 * @return the instance representing the ServiceBuilder builder
 		 */
 		public Builder withAuthor(String author) {
 			_serviceBuilder._author = author;
@@ -184,6 +192,12 @@ public class ServiceBuilder implements ServiceBuilderElement {
 			return this;
 		}
 
+		/**
+		 * Adds an entity to the list of entities in the ServiceBuilder.
+		 * 
+		 * @param entity the entity to be added to the ServiceBuilder
+		 * @return the instance representing the ServiceBuilder builder
+		 */
 		public Builder withEntity(Entity entity) {
 			if (!_serviceBuilder._entities.contains(entity)) {
 				_serviceBuilder._entities.add(entity);
@@ -199,6 +213,12 @@ public class ServiceBuilder implements ServiceBuilderElement {
 			return this;
 		}
 
+		/**
+		 * Adds an exception to the list of exceptions in the ServiceBuilder.
+		 *
+		 * @param exception the exception to be added to the ServiceBuilder
+		 * @return the instance representing the ServiceBuilder builder
+		 */
 		public Builder withException(String exception) {
 			if (!_serviceBuilder._exceptions.contains(exception)) {
 				_serviceBuilder._exceptions.add(exception);

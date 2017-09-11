@@ -97,6 +97,8 @@ public class FinderColumn implements ServiceBuilderElement {
 		/**
 		 * The attribute case-sensitive is a boolean value and is only used if
 		 * the column is a String value.
+		 * 
+		 * @return the instance representing the finder column builder
 		 */
 		public Builder caseInsensitive() {
 			_finderColumn._caseSensitive = false;
@@ -113,6 +115,7 @@ public class FinderColumn implements ServiceBuilderElement {
 		 *                 either an AND or OR operator. For example, a finder
 		 *                 column with the = comparator and an
 		 *                 arrayable-operator of OR will act like an IN clause.
+		 * @return the instance representing the finder column builder
 		 */
 		public Builder withArrayableOperator(ArrayableOperator operator) {
 			_finderColumn._arrayableOperator = operator;
@@ -123,6 +126,7 @@ public class FinderColumn implements ServiceBuilderElement {
 		/**
 		 * @param finderComparator Takes in the values =, !=, <, <=, >, >=, or
 		 *                         LIKE and is used to compare this column.
+		 * @return the instance representing the finder column builder
 		 */
 		public Builder withComparator(FinderComparator finderComparator) {
 			_finderColumn._comparator = finderComparator;

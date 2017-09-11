@@ -101,6 +101,12 @@ public class OrderColumn implements ServiceBuilderElement {
 			return orderColumn;
 		}
 
+		/**
+		 * Sets as case insensitive the order in this order column. If not set,
+		 * the order will be performed as case sensitive.
+		 * 
+		 * @return the instance representing the order column builder
+		 */
 		public Builder caseInsensitive() {
 			_orderColumn._caseSensitive = false;
 
@@ -109,6 +115,8 @@ public class OrderColumn implements ServiceBuilderElement {
 
 		/**
 		 * Default order-by value is ascending
+		 * 
+		 * @return the instance representing the order column builder
 		 */
 		public Builder descending() {
 			_orderColumn._orderBy = OrderBy.DESC;

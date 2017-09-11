@@ -235,12 +235,12 @@ public class NonFilterPrimaryColumn implements Column {
 	private String _dbName;
 
 	/**
-	 * @see _mappingTable
+	 * @see #_mappingTable
 	 */
 	private String _entity;
 
 	/**
-	 * @see _idType
+	 * @see #_idType
 	 */
 	private String _idParam;
 

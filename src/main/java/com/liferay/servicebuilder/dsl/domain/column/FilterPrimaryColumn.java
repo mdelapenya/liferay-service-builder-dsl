@@ -27,6 +27,17 @@ import com.fasterxml.jackson.dataformat.xml.annotation.JacksonXmlRootElement;
 @JsonPropertyOrder(alphabetic = true)
 public class FilterPrimaryColumn extends NonFilterPrimaryColumn {
 
+	@Override
+	public boolean equals(Object obj) {
+		if (!(obj instanceof Column)) {
+			return false;
+		}
+
+		Column that = (Column)obj;
+
+		return name.equals(that.getName());
+	}
+
 	@JacksonXmlProperty(isAttribute = true, localName = "filter-primary")
 	public boolean isFilterPrimary() {
 		return _filterPrimary;

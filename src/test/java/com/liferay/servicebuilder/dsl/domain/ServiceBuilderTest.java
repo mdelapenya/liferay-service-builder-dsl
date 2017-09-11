@@ -178,8 +178,7 @@ public class ServiceBuilderTest {
 	@Test
 	public void testBuildWithExceptions() {
 		ServiceBuilder serviceBuilder = builder
-			.withException("ArticleContent")
-			.withException("ArticleDisplayDate")
+			.withExceptions("ArticleContent", "ArticleDisplayDate")
 			.build();
 
 		List<String> exceptions = serviceBuilder.getExceptions();

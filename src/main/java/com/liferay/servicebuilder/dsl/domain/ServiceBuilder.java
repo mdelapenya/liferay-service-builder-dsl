@@ -20,6 +20,7 @@ import com.fasterxml.jackson.dataformat.xml.annotation.JacksonXmlProperty;
 import com.fasterxml.jackson.dataformat.xml.annotation.JacksonXmlRootElement;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 
 import org.apache.logging.log4j.LogManager;
@@ -236,6 +237,21 @@ public class ServiceBuilder implements ServiceBuilderElement {
 							" exception because it already exists");
 				}
 			}
+
+			return this;
+		}
+
+		/**
+		 * Adds an array of exceptions to the list of exceptions in the
+		 * ServiceBuilder.
+		 *
+		 * @param exceptions the array of exceptions to be added to the
+		 *                   ServiceBuilder
+		 * @return the instance representing the ServiceBuilder builder
+		 */
+		public Builder withExceptions(String... exceptions) {
+			Arrays.stream(exceptions)
+				.forEach(exception -> withException(exception));
 
 			return this;
 		}

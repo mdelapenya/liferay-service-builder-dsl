@@ -30,6 +30,13 @@ public abstract class BaseXMLSerializer implements XMLSerializer {
 		_serviceBuilderElement = serviceBuilderElement;
 	}
 
+	/**
+	 * Serializes the Service Builder element (entity, finder, order, etc) into
+	 * a String representing the XML output.
+	 * 
+	 * @return the serialized service builder element
+	 * @throws JsonProcessingException if an exception occurs
+	 */
 	@Override
 	public String serialize() throws JsonProcessingException {
 		ObjectMapper xmlMapper = new XmlMapper();

@@ -2,6 +2,7 @@ group 'com.liferay'
 version '1.0.0-SNAPSHOT'
 
 apply plugin: 'com.liferay.source.formatter'
+apply plugin: 'findbugs'
 apply plugin: 'java'
 apply plugin: 'jacoco'
 
@@ -35,6 +36,13 @@ if (JavaVersion.current().isJava8Compatible()) {
 		tasks.withType(Javadoc) {
 			options.addStringOption('Xdoclint:none', '-quiet')
 		}
+	}
+}
+
+tasks.withType(FindBugs) {
+	reports {
+		xml.enabled false
+		html.enabled true
 	}
 }
 

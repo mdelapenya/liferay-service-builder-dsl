@@ -67,7 +67,6 @@ public class Reference implements ServiceBuilderElement {
 		 *
 		 * @param entity the name of the entity
 		 * @param packagePath the package path to the service.xml
-		 * @return
 		 */
 		public Builder(String entity, String packagePath) {
 			_reference = new Reference();

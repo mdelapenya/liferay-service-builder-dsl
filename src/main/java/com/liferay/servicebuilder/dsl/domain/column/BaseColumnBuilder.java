@@ -50,7 +50,7 @@ public abstract class BaseColumnBuilder implements ColumnBuilder {
 	 *
 	 * @param columnType
 	 * @param className the class name that retrieves a unique identifier
-	 * @return
+	 * @return the instance representing the column builder
 	 */
 	public BaseColumnBuilder autogeneratePrimaryKeyFromClass(
 		ServiceBuilderType columnType, String className) {
@@ -80,7 +80,7 @@ public abstract class BaseColumnBuilder implements ColumnBuilder {
 	 * supported by DB2, MySQL, and MS SQL Server.
 	 *
 	 * @param columnType
-	 * @return
+	 * @return the instance representing the column builder
 	 */
 	public BaseColumnBuilder autogeneratePrimaryKeyFromIdentity(
 		ServiceBuilderType columnType) {
@@ -107,7 +107,7 @@ public abstract class BaseColumnBuilder implements ColumnBuilder {
 	 *     id-type="increment"
 	 * />
 	 * @param columnType
-	 * @return
+	 * @return the instance representing the column builder
 	 */
 	public BaseColumnBuilder autogeneratePrimaryKeyFromIncrement(
 		ServiceBuilderType columnType) {
@@ -138,7 +138,7 @@ public abstract class BaseColumnBuilder implements ColumnBuilder {
 	 *
 	 * @param columnType
 	 * @param idSequence
-	 * @return
+	 * @return the instance representing the column builder
 	 */
 	public BaseColumnBuilder autogeneratePrimaryKeyFromSequence(
 		ServiceBuilderType columnType, String idSequence) {

@@ -234,7 +234,7 @@ public class Entity implements ServiceBuilderElement {
 		}
 
 		/**
-		 * @see withTxManager
+		 * @see EntityBuilder#withTxManager(String)
 		 */
 		public EntityBuilder disableTxManager() {
 			_entity._txManager = "none";

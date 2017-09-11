@@ -24,7 +24,6 @@ import com.liferay.servicebuilder.dsl.domain.column.FilterPrimaryColumn;
 
 import java.util.ArrayList;
 import java.util.Arrays;
-import java.util.Collections;
 import java.util.List;
 
 import org.apache.logging.log4j.LogManager;
@@ -350,7 +349,7 @@ public class Entity implements ServiceBuilderElement {
 		 * @return the instance representing the entity builder
 		 */
 		public EntityBuilder withFinders(Finder... finders) {
-			Collections.addAll(_entity._finders, finders);
+			Arrays.stream(finders).forEach(finder -> withFinder(finder));
 
 			return this;
 		}
@@ -457,7 +456,8 @@ public class Entity implements ServiceBuilderElement {
 		 * @return the instance representing the entity builder
 		 */
 		public EntityBuilder withReferences(Reference... references) {
-			Collections.addAll(_entity._references, references);
+			Arrays.stream(references).forEach(
+				reference -> withReference(reference));
 
 			return this;
 		}

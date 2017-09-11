@@ -53,6 +53,11 @@ public class Order implements ServiceBuilderElement {
 			_order = new Order();
 		}
 
+		/**
+		 * Builds the Oder object from the previous composition operations.
+		 *
+		 * @return the Order model
+		 */
 		public Order build() {
 			Order order = _order;
 

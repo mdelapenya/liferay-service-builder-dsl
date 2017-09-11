@@ -75,6 +75,11 @@ public class Reference implements ServiceBuilderElement {
 			_reference._packagePath = packagePath;
 		}
 
+		/**
+		 * Builds the Reference object from the previous composition operations.
+		 *
+		 * @return the Reference model
+		 */
 		public Reference build() {
 			Reference reference = _reference;
 

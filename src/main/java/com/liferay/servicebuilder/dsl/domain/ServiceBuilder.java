@@ -131,6 +131,12 @@ public class ServiceBuilder implements ServiceBuilderElement {
 			return this;
 		}
 
+		/**
+		 * Builds the ServiceBuilder object from the previous composition
+		 * operations.
+		 *
+		 * @return the ServiceBuilder model
+		 */
 		public ServiceBuilder build() {
 			ServiceBuilder serviceBuilder = _serviceBuilder;
 

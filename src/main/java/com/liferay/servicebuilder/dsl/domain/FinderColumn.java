@@ -86,6 +86,12 @@ public class FinderColumn implements ServiceBuilderElement {
 			_finderColumn._name = name;
 		}
 
+		/**
+		 * Builds the FinderColumn object from the previous composition
+		 * operations.
+		 *
+		 * @return the FinderColumn model
+		 */
 		public FinderColumn build() {
 			FinderColumn finderColumn = _finderColumn;
 

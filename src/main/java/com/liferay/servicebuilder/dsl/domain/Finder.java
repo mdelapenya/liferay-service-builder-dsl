@@ -101,6 +101,11 @@ public class Finder implements ServiceBuilderElement {
 			_addFinderColumn(finderColumn);
 		}
 
+		/**
+		 * Builds the Finder object from the previous composition operations.
+		 *
+		 * @return the Finde model
+		 */
 		public Finder build() {
 			Finder finder = _finder;
 

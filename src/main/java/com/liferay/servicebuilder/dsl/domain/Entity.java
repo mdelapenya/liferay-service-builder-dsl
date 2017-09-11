@@ -203,6 +203,11 @@ public class Entity implements ServiceBuilderElement {
 			_entity._name = name;
 		}
 
+		/**
+		 * Builds the Entity object from the previous composition operations.
+		 * 
+		 * @return the Entity model
+		 */
 		public Entity build() {
 			Entity entity = _entity;
 

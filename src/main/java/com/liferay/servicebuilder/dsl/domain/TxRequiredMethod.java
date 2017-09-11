@@ -64,6 +64,12 @@ public class TxRequiredMethod implements ServiceBuilderElement {
 			_txRequiredMethod._methodName = methodName;
 		}
 
+		/**
+		 * Builds the TxRequiredMethod object from the previous composition
+		 * operations.
+		 *
+		 * @return the TxRequiredMethod model
+		 */
 		public TxRequiredMethod build() {
 			TxRequiredMethod txRequiredMethod = _txRequiredMethod;
 

@@ -93,6 +93,12 @@ public class OrderColumn implements ServiceBuilderElement {
 			_orderColumn._name = name;
 		}
 
+		/**
+		 * Builds the OrderColumn object from the previous composition
+		 * operations.
+		 *
+		 * @return the OrderColumn model
+		 */
 		public OrderColumn build() {
 			OrderColumn orderColumn = _orderColumn;
 

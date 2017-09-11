@@ -19,7 +19,9 @@ import com.liferay.servicebuilder.dsl.xml.ServiceBuilderSerializer;
 import com.liferay.servicebuilder.dsl.xml.XMLSerializer;
 
 import java.io.File;
+import java.io.FileOutputStream;
 import java.io.IOException;
+import java.io.OutputStreamWriter;
 import java.io.PrintWriter;
 import java.io.Writer;
 
@@ -40,8 +42,11 @@ public class FileWriter {
 
 		File file = outputFilePath.toFile();
 
-		try (Writer out = new PrintWriter(file)) {
-			out.write(xml);
+		try (Writer out = new OutputStreamWriter(
+				new FileOutputStream(file), "UTF-8");
+			 PrintWriter printWriter = new PrintWriter(out)) {
+
+			printWriter.write(xml);
 		}
 
 		return file;

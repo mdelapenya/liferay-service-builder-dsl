@@ -19,8 +19,8 @@ package com.liferay.servicebuilder.dsl.domain;
  */
 public enum ServiceBuilderType {
 
-	BLOB("Blob"), BOOLEAN("Boolean"), COLLECTION("Collection"), INTEGER("int"),
-	LONG("long"), STRING("String");
+	BLOB("Blob"), BOOLEAN("Boolean"), COLLECTION("Collection"), DATE("Date"),
+	DOUBLE("double"), INTEGER("int"), LONG("long"), STRING("String");
 
 	ServiceBuilderType(String type) {
 		_type = type;

@@ -176,6 +176,29 @@ public class EntityTest {
 	}
 
 	@Test
+	public void testBuildWithColumnUsingName() {
+		Entity entity = builder.withColumn("companyId", ServiceBuilderType.LONG)
+			.build();
+
+		List<Column> columns = entity.getColumns();
+
+		Assert.assertEquals(columns.toString(), 1, columns.size());
+	}
+
+
+	@Test
+	public void testBuildWithColumnUsingNameDuplicatedDoesNotAddIt() {
+		Entity entity = builder
+			.withColumn("companyId", ServiceBuilderType.LONG)
+			.withColumn("companyId", ServiceBuilderType.LONG)
+			.build();
+
+		List<Column> columns = entity.getColumns();
+
+		Assert.assertEquals(columns.toString(), 1, columns.size());
+	}
+
+	@Test
 	public void testBuildWithDatasource() {
 		Entity entity = builder.withDatasource("datasource").build();
 
@@ -396,6 +419,28 @@ public class EntityTest {
 
 		Entity entity = builder
 			.withReferences(reference1, reference2)
+			.build();
+
+		List<Reference> references = entity.getReferences();
+
+		Assert.assertEquals(references.toString(), 1, references.size());
+	}
+
+	@Test
+	public void testBuildWithReferenceUsingName() {
+		Entity entity = builder.withReference(
+			"JournalFolder", "com.liferay.journal").build();
+
+		List<Reference> references = entity.getReferences();
+
+		Assert.assertEquals(references.toString(), 1, references.size());
+	}
+
+	@Test
+	public void testBuildWithReferenceUsingNameDuplicatedDoesNotAddIt() {
+		Entity entity = builder
+			.withReference("JournalFolder", "com.liferay.journal")
+			.withReference("JournalFolder", "com.liferay.journal")
 			.build();
 
 		List<Reference> references = entity.getReferences();

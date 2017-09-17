@@ -20,6 +20,7 @@ import com.fasterxml.jackson.dataformat.xml.annotation.JacksonXmlProperty;
 import com.fasterxml.jackson.dataformat.xml.annotation.JacksonXmlRootElement;
 
 import com.liferay.servicebuilder.dsl.domain.column.Column;
+import com.liferay.servicebuilder.dsl.domain.column.ColumnBuilderFactory;
 import com.liferay.servicebuilder.dsl.domain.column.FilterPrimaryColumn;
 
 import java.util.ArrayList;
@@ -271,6 +272,18 @@ public class Entity implements ServiceBuilderElement {
 		}
 
 		/**
+		 * Adds a column to the list of columns in the entity.
+		 *
+		 * @param name the name of the column object to be added to the entity
+		 * @param type the type of the column object to be added to the entity
+		 * @return the instance representing the entity builder
+		 */
+		public EntityBuilder withColumn(String name, ServiceBuilderType type) {
+			return withColumn(
+				ColumnBuilderFactory.getColumnBuilder(name, type).build());
+		}
+
+		/**
 		 * Adds an array of columns to the list of columns in the entity.
 		 * 
 		 * @param columns the columns array to be added to the entity
@@ -328,6 +341,28 @@ public class Entity implements ServiceBuilderElement {
 			_addColumn(column);
 
 			return this;
+		}
+
+		/**
+		 * Adds the only one filter-primary column to the entity.
+		 *
+		 * @param name the name of the filter-primary column to be added to the
+		 *             entity
+		 * @param type the type of the filter-primary column to be added to the
+		 *             entity
+		 * @return the instance representing the entity builder
+		 */
+		public EntityBuilder withFilterPrimaryColumn(
+			String name, ServiceBuilderType type) {
+
+			FilterPrimaryColumn column =
+				(FilterPrimaryColumn)
+					ColumnBuilderFactory.getFilterPrimaryColumnBuilder(
+						name, type)
+						.asPrimaryKey()
+						.build();
+
+			return withFilterPrimaryColumn(column);
 		}
 
 		/**
@@ -457,6 +492,19 @@ public class Entity implements ServiceBuilderElement {
 			}
 
 			return this;
+		}
+
+		/**
+		 * Adds a reference to the list of references in the entity.
+		 *
+		 * @param entity the name of the reference to be added to the entity
+		 * @param packagePath the packagePath of the reference to be added to
+		 *                    the entity
+		 * @return the instance representing the entity builder
+		 */
+		public EntityBuilder withReference(String entity, String packagePath) {
+			return withReference(
+				new Reference.Builder(entity, packagePath).build());
 		}
 
 		/**
@@ -645,6 +693,8 @@ public class Entity implements ServiceBuilderElement {
 
 		EntityBuilder withColumn(Column column);
 
+		EntityBuilder withColumn(String name, ServiceBuilderType type);
+
 		EntityBuilder withColumns(Column... columns);
 
 		EntityBuilder withDatasource(String datasource);
@@ -668,6 +718,8 @@ public class Entity implements ServiceBuilderElement {
 		EntityBuilder withPersistenceClass(String persistenceClass);
 
 		EntityBuilder withReference(Reference reference);
+
+		EntityBuilder withReference(String entity, String packagePath);
 
 		EntityBuilder withReferences(Reference... reference);
 
@@ -696,6 +748,9 @@ public class Entity implements ServiceBuilderElement {
 
 		BuilderWithFilterPrimary withFilterPrimaryColumn(
 			FilterPrimaryColumn column);
+
+		BuilderWithFilterPrimary withFilterPrimaryColumn(
+			String name, ServiceBuilderType type);
 
 	}
 

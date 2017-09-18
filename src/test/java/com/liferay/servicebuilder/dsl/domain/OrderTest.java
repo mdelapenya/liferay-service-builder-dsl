@@ -32,14 +32,14 @@ public class OrderTest {
 
 	@Test
 	public void testBuildByAsc() {
-		Order order = builder.by(OrderBy.ASC).build();
+		Order order = builder.asc().build();
 
 		Assert.assertEquals(OrderBy.ASC, order.getBy());
 	}
 
 	@Test
 	public void testBuildByDesc() {
-		Order order = builder.by(OrderBy.DESC).build();
+		Order order = builder.desc().build();
 
 		Assert.assertEquals(OrderBy.DESC, order.getBy());
 	}

@@ -54,6 +54,15 @@ public class Order implements ServiceBuilderElement {
 		}
 
 		/**
+		 * Sets the by attribute to "asc" to order by ascending.
+		 * 
+		 * @return the instance representing the order builder
+		 */
+		public Builder asc() {
+			return _by(OrderBy.ASC);
+		}
+
+		/**
 		 * Builds the Oder object from the previous composition operations.
 		 *
 		 * @return the Order model
@@ -67,14 +76,12 @@ public class Order implements ServiceBuilderElement {
 		}
 
 		/**
-		 * @param by Set the by attribute to "asc" or "desc" to order by
-		 *           ascending or descending.
+		 * Sets the by attribute to "desc" to order by descending.
+		 *
 		 * @return the instance representing the order builder
 		 */
-		public Builder by(OrderBy by) {
-			_order._by = by;
-
-			return this;
+		public Builder desc() {
+			return _by(OrderBy.DESC);
 		}
 
 		/**
@@ -109,6 +116,17 @@ public class Order implements ServiceBuilderElement {
 		public Builder withOrderColumns(OrderColumn... orderColumns) {
 			Arrays.stream(orderColumns)
 				.forEach(orderColumn -> withOrderColumn(orderColumn));
+
+			return this;
+		}
+
+		/**
+		 * @param by Set the by attribute to "asc" or "desc" to order by
+		 *           ascending or descending.
+		 * @return the instance representing the order builder
+		 */
+		private Builder _by(OrderBy by) {
+			_order._by = by;
 
 			return this;
 		}

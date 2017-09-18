@@ -19,7 +19,7 @@ package com.liferay.servicebuilder.dsl.domain;
  */
 public enum FinderComparator {
 
-	DISTINCT("!="), EQUALS("="), GREATER("A"), GREATER_EQUALS(">="), LESS("<"),
+	DISTINCT("!="), EQUALS("="), GREATER(">"), GREATER_EQUALS(">="), LESS("<"),
 	LESS_EQUALS("<="), LIKE("LIKE");
 
 	FinderComparator(String comparator) {

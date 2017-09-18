@@ -41,16 +41,12 @@ public class FinderColumnTest {
 
 	@Test
 	public void testBuildWithArrayableOperator() {
-		FinderColumn finderColumn = builder
-			.withArrayableOperator(ArrayableOperator.AND)
-			.build();
+		FinderColumn finderColumn = builder.and().build();
 
 		Assert.assertEquals(
 			ArrayableOperator.AND, finderColumn.getArrayableOperator());
 
-		finderColumn = builder
-			.withArrayableOperator(ArrayableOperator.OR)
-			.build();
+		finderColumn = builder.or().build();
 
 		Assert.assertEquals(
 			ArrayableOperator.OR, finderColumn.getArrayableOperator());

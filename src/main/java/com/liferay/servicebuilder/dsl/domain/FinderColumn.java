@@ -92,6 +92,18 @@ public class FinderColumn implements ServiceBuilderElement {
 		}
 
 		/**
+		 * Takes in the value AND and will generate an additional finder where
+		 * this column's parameter takes an array instead of a single value.
+		 * Every value in this array will be compared with the column using the
+		 * comparator, and the conditions will be combined with an AND operator.
+		 *
+		 * @return the instance representing the finder column builder
+		 */
+		public Builder and() {
+			return _withArrayableOperator(ArrayableOperator.AND);
+		}
+
+		/**
 		 * Builds the FinderColumn object from the previous composition
 		 * operations.
 		 *
@@ -181,6 +193,18 @@ public class FinderColumn implements ServiceBuilderElement {
 		}
 
 		/**
+		 * Takes in the value OR and will generate an additional finder where
+		 * this column's parameter takes an array instead of a single value.
+		 * Every value in this array will be compared with the column using the
+		 * comparator, and the conditions will be combined with an OR operator.
+		 * 
+		 * @return the instance representing the finder column builder
+		 */
+		public Builder or() {
+			return _withArrayableOperator(ArrayableOperator.OR);
+		}
+
+		/**
 		 * @param operator Takes in the values AND or OR and will generate an
 		 *                 additional finder where this column's parameter takes
 		 *                 an array instead of a single value. Every value in
@@ -191,7 +215,7 @@ public class FinderColumn implements ServiceBuilderElement {
 		 *                 arrayable-operator of OR will act like an IN clause.
 		 * @return the instance representing the finder column builder
 		 */
-		public Builder withArrayableOperator(ArrayableOperator operator) {
+		private Builder _withArrayableOperator(ArrayableOperator operator) {
 			_finderColumn._arrayableOperator = operator;
 
 			return this;

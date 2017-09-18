@@ -32,7 +32,7 @@ public enum ServiceBuilderType {
 
 	@Override
 	public String toString() {
-		return _type;
+		return getType();
 	}
 
 	private String _type;

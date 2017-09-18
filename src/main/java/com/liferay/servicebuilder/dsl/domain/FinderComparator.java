@@ -30,6 +30,11 @@ public enum FinderComparator {
 		return _comparator;
 	}
 
+	@Override
+	public String toString() {
+		return getComparator();
+	}
+
 	private String _comparator;
 
 }

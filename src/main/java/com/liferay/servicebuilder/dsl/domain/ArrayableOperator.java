@@ -29,6 +29,11 @@ public enum ArrayableOperator {
 		return _operator;
 	}
 
+	@Override
+	public String toString() {
+		return getOperator();
+	}
+
 	private String _operator;
 
 }

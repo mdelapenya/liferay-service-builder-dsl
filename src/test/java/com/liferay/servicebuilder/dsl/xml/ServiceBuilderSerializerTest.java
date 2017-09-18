@@ -17,8 +17,6 @@ package com.liferay.servicebuilder.dsl.xml;
 import com.fasterxml.jackson.core.JsonProcessingException;
 
 import com.liferay.servicebuilder.dsl.domain.Entity;
-import com.liferay.servicebuilder.dsl.domain.Finder;
-import com.liferay.servicebuilder.dsl.domain.FinderColumn;
 import com.liferay.servicebuilder.dsl.domain.Order;
 import com.liferay.servicebuilder.dsl.domain.OrderColumn;
 import com.liferay.servicebuilder.dsl.domain.ServiceBuilder;
@@ -49,12 +47,6 @@ public class ServiceBuilderSerializerTest {
 			.withOrderColumn(orderColumn)
 			.build();
 
-		FinderColumn finderColumn = new FinderColumn.Builder("companyId")
-			.build();
-
-		Finder finder = new Finder.Builder(
-			"CompanyId", "Collection", finderColumn).build();
-
 		Entity.BuilderImpl builder = new Entity.BuilderImpl("Foo");
 
 		Entity entity =
@@ -66,7 +58,7 @@ public class ServiceBuilderSerializerTest {
 				.disableTxManager()
 				.withColumn(column)
 				.withOrder(order)
-				.withFinder(finder)
+				.withFinder("CompanyId", "Collection", "companyId")
 				.build();
 
 		ServiceBuilder serviceBuilder = new ServiceBuilder.Builder("", "")

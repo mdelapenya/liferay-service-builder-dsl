@@ -387,6 +387,31 @@ public class Entity implements ServiceBuilderElement {
 		}
 
 		/**
+		 * Adds a finder method to the list of finder methods in the entity from
+		 * its name, its return type, and the name of its single and
+		 * non-parametrised column.
+		 *
+		 * @param finderName the name of the finder method to be added to the
+		 *                   entity
+		 * @param returnType the return type of the finder method to be added to
+		 *                   the entity
+		 * @param finderColumnName the name of the single column to be added to
+		 *                         the finder method to be added to the entity
+		 * @return the instance representing the entity builder
+		 */
+		public EntityBuilder withFinder(
+			String finderName, String returnType, String finderColumnName) {
+
+			FinderColumn finderColumn = new FinderColumn.Builder(
+				finderColumnName).build();
+
+			Finder finder = new Finder.Builder(
+				finderName, returnType, finderColumn).build();
+
+			return withFinder(finder);
+		}
+
+		/**
 		 * Adds an array of finder methods to the list of finder methods in the
 		 * entity.
 		 * 
@@ -702,6 +727,9 @@ public class Entity implements ServiceBuilderElement {
 		EntityBuilder withDynamicUpdate(Boolean dynamicUpdate);
 
 		EntityBuilder withFinder(Finder finder);
+
+		EntityBuilder withFinder(
+			String finderName, String returnType, String finderColumnName);
 
 		EntityBuilder withFinders(Finder... finders);
 

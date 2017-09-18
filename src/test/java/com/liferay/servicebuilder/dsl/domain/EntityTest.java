@@ -288,6 +288,30 @@ public class EntityTest {
 	}
 
 	@Test
+	public void testBuildWithFinderFromSimpleMethod() {
+		Entity entity = builder.withFinder(
+			"G_C_DDMSK", "JournalArticle", "groupId").build();
+
+		Assert.assertEquals(1, entity.getFinders().size());
+
+		Finder finder = entity.getFinders().get(0);
+
+		Assert.assertEquals("G_C_DDMSK", finder.getName());
+		Assert.assertEquals("JournalArticle", finder.getReturnType());
+
+		List<FinderColumn> finderColumns = finder.getFinderColumns();
+
+		Assert.assertEquals(1, finderColumns.size());
+
+		FinderColumn finderColumn = finderColumns.get(0);
+
+		Assert.assertEquals("groupId", finderColumn.getName());
+		Assert.assertTrue(finderColumn.isCaseSensitive());
+		Assert.assertNull(finderColumn.getComparator());
+		Assert.assertNull(finderColumn.getArrayableOperator());
+	}
+
+	@Test
 	public void testBuildWithFinders() {
 		FinderColumn finderColumn = new FinderColumn.Builder("groupId").build();
 

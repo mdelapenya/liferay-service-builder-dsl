@@ -118,6 +118,69 @@ public class FinderColumn implements ServiceBuilderElement {
 		}
 
 		/**
+		 * Takes in the value != to compare this column.
+		 * 
+		 * @return the instance representing the finder column builder
+		 */
+		public Builder distinct() {
+			return _withComparator(FinderComparator.DISTINCT);
+		}
+
+		/**
+		 * Takes in the value = to compare this column.
+		 *
+		 * @return the instance representing the finder column builder
+		 */
+		public Builder equalsTo() {
+			return _withComparator(FinderComparator.EQUALS);
+		}
+
+		/**
+		 * Takes in the value > to compare this column.
+		 *
+		 * @return the instance representing the finder column builder
+		 */
+		public Builder greater() {
+			return _withComparator(FinderComparator.GREATER);
+		}
+
+		/**
+		 * Takes in the value >= to compare this column.
+		 *
+		 * @return the instance representing the finder column builder
+		 */
+		public Builder greaterEquals() {
+			return _withComparator(FinderComparator.GREATER_EQUALS);
+		}
+
+		/**
+		 * Takes in the value < to compare this column.
+		 *
+		 * @return the instance representing the finder column builder
+		 */
+		public Builder less() {
+			return _withComparator(FinderComparator.LESS);
+		}
+
+		/**
+		 * Takes in the value <= to compare this column.
+		 *
+		 * @return the instance representing the finder column builder
+		 */
+		public Builder lessEquals() {
+			return _withComparator(FinderComparator.LESS_EQUALS);
+		}
+
+		/**
+		 * Takes in the value LIKE to compare this column.
+		 *
+		 * @return the instance representing the finder column builder
+		 */
+		public Builder like() {
+			return _withComparator(FinderComparator.LIKE);
+		}
+
+		/**
 		 * @param operator Takes in the values AND or OR and will generate an
 		 *                 additional finder where this column's parameter takes
 		 *                 an array instead of a single value. Every value in
@@ -139,7 +202,7 @@ public class FinderColumn implements ServiceBuilderElement {
 		 *                         LIKE and is used to compare this column.
 		 * @return the instance representing the finder column builder
 		 */
-		public Builder withComparator(FinderComparator finderComparator) {
+		private Builder _withComparator(FinderComparator finderComparator) {
 			_finderColumn._comparator = finderComparator;
 
 			return this;

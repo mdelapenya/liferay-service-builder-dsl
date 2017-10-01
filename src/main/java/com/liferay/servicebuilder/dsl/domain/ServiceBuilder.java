@@ -110,7 +110,7 @@ public class ServiceBuilder implements ServiceBuilderElement {
 		/**
 		 * The auto-import-default-references value specifies whether or not to
 		 * automatically default references. The default value is true.
-		 * 
+		 *
 		 * @return the instance representing the ServiceBuilder builder
 		 */
 		public Builder autoImportDefaultReferences() {
@@ -123,7 +123,7 @@ public class ServiceBuilder implements ServiceBuilderElement {
 		 * The auto-namespace-tables value specifies whether or not to
 		 * automatically namespace tables. The default value is false for core
 		 * services and true for plugin services.
-		 * 
+		 *
 		 * @return the instance representing the ServiceBuilder builder
 		 */
 		public Builder autoNamespaceTables() {
@@ -150,7 +150,7 @@ public class ServiceBuilder implements ServiceBuilderElement {
 		 * The mvcc-enabled value specifies whether or not to enable MVCC by
 		 * default for entities to prevent lost updates. The default value is
 		 * false.
-		 * 
+		 *
 		 * @return the instance representing the ServiceBuilder builder
 		 */
 		public Builder enableMvcc() {
@@ -190,7 +190,7 @@ public class ServiceBuilder implements ServiceBuilderElement {
 		/**
 		 * The author element is the name of the user associated with the
 		 * generated code.
-		 * 
+		 *
 		 * @return the instance representing the ServiceBuilder builder
 		 */
 		public Builder withAuthor(String author) {
@@ -201,7 +201,7 @@ public class ServiceBuilder implements ServiceBuilderElement {
 
 		/**
 		 * Adds an entity to the list of entities in the ServiceBuilder.
-		 * 
+		 *
 		 * @param entity the entity to be added to the ServiceBuilder
 		 * @return the instance representing the ServiceBuilder builder
 		 */

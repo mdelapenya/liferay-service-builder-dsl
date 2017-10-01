@@ -55,7 +55,7 @@ public class Order implements ServiceBuilderElement {
 
 		/**
 		 * Sets the by attribute to "asc" to order by ascending.
-		 * 
+		 *
 		 * @return the instance representing the order builder
 		 */
 		public Builder asc() {
@@ -86,7 +86,7 @@ public class Order implements ServiceBuilderElement {
 
 		/**
 		 * Adds an order column to the list of order columns in the order.
-		 * 
+		 *
 		 * @param orderColumn the order column to be added to the order
 		 * @return the instance representing the order builder
 		 */

@@ -44,7 +44,7 @@ public class FileWriter {
 
 		try (Writer out = new OutputStreamWriter(
 				new FileOutputStream(file), "UTF-8");
-			 PrintWriter printWriter = new PrintWriter(out)) {
+			PrintWriter printWriter = new PrintWriter(out)) {
 
 			printWriter.write(xml);
 		}

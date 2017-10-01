@@ -122,7 +122,7 @@ public class Finder implements ServiceBuilderElement {
 		/**
 		 * If the unique value is true, then the finder must return a unique
 		 * entity.
-		 * 
+		 *
 		 * @return the instance representing the finder builder
 		 */
 		public Builder unique() {
@@ -133,7 +133,7 @@ public class Finder implements ServiceBuilderElement {
 
 		/**
 		 * Adds a SQL where clause to the finder.
-		 * 
+		 *
 		 * @param where the SQL where clause to be added to the finder
 		 * @return the instance representing the finder builder
 		 */
@@ -145,7 +145,7 @@ public class Finder implements ServiceBuilderElement {
 
 		/**
 		 * Adds an array of finder columns to the finder.
-		 * 
+		 *
 		 * @param finderColumns the array of finder columns to be added to the
 		 *                      finder
 		 * @return the instance representing the finder builder
@@ -160,7 +160,7 @@ public class Finder implements ServiceBuilderElement {
 		/**
 		 * If the db-index value is true, then the service will automatically
 		 * generate a SQL index for this finder. The default value is true.
-		 * 
+		 *
 		 * @return the instance representing the finder builder
 		 */
 		public Builder withoutSQLIndex() {

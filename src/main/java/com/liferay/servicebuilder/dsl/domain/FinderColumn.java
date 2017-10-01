@@ -120,7 +120,7 @@ public class FinderColumn implements ServiceBuilderElement {
 		/**
 		 * The attribute case-sensitive is a boolean value and is only used if
 		 * the column is a String value.
-		 * 
+		 *
 		 * @return the instance representing the finder column builder
 		 */
 		public Builder caseInsensitive() {
@@ -131,7 +131,7 @@ public class FinderColumn implements ServiceBuilderElement {
 
 		/**
 		 * Takes in the value != to compare this column.
-		 * 
+		 *
 		 * @return the instance representing the finder column builder
 		 */
 		public Builder distinct() {
@@ -197,7 +197,7 @@ public class FinderColumn implements ServiceBuilderElement {
 		 * this column's parameter takes an array instead of a single value.
 		 * Every value in this array will be compared with the column using the
 		 * comparator, and the conditions will be combined with an OR operator.
-		 * 
+		 *
 		 * @return the instance representing the finder column builder
 		 */
 		public Builder or() {

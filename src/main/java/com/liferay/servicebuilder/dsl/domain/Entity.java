@@ -137,11 +137,6 @@ public class Entity implements ServiceBuilderElement {
 		return _cacheEnabled;
 	}
 
-	@Override
-	public int hashCode() {
-		return super.hashCode();
-	}
-
 	@JacksonXmlProperty(
 		isAttribute = true, localName = "dynamic-update-enabled"
 	)
@@ -151,6 +146,11 @@ public class Entity implements ServiceBuilderElement {
 		}
 
 		return _dynamicUpdateEnabled;
+	}
+
+	@Override
+	public int hashCode() {
+		return super.hashCode();
 	}
 
 	@JacksonXmlProperty(isAttribute = true, localName = "json-enabled")
@@ -211,7 +211,7 @@ public class Entity implements ServiceBuilderElement {
 
 		/**
 		 * Builds the Entity object from the previous composition operations.
-		 * 
+		 *
 		 * @return the Entity model
 		 */
 		public Entity build() {
@@ -225,7 +225,7 @@ public class Entity implements ServiceBuilderElement {
 		/**
 		 * The deprecated value specifies whether the entity's services are
 		 * deprecated.
-		 * 
+		 *
 		 * @return the instance representing the entity builder
 		 */
 		public EntityBuilder deprecate() {
@@ -238,7 +238,7 @@ public class Entity implements ServiceBuilderElement {
 		 * The cache-enabled value specifies whether or not to cache this
 		 * queries for this entity. Set this to false if data in the table will
 		 * be updated by other programs. The default value is true.
-		 * 
+		 *
 		 * @return the instance representing the entity builder
 		 */
 		public EntityBuilder disableCache() {
@@ -249,7 +249,7 @@ public class Entity implements ServiceBuilderElement {
 
 		/**
 		 * Disables the transaction manager.
-		 * 
+		 *
 		 * @see EntityBuilder#withTxManager(String)
 		 * @return the instance representing the entity builder
 		 */
@@ -261,7 +261,7 @@ public class Entity implements ServiceBuilderElement {
 
 		/**
 		 * Adds a column to the list of columns in the entity.
-		 * 
+		 *
 		 * @param column the column object to be added to the entity
 		 * @return the instance representing the entity builder
 		 */
@@ -285,7 +285,7 @@ public class Entity implements ServiceBuilderElement {
 
 		/**
 		 * Adds an array of columns to the list of columns in the entity.
-		 * 
+		 *
 		 * @param columns the columns array to be added to the entity
 		 * @return the instance representing the entity builder
 		 */
@@ -331,7 +331,7 @@ public class Entity implements ServiceBuilderElement {
 
 		/**
 		 * Adds the only one filter-primary column to the entity.
-		 * 
+		 *
 		 * @param column the filter-primary column to be added to the entity
 		 * @return the instance representing the entity builder
 		 */
@@ -414,7 +414,7 @@ public class Entity implements ServiceBuilderElement {
 		/**
 		 * Adds an array of finder methods to the list of finder methods in the
 		 * entity.
-		 * 
+		 *
 		 * @param finders the array of finder methods to be added to the entity
 		 * @return the instance representing the entity builder
 		 */
@@ -440,7 +440,7 @@ public class Entity implements ServiceBuilderElement {
 		 * The json-enabled value specifies whether or not the entity should be
 		 * annotated for JSON serialization. By default, if the remote-service
 		 * value is true, then the json-enabled value is true.
-		 * 
+		 *
 		 * @return the instance representing the entity builder
 		 */
 		public EntityBuilder withJsonSerialization() {
@@ -452,7 +452,7 @@ public class Entity implements ServiceBuilderElement {
 		/**
 		 * If the local-service value is true, then the service will generate
 		 * the local interfaces for the service. The default value is false.
-		 * 
+		 *
 		 * @return the instance representing the entity builder
 		 */
 		public EntityBuilder withLocalServices() {
@@ -480,7 +480,7 @@ public class Entity implements ServiceBuilderElement {
 
 		/**
 		 * Specifies the order for the retrieval of the entity.
-		 * 
+		 *
 		 * @param order the order to be applied when the entity is retrieved
 		 * @return the instance representing the entity builder
 		 */
@@ -507,7 +507,7 @@ public class Entity implements ServiceBuilderElement {
 
 		/**
 		 * Adds a reference to the list of references in the entity.
-		 * 
+		 *
 		 * @param reference the reference to be added to the entity
 		 * @return the instance representing the entity builder
 		 */
@@ -548,7 +548,7 @@ public class Entity implements ServiceBuilderElement {
 		/**
 		 * If the remote-service value is true, then the service will generate
 		 * remote interfaces for the service. The default value is true.
-		 * 
+		 *
 		 * @return the instance representing the entity builder
 		 */
 		public EntityBuilder withRemoteServices() {
@@ -588,7 +588,7 @@ public class Entity implements ServiceBuilderElement {
 		/**
 		 * The trash-enabled value specifies whether trash related methods
 		 * should be generated or not.
-		 * 
+		 *
 		 * @return the instance representing the entity builder
 		 */
 		public EntityBuilder withTrashEnabled() {
@@ -615,8 +615,8 @@ public class Entity implements ServiceBuilderElement {
 		/**
 		 * Adds a method that requires transactions to the list of methods that
 		 * in require transactions in the entity.
-		 * 
-		 * @param txRequiredMethod the method that requires transactions 
+		 *
+		 * @param txRequiredMethod the method that requires transactions
 		 * @return the instance representing the entity builder
 		 */
 		public EntityBuilder withTxRequiredMethod(
@@ -632,7 +632,7 @@ public class Entity implements ServiceBuilderElement {
 		 * methods that in require transactions in the entity.
 		 *
 		 * @param txRequiredMethods the array of methods that requires
-		 *                          transactions 
+		 *                          transactions
 		 * @return the instance representing the entity builder
 		 */
 		public EntityBuilder withTxRequiredMethods(
@@ -650,7 +650,7 @@ public class Entity implements ServiceBuilderElement {
 		 * column for the service. This column will automatically be populated
 		 * with a UUID. Developers will also be able to find and remove based on
 		 * that UUID. The default value is false.
-		 * 
+		 *
 		 * @return the instance representing the entity builder
 		 */
 		public EntityBuilder withUuid() {
@@ -663,7 +663,7 @@ public class Entity implements ServiceBuilderElement {
 		 * If the uuid-accessor value is true, then the service will generate a
 		 * UUID column accessor for the service. This accessor will provide a
 		 * fast and type-safe way to access entity's UUID.
-		 * 
+		 *
 		 * @return the instance representing the entity builder
 		 */
 		public EntityBuilder withUuidAccessor() {

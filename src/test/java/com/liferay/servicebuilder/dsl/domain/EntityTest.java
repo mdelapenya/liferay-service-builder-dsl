@@ -185,7 +185,6 @@ public class EntityTest {
 		Assert.assertEquals(columns.toString(), 1, columns.size());
 	}
 
-
 	@Test
 	public void testBuildWithColumnUsingNameDuplicatedDoesNotAddIt() {
 		Entity entity = builder

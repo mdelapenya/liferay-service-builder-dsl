@@ -33,7 +33,7 @@ public abstract class BaseXMLSerializer implements XMLSerializer {
 	/**
 	 * Serializes the Service Builder element (entity, finder, order, etc) into
 	 * a String representing the XML output.
-	 * 
+	 *
 	 * @return the serialized service builder element
 	 * @throws JsonProcessingException if an exception occurs
 	 */

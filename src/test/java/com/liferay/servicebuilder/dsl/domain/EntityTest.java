@@ -118,6 +118,22 @@ public class EntityTest {
 	}
 
 	@Test
+	public void testBuildWithColumnFilterPrimaryAllowsOtherColumnSimplified() {
+		Column groupIdColumn = ColumnBuilderFactory.getColumnBuilder(
+				"groupId", ServiceBuilderType.LONG)
+			.build();
+
+		Entity entity = builder
+			.withFilterPrimaryColumn("companyId", ServiceBuilderType.LONG)
+			.withColumn(groupIdColumn)
+			.build();
+
+		List<Column> columns = entity.getColumns();
+
+		Assert.assertEquals(columns.toString(), 2, columns.size());
+	}
+
+	@Test
 	public void testBuildWithColumnFilterPrimaryDoesNotAllowColumnsWithSameName() {
 		FilterPrimaryColumn companyIdColumn =
 			(FilterPrimaryColumn)ColumnBuilderFactory
@@ -140,6 +156,22 @@ public class EntityTest {
 	}
 
 	@Test
+	public void testBuildWithColumnFilterPrimaryDoesNotAllowColumnsWithSameNameSimplified() {
+		Column groupIdColumn = ColumnBuilderFactory.getColumnBuilder(
+			"companyId", ServiceBuilderType.LONG)
+			.build();
+
+		Entity entity = builder
+			.withFilterPrimaryColumn("companyId", ServiceBuilderType.LONG)
+			.withColumn(groupIdColumn)
+			.build();
+
+		List<Column> columns = entity.getColumns();
+
+		Assert.assertEquals(columns.toString(), 1, columns.size());
+	}
+
+	@Test
 	public void testBuildWithColumnFilterPrimaryDoesNotAllowOtherFilterPrimaryColumn() {
 		FilterPrimaryColumn companyIdColumn =
 			(FilterPrimaryColumn)ColumnBuilderFactory
@@ -149,6 +181,20 @@ public class EntityTest {
 
 		Entity entity = builder
 			.withFilterPrimaryColumn(companyIdColumn)
+
+			// compiler does not allow invoking withFilterPrimaryColumn twice
+
+			.build();
+
+		List<Column> columns = entity.getColumns();
+
+		Assert.assertEquals(columns.toString(), 1, columns.size());
+	}
+
+	@Test
+	public void testBuildWithColumnFilterPrimaryDoesNotAllowOtherFilterPrimaryColumnSimplified() {
+		Entity entity = builder
+			.withFilterPrimaryColumn("companyId", ServiceBuilderType.LONG)
 
 			// compiler does not allow invoking withFilterPrimaryColumn twice
 

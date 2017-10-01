@@ -53,11 +53,59 @@ public class FinderColumnTest {
 	}
 
 	@Test
-	public void testBuildWithComparator() {
+	public void testBuildWithComparatorDistinct() {
+		FinderColumn finderColumn = builder.distinct().build();
+
+		Assert.assertEquals(
+			FinderComparator.DISTINCT, finderColumn.getComparator());
+	}
+
+	@Test
+	public void testBuildWithComparatorEqualsTo() {
 		FinderColumn finderColumn = builder.equalsTo().build();
 
 		Assert.assertEquals(
 			FinderComparator.EQUALS, finderColumn.getComparator());
+	}
+
+	@Test
+	public void testBuildWithComparatorGreater() {
+		FinderColumn finderColumn = builder.greater().build();
+
+		Assert.assertEquals(
+			FinderComparator.GREATER, finderColumn.getComparator());
+	}
+
+	@Test
+	public void testBuildWithComparatorGreaterEquals() {
+		FinderColumn finderColumn = builder.greaterEquals().build();
+
+		Assert.assertEquals(
+			FinderComparator.GREATER_EQUALS, finderColumn.getComparator());
+	}
+
+	@Test
+	public void testBuildWithComparatorLess() {
+		FinderColumn finderColumn = builder.less().build();
+
+		Assert.assertEquals(
+			FinderComparator.LESS, finderColumn.getComparator());
+	}
+
+	@Test
+	public void testBuildWithComparatorLessEquals() {
+		FinderColumn finderColumn = builder.lessEquals().build();
+
+		Assert.assertEquals(
+			FinderComparator.LESS_EQUALS, finderColumn.getComparator());
+	}
+
+	@Test
+	public void testBuildWithComparatorLike() {
+		FinderColumn finderColumn = builder.like().build();
+
+		Assert.assertEquals(
+			FinderComparator.LIKE, finderColumn.getComparator());
 	}
 
 	@Test

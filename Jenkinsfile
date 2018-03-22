@@ -29,6 +29,9 @@ stages {
     steps {
       buildStep('Static Analysis') {
         sh './gradlew findBugsMain findBugsTest'
+        findbugs(
+            pattern: 'build/reports/findbugs/*.html'
+        )
       }
     }
   }

@@ -30,7 +30,7 @@ stages {
       buildStep('Static Analysis') {
         sh './gradlew findBugsMain findBugsTest'
         findbugs(
-            pattern: 'build/reports/findbugs/*.html'
+            pattern: 'build/reports/findbugs/*.xml'
         )
       }
     }

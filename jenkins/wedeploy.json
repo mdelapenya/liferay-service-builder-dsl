@@ -1,0 +1,6 @@
+{
+  "id": "server",
+  "cpu": 3,
+  "memory": 4096,
+  "volume": "/var/jenkins_home"
+}

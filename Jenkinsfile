@@ -61,7 +61,7 @@ stages {
       buildStep('Code Coverage') {
         jacoco(
             execPattern: 'build/jacoco/*.exec',
-            classPattern: 'build/jacoco/classes',
+            classPattern: 'build/classes/main',
             sourcePattern: 'src/main/java',
             exclusionPattern: 'src/test*'
         )

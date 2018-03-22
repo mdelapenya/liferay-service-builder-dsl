@@ -37,18 +37,20 @@ pipeline {
         }
       }
     }
-    parallel {
-      stage('Unit Tests') {
-        steps {
-          buildStep('Unit Tests') {
-            sh './gradlew test'
+    stage('Tests') {
+      parallel {
+        stage('Unit Tests') {
+          steps {
+            buildStep('Unit Tests') {
+              sh './gradlew test'
+            }
           }
         }
-      }
-      stage('Integration Tests') {
-        steps {
-          buildStep('Integration Tests') {
-            //
+        stage('Integration Tests') {
+          steps {
+            buildStep('Integration Tests') {
+              //
+            }
           }
         }
       }

@@ -53,12 +53,12 @@ pipeline {
             }
           }
         }
-      }
-    }
-    stage('Functional Tests') {
-      steps {
-        buildStep('Functional Tests') {
-          //
+        stage('Functional Tests') {
+          steps {
+            buildStep('Functional Tests') {
+              //
+            }
+          }
         }
       }
     }

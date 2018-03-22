@@ -61,6 +61,7 @@ pipeline {
     stage('Code Coverage') {
       steps {
         buildStep('Code Coverage') {
+          sh './gradlew jacocoTestReport'
           jacoco(
               execPattern: 'build/jacoco/*.exec',
               classPattern: 'build/classes/main',

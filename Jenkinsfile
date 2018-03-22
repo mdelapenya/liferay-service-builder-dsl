@@ -4,89 +4,92 @@ import net.sf.json.JSONObject;
 String cronString = BRANCH_NAME == "master" ? "59 23 * * 1-5" : "";
 
 pipeline {
-agent {
-  node {
-    label 'master'
+  agent {
+    node {
+      label 'master'
+    }
   }
-}
-triggers { cron(cronString) }
-stages {
-  stage('Install Dependencies') {
-    steps {
-      buildStep('Install Dependencies') {
-        //
+
+  triggers { cron(cronString) }
+
+  stages {
+    stage('Install Dependencies') {
+      steps {
+        buildStep('Install Dependencies') {
+          //
+        }
+      }
+    }
+    stage('Build') {
+      steps {
+        buildStep('Build') {
+          sh './gradlew --info assemble'
+        }
+      }
+    }
+    stage('Static Analysis') {
+      steps {
+        buildStep('Static Analysis') {
+          sh './gradlew findBugsMain findBugsTest'
+          findbugs(
+              pattern: 'build/reports/findbugs/*.xml'
+          )
+        }
+      }
+    }
+    stage('Unit Tests') {
+      steps {
+        buildStep('Unit Tests') {
+          sh './gradlew test'
+        }
+      }
+    }
+    stage('Integration Tests') {
+      steps {
+        buildStep('Integration Tests') {
+          //
+        }
+      }
+    }
+    stage('Functional Tests') {
+      steps {
+        buildStep('Functional Tests') {
+          //
+        }
+      }
+    }
+    stage('Code Coverage') {
+      steps {
+        buildStep('Code Coverage') {
+          jacoco(
+              execPattern: 'build/jacoco/*.exec',
+              classPattern: 'build/classes/main',
+              sourcePattern: 'src/main/java',
+              exclusionPattern: 'src/test*'
+          )
+        }
+      }
+    }
+    stage('Push image to dockerhub') {
+      when {
+        branch 'master'
+      }
+      steps {
+        buildStep('Push image to dockerhub') {
+          //
+        }
       }
     }
   }
-  stage('Build') {
-    steps {
-      buildStep('Build') {
-        sh './gradlew --info assemble'
-      }
+
+  post {
+    always {
+      junit(allowEmptyResults: true, testResults: '**/test-results/TEST*.xml')
+    }
+    changed {
+      handleCurrentResultChange();
     }
   }
-  stage('Static Analysis') {
-    steps {
-      buildStep('Static Analysis') {
-        sh './gradlew findBugsMain findBugsTest'
-        findbugs(
-            pattern: 'build/reports/findbugs/*.xml'
-        )
-      }
-    }
-  }
-  stage('Unit Tests') {
-    steps {
-      buildStep('Unit Tests') {
-        sh './gradlew test'
-      }
-    }
-  }
-  stage('Integration Tests') {
-    steps {
-      buildStep('Integration Tests') {
-        //
-      }
-    }
-  }
-  stage('Functional Tests') {
-    steps {
-      buildStep('Functional Tests') {
-        //
-      }
-    }
-  }
-  stage('Code Coverage') {
-    steps {
-      buildStep('Code Coverage') {
-        jacoco(
-            execPattern: 'build/jacoco/*.exec',
-            classPattern: 'build/classes/main',
-            sourcePattern: 'src/main/java',
-            exclusionPattern: 'src/test*'
-        )
-      }
-    }
-  }
-  stage('Push image to dockerhub') {
-    when {
-      branch 'master'
-    }
-    steps {
-      buildStep('Push image to dockerhub') {
-        //
-      }
-    }
-  }
-}
-post {
-  always {
-    junit(allowEmptyResults: true, testResults: '**/test-results/TEST*.xml')
-  }
-  changed {
-    handleCurrentResultChange();
-  }
-}
 }
 
 void handleCurrentResultChange() {
@@ -98,33 +101,33 @@ void handleCurrentResultChange() {
 }
 
 JSONArray buildAttachments(String pretext, String text, String fallback, String title, String color) {
-JSONArray attachments = new JSONArray();
+  JSONArray attachments = new JSONArray();
 
-attachment = new JSONObject();
-attachment.put('pretext', pretext);
-attachment.put('text', text);
-attachment.put('fallback', fallback);
-attachment.put('color', color);
-attachment.put('author_name', getGitAuthor());
-attachment.put('title', title);
-attachment.put('title_link', env.BUILD_URL);
-attachment.put('footer', 'GDG Toledo');
-attachment.put('footer_icon', 'https://a.slack-edge.com/7bf4/img/services/jenkins-ci_48.png')
+  attachment = new JSONObject();
+  attachment.put('pretext', pretext);
+  attachment.put('text', text);
+  attachment.put('fallback', fallback);
+  attachment.put('color', color);
+  attachment.put('author_name', getGitAuthor());
+  attachment.put('title', title);
+  attachment.put('title_link', env.BUILD_URL);
+  attachment.put('footer', 'GDG Toledo');
+  attachment.put('footer_icon', 'https://a.slack-edge.com/7bf4/img/services/jenkins-ci_48.png')
 
-JSONArray attachmentFields = new JSONArray();
+  JSONArray attachmentFields = new JSONArray();
 
-lastCommitField = new JSONObject();
-lastCommitField.put('title', 'Last Commit');
-lastCommitField.put('value', getLastCommitMessage());
-lastCommitField.put('short', false);
+  lastCommitField = new JSONObject();
+  lastCommitField.put('title', 'Last Commit');
+  lastCommitField.put('value', getLastCommitMessage());
+  lastCommitField.put('short', false);
 
-attachmentFields.add(lastCommitField);
+  attachmentFields.add(lastCommitField);
 
-attachment.put('fields', attachmentFields);
+  attachment.put('fields', attachmentFields);
 
-attachments.add(attachment);
+  attachments.add(attachment);
 
-return attachments;
+  return attachments;
 }
 
 void buildStep(String message, Closure closure) {
@@ -161,10 +164,10 @@ void pushFailureToSlack(step) {
     'Please! Don\'t break the CI ;/',
     'Houston, we have a problem'
   ];
-  
+
   String title = "FAILED: Job ${env.JOB_NAME} - ${env.BUILD_NUMBER}";
   String text = getRandom(errorMessages);
-  
+
   JSONArray attachments = buildAttachments(
     "BUILD FAILED: ${step} - mdelapenya/liferay-service-builder-dsl",
     text,
@@ -172,7 +175,7 @@ void pushFailureToSlack(step) {
     title,
     '#ff0000'
   );
-  
+
   slackSend (color: '#ff0000', attachments: attachments.toString());
 }
 
@@ -182,10 +185,10 @@ void pushSuccessToSlack() {
     'YAY!',
     'The force is strong with this one.'
   ];
-  
+
   String title = "BUILD FIXED: Job ${env.JOB_NAME} - ${env.BUILD_NUMBER}";
   String text = getRandom(successMessages);
-  
+
   JSONArray attachments = buildAttachments(
     'BUILD FIXED - mdelapenya/liferay-service-builder-dsl',
     text,
@@ -193,7 +196,7 @@ void pushSuccessToSlack() {
     title,
     '#5fba7d'
   );
-  
+
   slackSend (color: '#5fba7d', attachments: attachments.toString());
 }
 

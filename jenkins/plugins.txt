@@ -1,0 +1,11 @@
+blueocean
+cucumber-testresult-plugin
+embeddable-build-status
+findbugs
+github
+greenballs
+jacoco
+junit
+slack
+swarm
+workflow-aggregator

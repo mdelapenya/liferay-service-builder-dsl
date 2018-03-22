@@ -56,8 +56,12 @@ stages {
   stage('Code Coverage') {
     steps {
       buildStep('Code Coverage') {
-        sh './gradlew jacocoTestReport'
-        sh 'bash <(curl -s https://codecov.io/bash)'
+        jacoco(
+            execPattern: 'build/jacoco/*.exec',
+            classPattern: 'build/jacoco/classes',
+            sourcePattern: 'src/main/java',
+            exclusionPattern: 'src/test*'
+        )
       }
     }
   }
